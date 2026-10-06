@@ -18,20 +18,129 @@
 <body>
 
   <!-- ================= NAV ================= -->
-  <nav class="nav">
+  <nav class="nav" id="mainNav">
     <a class="nav-logo" href="#top" aria-label="BIA home">
       <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="nav-logo-img" />
     </a>
+
     <div class="nav-links">
-      <a href="#story">Our Story</a>
-      <a href="#film">Brand Film</a>
-      <a href="#fabrics">Fabric &amp; Technologies</a>
-      <a href="#thread">Follow The Thread</a>
-      <a href="#inside">Inside BIA</a>
-      <a href="#ecosystem">BIA × Classic</a>
-      <a href="#insights">Insights</a>
-      <a href="#contact">Contact</a>
+      <!-- DISCOVER Category Dropdown -->
+      <div class="nav-item has-dropdown">
+        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
+          <span>DISCOVER</span>
+          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <div class="dropdown-tag">DISCOVER BIA</div>
+          <div class="dropdown-grid">
+            <a href="#story" class="dropdown-item">
+              <strong class="dropdown-title">Our Story</strong>
+              <span class="dropdown-desc">The vision & leadership of Jordan's textile hub</span>
+            </a>
+            <a href="#ecosystem" class="dropdown-item">
+              <strong class="dropdown-title">BIA × Classic</strong>
+              <span class="dropdown-desc">Integrated ecosystem from fabric to fashion</span>
+            </a>
+            <a href="#inside" class="dropdown-item">
+              <strong class="dropdown-title">Inside BIA</strong>
+              <span class="dropdown-desc">7-stop mill tour from yarn to finished roll</span>
+            </a>
+            <a href="#story" class="dropdown-item">
+              <strong class="dropdown-title">Leadership</strong>
+              <span class="dropdown-desc">Industrial capability and governance</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CREATE Category Dropdown -->
+      <div class="nav-item has-dropdown">
+        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
+          <span>CREATE</span>
+          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <div class="dropdown-tag">FABRIC CREATION</div>
+          <div class="dropdown-grid">
+            <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('library');}" class="dropdown-item">
+              <strong class="dropdown-title">Fabric Lab</strong>
+              <span class="dropdown-desc">Explore technical knit & stretch catalogue</span>
+            </a>
+            <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}" class="dropdown-item">
+              <strong class="dropdown-title">Technologies</strong>
+              <span class="dropdown-desc">Cool, Wick, Stretch, Protect & Insulate</span>
+            </a>
+            <a href="#thread" class="dropdown-item">
+              <strong class="dropdown-title">Follow The Red Thread</strong>
+              <span class="dropdown-desc">8 stages of precision fabric engineering</span>
+            </a>
+            <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}" class="dropdown-item">
+              <strong class="dropdown-title">Request Swatch</strong>
+              <span class="dropdown-desc">Custom sample packs & development briefs</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMPACT Category Dropdown -->
+      <div class="nav-item has-dropdown">
+        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
+          <span>IMPACT</span>
+          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <div class="dropdown-tag">OUR IMPACT</div>
+          <div class="dropdown-grid">
+            <a href="#inside" class="dropdown-item">
+              <strong class="dropdown-title">Responsibility</strong>
+              <span class="dropdown-desc">Low-liquor dyeing & sustainable operations</span>
+            </a>
+            <a href="#inside" class="dropdown-item">
+              <strong class="dropdown-title">People</strong>
+              <span class="dropdown-desc">1,000+ dedicated textile specialists</span>
+            </a>
+            <a href="#inside" class="dropdown-item">
+              <strong class="dropdown-title">Quality</strong>
+              <span class="dropdown-desc">4-point inspection & continuous lab testing</span>
+            </a>
+            <a href="#insights" class="dropdown-item">
+              <strong class="dropdown-title">Insights & Stories</strong>
+              <span class="dropdown-desc">Textile science, research & innovation</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONNECT Category Dropdown -->
+      <div class="nav-item has-dropdown">
+        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
+          <span>CONNECT</span>
+          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <div class="dropdown-tag">CONNECT WITH BIA</div>
+          <div class="dropdown-grid">
+            <a href="#contact" class="dropdown-item">
+              <strong class="dropdown-title">Contact</strong>
+              <span class="dropdown-desc">Engineering briefs & dedicated account team</span>
+            </a>
+            <a href="#contact" class="dropdown-item">
+              <strong class="dropdown-title">Book Mill Visit</strong>
+              <span class="dropdown-desc">Facility tour in Sahab Industrial City, Amman</span>
+            </a>
+            <a href="#contact" class="dropdown-item">
+              <strong class="dropdown-title">Careers</strong>
+              <span class="dropdown-desc">Join our manufacturing & technical divisions</span>
+            </a>
+            <a href="mailto:develop@bia.jo" class="dropdown-item">
+              <strong class="dropdown-title">develop@bia.jo</strong>
+              <span class="dropdown-desc">Direct mill line: +962 6 402 0000</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
     <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}"
       class="btn btn-red nav-cta">Develop with BIA <span class="arrow">→</span></a>
   </nav>

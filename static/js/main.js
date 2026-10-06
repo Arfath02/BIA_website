@@ -852,11 +852,32 @@
 
   if (articleModalClose) articleModalClose.addEventListener('click', closeArticleModal);
   if (articleModalCloseBtn) articleModalCloseBtn.addEventListener('click', closeArticleModal);
-  if (articleModalBackdrop) articleModalBackdrop.addEventListener('click', closeArticleModal);
+  /* ---------------- 10. NAVBAR CATEGORY DROPDOWNS ---------------- */
+  var navItems = document.querySelectorAll('.nav-item.has-dropdown');
 
-  window.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && storyArticleModal && storyArticleModal.classList.contains('is-open')) {
-      closeArticleModal();
+  navItems.forEach(function (item) {
+    var btn = item.querySelector('.nav-link-btn');
+    if (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = item.classList.contains('is-open');
+        navItems.forEach(function (other) { other.classList.remove('is-open'); });
+        if (!isOpen) {
+          item.classList.add('is-open');
+        }
+      });
+    }
+
+    item.querySelectorAll('.dropdown-item').forEach(function (link) {
+      link.addEventListener('click', function () {
+        item.classList.remove('is-open');
+      });
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-item')) {
+      navItems.forEach(function (item) { item.classList.remove('is-open'); });
     }
   });
 })();
