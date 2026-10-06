@@ -346,5 +346,209 @@
     // Initial state
     updatePlayState();
   }
+
+  /* ---------------- 5. NAV SCROLL SPY ---------------- */
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var sections = document.querySelectorAll('section[id], header[id]');
+  
+  function updateNavSpy() {
+    var scrollPos = window.scrollY + 140;
+    sections.forEach(function (sec) {
+      var top = sec.offsetTop;
+      var height = sec.offsetHeight;
+      var id = sec.getAttribute('id');
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(function (link) {
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  }
+  /* ---------------- 6. MATERIAL LIBRARY (TABS, FILTER, SEARCH & MODAL) ---------------- */
+  var tabLibraryBtn = document.getElementById('tabLibraryBtn');
+  var tabMakerBtn = document.getElementById('tabMakerBtn');
+  var matPanelLibrary = document.getElementById('matPanelLibrary');
+  var matPanelMaker = document.getElementById('matPanelMaker');
+  var matSwitchToMakerBtn = document.getElementById('matSwitchToMakerBtn');
+  var matModalDevelopBtn = document.getElementById('matModalDevelopBtn');
+
+  function switchMatTab(target, scroll) {
+    if (target === 'maker') {
+      if (tabMakerBtn) tabMakerBtn.classList.add('active');
+      if (tabLibraryBtn) tabLibraryBtn.classList.remove('active');
+      if (matPanelMaker) matPanelMaker.classList.add('active');
+      if (matPanelLibrary) matPanelLibrary.classList.remove('active');
+    } else {
+      if (tabLibraryBtn) tabLibraryBtn.classList.add('active');
+      if (tabMakerBtn) tabMakerBtn.classList.remove('active');
+      if (matPanelLibrary) matPanelLibrary.classList.add('active');
+      if (matPanelMaker) matPanelMaker.classList.remove('active');
+    }
+    if (scroll) {
+      var fabricsSec = document.getElementById('fabrics');
+      if (fabricsSec) {
+        var navHeight = 72;
+        var targetY = fabricsSec.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+    }
+  }
+  window.switchMatTab = switchMatTab;
+
+  if (tabLibraryBtn) {
+    tabLibraryBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      switchMatTab('library', false);
+    });
+  }
+
+  if (tabMakerBtn) {
+    tabMakerBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      switchMatTab('maker', false);
+    });
+  }
+
+  if (matSwitchToMakerBtn) {
+    matSwitchToMakerBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      switchMatTab('maker', true);
+    });
+  }
+
+  if (matModalDevelopBtn) {
+    matModalDevelopBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeMatModal();
+      switchMatTab('maker', true);
+    });
+  }
+
+  // Intercept any href="#develop" or href="#fabrics" links
+  document.querySelectorAll('a[href="#develop"], a[href="#fabrics"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      if (link.classList.contains('nav-cta') || link.getAttribute('href') === '#develop') {
+        e.preventDefault();
+        switchMatTab('maker', true);
+      }
+    });
+  });
+
+  var matFilterPills = document.querySelectorAll('.mat-filter-pill');
+  var matSearchInput = document.getElementById('matSearchInput');
+  var matCards = document.querySelectorAll('.mat-card');
+  var matCountDisplay = document.getElementById('matCountDisplay');
+
+  var currentFilter = 'all';
+  var currentSearch = '';
+
+  function filterMaterials() {
+    var visibleCount = 0;
+    var searchLower = currentSearch.toLowerCase().trim();
+
+    matCards.forEach(function (card) {
+      var tags = (card.getAttribute('data-tags') || '').toLowerCase();
+      var name = (card.getAttribute('data-name') || '').toLowerCase();
+      var code = (card.getAttribute('data-code') || '').toLowerCase();
+      var cat = (card.getAttribute('data-cat') || '').toLowerCase();
+
+      var matchesFilter = (currentFilter === 'all') || tags.indexOf(currentFilter) !== -1;
+      var matchesSearch = !searchLower || (name.indexOf(searchLower) !== -1 || code.indexOf(searchLower) !== -1 || cat.indexOf(searchLower) !== -1);
+
+      if (matchesFilter && matchesSearch) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (matCountDisplay) {
+      matCountDisplay.textContent = visibleCount + (visibleCount === 1 ? ' material' : ' materials');
+    }
+  }
+
+  matFilterPills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      matFilterPills.forEach(function (p) { p.classList.remove('on'); });
+      pill.classList.add('on');
+      currentFilter = pill.getAttribute('data-filter') || 'all';
+      filterMaterials();
+    });
+  });
+
+  if (matSearchInput) {
+    matSearchInput.addEventListener('input', function (e) {
+      currentSearch = e.target.value;
+      filterMaterials();
+    });
+  }
+
+  // Modal logic
+  var matModal = document.getElementById('matModal');
+  var matModalBackdrop = document.getElementById('matModalBackdrop');
+  var matModalClose = document.getElementById('matModalClose');
+  var matModalCloseBtn = document.getElementById('matModalCloseBtn');
+  var matModalImg = document.getElementById('matModalImg');
+  var matModalCode = document.getElementById('matModalCode');
+  var matModalCat = document.getElementById('matModalCat');
+  var matModalTitle = document.getElementById('matModalTitle');
+  var matModalComp = document.getElementById('matModalComp');
+  var matModalGsm = document.getElementById('matModalGsm');
+  var matModalTags = document.getElementById('matModalTags');
+
+  function openMatModal(card) {
+    if (!matModal) return;
+    var name = card.getAttribute('data-name');
+    var code = card.getAttribute('data-code');
+    var cat = card.getAttribute('data-cat');
+    var comp = card.getAttribute('data-comp');
+    var gsm = card.getAttribute('data-gsm');
+    var img = card.getAttribute('data-img');
+    var tags = (card.getAttribute('data-tags') || '').split(' ').map(function (t) {
+      return t.charAt(0).toUpperCase() + t.slice(1);
+    }).join(' · ');
+
+    if (matModalTitle) matModalTitle.textContent = name;
+    if (matModalCode) matModalCode.textContent = code;
+    if (matModalCat) matModalCat.textContent = cat;
+    if (matModalComp) matModalComp.textContent = comp;
+    if (matModalGsm) matModalGsm.textContent = gsm;
+    if (matModalTags) matModalTags.textContent = tags;
+    if (matModalImg) {
+      matModalImg.src = img;
+      matModalImg.alt = code + ' ' + name;
+    }
+
+    matModal.classList.add('is-open');
+    matModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMatModal() {
+    if (!matModal) return;
+    matModal.classList.remove('is-open');
+    matModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  matCards.forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      openMatModal(card);
+    });
+  });
+
+  if (matModalClose) matModalClose.addEventListener('click', closeMatModal);
+  if (matModalCloseBtn) matModalCloseBtn.addEventListener('click', closeMatModal);
+  if (matModalBackdrop) matModalBackdrop.addEventListener('click', closeMatModal);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && matModal && matModal.classList.contains('is-open')) {
+      closeMatModal();
+    }
+  });
 })();
 
