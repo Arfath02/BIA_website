@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261006_05" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261006_06" />
 </head>
 
 <body>
@@ -43,21 +43,6 @@
       <div class="hero-bg"></div>
       <div class="hero-veil"></div>
 
-      <svg class="hero-thread" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <filter id="threadGlow" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="6" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        <path id="heroThreadPath"
-          d="M -40 560 C 180 540, 260 430, 420 470 S 640 620, 780 520 S 980 330, 1130 400 S 1330 480, 1480 430"
-          fill="none" stroke="#c8102e" stroke-width="3.5" stroke-linecap="round" filter="url(#threadGlow)" />
-      </svg>
-
       <div class="hero-side hero-side-right">
         <span>FROM JORDAN</span>
         <span class="rule"></span>
@@ -65,10 +50,15 @@
       </div>
 
       <div class="hero-copy" id="heroCopy">
-        <p class="hero-micro" id="heroMicro">It begins with a single thread.</p>
+        <div class="hero-final">
+          <h1>BRILLIANCE,<br />WOVEN IN.</h1>
+          <p class="hero-sub">From yarn to innovation.<br />From fabric to fashion.<br />From Jordan to the world.</p>
+          <div class="hero-ctas">
+            <a href="#fabrics" class="btn btn-red">Explore BIA <span class="arrow">→</span></a>
+            <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}" class="btn btn-ghost">Develop with us <span class="arrow">→</span></a>
+          </div>
+        </div>
       </div>
-
-      <button class="hero-skip" id="heroSkip" type="button">SKIP ANIMATION</button>
 
       <div class="hero-foot">
         <span>SOUND&nbsp;&nbsp;OFF</span>
@@ -716,18 +706,24 @@
     <section class="section light stories" id="insights">
       <div class="stories-head reveal">
         <p class="eyebrow">FABRIC STORIES</p>
-        <a href="#insights" class="stories-all">Explore all stories →</a>
+        <button type="button" class="stories-all" id="exploreAllStoriesBtn">Explore all stories →</button>
       </div>
       <div class="stories-grid">
-        <a class="story reveal" href="#insights"><span class="story-tag">TECHNOLOGY</span>
-          <h3>What actually makes a fabric quick-dry?</h3><span class="story-arrow">→</span>
-        </a>
-        <a class="story reveal" href="#insights"><span class="story-tag">INSIDE BIA</span>
-          <h3>Inside the BIA colour lab</h3><span class="story-arrow">→</span>
-        </a>
-        <a class="story reveal" href="#insights"><span class="story-tag">INNOVATION</span>
-          <h3>Why GSM doesn't tell the whole fabric story</h3><span class="story-arrow">→</span>
-        </a>
+        <div class="story reveal story-card-btn" data-story-id="quick-dry" role="button" tabindex="0" aria-label="Read story: What actually makes a fabric quick-dry?">
+          <span class="story-tag">TECHNOLOGY</span>
+          <h3>What actually makes a fabric quick-dry?</h3>
+          <span class="story-arrow">→</span>
+        </div>
+        <div class="story reveal story-card-btn" data-story-id="colour-lab" role="button" tabindex="0" aria-label="Read story: Inside the BIA colour lab">
+          <span class="story-tag">INSIDE BIA</span>
+          <h3>Inside the BIA colour lab</h3>
+          <span class="story-arrow">→</span>
+        </div>
+        <div class="story reveal story-card-btn" data-story-id="gsm-story" role="button" tabindex="0" aria-label="Read story: Why GSM doesn't tell the whole fabric story">
+          <span class="story-tag">INNOVATION</span>
+          <h3>Why GSM doesn't tell the whole fabric story</h3>
+          <span class="story-arrow">→</span>
+        </div>
       </div>
     </section>
 
@@ -986,6 +982,34 @@
     </div>
   </div>
 
+  <!-- ================= FABRIC STORY ARTICLE READER MODAL ================= -->
+  <div class="article-modal" id="storyArticleModal" aria-hidden="true" role="dialog" aria-labelledby="articleModalTitle">
+    <div class="article-modal-backdrop" id="articleModalBackdrop"></div>
+    <div class="article-modal-card">
+      <button class="article-modal-close" id="articleModalClose" aria-label="Close article modal">✕</button>
+      
+      <div class="article-modal-hero">
+        <img id="articleModalImg" src="{{ url_for('static', filename='assets/stage-knit.png') }}" alt="Fabric Story Banner" />
+        <div class="article-modal-hero-overlay">
+          <div class="article-modal-meta">
+            <span class="article-modal-tag" id="articleModalTag">TECHNOLOGY · PERFORMANCE APPAREL</span>
+            <span class="article-modal-readtime" id="articleModalReadTime">4 MIN READ</span>
+          </div>
+          <h3 class="article-modal-title" id="articleModalTitle">What actually makes a fabric quick-dry?</h3>
+        </div>
+      </div>
+
+      <div class="article-modal-body" id="articleModalBody">
+        <!-- Dynamic Content injected via JS -->
+      </div>
+
+      <div class="article-modal-actions">
+        <button type="button" class="btn btn-ghost-dark" id="articleModalCloseBtn">Close Article</button>
+        <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker', true);if(window.closeArticleModal){window.closeArticleModal();}}" class="btn btn-red" id="articleModalDevelopBtn">Develop with BIA <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="footer-top">
@@ -1017,7 +1041,7 @@
     <div class="footer-line"><span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span></div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261006_05"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261006_06"></script>
 </body>
 
 </html>

@@ -8,77 +8,7 @@
 (function () {
   'use strict';
 
-  /* ---------------- 1. HERO THREAD SEQUENCE ---------------- */
-  var HERO = [
-    { t: 0.4, copy: 'It begins with a single thread.' },
-    { t: 2.4, copy: 'Engineered with precision.' },
-    { t: 4.4, copy: 'Fabric engineered for performance.' },
-    { t: 6.4, copy: 'From possibility to performance.' }
-  ];
-  var FINAL_T = 8.4;
-
-  var path = document.getElementById('heroThreadPath');
-  var micro = document.getElementById('heroMicro');
-  var copyBox = document.getElementById('heroCopy');
-  var skipBtn = document.getElementById('heroSkip');
-
-  if (path && micro && copyBox) {
-    var len = path.getTotalLength();
-    path.style.strokeDasharray = len;
-    path.style.strokeDashoffset = len;
-
-    var done = false;
-    var start = null;
-    var stageIdx = -1;
-
-    function renderFinal() {
-      done = true;
-      path.style.strokeDashoffset = 0;
-      if (skipBtn) skipBtn.style.display = 'none';
-      copyBox.innerHTML =
-        '<div class="hero-final">' +
-          '<h1>BRILLIANCE,<br>WOVEN IN.</h1>' +
-          '<p class="hero-sub">From yarn to innovation.<br>From fabric to fashion.<br>From Jordan to the world.</p>' +
-          '<div class="hero-ctas">' +
-            '<a href="#thread" class="btn btn-red">Explore BIA <span class="arrow">→</span></a>' +
-            '<a href="#develop" class="btn btn-ghost">Develop with us <span class="arrow">→</span></a>' +
-          '</div>' +
-        '</div>';
-    }
-
-    function frame(now) {
-      if (done) return;
-      if (start === null) start = now;
-      var s = (now - start) / 1000;
-      var p = Math.min(s / FINAL_T, 1);
-      // ease the draw slightly so the thread accelerates naturally
-      var eased = 1 - Math.pow(1 - p, 1.6);
-      path.style.strokeDashoffset = len * (1 - eased);
-
-      var idx = -1;
-      for (var i = 0; i < HERO.length; i++) { if (s >= HERO[i].t) idx = i; }
-      if (idx !== stageIdx && idx >= 0) {
-        stageIdx = idx;
-        micro.classList.remove('out');
-        micro.classList.add('out');
-        (function (text) {
-          setTimeout(function () {
-            if (done) return;
-            micro.textContent = text;
-            micro.classList.remove('out');
-          }, 250);
-        })(HERO[idx].copy);
-      }
-
-      if (s >= FINAL_T) { renderFinal(); return; }
-      requestAnimationFrame(frame);
-    }
-
-    requestAnimationFrame(frame);
-    if (skipBtn) skipBtn.addEventListener('click', renderFinal);
-  }
-
-  /* ---------------- 2. SCROLL EFFECTS ---------------- */
+  /* ---------------- 1. SCROLL EFFECTS ---------------- */
   // reveal-on-scroll
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -809,6 +739,124 @@
   window.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && storyModal && storyModal.classList.contains('is-open')) {
       closeStoryModal();
+    }
+  });
+
+  /* ---------------- 9. FABRIC STORIES ARTICLE READER MODAL ---------------- */
+  var STORY_ARTICLES = {
+    'quick-dry': {
+      tag: 'TECHNOLOGY · PERFORMANCE FABRICS',
+      title: 'What actually makes a fabric quick-dry?',
+      readTime: '4 MIN READ',
+      img: '/static/assets/stage-knit.png',
+      body: '<p class="article-lead">Contrary to common belief, quick-dry fabrics don\'t simply repel water. True quick-dry performance is a triumph of micro-engineered capillary physics and filament geometry.</p>' +
+            '<h4>1. Capillary Action & Micro-Groove Geometry</h4>' +
+            '<p>Traditional round polyester filaments hold moisture in bulk pockets between fibers. At BIA, our quick-dry textiles utilize modified cross-sectional yarn geometries with multi-channel micro-grooves. These micro-channels draw liquid sweat along the filament surface via capillary action, spreading moisture across a 300% wider evaporation zone in milliseconds.</p>' +
+            '<div class="article-quote">"Quick-dry is not just about final drying time — it is about how fast moisture is pulled away from the skin before the wearer even senses dampness."</div>' +
+            '<h4>2. Dual-Face Moisture Gradient</h4>' +
+            '<p>Our engineered dual-knit structures combine hydrophobic filament yarns on the skin-contact side with hydrophilic outer yarns. This creates an irreversible one-way moisture gradient: sweat is pulled outwards in under 1.2 seconds and locked on the exterior face where ambient airflow completes evaporation.</p>' +
+            '<h4>3. Lab Verification & International Standards</h4>' +
+            '<p>Every batch produced at BIA is verified in our in-house accredited testing laboratory against AATCC 197 (Vertical Wicking Rate) and AATCC 79 (Absorbency). Our high-performance running and training fabrics consistently exceed 120mm wicking in 10 minutes — surpassing tier-1 athletic sportswear benchmarks.</p>'
+    },
+    'colour-lab': {
+      tag: 'INSIDE BIA · SPECTROPHOTOMETRY & CHEMISTRY',
+      title: 'Inside the BIA colour lab',
+      readTime: '5 MIN READ',
+      img: '/static/assets/ecosystem-wall-03-tech-lab.png',
+      body: '<p class="article-lead">Colour in technical textiles is both a fine art and an exact science. Inside BIA\'s climate-controlled laboratory, every hue is formulated with digital reflectance precision.</p>' +
+            '<h4>1. Spectral Tolerances Below ΔE 0.5</h4>' +
+            '<p>Using advanced Datacolor spectrophotometers, our dye chemists calculate spectral reflectance across the full visible wavelength (360nm – 700nm). We maintain strict commercial tolerances under ΔE &lt; 0.5 across multiple standard illuminants (D65 Daylight, CWF Cool White Fluorescent, and TL84 Store Lighting), eliminating metamerism.</p>' +
+            '<div class="article-quote">"A shade must look identical under outdoor daylight, gym fluorescent lighting, and retail spotlights. We engineer recipes to ensure zero metameric shift."</div>' +
+            '<h4>2. Robotic Micro-Dispensing & Low-Liquor Formulations</h4>' +
+            '<p>Automated robotic pipetting systems dispense dye formulations with sub-milligram precision. Coupled with our low-liquor dyeing technology (operating at a 1:4.5 liquor ratio), we drastically reduce water and thermal energy consumption while achieving deep, uniform color saturation.</p>' +
+            '<h4>3. Accelerated Performance Testing</h4>' +
+            '<p>Lab-dipped samples undergo accelerated wash fastness (ISO 105-C06), perspiration testing (ISO 105-E04), and xenon arc light fastness testing before recipe approval for 1,000+ kg industrial dye lots.</p>'
+    },
+    'gsm-story': {
+      tag: 'INNOVATION · TEXTILE ENGINEERING',
+      title: 'Why GSM doesn\'t tell the whole fabric story',
+      readTime: '3 MIN READ',
+      img: '/static/assets/stage-fabric.png',
+      body: '<p class="article-lead">Grams per Square Meter (GSM) is the most common textile metric, but relying on GSM alone is like judging a smartphone purely by its weight.</p>' +
+            '<h4>1. Weight vs. Structural Gauge Density</h4>' +
+            '<p>Two fabrics can weigh exactly 180 GSM yet perform completely differently. A 180 GSM single jersey knitted on a 20-gauge machine will feel loose, prone to snagging, and lack structural recovery. Knitted on a 28 or 32-gauge high-precision circular machine, that same 180 GSM becomes an ultra-fine, squat-proof, compressive second-skin fabric.</p>' +
+            '<div class="article-quote">"Fabric performance is governed by yarn geometry, machine gauge density, and filament multiplicity — GSM is merely the weight on a scale."</div>' +
+            '<h4>2. Filament Multiplicity & Micro-Denier Fibers</h4>' +
+            '<p>By utilizing micro-denier yarns with 72 or 144 filaments per yarn strand, BIA engineers ultra-lightweight 130 GSM fabrics that deliver greater opacity, wind resistance, and UPF sun protection than traditional 220 GSM fabrics.</p>' +
+            '<h4>3. Engineering for the End Garment</h4>' +
+            '<p>When developing custom textiles with global apparel partners, our engineering team looks past raw weight to analyze modulus of elasticity, elongation recovery, breathability, and drape for optimal athletic performance.</p>'
+    }
+  };
+
+  var storyArticleModal = document.getElementById('storyArticleModal');
+  var articleModalBackdrop = document.getElementById('articleModalBackdrop');
+  var articleModalClose = document.getElementById('articleModalClose');
+  var articleModalCloseBtn = document.getElementById('articleModalCloseBtn');
+  var articleModalImg = document.getElementById('articleModalImg');
+  var articleModalTag = document.getElementById('articleModalTag');
+  var articleModalTitle = document.getElementById('articleModalTitle');
+  var articleModalReadTime = document.getElementById('articleModalReadTime');
+  var articleModalBody = document.getElementById('articleModalBody');
+  var storyCardBtns = document.querySelectorAll('.story-card-btn, .story');
+  var exploreAllStoriesBtn = document.getElementById('exploreAllStoriesBtn');
+
+  function openArticleModal(storyId) {
+    if (!storyArticleModal) return;
+    var story = STORY_ARTICLES[storyId] || STORY_ARTICLES['quick-dry'];
+
+    if (articleModalTitle) articleModalTitle.textContent = story.title;
+    if (articleModalTag) articleModalTag.textContent = story.tag;
+    if (articleModalReadTime) articleModalReadTime.textContent = story.readTime;
+    if (articleModalImg) {
+      articleModalImg.src = story.img;
+      articleModalImg.alt = story.title;
+    }
+    if (articleModalBody) articleModalBody.innerHTML = story.body;
+
+    storyArticleModal.classList.add('is-open');
+    storyArticleModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeArticleModal() {
+    if (!storyArticleModal) return;
+    storyArticleModal.classList.remove('is-open');
+    storyArticleModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  window.openArticleModal = openArticleModal;
+  window.closeArticleModal = closeArticleModal;
+
+  storyCardBtns.forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      e.preventDefault();
+      var id = card.getAttribute('data-story-id') || 'quick-dry';
+      openArticleModal(id);
+    });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        var id = card.getAttribute('data-story-id') || 'quick-dry';
+        openArticleModal(id);
+      }
+    });
+  });
+
+  if (exploreAllStoriesBtn) {
+    exploreAllStoriesBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      openArticleModal('quick-dry');
+    });
+  }
+
+  if (articleModalClose) articleModalClose.addEventListener('click', closeArticleModal);
+  if (articleModalCloseBtn) articleModalCloseBtn.addEventListener('click', closeArticleModal);
+  if (articleModalBackdrop) articleModalBackdrop.addEventListener('click', closeArticleModal);
+
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && storyArticleModal && storyArticleModal.classList.contains('is-open')) {
+      closeArticleModal();
     }
   });
 })();
