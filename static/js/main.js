@@ -756,6 +756,61 @@
       contactForm.hidden = false;
     });
   }
+
+  /* ---------------- 8. OUR STORY POPUP MODAL ---------------- */
+  var storyModal = document.getElementById('storyModal');
+  var storyModalBackdrop = document.getElementById('storyModalBackdrop');
+  var storyModalClose = document.getElementById('storyModalClose');
+  var storyModalCloseBtn = document.getElementById('storyModalCloseBtn');
+  var storyModalVisitBtn = document.getElementById('storyModalVisitBtn');
+  var openStoryTriggers = document.querySelectorAll('.open-story-trigger, #openStoryBtn');
+
+  function openStoryModal() {
+    if (!storyModal) return;
+    storyModal.classList.add('is-open');
+    storyModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeStoryModal() {
+    if (!storyModal) return;
+    storyModal.classList.remove('is-open');
+    storyModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  window.openStoryModal = openStoryModal;
+  window.closeStoryModal = closeStoryModal;
+
+  openStoryTriggers.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      openStoryModal();
+    });
+  });
+
+  if (storyModalClose) {
+    storyModalClose.addEventListener('click', closeStoryModal);
+  }
+  if (storyModalCloseBtn) {
+    storyModalCloseBtn.addEventListener('click', closeStoryModal);
+  }
+  if (storyModalBackdrop) {
+    storyModalBackdrop.addEventListener('click', closeStoryModal);
+  }
+  if (storyModalVisitBtn) {
+    storyModalVisitBtn.addEventListener('click', function () {
+      closeStoryModal();
+      var visitChip = document.querySelector('.topic-chip[data-topic="visit"]');
+      if (visitChip) visitChip.click();
+    });
+  }
+
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && storyModal && storyModal.classList.contains('is-open')) {
+      closeStoryModal();
+    }
+  });
 })();
 
 

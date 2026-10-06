@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261006_04" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261006_05" />
 </head>
 
 <body>
@@ -102,7 +102,7 @@
           <p>BIA is a world-class fabric manufacturing facility creating high-performance fabrics for global apparel
             brands. With innovation, scale and responsibility at our core, we turn possibilities into material reality —
             from Jordan to the world.</p>
-          <a href="#story" class="btn btn-ghost-dark">Our story <span class="arrow">→</span></a>
+          <a href="#storyModal" class="btn btn-ghost-dark open-story-trigger" id="openStoryBtn">Our story <span class="arrow">→</span></a>
         </div>
       </div>
     </section>
@@ -913,6 +913,79 @@
     </div>
   </div>
 
+  <!-- ================= OUR STORY POPUP MODAL ================= -->
+  <div class="story-modal" id="storyModal" aria-hidden="true" role="dialog" aria-labelledby="storyModalTitle">
+    <div class="story-modal-backdrop" id="storyModalBackdrop"></div>
+    <div class="story-modal-card">
+      <button class="story-modal-close" id="storyModalClose" aria-label="Close story modal">✕</button>
+      
+      <div class="story-modal-hero">
+        <img src="{{ url_for('static', filename='assets/ecosystem-wall-01-knitting-hall.jpg') }}" alt="BIA World-Class Mill Facility" />
+        <div class="story-modal-hero-overlay">
+          <span class="story-modal-eyebrow">OUR STORY · BRILLIANCE IN APPAREL</span>
+          <h3 class="story-modal-title" id="storyModalTitle">ENGINEERED FROM THE THREAD UP</h3>
+        </div>
+      </div>
+
+      <div class="story-modal-body">
+        <p class="story-lead-text">
+          BIA was founded to redefine the speed, precision, and sustainability of global textile manufacturing — transforming possibilities into high-performance material realities from Jordan to the world.
+        </p>
+
+        <p>
+          Positioned as an advanced vertical fabric powerhouse, BIA combines high-speed European circular knitting, low-liquor dyeing technology, automated finishing, and an in-house accredited testing laboratory. We bridge the critical gap between visionary apparel design and high-volume industrial execution.
+        </p>
+
+        <div class="story-pillars-grid">
+          <div class="story-pillar-item">
+            <h4>Precision Engineering</h4>
+            <p>State-of-the-art circular knitters, precision tension management, and real-time electronic fault detection across 100+ tonnes daily.</p>
+          </div>
+          <div class="story-pillar-item">
+            <h4>Eco-Efficiency</h4>
+            <p>Ultra-low liquor ratio dyeing systems, closed-loop water treatment, and non-hazardous certified green chemistry.</p>
+          </div>
+          <div class="story-pillar-item">
+            <h4>Vertical Synergy</h4>
+            <p>Direct alignment with Classic Fashion — seamlessly connecting yarn spinning, fabric development, and ready-to-wear apparel manufacturing.</p>
+          </div>
+          <div class="story-pillar-item">
+            <h4>Lab-Verified Quality</h4>
+            <p>Rigorous 4-point visual inspection and continuous accredited testing for dimensional stability, colour fastness, and moisture management.</p>
+          </div>
+        </div>
+
+        <div class="story-stats-strip">
+          <div class="story-stat-box">
+            <span class="s-num">100+</span>
+            <span class="s-lbl">Tonnes Daily</span>
+          </div>
+          <div class="story-stat-box">
+            <span class="s-num">40+</span>
+            <span class="s-lbl">Global Markets</span>
+          </div>
+          <div class="story-stat-box">
+            <span class="s-num">1,000+</span>
+            <span class="s-lbl">Specialists</span>
+          </div>
+          <div class="story-stat-box">
+            <span class="s-num">100%</span>
+            <span class="s-lbl">Traceability</span>
+          </div>
+        </div>
+
+        <p>
+          Whether collaborating with global sportswear pioneers or premium fashion labels, BIA provides rapid prototyping, dependable consistency, and certified performance at industrial scale.
+        </p>
+
+        <div class="story-modal-actions">
+          <button type="button" class="btn btn-ghost-dark" id="storyModalCloseBtn">Close</button>
+          <a href="#contact" class="btn btn-red" id="storyModalVisitBtn">Book a Mill Visit <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="footer-top">
@@ -944,7 +1017,7 @@
     <div class="footer-line"><span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span></div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261006_04"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261006_05"></script>
 </body>
 
 </html>
