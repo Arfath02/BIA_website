@@ -1312,14 +1312,16 @@ a { color: inherit; }
   cursor: pointer;
 }
 .story:hover {
-  background: var(--ink);
-  color: var(--paper);
+  background: #38323a; /* Modern refined dark grey */
+  color: #ffffff;
+  border-color: rgba(200, 16, 46, 0.45);
   transform: translateY(-6px);
-  box-shadow: 0 25px 60px rgba(19, 16, 20, 0.35);
+  box-shadow: 0 22px 50px rgba(40, 34, 42, 0.28);
 }
 .story-tag { font-family: var(--font-display); font-size: 10.5px; font-weight: 800; letter-spacing: 0.28em; color: #78716c; transition: color 0.3s; }
 .story:hover .story-tag { color: var(--red); }
-.story h3 { font-size: 22px; line-height: 1.35; font-weight: 700; }
+.story h3 { font-size: 22px; line-height: 1.35; font-weight: 700; color: var(--ink); transition: color 0.3s; }
+.story:hover h3 { color: #ffffff; }
 .story-arrow { position: absolute; bottom: 26px; right: 30px; color: var(--red); font-size: 20px; transition: transform 0.3s; }
 .story:hover .story-arrow { transform: translateX(6px); }
 
