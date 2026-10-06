@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BIA — Brilliance in Apparel | Brilliance, Woven In.</title>
-  <meta name="description" content="BIA is a world-class fabric manufacturing facility. From yarn to innovation, from fabric to fashion, from Jordan to the world." />
+  <meta name="description"
+    content="BIA is a world-class fabric manufacturing facility. From yarn to innovation, from fabric to fashion, from Jordan to the world." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261006_02" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261006_04" />
 </head>
+
 <body>
 
   <!-- ================= NAV ================= -->
@@ -21,15 +26,14 @@
       <a href="#story">Our Story</a>
       <a href="#film">Brand Film</a>
       <a href="#fabrics">Fabric &amp; Technologies</a>
-      <a href="#innovation">Innovation</a>
+      <a href="#thread">Follow The Thread</a>
       <a href="#inside">Inside BIA</a>
       <a href="#ecosystem">BIA × Classic</a>
-      <a href="#responsibility">Responsibility</a>
-      <a href="#people">People</a>
       <a href="#insights">Insights</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}" class="btn btn-red nav-cta">Develop with BIA <span class="arrow">→</span></a>
+    <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}"
+      class="btn btn-red nav-cta">Develop with BIA <span class="arrow">→</span></a>
   </nav>
 
   <main id="top">
@@ -43,11 +47,15 @@
         <defs>
           <filter id="threadGlow" x="-40%" y="-40%" width="180%" height="180%">
             <feGaussianBlur stdDeviation="6" result="b" />
-            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
           </filter>
         </defs>
-        <path id="heroThreadPath" d="M -40 560 C 180 540, 260 430, 420 470 S 640 620, 780 520 S 980 330, 1130 400 S 1330 480, 1480 430"
-              fill="none" stroke="#c8102e" stroke-width="3.5" stroke-linecap="round" filter="url(#threadGlow)" />
+        <path id="heroThreadPath"
+          d="M -40 560 C 180 540, 260 430, 420 470 S 640 620, 780 520 S 980 330, 1130 400 S 1330 480, 1480 430"
+          fill="none" stroke="#c8102e" stroke-width="3.5" stroke-linecap="round" filter="url(#threadGlow)" />
       </svg>
 
       <div class="hero-side hero-side-right">
@@ -70,10 +78,14 @@
 
     <!-- ================= STATS ================= -->
     <section class="stats" aria-label="BIA at a glance">
-      <div class="stat reveal"><span class="stat-n" data-count="100" data-suffix="+">0</span><span class="stat-l">TONNES DAILY CAPACITY</span></div>
-      <div class="stat reveal"><span class="stat-n" data-count="40" data-suffix="+">0</span><span class="stat-l">GLOBAL MARKETS</span></div>
-      <div class="stat reveal"><span class="stat-n" data-count="1000" data-suffix="+">0</span><span class="stat-l">PEOPLE POWERING BIA</span></div>
-      <div class="stat reveal"><span class="stat-n red">→</span><span class="stat-l">A MORE RESPONSIBLE TOMORROW</span></div>
+      <div class="stat reveal"><span class="stat-n" data-count="100" data-suffix="+">0</span><span class="stat-l">TONNES
+          DAILY CAPACITY</span></div>
+      <div class="stat reveal"><span class="stat-n" data-count="40" data-suffix="+">0</span><span class="stat-l">GLOBAL
+          MARKETS</span></div>
+      <div class="stat reveal"><span class="stat-n" data-count="1000" data-suffix="+">0</span><span
+          class="stat-l">PEOPLE POWERING BIA</span></div>
+      <div class="stat reveal"><span class="stat-n red">→</span><span class="stat-l">A MORE RESPONSIBLE TOMORROW</span>
+      </div>
     </section>
 
     <!-- ================= POSITION ================= -->
@@ -87,7 +99,9 @@
           </h2>
         </div>
         <div class="position-body reveal">
-          <p>BIA is a world-class fabric manufacturing facility creating high-performance fabrics for global apparel brands. With innovation, scale and responsibility at our core, we turn possibilities into material reality — from Jordan to the world.</p>
+          <p>BIA is a world-class fabric manufacturing facility creating high-performance fabrics for global apparel
+            brands. With innovation, scale and responsibility at our core, we turn possibilities into material reality —
+            from Jordan to the world.</p>
           <a href="#story" class="btn btn-ghost-dark">Our story <span class="arrow">→</span></a>
         </div>
       </div>
@@ -106,7 +120,8 @@
         </div>
         <div class="film-header-right">
           <p class="film-header-desc">
-            Experience the journey from a single red thread into high-performance fabric and apparel. As the film plays on the left, discover each milestone engineered inside BIA.
+            Experience the journey from a single red thread into high-performance fabric and apparel. As the film plays
+            on the left, discover each milestone engineered inside BIA.
           </p>
         </div>
       </div>
@@ -121,7 +136,7 @@
                 <source src="{{ url_for('static', filename='assets/bia-brand-film.mp4') }}" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              
+
               <!-- Video Overlay Badges -->
               <div class="film-badge-top">
                 <span class="live-dot"></span>
@@ -137,8 +152,13 @@
             <!-- Custom Branded Control Bar -->
             <div class="film-controls" id="filmControls">
               <button class="ctrl-btn play-toggle" id="filmPlayBtn" type="button" aria-label="Play/Pause">
-                <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/></svg>
-                <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" style="display:none;"><rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/></svg>
+                <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" />
+                </svg>
+                <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" style="display:none;">
+                  <rect x="6" y="4" width="4" height="16" fill="currentColor" />
+                  <rect x="14" y="4" width="4" height="16" fill="currentColor" />
+                </svg>
               </button>
 
               <div class="scrub-container" id="filmScrubContainer">
@@ -153,12 +173,23 @@
               </div>
 
               <button class="ctrl-btn mute-toggle" id="filmMuteBtn" type="button" aria-label="Toggle Sound">
-                <svg class="icon-muted" viewBox="0 0 24 24" width="16" height="16"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" fill="currentColor"/></svg>
-                <svg class="icon-unmuted" viewBox="0 0 24 24" width="16" height="16" style="display:none;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"/></svg>
+                <svg class="icon-muted" viewBox="0 0 24 24" width="16" height="16">
+                  <path
+                    d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"
+                    fill="currentColor" />
+                </svg>
+                <svg class="icon-unmuted" viewBox="0 0 24 24" width="16" height="16" style="display:none;">
+                  <path
+                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+                    fill="currentColor" />
+                </svg>
               </button>
 
               <button class="ctrl-btn fs-toggle" id="filmFsBtn" type="button" aria-label="Fullscreen">
-                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" fill="currentColor"/></svg>
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                  <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+                    fill="currentColor" />
+                </svg>
               </button>
             </div>
           </div>
@@ -167,7 +198,8 @@
         <!-- Right: Chapters & Actions -->
         <div class="film-chapters-col reveal">
           <div class="film-chapters" id="filmChapters">
-            <div class="chapter-card active" data-start="0" data-end="6" role="button" tabindex="0" aria-label="Jump to Chapter 1: The Single Thread">
+            <div class="chapter-card active" data-start="0" data-end="6" role="button" tabindex="0"
+              aria-label="Jump to Chapter 1: The Single Thread">
               <div class="chapter-time">
                 <span class="chapter-badge">01</span>
                 <span class="chapter-dot">·</span>
@@ -175,12 +207,14 @@
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">The Single Thread</h4>
-                <p class="chapter-text">Where possibility begins. Pure raw yarn selected and prepared for high-speed industrial precision.</p>
+                <p class="chapter-text">Where possibility begins. Pure raw yarn selected and prepared for high-speed
+                  industrial precision.</p>
               </div>
               <div class="chapter-progress"><span class="chapter-bar"></span></div>
             </div>
 
-            <div class="chapter-card" data-start="6" data-end="12" role="button" tabindex="0" aria-label="Jump to Chapter 2: Precision Knitting & Dyeing">
+            <div class="chapter-card" data-start="6" data-end="12" role="button" tabindex="0"
+              aria-label="Jump to Chapter 2: Precision Knitting & Dyeing">
               <div class="chapter-time">
                 <span class="chapter-badge">02</span>
                 <span class="chapter-dot">·</span>
@@ -188,12 +222,14 @@
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">Precision Knitting &amp; Dyeing</h4>
-                <p class="chapter-text">Advanced circular knitting and low-liquor dyeing technology transforming filament into vibrant, continuous fabric.</p>
+                <p class="chapter-text">Advanced circular knitting and low-liquor dyeing technology transforming
+                  filament into vibrant, continuous fabric.</p>
               </div>
               <div class="chapter-progress"><span class="chapter-bar"></span></div>
             </div>
 
-            <div class="chapter-card" data-start="12" data-end="20" role="button" tabindex="0" aria-label="Jump to Chapter 3: Engineered for Apparel">
+            <div class="chapter-card" data-start="12" data-end="20" role="button" tabindex="0"
+              aria-label="Jump to Chapter 3: Engineered for Apparel">
               <div class="chapter-time">
                 <span class="chapter-badge">03</span>
                 <span class="chapter-dot">·</span>
@@ -201,12 +237,14 @@
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">Engineered for Apparel</h4>
-                <p class="chapter-text">Performance fabric taking form into world-class athletic and lifestyle garments for global apparel brands.</p>
+                <p class="chapter-text">Performance fabric taking form into world-class athletic and lifestyle garments
+                  for global apparel brands.</p>
               </div>
               <div class="chapter-progress"><span class="chapter-bar"></span></div>
             </div>
 
-            <div class="chapter-card" data-start="20" data-end="30" role="button" tabindex="0" aria-label="Jump to Chapter 4: Brilliance, Woven In">
+            <div class="chapter-card" data-start="20" data-end="30" role="button" tabindex="0"
+              aria-label="Jump to Chapter 4: Brilliance, Woven In">
               <div class="chapter-time">
                 <span class="chapter-badge">04</span>
                 <span class="chapter-dot">·</span>
@@ -214,7 +252,8 @@
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">Brilliance, Woven In</h4>
-                <p class="chapter-text">From Jordan to the world — the emblem of quality, trust, and integrated textile excellence.</p>
+                <p class="chapter-text">From Jordan to the world — the emblem of quality, trust, and integrated textile
+                  excellence.</p>
               </div>
               <div class="chapter-progress"><span class="chapter-bar"></span></div>
             </div>
@@ -235,11 +274,12 @@
         <!-- Top Navigation Tabs -->
         <div class="mat-tabs-header reveal">
           <div class="mat-tabs">
-            <button type="button" class="mat-tab active" id="tabLibraryBtn" data-tab="library" onclick="switchMatTab('library')">
-              Explore the material library <span class="mat-tab-count">06</span>
+            <button type="button" class="mat-tab active" id="tabLibraryBtn" data-tab="library"
+              onclick="switchMatTab('library')">
+              Explore the material library
             </button>
             <button type="button" class="mat-tab" id="tabMakerBtn" data-tab="maker" onclick="switchMatTab('maker')">
-              Make your fabric <span class="tab-arrow">↗</span>
+              Make your fabric <!--<span class="tab-arrow">↗</span> -->
             </button>
           </div>
         </div>
@@ -258,7 +298,10 @@
             </div>
 
             <div class="mat-search-box">
-              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/></svg>
+              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16">
+                <circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" />
+              </svg>
               <input type="text" id="matSearchInput" placeholder="Find a material..." aria-label="Find a material" />
             </div>
           </div>
@@ -270,12 +313,13 @@
 
           <!-- 6 Fabric Cards Grid -->
           <div class="mat-grid" id="matGrid">
-            <!-- Card 1: DEV-01 -->
-            <div class="mat-card reveal" data-tags="wick cool" data-name="Performance jersey" data-code="DEV-01" data-cat="Jersey / Running" data-comp="88% Polyester, 12% Spandex" data-gsm="180 GSM" data-img="{{ url_for('static', filename='assets/fabric_dev_01.png') }}">
+            <!-- Card 1: Performance jersey -->
+            <div class="mat-card reveal" data-tags="wick cool" data-name="Performance jersey" data-code="DEV-01"
+              data-cat="Jersey / Running" data-comp="88% Polyester, 12% Spandex" data-gsm="180 GSM"
+              data-img="{{ url_for('static', filename='assets/fabric_product_01.jpg') }}">
               <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_dev_01.png') }}" alt="DEV-01 Performance jersey" loading="lazy" />
-                <span class="mat-card-code">DEV-01</span>
-                <button class="mat-card-arrow active-arrow" type="button" aria-label="View DEV-01 details">↗</button>
+                <img src="{{ url_for('static', filename='assets/fabric_product_01.jpg') }}" alt="Performance jersey"
+                  loading="lazy" />
               </div>
               <div class="mat-card-body">
                 <span class="mat-card-cat">Jersey / Running</span>
@@ -291,12 +335,13 @@
               </div>
             </div>
 
-            <!-- Card 2: DEV-02 -->
-            <div class="mat-card reveal" data-tags="stretch" data-name="Stretch interlock" data-code="DEV-02" data-cat="Interlock / Training" data-comp="78% Nylon, 22% Spandex" data-gsm="240 GSM" data-img="{{ url_for('static', filename='assets/fabric_dev_02.png') }}">
+            <!-- Card 2: Stretch interlock -->
+            <div class="mat-card reveal" data-tags="stretch" data-name="Stretch interlock" data-code="DEV-02"
+              data-cat="Interlock / Training" data-comp="78% Nylon, 22% Spandex" data-gsm="240 GSM"
+              data-img="{{ url_for('static', filename='assets/fabric_product_02.jpg') }}">
               <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_dev_02.png') }}" alt="DEV-02 Stretch interlock" loading="lazy" />
-                <span class="mat-card-code">DEV-02</span>
-                <button class="mat-card-arrow" type="button" aria-label="View DEV-02 details">↗</button>
+                <img src="{{ url_for('static', filename='assets/fabric_product_02.jpg') }}" alt="Stretch interlock"
+                  loading="lazy" />
               </div>
               <div class="mat-card-body">
                 <span class="mat-card-cat">Interlock / Training</span>
@@ -310,12 +355,13 @@
               </div>
             </div>
 
-            <!-- Card 3: DEV-03 -->
-            <div class="mat-card reveal" data-tags="cool" data-name="Everyday soft touch" data-code="DEV-03" data-cat="Jersey / Lifestyle" data-comp="95% MicroModal, 5% Elastane" data-gsm="160 GSM" data-img="{{ url_for('static', filename='assets/fabric_dev_03.png') }}">
+            <!-- Card 3: Everyday soft touch -->
+            <div class="mat-card reveal" data-tags="cool" data-name="Everyday soft touch" data-code="DEV-03"
+              data-cat="Jersey / Lifestyle" data-comp="95% MicroModal, 5% Elastane" data-gsm="160 GSM"
+              data-img="{{ url_for('static', filename='assets/fabric_product_03.jpg') }}">
               <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_dev_03.png') }}" alt="DEV-03 Everyday soft touch" loading="lazy" />
-                <span class="mat-card-code">DEV-03</span>
-                <button class="mat-card-arrow" type="button" aria-label="View DEV-03 details">↗</button>
+                <img src="{{ url_for('static', filename='assets/fabric_product_03.jpg') }}" alt="Everyday soft touch"
+                  loading="lazy" />
               </div>
               <div class="mat-card-body">
                 <span class="mat-card-cat">Jersey / Lifestyle</span>
@@ -329,12 +375,13 @@
               </div>
             </div>
 
-            <!-- Card 4: DEV-04 -->
-            <div class="mat-card reveal" data-tags="cool wick" data-name="Engineered mesh" data-code="DEV-04" data-cat="Mesh / Running" data-comp="100% Recycled Polyester" data-gsm="135 GSM" data-img="{{ url_for('static', filename='assets/fabric_dev_04.png') }}">
+            <!-- Card 4: Engineered mesh -->
+            <div class="mat-card reveal" data-tags="cool wick" data-name="Engineered mesh" data-code="DEV-04"
+              data-cat="Mesh / Running" data-comp="100% Recycled Polyester" data-gsm="135 GSM"
+              data-img="{{ url_for('static', filename='assets/fabric_product_04.jpg') }}">
               <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_dev_04.png') }}" alt="DEV-04 Engineered mesh" loading="lazy" />
-                <span class="mat-card-code">DEV-04</span>
-                <button class="mat-card-arrow" type="button" aria-label="View DEV-04 details">↗</button>
+                <img src="{{ url_for('static', filename='assets/fabric_product_04.jpg') }}" alt="Engineered mesh"
+                  loading="lazy" />
               </div>
               <div class="mat-card-body">
                 <span class="mat-card-cat">Mesh / Running</span>
@@ -350,12 +397,13 @@
               </div>
             </div>
 
-            <!-- Card 5: DEV-05 -->
-            <div class="mat-card reveal" data-tags="protect stretch" data-name="Protective double knit" data-code="DEV-05" data-cat="Interlock / Outdoor" data-comp="65% Polyamide, 35% Elastane" data-gsm="290 GSM" data-img="{{ url_for('static', filename='assets/fabric_dev_05.png') }}">
+            <!-- Card 5: Protective double knit -->
+            <div class="mat-card reveal" data-tags="protect stretch" data-name="Protective double knit"
+              data-code="DEV-05" data-cat="Interlock / Outdoor" data-comp="65% Polyamide, 35% Elastane"
+              data-gsm="290 GSM" data-img="{{ url_for('static', filename='assets/fabric_product_05.jpg') }}">
               <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_dev_05.png') }}" alt="DEV-05 Protective double knit" loading="lazy" />
-                <span class="mat-card-code">DEV-05</span>
-                <button class="mat-card-arrow" type="button" aria-label="View DEV-05 details">↗</button>
+                <img src="{{ url_for('static', filename='assets/fabric_product_05.jpg') }}" alt="Protective double knit"
+                  loading="lazy" />
               </div>
               <div class="mat-card-body">
                 <span class="mat-card-cat">Interlock / Outdoor</span>
@@ -371,12 +419,13 @@
               </div>
             </div>
 
-            <!-- Card 6: DEV-06 -->
-            <div class="mat-card reveal" data-tags="insulate" data-name="Comfort fleece" data-code="DEV-06" data-cat="Fleece / Lifestyle" data-comp="80% Organic Cotton, 20% Recycled Poly" data-gsm="320 GSM" data-img="{{ url_for('static', filename='assets/fabric_dev_06.png') }}">
+            <!-- Card 6: Comfort fleece -->
+            <div class="mat-card reveal" data-tags="insulate" data-name="Comfort fleece" data-code="DEV-06"
+              data-cat="Fleece / Lifestyle" data-comp="80% Organic Cotton, 20% Recycled Poly" data-gsm="320 GSM"
+              data-img="{{ url_for('static', filename='assets/fabric_product_06.jpg') }}">
               <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_dev_06.png') }}" alt="DEV-06 Comfort fleece" loading="lazy" />
-                <span class="mat-card-code">DEV-06</span>
-                <button class="mat-card-arrow" type="button" aria-label="View DEV-06 details">↗</button>
+                <img src="{{ url_for('static', filename='assets/fabric_product_06.jpg') }}" alt="Comfort fleece"
+                  loading="lazy" />
               </div>
               <div class="mat-card-body">
                 <span class="mat-card-cat">Fleece / Lifestyle</span>
@@ -394,7 +443,8 @@
           <!-- Bottom Meta & Action -->
           <div class="mat-bottom-bar reveal">
             <p class="mat-disclaimer">
-              These examples demonstrate the discovery experience. Specifications and availability will be confirmed by BIA.
+              These examples demonstrate the discovery experience. Specifications and availability will be confirmed by
+              BIA.
             </p>
             <button type="button" class="mat-custom-cta" id="matSwitchToMakerBtn">
               Have something else in mind? <span class="arrow">→</span>
@@ -444,9 +494,12 @@
             <div class="maker-brief" id="briefCard">
               <span class="maker-brief-tag">DEVELOPMENT BRIEF</span>
               <div class="brief-draft" id="briefDraft">
-                <p class="brief-line">A <em id="briefFeel">——</em> fabric that <em id="briefDoes">——</em>, engineered for <em id="briefUse">——</em>.</p>
-                <div class="brief-meta"><span>GSM — to spec</span><span>Composition — engineered</span><span>Swatch — on request</span></div>
-                <button type="button" class="btn btn-red brief-cta off" id="briefSubmit">Let BIA engineer it <span class="arrow">→</span></button>
+                <p class="brief-line">A <em id="briefFeel">——</em> fabric that <em id="briefDoes">——</em>, engineered
+                  for <em id="briefUse">——</em>.</p>
+                <div class="brief-meta"><span>GSM — to spec</span><span>Composition — engineered</span><span>Swatch — on
+                    request</span></div>
+                <button type="button" class="btn btn-red brief-cta off" id="briefSubmit">Let BIA engineer it <span
+                    class="arrow">→</span></button>
               </div>
               <div class="brief-sent" id="briefSent" hidden>
                 <span class="brief-tick">✓</span>
@@ -467,19 +520,23 @@
         <button class="mat-modal-close" id="matModalClose" aria-label="Close modal">✕</button>
         <div class="mat-modal-media">
           <img id="matModalImg" src="" alt="Fabric swatch detail" />
-          <span class="mat-modal-code" id="matModalCode">DEV-01</span>
         </div>
         <div class="mat-modal-info">
           <span class="mat-modal-cat" id="matModalCat">Jersey / Running</span>
           <h3 class="mat-modal-title" id="matModalTitle">Performance jersey</h3>
           <div class="mat-modal-specs">
-            <div class="spec-item"><span class="spec-label">Composition</span><strong class="spec-val" id="matModalComp">88% Polyester, 12% Spandex</strong></div>
-            <div class="spec-item"><span class="spec-label">Weight</span><strong class="spec-val" id="matModalGsm">180 GSM</strong></div>
-            <div class="spec-item"><span class="spec-label">Lead Time</span><strong class="spec-val">Engineered on demand</strong></div>
-            <div class="spec-item"><span class="spec-label">Attributes</span><strong class="spec-val" id="matModalTags">Wick · Cool</strong></div>
+            <div class="spec-item"><span class="spec-label">Composition</span><strong class="spec-val"
+                id="matModalComp">88% Polyester, 12% Spandex</strong></div>
+            <div class="spec-item"><span class="spec-label">Weight</span><strong class="spec-val" id="matModalGsm">180
+                GSM</strong></div>
+            <div class="spec-item"><span class="spec-label">Lead Time</span><strong class="spec-val">Engineered on
+                demand</strong></div>
+            <div class="spec-item"><span class="spec-label">Attributes</span><strong class="spec-val"
+                id="matModalTags">Wick · Cool</strong></div>
           </div>
           <div class="mat-modal-actions">
-            <button type="button" class="btn btn-red" id="matModalDevelopBtn">Develop this fabric <span class="arrow">→</span></button>
+            <button type="button" class="btn btn-red" id="matModalDevelopBtn">Develop this fabric <span
+                class="arrow">→</span></button>
             <button type="button" class="btn btn-ghost-dark" id="matModalCloseBtn">Close</button>
           </div>
         </div>
@@ -491,29 +548,139 @@
       <div class="journey-head reveal">
         <p class="eyebrow">FOLLOW THE RED THREAD</p>
         <h2>FROM AN IDEA<br />TO A BRIGHTER<br />TOMORROW.</h2>
-        <p class="journey-lede">Every great garment begins with a single thread. At BIA, we engineer every step of the journey — with purpose, precision and possibilities.</p>
+        <p class="journey-lede">Every great garment begins with a single thread. At BIA, we engineer every step of the
+          journey — with purpose, precision and possibilities.</p>
       </div>
 
       <div class="journey-body" id="journeyBody">
         <svg class="journey-thread" viewBox="0 0 60 1600" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M30 0 C 55 200, 5 320, 30 480 S 55 760, 30 900 S 5 1180, 30 1330 S 50 1500, 30 1600" fill="none" stroke="rgba(200,16,46,0.18)" stroke-width="2.5" />
-          <path id="journeyThreadPath" d="M30 0 C 55 200, 5 320, 30 480 S 55 760, 30 900 S 5 1180, 30 1330 S 50 1500, 30 1600" fill="none" stroke="#c8102e" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M30 0 C 55 200, 5 320, 30 480 S 55 760, 30 900 S 5 1180, 30 1330 S 50 1500, 30 1600" fill="none"
+            stroke="rgba(200,16,46,0.18)" stroke-width="2.5" />
+          <path id="journeyThreadPath"
+            d="M30 0 C 55 200, 5 320, 30 480 S 55 760, 30 900 S 5 1180, 30 1330 S 50 1500, 30 1600" fill="none"
+            stroke="#c8102e" stroke-width="2.5" stroke-linecap="round" />
         </svg>
 
         <div class="journey-steps">
-          <div class="step reveal"><div class="step-media"><div class="step-type-card"><span>What should</span><span>this fabric do?</span></div></div><div class="step-info"><span class="step-n">01</span><h3 class="step-name">IDEA</h3><p class="step-copy">A performance requirement begins the journey.</p></div></div>
-          <div class="step flip reveal"><div class="step-media"><img src="{{ url_for('static', filename='assets/stage-yarn.png') }}" alt="Yarn" loading="lazy" /></div><div class="step-info"><span class="step-n">02</span><h3 class="step-name">YARN</h3><p class="step-copy">Selecting and engineering the foundation.</p></div></div>
-          <div class="step reveal"><div class="step-media"><img src="{{ url_for('static', filename='assets/stage-knit.png') }}" alt="Knit" loading="lazy" /></div><div class="step-info"><span class="step-n">03</span><h3 class="step-name">KNIT</h3><p class="step-copy">Precision turns yarn into structure.</p></div></div>
-          <div class="step flip reveal"><div class="step-media"><img src="{{ url_for('static', filename='assets/stage-fabric.png') }}" alt="Colour" loading="lazy" /></div><div class="step-info"><span class="step-n">04</span><h3 class="step-name">COLOUR</h3><p class="step-copy">Dyeing gives the material identity.</p></div></div>
-          <div class="step reveal"><div class="step-media"><div class="step-type-card"><span>Soft. Cool.</span><span>Stretch. Wick.</span></div></div><div class="step-info"><span class="step-n">05</span><h3 class="step-name">FINISH</h3><p class="step-copy">Performance and character are engineered.</p></div></div>
-          <div class="step flip reveal"><div class="step-media"><div class="step-type-card"><span>Proven,</span><span>not promised.</span></div></div><div class="step-info"><span class="step-n">06</span><h3 class="step-name">TEST</h3><p class="step-copy">Every claim has to perform.</p></div></div>
-          <div class="step reveal"><div class="step-media"><img src="{{ url_for('static', filename='assets/stage-emblem.png') }}" alt="Fabric" loading="lazy" /></div><div class="step-info"><span class="step-n">07</span><h3 class="step-name">FABRIC</h3><p class="step-copy">Ready for apparel.</p></div></div>
-          <div class="step flip reveal"><div class="step-media"><img src="{{ url_for('static', filename='assets/stage-shirt.png') }}" alt="Fashion" loading="lazy" /></div><div class="step-info"><span class="step-n">08</span><h3 class="step-name">FASHION</h3><p class="step-copy">Through the Classic Fashion ecosystem.</p></div></div>
+          <div class="step reveal">
+            <div class="step-media">
+              <div class="step-type-card"><span>What should</span><span>this fabric do?</span></div>
+            </div>
+            <div class="step-info"><span class="step-n">01</span>
+              <h3 class="step-name">IDEA</h3>
+              <p class="step-copy">A performance requirement begins the journey.</p>
+            </div>
+          </div>
+          <div class="step flip reveal">
+            <div class="step-media"><img src="{{ url_for('static', filename='assets/stage-yarn.png') }}" alt="Yarn"
+                loading="lazy" /></div>
+            <div class="step-info"><span class="step-n">02</span>
+              <h3 class="step-name">YARN</h3>
+              <p class="step-copy">Selecting and engineering the foundation.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-media"><img src="{{ url_for('static', filename='assets/stage-knit.png') }}" alt="Knit"
+                loading="lazy" /></div>
+            <div class="step-info"><span class="step-n">03</span>
+              <h3 class="step-name">KNIT</h3>
+              <p class="step-copy">Precision turns yarn into structure.</p>
+            </div>
+          </div>
+          <div class="step flip reveal">
+            <div class="step-media"><img src="{{ url_for('static', filename='assets/stage-fabric.png') }}" alt="Colour"
+                loading="lazy" /></div>
+            <div class="step-info"><span class="step-n">04</span>
+              <h3 class="step-name">COLOUR</h3>
+              <p class="step-copy">Dyeing gives the material identity.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-media">
+              <div class="step-type-card"><span>Soft. Cool.</span><span>Stretch. Wick.</span></div>
+            </div>
+            <div class="step-info"><span class="step-n">05</span>
+              <h3 class="step-name">FINISH</h3>
+              <p class="step-copy">Performance and character are engineered.</p>
+            </div>
+          </div>
+          <div class="step flip reveal">
+            <div class="step-media">
+              <div class="step-type-card"><span>Proven,</span><span>not promised.</span></div>
+            </div>
+            <div class="step-info"><span class="step-n">06</span>
+              <h3 class="step-name">TEST</h3>
+              <p class="step-copy">Every claim has to perform.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-media"><img src="{{ url_for('static', filename='assets/stage-emblem.png') }}" alt="Fabric"
+                loading="lazy" /></div>
+            <div class="step-info"><span class="step-n">07</span>
+              <h3 class="step-name">FABRIC</h3>
+              <p class="step-copy">Ready for apparel.</p>
+            </div>
+          </div>
+          <div class="step flip reveal">
+            <div class="step-media"><img src="{{ url_for('static', filename='assets/stage-shirt.png') }}" alt="Fashion"
+                loading="lazy" /></div>
+            <div class="step-info"><span class="step-n">08</span>
+              <h3 class="step-name">FASHION</h3>
+              <p class="step-copy">Through the Classic Fashion ecosystem.</p>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="journey-end reveal">
         <h3>ONE THREAD. ONE ECOSYSTEM.<br />ENDLESS POSSIBILITIES.</h3>
+      </div>
+    </section>
+
+    <!-- ================= INSIDE BIA ================= -->
+    <section class="section light inside" id="inside">
+      <div class="inside-head reveal">
+        <p class="eyebrow">INSIDE BIA</p>
+        <h2>STEP INSIDE THE MILL.</h2>
+        <p class="inside-lede">A digital tour — seven stops from yarn to finished fabric.</p>
+      </div>
+      <div class="inside-rail reveal">
+        <div class="inside-stop"><span class="inside-n">STOP 01</span>
+          <h3>Yarn</h3>
+          <p>Where it all begins</p><span class="inside-stat">100+ tonnes daily</span>
+        </div>
+        <div class="inside-stop"><span class="inside-n">STOP 02</span>
+          <h3>Knitting</h3>
+          <p>Structure takes shape</p><span class="inside-stat">Precision gauge control</span>
+        </div>
+        <div class="inside-stop"><span class="inside-n">STOP 03</span>
+          <h3>Dyeing</h3>
+          <p>Identity in colour</p><span class="inside-stat">Low-liquor technology</span>
+        </div>
+        <div class="inside-stop"><span class="inside-n">STOP 04</span>
+          <h3>Finishing</h3>
+          <p>Character engineered</p><span class="inside-stat">Performance finishes</span>
+        </div>
+        <div class="inside-stop"><span class="inside-n">STOP 05</span>
+          <h3>Laboratory</h3>
+          <p>Every claim tested</p><span class="inside-stat">In-house accredited lab</span>
+        </div>
+        <div class="inside-stop"><span class="inside-n">STOP 06</span>
+          <h3>Quality</h3>
+          <p>Nothing passes unseen</p><span class="inside-stat">4-point inspection</span>
+        </div>
+        <div class="inside-stop"><span class="inside-n">STOP 07</span>
+          <h3>Finished Fabric</h3>
+          <p>Ready for apparel</p><span class="inside-stat">Rolls to garment floor</span>
+        </div>
+      </div>
+      <div class="inside-end reveal">
+        <h3>YOU'VE SEEN THE MILL.<br />NOW LET'S MAKE SOMETHING.</h3>
+        <div class="inside-ctas">
+          <a href="#contact" class="btn btn-red">Book a mill visit <span class="arrow">→</span></a>
+          <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker', true);}"
+            class="btn btn-ghost-dark">Start a development <span class="arrow">→</span></a>
+        </div>
       </div>
     </section>
 
@@ -524,9 +691,13 @@
         <p class="eyebrow reveal">BIA × CLASSIC FASHION</p>
         <h2 class="reveal">FROM FABRIC TO FASHION.<br />ONE INTEGRATED ECOSYSTEM.</h2>
         <div class="eco-chain reveal">
-          <div class="eco-col"><span class="eco-tag">BIA</span><p>Yarn → Knitting → Dyeing → Finishing → Testing → Fabric</p></div>
+          <div class="eco-col"><span class="eco-tag">BIA</span>
+            <p>Yarn → Knitting → Dyeing → Finishing → Testing → Fabric</p>
+          </div>
           <div class="eco-link"><span></span></div>
-          <div class="eco-col"><span class="eco-tag">CLASSIC FASHION</span><p>Design → Sampling → Manufacturing → Finishing → Quality → Delivery</p></div>
+          <div class="eco-col"><span class="eco-tag">CLASSIC FASHION</span>
+            <p>Design → Sampling → Manufacturing → Finishing → Quality → Delivery</p>
+          </div>
         </div>
         <div class="eco-benefits reveal">
           <div class="eco-b"><strong>Speed</strong><span>Reduced handovers.</span></div>
@@ -536,32 +707,8 @@
           <div class="eco-b"><strong>Innovation</strong><span>Fabric and apparel develop together.</span></div>
           <div class="eco-b"><strong>Scale</strong><span>Industrial capability, end to end.</span></div>
         </div>
-        <a href="#ecosystem" class="btn btn-red reveal">Explore the ecosystem <span class="arrow">→</span></a>
-      </div>
-    </section>
-
-    <!-- ================= INSIDE BIA ================= -->
-    <section class="section dark inside" id="inside">
-      <div class="inside-head reveal">
-        <p class="eyebrow">INSIDE BIA</p>
-        <h2>STEP INSIDE THE MILL.</h2>
-        <p class="inside-lede">A digital tour — seven stops from yarn to finished fabric.</p>
-      </div>
-      <div class="inside-rail reveal">
-        <div class="inside-stop"><span class="inside-n">STOP 01</span><h3>Yarn</h3><p>Where it all begins</p><span class="inside-stat">100+ tonnes daily</span></div>
-        <div class="inside-stop"><span class="inside-n">STOP 02</span><h3>Knitting</h3><p>Structure takes shape</p><span class="inside-stat">Precision gauge control</span></div>
-        <div class="inside-stop"><span class="inside-n">STOP 03</span><h3>Dyeing</h3><p>Identity in colour</p><span class="inside-stat">Low-liquor technology</span></div>
-        <div class="inside-stop"><span class="inside-n">STOP 04</span><h3>Finishing</h3><p>Character engineered</p><span class="inside-stat">Performance finishes</span></div>
-        <div class="inside-stop"><span class="inside-n">STOP 05</span><h3>Laboratory</h3><p>Every claim tested</p><span class="inside-stat">In-house accredited lab</span></div>
-        <div class="inside-stop"><span class="inside-n">STOP 06</span><h3>Quality</h3><p>Nothing passes unseen</p><span class="inside-stat">4-point inspection</span></div>
-        <div class="inside-stop"><span class="inside-n">STOP 07</span><h3>Finished Fabric</h3><p>Ready for apparel</p><span class="inside-stat">Rolls to garment floor</span></div>
-      </div>
-      <div class="inside-end reveal">
-        <h3>YOU'VE SEEN THE MILL.<br />NOW LET'S MAKE SOMETHING.</h3>
-        <div class="inside-ctas">
-          <a href="#develop" class="btn btn-red">Book a mill visit <span class="arrow">→</span></a>
-          <a href="#develop" class="btn btn-ghost">Start a development <span class="arrow">→</span></a>
-        </div>
+        <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker', true);}"
+          class="btn btn-red reveal">Develop with BIA <span class="arrow">→</span></a>
       </div>
     </section>
 
@@ -572,27 +719,220 @@
         <a href="#insights" class="stories-all">Explore all stories →</a>
       </div>
       <div class="stories-grid">
-        <a class="story reveal" href="#insights"><span class="story-tag">TECHNOLOGY</span><h3>What actually makes a fabric quick-dry?</h3><span class="story-arrow">→</span></a>
-        <a class="story reveal" href="#insights"><span class="story-tag">INSIDE BIA</span><h3>Inside the BIA colour lab</h3><span class="story-arrow">→</span></a>
-        <a class="story reveal" href="#insights"><span class="story-tag">INNOVATION</span><h3>Why GSM doesn't tell the whole fabric story</h3><span class="story-arrow">→</span></a>
+        <a class="story reveal" href="#insights"><span class="story-tag">TECHNOLOGY</span>
+          <h3>What actually makes a fabric quick-dry?</h3><span class="story-arrow">→</span>
+        </a>
+        <a class="story reveal" href="#insights"><span class="story-tag">INSIDE BIA</span>
+          <h3>Inside the BIA colour lab</h3><span class="story-arrow">→</span>
+        </a>
+        <a class="story reveal" href="#insights"><span class="story-tag">INNOVATION</span>
+          <h3>Why GSM doesn't tell the whole fabric story</h3><span class="story-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section dark contact-section" id="contact">
+      <div class="contact-header-grid reveal">
+        <div class="contact-header-left">
+          <p class="eyebrow">GET IN TOUCH</p>
+          <h2 class="contact-title">CONNECT WITH BIA.</h2>
+        </div>
+        <div class="contact-header-right">
+          <p class="contact-lede">
+            From technical fabric development to facility visits in Amman, Jordan — our engineering team is ready.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left Column: Mill & Corporate Contacts -->
+        <div class="contact-info-col reveal">
+          <div class="contact-cards">
+
+            <div class="c-card">
+              <div class="c-card-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                  <circle cx="12" cy="9" r="2.5" />
+                </svg>
+              </div>
+              <div class="c-card-content">
+                <span class="c-tag">GLOBAL HEADQUARTERS &amp; MILL</span>
+                <h4>Amman, Hashemite Kingdom of Jordan</h4>
+                <p>Al-Tajamouat Industrial City, Sahab<br />P.O. Box 123, Amman 11512</p>
+                <div class="c-badge">Middle East's Largest Integrated Textile Hub</div>
+              </div>
+            </div>
+
+            <div class="c-card-row">
+              <div class="c-card compact">
+                <div class="c-card-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div class="c-card-content">
+                  <span class="c-tag">FABRIC DEVELOPMENT &amp; SALES</span>
+                  <a href="mailto:develop@bia.jo" class="c-link">develop@bia.jo</a>
+                  <a href="mailto:sales@bia.jo" class="c-sublink">sales@bia.jo</a>
+                </div>
+              </div>
+
+              <div class="c-card compact">
+                <div class="c-card-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+                <div class="c-card-content">
+                  <span class="c-tag">DIRECT MILL LINE</span>
+                  <a href="tel:+96264020000" class="c-link">+962 6 402 0000</a>
+                  <span class="c-subtext">Sun – Thu: 8:00 AM – 6:00 PM (GMT+3)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="c-guarantee-card">
+              <div class="c-guarantee-dot"></div>
+              <div class="c-guarantee-text">
+                <strong>Rapid Engineering Response Guarantee</strong>
+                <p>All technical briefs, swatch requests, and mill tour inquiries receive initial response from a
+                  dedicated textile engineer within 24–48 hours.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Enquiry Form -->
+        <div class="contact-form-col reveal">
+          <div class="contact-form-wrapper">
+            <div class="form-header">
+              <span class="form-tag">SEND AN ENQUIRY</span>
+              <h3>Start a Conversation with Our Team</h3>
+            </div>
+
+            <form id="contactForm" class="contact-form" novalidate>
+              <!-- Topic Selector -->
+              <div class="form-group">
+                <label class="form-label">SELECT ENQUIRY TYPE</label>
+                <div class="topic-chips" id="topicChips">
+                  <button type="button" class="topic-chip on" data-topic="fabric">Fabric Development</button>
+                  <button type="button" class="topic-chip" data-topic="development">Swatch Request</button>
+                  <button type="button" class="topic-chip" data-topic="mill_visit">Mill Visit / Tour</button>
+                  <button type="button" class="topic-chip" data-topic="capacity">Production Capacity</button>
+                  <button type="button" class="topic-chip" data-topic="supplier">Partnership</button>
+                  <button type="button" class="topic-chip" data-topic="general">General Inquiry</button>
+                </div>
+                <input type="hidden" id="enquiryTopic" name="topic" value="fabric" />
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="contactName" class="form-label">FULL NAME <span class="req">*</span></label>
+                  <input type="text" id="contactName" name="name" class="form-input" placeholder="e.g. Sarah Jenkins"
+                    required />
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail" class="form-label">WORK EMAIL <span class="req">*</span></label>
+                  <input type="email" id="contactEmail" name="email" class="form-input"
+                    placeholder="e.g. s.jenkins@brand.com" required />
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="contactCompany" class="form-label">COMPANY / BRAND</label>
+                  <input type="text" id="contactCompany" name="company" class="form-input"
+                    placeholder="e.g. Athletic Apparel Co." />
+                </div>
+                <div class="form-group">
+                  <label for="contactPhone" class="form-label">PHONE / WHATSAPP</label>
+                  <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="+1 (555) 000-0000" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage" class="form-label">MESSAGE / FABRIC REQUIREMENTS</label>
+                <textarea id="contactMessage" name="message" class="form-textarea" rows="4"
+                  placeholder="Tell us about your target fabric, volume, composition, or requirements..."></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-red form-submit" id="contactSubmitBtn">
+                  <span>Send Enquiry</span>
+                  <span class="arrow">→</span>
+                </button>
+                <span class="form-privacy-note">Your data is treated with strict corporate confidentiality.</span>
+              </div>
+            </form>
+
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- ================= ENQUIRY SUCCESS POPUP MODAL ================= -->
+  <div class="enquiry-modal" id="enquirySuccessModal" aria-hidden="true" role="dialog">
+    <div class="enquiry-modal-backdrop" id="enquiryModalBackdrop"></div>
+    <div class="enquiry-modal-card">
+      <button class="enquiry-modal-close" id="enquiryModalClose" aria-label="Close dialog">✕</button>
+
+      <div class="enquiry-modal-icon-wrap">
+        <div class="enquiry-modal-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <h3 class="enquiry-modal-title">Enquiry Received</h3>
+      <p class="enquiry-modal-desc">
+        Thank you for reaching out. Your request has been assigned to our fabric engineering division.
+      </p>
+
+      <div class="enquiry-modal-ref-card">
+        <span class="enquiry-modal-ref-label">REFERENCE NUMBER</span>
+        <strong class="enquiry-modal-ref-code" id="enquiryModalRef">ENQ-XXXXXX</strong>
+      </div>
+
+      <p class="enquiry-modal-note">
+        A member of our engineering or sales team will review your specifications and contact you shortly. A
+        confirmation has also been dispatched to your email.
+      </p>
+
+      <div class="enquiry-modal-actions">
+        <button type="button" class="btn btn-ghost-dark enquiry-modal-btn" id="enquiryModalDoneBtn">SEND ANOTHER
+          ENQUIRY</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= FOOTER ================= -->
-  <footer class="footer" id="contact">
+  <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#top" aria-label="BIA home">
-          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="footer-logo-img" />
+          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles"
+            class="footer-logo-img" />
         </a>
         <p>BRILLIANCE, WOVEN IN.</p>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><span>DISCOVER</span><a href="#story">Our Story</a><a href="#ecosystem">BIA × Classic</a><a href="#inside">Inside BIA</a><a href="#story">Leadership</a></div>
-        <div class="footer-col"><span>CREATE</span><a href="#fabrics">Fabric Lab</a><a href="#fabrics">Technologies</a><a href="#innovation">BIA Next</a><a href="#develop">Request Swatch</a></div>
-        <div class="footer-col"><span>IMPACT</span><a href="#responsibility">Responsibility</a><a href="#people">People</a><a href="#inside">Quality</a><a href="#inside">Certifications</a></div>
-        <div class="footer-col"><span>CONNECT</span><a href="#contact">Contact</a><a href="#people">Careers</a><a href="#contact">LinkedIn</a><a href="#contact">YouTube</a></div>
+        <div class="footer-col"><span>DISCOVER</span><a href="#story">Our Story</a><a href="#ecosystem">BIA ×
+            Classic</a><a href="#inside">Inside BIA</a><a href="#story">Leadership</a></div>
+        <div class="footer-col"><span>CREATE</span><a href="#fabrics">Fabric Lab</a><a
+            href="#fabrics">Technologies</a><a href="#innovation">BIA Next</a><a href="#develop">Request Swatch</a>
+        </div>
+        <div class="footer-col"><span>IMPACT</span><a href="#responsibility">Responsibility</a><a
+            href="#people">People</a><a href="#inside">Quality</a><a href="#inside">Certifications</a></div>
+        <div class="footer-col"><span>CONNECT</span><a href="#contact">Contact</a><a href="#people">Careers</a><a
+            href="#contact">LinkedIn</a><a href="#contact">YouTube</a></div>
       </div>
     </div>
     <div class="footer-mid">
@@ -604,6 +944,7 @@
     <div class="footer-line"><span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span></div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261006_02"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261006_04"></script>
 </body>
+
 </html>

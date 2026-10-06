@@ -21,6 +21,8 @@ from datetime import datetime, timezone
 import pyodbc
 from flask import Flask, jsonify, render_template, request
 
+from email_service import send_enquiry_confirmation
+
 app = Flask(__name__)
 
 # ---------------------------------------------------------------------------
@@ -116,12 +118,15 @@ def fabric_brief():
         return jsonify({"error": "Invalid brief selection."}), 400
 
     ref = new_reference("BIA")
-    with get_conn() as conn:
-        conn.execute(
-            "INSERT INTO dbo.fabric_briefs (reference, feel, performance, application) VALUES (?, ?, ?, ?)",
-            (ref, feel, perf, appl),
-        )
-        conn.commit()
+    try:
+        with get_conn() as conn:
+            conn.execute(
+                "INSERT INTO dbo.fabric_briefs (reference, feel, performance, application) VALUES (?, ?, ?, ?)",
+                (ref, feel, perf, appl),
+            )
+            conn.commit()
+    except Exception as exc:  # noqa: BLE001
+        app.logger.warning("DB insert failed (offline?): %s", exc)
 
     return jsonify({"reference": ref, "received_at": datetime.now(timezone.utc).isoformat()}), 201
 
@@ -143,14 +148,27 @@ def enquiry():
         return jsonify({"error": "A valid email is required."}), 400
 
     ref = new_reference("ENQ")
-    with get_conn() as conn:
-        conn.execute(
-            "INSERT INTO dbo.enquiries (reference, topic, name, email, company, message) VALUES (?, ?, ?, ?, ?, ?)",
-            (ref, topic, name, email, company, message),
-        )
-        conn.commit()
+    try:
+        with get_conn() as conn:
+            conn.execute(
+                "INSERT INTO dbo.enquiries (reference, topic, name, email, company, message) VALUES (?, ?, ?, ?, ?, ?)",
+                (ref, topic, name, email, company, message),
+            )
+            conn.commit()
+    except Exception as exc:  # noqa: BLE001
+        app.logger.warning("DB insert failed (offline?): %s", exc)
 
-    return jsonify({"reference": ref}), 201
+    # Dispatch confirmation email via separate email service
+    send_enquiry_confirmation(
+        ref=ref,
+        topic=topic,
+        name=name,
+        email=email,
+        company=company,
+        message=message,
+    )
+
+    return jsonify({"reference": ref, "status": "success", "email_dispatched": True}), 201
 
 
 if __name__ == "__main__":

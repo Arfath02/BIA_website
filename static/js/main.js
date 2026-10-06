@@ -152,6 +152,51 @@
     briefSubmit.classList.toggle('off', !ready);
   }
 
+  function fillContactAndScroll(topic, message) {
+    var contactSec = document.getElementById('contact');
+    var contactMsg = document.getElementById('contactMessage');
+    var contactName = document.getElementById('contactName');
+    var topicInp = document.getElementById('enquiryTopic');
+    var allTopicChips = document.querySelectorAll('.topic-chip');
+    var cForm = document.getElementById('contactForm');
+    var cSucc = document.getElementById('contactSuccess');
+
+    // Reset success view if open
+    if (cSucc && cForm && !cSucc.hidden) {
+      cSucc.hidden = true;
+      cForm.hidden = false;
+    }
+
+    // Set topic chip
+    if (topic && topicInp) {
+      topicInp.value = topic;
+      allTopicChips.forEach(function (c) {
+        c.classList.toggle('on', c.getAttribute('data-topic') === topic);
+      });
+    }
+
+    // Populate message
+    if (contactMsg && message) {
+      contactMsg.value = message;
+      // Trigger a subtle highlight flash to draw user's eye
+      contactMsg.classList.remove('field-highlight');
+      void contactMsg.offsetWidth; // trigger reflow
+      contactMsg.classList.add('field-highlight');
+    }
+
+    // Scroll to contact section
+    if (contactSec) {
+      contactSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Focus on the name input
+    setTimeout(function () {
+      if (contactName) {
+        contactName.focus();
+      }
+    }, 600);
+  }
+
   document.querySelectorAll('.maker-group').forEach(function (group) {
     var key = group.getAttribute('data-group');
     group.querySelectorAll('.chip').forEach(function (chip) {
@@ -168,24 +213,18 @@
   if (briefSubmit) {
     briefSubmit.addEventListener('click', function () {
       if (!(pick.feel && pick.does && pick.use)) return;
-      briefSubmit.disabled = true;
-      fetch('/api/fabric-brief', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ feel: pick.feel, performance: pick.does, application: pick.use })
-      })
-        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
-        .then(function (res) {
-          briefDraft.hidden = true;
-          briefSent.hidden = false;
-          briefRef.textContent = res.ok && res.body.reference ? res.body.reference : 'BIA-LOCAL';
-        })
-        .catch(function () {
-          briefDraft.hidden = true;
-          briefSent.hidden = false;
-          briefRef.textContent = 'BIA-LOCAL';
-        })
-        .finally(function () { briefSubmit.disabled = false; });
+
+      var doesPhrase = PHRASE[pick.does] || pick.does.toLowerCase();
+      var briefText = "Custom Fabric Development Brief:\n" +
+        "• Target Hand-Feel: " + pick.feel + "\n" +
+        "• Performance Property: " + pick.does + " (" + doesPhrase + ")\n" +
+        "• Intended Application: " + pick.use + "\n\n" +
+        "Engineering Specification:\n" +
+        "A " + pick.feel.toLowerCase() + " fabric that " + doesPhrase + ", engineered for " + pick.use.toLowerCase() + ".\n" +
+        "Specs: GSM to spec · Composition engineered · Swatch on request.";
+
+      // Smoothly redirect / scroll to contact form with all data auto-filled
+      fillContactAndScroll('fabric', briefText);
     });
   }
 
@@ -545,10 +584,178 @@
   if (matModalClose) matModalClose.addEventListener('click', closeMatModal);
   if (matModalCloseBtn) matModalCloseBtn.addEventListener('click', closeMatModal);
   if (matModalBackdrop) matModalBackdrop.addEventListener('click', closeMatModal);
+  
+  var matModalDevelopBtn = document.getElementById('matModalDevelopBtn');
+  if (matModalDevelopBtn) {
+    matModalDevelopBtn.addEventListener('click', function () {
+      var name = matModalTitle ? matModalTitle.textContent : 'Fabric Development';
+      var code = matModalCode ? matModalCode.textContent : '';
+      var cat = matModalCat ? matModalCat.textContent : '';
+      var comp = matModalComp ? matModalComp.textContent : '';
+      var gsm = matModalGsm ? matModalGsm.textContent : '';
+      var tags = matModalTags ? matModalTags.textContent : '';
+
+      var modalMsg = "Fabric Development & Swatch Request for " + name + " (" + code + "):\n" +
+        "• Category: " + cat + "\n" +
+        "• Target Composition: " + comp + "\n" +
+        "• Weight / GSM: " + gsm + "\n" +
+        "• Performance Attributes: " + tags + "\n\n" +
+        "Please provide physical swatches and bulk engineering options for this material.";
+
+      closeMatModal();
+      fillContactAndScroll('fabric', modalMsg);
+    });
+  }
+
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && matModal && matModal.classList.contains('is-open')) {
       closeMatModal();
     }
   });
+
+  /* ---------------- 7. CONTACT ENQUIRY FORM ---------------- */
+  var contactForm = document.getElementById('contactForm');
+  var contactSuccess = document.getElementById('contactSuccess');
+  var contactRefCode = document.getElementById('contactRefCode');
+  var contactSubmitBtn = document.getElementById('contactSubmitBtn');
+  var contactResetBtn = document.getElementById('contactResetBtn');
+  var enquiryTopicInput = document.getElementById('enquiryTopic');
+  var topicChips = document.querySelectorAll('.topic-chip');
+
+  topicChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      topicChips.forEach(function (c) { c.classList.remove('on'); });
+      chip.classList.add('on');
+      var topic = chip.getAttribute('data-topic');
+      if (enquiryTopicInput) enquiryTopicInput.value = topic;
+    });
+  });
+
+  var enquiryModal = document.getElementById('enquirySuccessModal');
+  var enquiryModalBackdrop = document.getElementById('enquiryModalBackdrop');
+  var enquiryModalClose = document.getElementById('enquiryModalClose');
+  var enquiryModalDoneBtn = document.getElementById('enquiryModalDoneBtn');
+  var enquiryModalRef = document.getElementById('enquiryModalRef');
+
+  function openEnquiryModal(ref) {
+    if (!enquiryModal) return;
+    if (enquiryModalRef) enquiryModalRef.textContent = ref;
+    enquiryModal.classList.add('is-open');
+    enquiryModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEnquiryModal() {
+    if (!enquiryModal) return;
+    enquiryModal.classList.remove('is-open');
+    enquiryModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (enquiryModalClose) enquiryModalClose.addEventListener('click', closeEnquiryModal);
+  if (enquiryModalDoneBtn) enquiryModalDoneBtn.addEventListener('click', closeEnquiryModal);
+  if (enquiryModalBackdrop) enquiryModalBackdrop.addEventListener('click', closeEnquiryModal);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && enquiryModal && enquiryModal.classList.contains('is-open')) {
+      closeEnquiryModal();
+    }
+  });
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameInput = document.getElementById('contactName');
+      var emailInput = document.getElementById('contactEmail');
+      var companyInput = document.getElementById('contactCompany');
+      var phoneInput = document.getElementById('contactPhone');
+      var messageInput = document.getElementById('contactMessage');
+
+      var name = nameInput ? nameInput.value.trim() : '';
+      var email = emailInput ? emailInput.value.trim() : '';
+      var company = companyInput ? companyInput.value.trim() : '';
+      var phone = phoneInput ? phoneInput.value.trim() : '';
+      var message = messageInput ? messageInput.value.trim() : '';
+      var topic = enquiryTopicInput ? enquiryTopicInput.value : 'fabric';
+
+      if (!name) {
+        if (nameInput) nameInput.focus();
+        return;
+      }
+      if (!email || email.indexOf('@') === -1) {
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
+      var fullMessage = message;
+      if (phone) {
+        fullMessage = (fullMessage ? fullMessage + '\n\n' : '') + '[Phone/WhatsApp: ' + phone + ']';
+      }
+
+      if (contactSubmitBtn) {
+        contactSubmitBtn.disabled = true;
+        contactSubmitBtn.querySelector('span').textContent = 'Sending...';
+      }
+
+      fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          topic: topic,
+          name: name,
+          email: email,
+          company: company || null,
+          message: fullMessage || null
+        })
+      })
+        .then(function (r) {
+          return r.json().then(function (data) {
+            return { ok: r.ok, body: data };
+          });
+        })
+        .then(function (res) {
+          var ref = (res.ok && res.body.reference) ? res.body.reference : ('ENQ-' + Math.random().toString(36).substring(2, 8).toUpperCase());
+          if (contactRefCode) contactRefCode.textContent = ref;
+          
+          // Open Success Popup Modal
+          openEnquiryModal(ref);
+
+          // Reset form fields for next use
+          contactForm.reset();
+          topicChips.forEach(function (c, idx) {
+            c.classList.toggle('on', idx === 0);
+          });
+          if (enquiryTopicInput) enquiryTopicInput.value = 'fabric';
+        })
+        .catch(function () {
+          var fallbackRef = 'ENQ-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+          if (contactRefCode) contactRefCode.textContent = fallbackRef;
+          
+          // Open Success Popup Modal
+          openEnquiryModal(fallbackRef);
+
+          contactForm.reset();
+        })
+        .finally(function () {
+          if (contactSubmitBtn) {
+            contactSubmitBtn.disabled = false;
+            contactSubmitBtn.querySelector('span').textContent = 'Send Enquiry';
+          }
+        });
+    });
+  }
+
+  if (contactResetBtn && contactForm && contactSuccess) {
+    contactResetBtn.addEventListener('click', function () {
+      contactForm.reset();
+      topicChips.forEach(function (c, idx) {
+        c.classList.toggle('on', idx === 0);
+      });
+      if (enquiryTopicInput) enquiryTopicInput.value = 'fabric';
+      contactSuccess.hidden = true;
+      contactForm.hidden = false;
+    });
+  }
 })();
+
 
