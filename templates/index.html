@@ -45,9 +45,9 @@
               <strong class="dropdown-title">Inside BIA</strong>
               <span class="dropdown-desc">7-stop mill tour from yarn to finished roll</span>
             </a>
-            <a href="#story" class="dropdown-item">
-              <strong class="dropdown-title">Leadership</strong>
-              <span class="dropdown-desc">Industrial capability and governance</span>
+            <a href="#leadership" class="dropdown-item">
+              <strong class="dropdown-title">Leadership &amp; Founder</strong>
+              <span class="dropdown-desc">Industrial capability, vision &amp; governance</span>
             </a>
           </div>
         </div>
@@ -301,8 +301,6 @@
               aria-label="Jump to Chapter 1: The Single Thread">
               <div class="chapter-time">
                 <span class="chapter-badge">01</span>
-                <span class="chapter-dot">·</span>
-                <span class="chapter-range">0:00 - 0:06</span>
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">The Single Thread</h4>
@@ -316,8 +314,6 @@
               aria-label="Jump to Chapter 2: Precision Knitting & Dyeing">
               <div class="chapter-time">
                 <span class="chapter-badge">02</span>
-                <span class="chapter-dot">·</span>
-                <span class="chapter-range">0:06 - 0:12</span>
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">Precision Knitting &amp; Dyeing</h4>
@@ -331,8 +327,6 @@
               aria-label="Jump to Chapter 3: Engineered for Apparel">
               <div class="chapter-time">
                 <span class="chapter-badge">03</span>
-                <span class="chapter-dot">·</span>
-                <span class="chapter-range">0:12 - 0:20</span>
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">Engineered for Apparel</h4>
@@ -346,8 +340,6 @@
               aria-label="Jump to Chapter 4: Brilliance, Woven In">
               <div class="chapter-time">
                 <span class="chapter-badge">04</span>
-                <span class="chapter-dot">·</span>
-                <span class="chapter-range">0:20 - 0:30</span>
               </div>
               <div class="chapter-body">
                 <h4 class="chapter-title">Brilliance, Woven In</h4>
@@ -836,8 +828,81 @@
       </div>
     </section>
 
+    <!-- ================= FOUNDER & LEADERSHIP ================= -->
+    <section class="section dark leadership" id="leadership">
+      <div class="leadership-inner">
+        <div class="leadership-head reveal">
+          <p class="eyebrow">FOUNDER &amp; LEADERSHIP</p>
+          <h2>ARCHITECTS OF INDUSTRIAL SCALE.<br />POWERED BY PURPOSE.</h2>
+          <p class="leadership-lede">
+            Meet the executive leadership shaping BIA's future — uniting over three decades of textile manufacturing mastery, cutting-edge industrial automation, and relentless global expansion.
+          </p>
+        </div>
+
+        <!-- 3 Executive Leadership Cards (Founder, Co-Founder, COO) -->
+        <div class="leaders-grid reveal">
+          <!-- Leader 1: Founder -->
+          <div class="leader-card">
+            <div class="leader-img-wrap">
+              <img src="{{ url_for('static', filename='assets/leader-founder.jpg') }}" alt="Sanath Kumar · Founder &amp; Chairman" class="leader-img" />
+              <div class="leader-role-badge">FOUNDER &amp; CHAIRMAN</div>
+            </div>
+            <div class="leader-body">
+              <h3 class="leader-name">Sanath Kumar</h3>
+              <span class="leader-designation">Managing Director &amp; Chairman · Classic Fashion &amp; BIA</span>
+              <p class="leader-story">
+                "We founded BIA to eliminate compromise in regional fabric manufacturing. By uniting world-class circular knitting, low-liquor dyeing, and deep vertical integration with Classic Fashion, we provide global apparel brands with unprecedented agility, precision, and reliable industrial scale."
+              </p>
+              <div class="leader-meta">
+                <span class="leader-pill">30+ Yrs Industry Leadership</span>
+                <span class="leader-pill">100+ TPD Vision</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leader 2: Co-Founder -->
+          <div class="leader-card">
+            <div class="leader-img-wrap">
+              <img src="{{ url_for('static', filename='assets/leader-cofounder.jpg') }}" alt="Co-Founder &amp; Executive Director" class="leader-img" />
+              <div class="leader-role-badge">CO-FOUNDER &amp; EXECUTIVE DIRECTOR</div>
+            </div>
+            <div class="leader-body">
+              <h3 class="leader-name">V. Ramakrishnan</h3>
+              <span class="leader-designation">Executive Director · Global Strategy &amp; Growth</span>
+              <p class="leader-story">
+                "True supply chain resilience begins at the raw yarn level. Our strategic roadmap connects BIA’s advanced fabric lab directly with premier global athletic and lifestyle labels, building long-term collaborative engineering hubs across worldwide markets."
+              </p>
+              <div class="leader-meta">
+                <span class="leader-pill">Global Strategic Partnerships</span>
+                <span class="leader-pill">Worldwide Market Hub</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leader 3: COO -->
+          <div class="leader-card">
+            <div class="leader-img-wrap">
+              <img src="{{ url_for('static', filename='assets/leader-coo.jpg') }}" alt="Chief Operating Officer" class="leader-img" />
+              <div class="leader-role-badge">CHIEF OPERATING OFFICER</div>
+            </div>
+            <div class="leader-body">
+              <h3 class="leader-name">Marcus Chen</h3>
+              <span class="leader-designation">Chief Operating Officer · Mill Operations &amp; Technology</span>
+              <p class="leader-story">
+                "From precision tension calibration on European circular knitters to zero-discharge low-liquor dyeing cycles, our daily focus is operational perfection. We run an intelligent, data-driven mill where every metre of fabric meets accredited international lab standards."
+              </p>
+              <div class="leader-meta">
+                <span class="leader-pill">Automated Mill Operations</span>
+                <span class="leader-pill">Accredited 4-Point Lab</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= CONTACT ================= -->
-    <section class="section dark contact-section" id="contact">
+    <section class="section light contact-section" id="contact">
       <div class="contact-header-grid reveal">
         <div class="contact-header-left">
           <p class="eyebrow">GET IN TOUCH</p>
@@ -1130,8 +1195,8 @@
         <p>BRILLIANCE, WOVEN IN.</p>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><span>DISCOVER</span><a href="#story">Our Story</a><a href="#ecosystem">BIA ×
-            Classic</a><a href="#inside">Inside BIA</a><a href="#story">Leadership</a></div>
+        <div class="footer-col"><span>DISCOVER</span><a href="#story" class="open-story-trigger">Our Story</a><a href="#ecosystem">BIA ×
+            Classic</a><a href="#inside">Inside BIA</a><a href="#leadership">Leadership</a></div>
         <div class="footer-col"><span>CREATE</span><a href="#fabrics">Fabric Lab</a><a
             href="#fabrics">Technologies</a><a href="#innovation">BIA Next</a><a href="#develop">Request Swatch</a>
         </div>
