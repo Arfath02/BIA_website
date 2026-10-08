@@ -18,7 +18,13 @@ import re
 import uuid
 from datetime import datetime, timezone
 
-import pyodbc
+try:
+    import pyodbc
+    PYODBC_AVAILABLE = True
+except ImportError:
+    pyodbc = None
+    PYODBC_AVAILABLE = False
+
 from flask import Flask, jsonify, render_template, request
 
 from email_service import send_enquiry_confirmation
@@ -50,6 +56,8 @@ EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
 def get_conn():
+    if not PYODBC_AVAILABLE:
+        raise RuntimeError("pyodbc is not installed or available on this platform.")
     return pyodbc.connect(CONN_STR)
 
 
@@ -95,6 +103,11 @@ def new_reference(prefix: str) -> str:
 @app.get("/")
 def index():
     return render_template("index.html")
+
+
+@app.get("/mock")
+def mock():
+    return render_template("mock.html")
 
 
 @app.get("/api/health")

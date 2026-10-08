@@ -126,6 +126,29 @@
       }
     }, 600);
   }
+  window.fillContactAndScroll = fillContactAndScroll;
+
+  // Challenge Pills Interactive Toggle
+  var challengePills = document.querySelectorAll('.challenge-pills .c-pill');
+  var challengeBtn = document.querySelector('.challenge-btn');
+  if (challengePills.length > 0) {
+    challengePills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        pill.classList.toggle('active');
+        var activePills = [];
+        challengePills.forEach(function (p) {
+          if (p.classList.contains('active')) activePills.push(p.textContent.trim());
+        });
+        if (challengeBtn) {
+          var briefMsg = "Custom Fabric Challenge Brief:\n" +
+            "• Selected Parameters: " + (activePills.length > 0 ? activePills.join(' · ') : 'Performance Custom Spec') + "\n" +
+            "• Application: High-Performance Technical Garments\n\n" +
+            "Please formulate a development trial brief for our engineering parameters.";
+          challengeBtn.setAttribute('onclick', "if(window.fillContactAndScroll){window.fillContactAndScroll('development', `" + briefMsg + "`);}");
+        }
+      });
+    });
+  }
 
   document.querySelectorAll('.maker-group').forEach(function (group) {
     var key = group.getAttribute('data-group');
