@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabric Stories — Textile Intelligence &amp; Material Science | BIA</title>
+  <meta name="description"
+    content="Fabric Stories by BIA: Intellectual essays, material science breakthroughs, color chemistry research, and engineering dispatches from our laboratory and mill in Amman, Jordan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261008_11" />
+</head>
+
+<body>
+
+  <!-- ================= NAV ================= -->
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="/" aria-label="BIA home">
+      <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="nav-logo-img" />
+    </a>
+
+    <div class="nav-links">
+      <a href="/story">Our Story</a>
+      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <a href="/innovation">Innovation</a>
+      <a href="/inside">Inside BIA</a>
+      <a href="/ecosystem">BIA × Classic</a>
+      <a href="/responsibility">Responsibility</a>
+      <a href="/people">People</a>
+      <a href="/stories" class="active">Insights</a>
+      <a href="/contact">Contact</a>
+    </div>
+
+    <a href="/fabrics" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">→</span></a>
+  </nav>
+
+  <!-- ================= SUBPAGE HERO ================= -->
+  <header class="subpage-hero">
+    <div class="subpage-hero-bg" style="background-image: url('{{ url_for('static', filename='assets/hero-circular-knit.jpg') }}');"></div>
+    <div class="subpage-hero-veil"></div>
+
+    <div class="subpage-hero-inner reveal">
+      <div class="subpage-breadcrumbs">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Fabric Stories</span>
+      </div>
+      <p class="eyebrow">BIA TEXTILE INTELLIGENCE · RESEARCH &amp; DISPATCHES</p>
+      <h1 class="subpage-title">FABRIC STORIES</h1>
+      <p class="subpage-lede">
+        Where polymer physics, circular knitting engineering, color chemistry, and sustainable materials converge. Insightful essays and technical dispatches from our laboratory and mill floor in Amman, Jordan.
+      </p>
+    </div>
+  </header>
+
+  <!-- ================= SUBPAGE QUICKNAV / TOPIC FILTER ================= -->
+  <nav class="subpage-quicknav" aria-label="Stories topic navigation">
+    <div class="subpage-quicknav-inner">
+      <button class="story-filter-btn active" data-filter="all">All Stories (8)</button>
+      <button class="story-filter-btn" data-filter="material-science">Material Science</button>
+      <button class="story-filter-btn" data-filter="engineering">Engineering &amp; Knit</button>
+      <button class="story-filter-btn" data-filter="color-chemistry">Color Chemistry</button>
+      <button class="story-filter-btn" data-filter="sustainability">Sustainability &amp; Future</button>
+      <a href="/contact" class="quicknav-link" style="color: var(--red); margin-left: auto; font-weight: 700;">Challenge Our Lab →</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ================= STORIES SECTION ================= -->
+    <section class="section light" id="stories-content" style="padding-top: 80px; padding-bottom: 110px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <!-- FEATURED LEAD ARTICLE SPOTLIGHT -->
+        <div class="featured-story-banner reveal story-card-btn" data-story-id="quick-dry" role="button" tabindex="0" aria-label="Read Lead Article: What Actually Makes a Fabric Quick-Dry?">
+          <div class="featured-story-grid">
+            <div class="featured-story-visual" style="background-image: url('{{ url_for('static', filename='assets/fabric_test_pad_mangle_hd.jpg') }}');">
+              <span class="featured-badge">FEATURED ESSAY</span>
+            </div>
+            <div class="featured-story-content">
+              <div class="featured-meta">
+                <span class="f-tag">MATERIAL SCIENCE · FLUID DYNAMICS</span>
+                <span class="f-time">5 MIN READ</span>
+              </div>
+              <h2 class="featured-title">What Actually Makes a Fabric Quick-Dry?</h2>
+              <p class="featured-excerpt">
+                Why topical chemical finishes wash away after 15 home launderings, and how micro-channel filament geometries and dual-face differential tensioning create permanent, irreversible moisture wicking.
+              </p>
+              <div class="featured-author-row">
+                <div class="author-avatar" style="background: var(--red); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; font-size: 11px;">BIA</div>
+                <div class="author-info">
+                  <strong>BIA Materials &amp; Physics Laboratory</strong>
+                  <span>Amman R&amp;D Complex · Oct 2026</span>
+                </div>
+                <span class="btn btn-red featured-read-btn">Read Full Article <span class="arrow">→</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7 EDITORIAL ARTICLES GRID -->
+        <div class="stories-editorial-grid reveal" style="margin-top: 60px;">
+          
+          <!-- Article 2: The Science Behind Stretch & Recovery -->
+          <article class="story-card story-card-btn" data-category="engineering" data-story-id="stretch-recovery" role="button" tabindex="0">
+            <div class="story-card-img-box" style="background-image: url('{{ url_for('static', filename='assets/fabric_product_03.jpg') }}');">
+              <span class="story-category-pill">KNIT ENGINEERING</span>
+            </div>
+            <div class="story-card-body">
+              <div class="story-card-meta">
+                <span class="story-time">5 MIN READ</span>
+                <span class="story-date">Oct 2026</span>
+              </div>
+              <h3 class="story-card-title">The Science Behind Stretch &amp; Recovery</h3>
+              <p class="story-card-desc">
+                Why elastane percentage alone is misleading: decoding hysteresis curves, yarn crimp mechanics, loop recovery, and mono-material mechanical stretch.
+              </p>
+              <span class="story-card-link">Read Technical Paper <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- Article 3: Inside the BIA Colour Lab -->
+          <article class="story-card story-card-btn" data-category="color-chemistry" data-story-id="colour-lab" role="button" tabindex="0">
+            <div class="story-card-img-box" style="background-image: url('{{ url_for('static', filename='assets/color_lab_testing_4k.jpg') }}');">
+              <span class="story-category-pill">COLOR CHEMISTRY</span>
+            </div>
+            <div class="story-card-body">
+              <div class="story-card-meta">
+                <span class="story-time">4 MIN READ</span>
+                <span class="story-date">Oct 2026</span>
+              </div>
+              <h3 class="story-card-title">Inside the BIA Colour Lab</h3>
+              <p class="story-card-desc">
+                How automated spectrophotometers, robotic dye kitchens, and strict Delta-E &lt; 0.5 standards eliminate shade drift across 100 tonnes daily.
+              </p>
+              <span class="story-card-link">Read Laboratory Report <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- Article 4: Why GSM Doesn't Tell the Whole Fabric Story -->
+          <article class="story-card story-card-btn" data-category="material-science" data-story-id="gsm-story" role="button" tabindex="0">
+            <div class="story-card-img-box" style="background-image: url('{{ url_for('static', filename='assets/fabric_product_04.jpg') }}');">
+              <span class="story-category-pill">MATERIAL SCIENCE</span>
+            </div>
+            <div class="story-card-body">
+              <div class="story-card-meta">
+                <span class="story-time">4 MIN READ</span>
+                <span class="story-date">Oct 2026</span>
+              </div>
+              <h3 class="story-card-title">Why GSM Doesn't Tell the Whole Fabric Story</h3>
+              <p class="story-card-desc">
+                Why two 180 GSM jerseys feel and perform entirely differently: analyzing yarn count, machine gauge density, and stenter heat-setting tension.
+              </p>
+              <span class="story-card-link">Read Technical Essay <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- Article 5: From Yarn to Performance -->
+          <article class="story-card story-card-btn" data-category="engineering" data-story-id="yarn-to-performance" role="button" tabindex="0">
+            <div class="story-card-img-box" style="background-image: url('{{ url_for('static', filename='assets/hero-sample-yarn-warping.jpg') }}');">
+              <span class="story-category-pill">MANUFACTURING VALUE CHAIN</span>
+            </div>
+            <div class="story-card-body">
+              <div class="story-card-meta">
+                <span class="story-time">6 MIN READ</span>
+                <span class="story-date">Oct 2026</span>
+              </div>
+              <h3 class="story-card-title">From Yarn to Performance</h3>
+              <p class="story-card-desc">
+                The unbroken industrial journey from raw synthetic filaments to circular knitting, low-liquor dyeing, and garment cutting on the Classic Fashion floor.
+              </p>
+              <span class="story-card-link">Read Value Chain Story <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- Article 6: Can Performance and Sustainability Coexist? -->
+          <article class="story-card story-card-btn" data-category="sustainability" data-story-id="sustainability-performance" role="button" tabindex="0">
+            <div class="story-card-img-box" style="background-image: url('{{ url_for('static', filename='assets/fabric_product_05.jpg') }}');">
+              <span class="story-category-pill">SUSTAINABILITY RESEARCH</span>
+            </div>
+            <div class="story-card-body">
+              <div class="story-card-meta">
+                <span class="story-time">5 MIN READ</span>
+                <span class="story-date">Oct 2026</span>
+              </div>
+              <h3 class="story-card-title">Can Performance and Sustainability Coexist?</h3>
+              <p class="story-card-desc">
+                Debunking the trade-off myth: empirical lab data comparing post-consumer GRS recycled polyester against virgin polymers under extreme tensile stress.
+              </p>
+              <span class="story-card-link">Read Empirical Study <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- Article 7: Meet the Engineer Behind the Fabric -->
+          <article class="story-card story-card-btn" data-category="engineering" data-story-id="meet-the-engineer" role="button" tabindex="0">
+            <div class="story-card-img-box" style="background-image: url('{{ url_for('static', filename='assets/hero-sample-roller-precision.jpg') }}');">
+              <span class="story-category-pill">HUMAN MASTERY</span>
+            </div>
+            <div class="story-card-body">
+              <div class="story-card-meta">
+                <span class="story-time">4 MIN READ</span>
+                <span class="story-date">Oct 2026</span>
+              </div>
+              <h3 class="story-card-title">Meet the Engineer Behind the Fabric</h3>
+              <p class="story-card-desc">
+                A shift with Tariq, Production &amp; Automation Engineer, calibrating European circular frames to synchronize 3,000 needles at 35 RPM with zero spirality.
+              </p>
+              <span class="story-card-link">Read Profile <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- Article 8: 5 Textile Innovations We're Watching -->
+          <article class="story-card story-card-btn" data-category="sustainability" data-story-id="innovations-watching" role="button" tabindex="0">
+            <div class="story-card-img-box" style="background-image: url('{{ url_for('static', filename='assets/fabric_product_02.jpg') }}');">
+              <span class="story-category-pill">FUTURE CONCEPTS</span>
+            </div>
+            <div class="story-card-body">
+              <div class="story-card-meta">
+                <span class="story-time">6 MIN READ</span>
+                <span class="story-date">Oct 2026</span>
+              </div>
+              <h3 class="story-card-title">5 Textile Innovations We're Watching</h3>
+              <p class="story-card-desc">
+                Phase-change thermoregulation microcapsules, algae-derived bio-pigments, monomaterial recycling, waterless supercritical CO₂ dyeing, and sensor knits.
+              </p>
+              <span class="story-card-link">Read Future Forecast <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Technical Lead CTA Banner -->
+        <div class="subpage-cta reveal" style="margin-top: 80px;">
+          <p class="eyebrow" style="color: var(--red); justify-content: center;">CO-DEVELOPMENT &amp; BRIEF CONSULTATION</p>
+          <h3 style="color: var(--ink);">CHALLENGE OUR MATERIAL SCIENTISTS.</h3>
+          <p style="color: #5a534f;">
+            Have a custom hand-feel, moisture rate, or recycled filament blend in mind for an upcoming athletic collection? Put our engineering laboratory to the test.
+          </p>
+          <div class="subpage-cta-actions">
+            <a href="/innovation#challenge" class="btn btn-red">Submit a Fabric Challenge <span class="arrow">→</span></a>
+            <a href="/fabrics" class="btn btn-ghost-dark">Explore Full Fabric Library <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FABRIC STORY ARTICLE READER MODAL ================= -->
+  <div class="article-modal" id="storyArticleModal" aria-hidden="true" role="dialog" aria-labelledby="articleModalTitle">
+    <div class="article-modal-backdrop" id="articleModalBackdrop"></div>
+    <div class="article-modal-card">
+      <button class="article-modal-close" id="articleModalClose" aria-label="Close article modal">✕</button>
+      
+      <div class="article-modal-hero">
+        <img id="articleModalImg" src="{{ url_for('static', filename='assets/stage-knit.png') }}" alt="Fabric Story Banner" />
+        <div class="article-modal-hero-overlay">
+          <div class="article-modal-meta">
+            <span class="article-modal-tag" id="articleModalTag">TECHNOLOGY · PERFORMANCE APPAREL</span>
+            <span class="article-modal-readtime" id="articleModalReadTime">4 MIN READ</span>
+          </div>
+          <h2 class="article-modal-title" id="articleModalTitle">What actually makes a fabric quick-dry?</h2>
+        </div>
+      </div>
+
+      <div class="article-modal-body" id="articleModalBody">
+        <!-- Dynamic Content injected via JS -->
+      </div>
+
+      <div class="article-modal-actions">
+        <button type="button" class="btn btn-ghost-dark" id="articleModalCloseBtn">Close Article</button>
+        <a href="/innovation#challenge" class="btn btn-red" id="articleModalDevelopBtn">Challenge Us on This Fabric <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" aria-label="BIA home">
+          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="footer-logo-img" />
+        </a>
+        <p>BRILLIANCE, WOVEN IN.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span>DISCOVER</span>
+          <a href="/story">Our Story</a>
+          <a href="/ecosystem">BIA × Classic</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/story#leadership">Leadership</a>
+        </div>
+        <div class="footer-col">
+          <span>CREATE</span>
+          <a href="/fabrics">Fabric Lab</a>
+          <a href="/fabrics#technologies">Technologies</a>
+          <a href="/innovation">BIA Next</a>
+          <a href="/contact?pathway=fabric">Request Swatch</a>
+        </div>
+        <div class="footer-col">
+          <span>IMPACT</span>
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/inside#quality">Quality</a>
+          <a href="/inside#certifications">Certifications</a>
+        </div>
+        <div class="footer-col">
+          <span>CONNECT</span>
+          <a href="/contact">Contact</a>
+          <a href="/contact?pathway=careers">Careers</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mid">
+      <span>Amman, Jordan · Al-Tajamouat Industrial City, Sahab</span>
+      <span>+962 6 402 0000</span>
+      <span>develop@bia.jo</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <span class="sep">·</span>
+        <a href="#">Cookies</a>
+        <span class="sep">·</span>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-line">
+      <span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261008_11"></script>
+</body>
+
+</html>

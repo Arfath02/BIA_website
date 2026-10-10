@@ -18,6 +18,11 @@ import re
 import uuid
 from datetime import datetime, timezone
 
+import sys
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
 try:
     import pyodbc
     PYODBC_AVAILABLE = True
@@ -27,7 +32,11 @@ except ImportError:
 
 from flask import Flask, jsonify, render_template, request
 
-from email_service import send_enquiry_confirmation
+try:
+    from email_service import send_enquiry_confirmation
+except ImportError:
+    def send_enquiry_confirmation(*args, **kwargs):
+        pass
 
 app = Flask(__name__)
 

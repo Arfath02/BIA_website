@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Develop With BIA — Let's Create What's Next | Fabric &amp; Apparel</title>
+  <meta name="description"
+    content="Connect with BIA's fabric engineering division in Sahab Industrial City, Amman, Jordan. Request swatches, book mill tours, submit development briefs, lock capacity, or apply for careers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261008_07" />
+</head>
+
+<body>
+
+  <!-- ================= NAV ================= -->
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="/" aria-label="BIA home">
+      <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="nav-logo-img" />
+    </a>
+
+    <div class="nav-links">
+      <a href="/story">Our Story</a>
+      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <a href="/innovation">Innovation</a>
+      <a href="/inside">Inside BIA</a>
+      <a href="/ecosystem">BIA × Classic</a>
+      <a href="/responsibility">Responsibility</a>
+      <a href="/people">People</a>
+      <a href="/stories">Insights</a>
+      <a href="/contact" class="active">Contact</a>
+    </div>
+
+    <a href="/contact" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">→</span></a>
+  </nav>
+
+  <!-- ================= SUBPAGE HERO ================= -->
+  <header class="subpage-hero">
+    <div class="subpage-hero-bg" style="background-image: url('{{ url_for('static', filename='assets/fabric_product_05.jpg') }}');"></div>
+    <div class="subpage-hero-veil"></div>
+
+    <div class="subpage-hero-inner reveal">
+      <div class="subpage-breadcrumbs">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Contact &amp; Develop</span>
+      </div>
+      <p class="eyebrow">COLLABORATE · DEVELOP · SCALE</p>
+      <h1 class="subpage-title">LET'S CREATE WHAT'S NEXT.</h1>
+      <p class="subpage-lede">
+        Don't settle for a generic enquiry form. Whether you need physical fabric swatches, custom engineering trials, dedicated mill production capacity, a factory tour in Amman, a supply chain partnership, or a career opportunity—select your path below.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= CONTACT & PATHWAY SECTION ================= -->
+    <section class="section light contact-section" id="form-section">
+      <div class="contact-inner" style="max-width: 1400px; margin: 0 auto;">
+
+        <!-- Pathway Selector Title -->
+        <div class="pathway-selector-wrapper reveal">
+          <div class="pathway-selector-title">
+            <span>WHAT BRINGS YOU TO BIA? (SELECT YOUR PATHWAY)</span>
+          </div>
+
+          <!-- 6-Pathway Interactive Cards Grid -->
+          <div class="pathway-grid" id="pathwayGrid">
+            
+            <!-- Pathway 1: I need a fabric -->
+            <button type="button" class="pathway-card active" data-pathway="fabric" id="pCard-fabric">
+              <div class="pathway-card-top">
+                <div class="pathway-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <span class="pathway-badge">SWATCH &amp; DISCOVERY</span>
+              </div>
+              <h3 class="pathway-title">I need a fabric</h3>
+              <p class="pathway-desc">Explore technical knit constructions, request physical swatches &amp; color hanger cards.</p>
+              <span class="pathway-action-indicator">Select Swatch Request →</span>
+            </button>
+
+            <!-- Pathway 2: I have a development brief -->
+            <button type="button" class="pathway-card" data-pathway="development" id="pCard-development">
+              <div class="pathway-card-top">
+                <div class="pathway-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <span class="pathway-badge">CUSTOM ENGINEERING</span>
+              </div>
+              <h3 class="pathway-title">I have a development brief</h3>
+              <p class="pathway-desc">Formulate custom fiber blends, GSM, functional finishes, and rapid sampling trial specs.</p>
+              <span class="pathway-action-indicator">Submit Brief →</span>
+            </button>
+
+            <!-- Pathway 3: I need production capacity -->
+            <button type="button" class="pathway-card" data-pathway="capacity" id="pCard-capacity">
+              <div class="pathway-card-top">
+                <div class="pathway-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 21h18"></path>
+                    <path d="M3 7v14"></path>
+                    <path d="M21 7v14"></path>
+                    <path d="M7 21v-8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8"></path>
+                    <path d="M12 3l9 4-9 4-9-4 9-4z"></path>
+                  </svg>
+                </div>
+                <span class="pathway-badge">SCALE &amp; TONNAGE</span>
+              </div>
+              <h3 class="pathway-title">I need production capacity</h3>
+              <p class="pathway-desc">Lock commercial monthly knitting &amp; dyeing tonnage with 0% US duty bilateral advantages.</p>
+              <span class="pathway-action-indicator">Request Capacity Allocation →</span>
+            </button>
+
+            <!-- Pathway 4: I want to visit BIA -->
+            <button type="button" class="pathway-card" data-pathway="mill_visit" id="pCard-mill_visit">
+              <div class="pathway-card-top">
+                <div class="pathway-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <span class="pathway-badge">AMMAN MILL TOUR</span>
+              </div>
+              <h3 class="pathway-title">I want to visit BIA</h3>
+              <p class="pathway-desc">Schedule a guided delegation tour of our cutting-edge mill complex &amp; QA labs in Amman, Jordan.</p>
+              <span class="pathway-action-indicator">Schedule Mill Tour →</span>
+            </button>
+
+            <!-- Pathway 5: I want to become a supplier -->
+            <button type="button" class="pathway-card" data-pathway="supplier" id="pCard-supplier">
+              <div class="pathway-card-top">
+                <div class="pathway-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <polyline points="17 11 19 13 23 9"></polyline>
+                  </svg>
+                </div>
+                <span class="pathway-badge">SUPPLY CHAIN PARTNERSHIP</span>
+              </div>
+              <h3 class="pathway-title">I want to become a supplier</h3>
+              <p class="pathway-desc">Propose specialized yarns, functional chemicals, machinery innovations, or raw materials.</p>
+              <span class="pathway-action-indicator">Submit Supplier Profile →</span>
+            </button>
+
+            <!-- Pathway 6: I'm looking for a career -->
+            <button type="button" class="pathway-card" data-pathway="careers" id="pCard-careers">
+              <div class="pathway-card-top">
+                <div class="pathway-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <span class="pathway-badge">CAREERS &amp; CULTURE</span>
+              </div>
+              <h3 class="pathway-title">I'm looking for a career</h3>
+              <p class="pathway-desc">Join our textile engineering, dyeing chemistry, quality assurance, operations, or leadership team.</p>
+              <span class="pathway-action-indicator">Join Our Team →</span>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Dynamic Content Layout -->
+        <div class="contact-grid">
+          
+          <!-- Left Column: Mill & Corporate Contacts -->
+          <div class="contact-info-col reveal">
+            <div class="contact-cards">
+
+              <div class="c-card">
+                <div class="c-card-icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                  </svg>
+                </div>
+                <div class="c-card-content">
+                  <span class="c-tag">GLOBAL HEADQUARTERS &amp; MILL</span>
+                  <h4>Amman, Hashemite Kingdom of Jordan</h4>
+                  <p>Al-Tajamouat Industrial City, Sahab<br />P.O. Box 123, Amman 11512</p>
+                  <div class="c-badge">Middle East's Largest Integrated Textile Complex</div>
+                </div>
+              </div>
+
+              <div class="c-card-row">
+                <div class="c-card compact">
+                  <div class="c-card-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <div class="c-card-content">
+                    <span class="c-tag">FABRIC ENGINEERING DESK</span>
+                    <a href="mailto:develop@bia.jo" class="c-link">develop@bia.jo</a>
+                    <a href="mailto:sales@bia.jo" class="c-sublink">sales@bia.jo</a>
+                  </div>
+                </div>
+
+                <div class="c-card compact">
+                  <div class="c-card-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <div class="c-card-content">
+                    <span class="c-tag">DIRECT MILL DESK</span>
+                    <a href="tel:+96264020000" class="c-link">+962 6 402 0000</a>
+                    <span class="c-subtext">Sun – Thu · 8:00 AM – 5:00 PM (GMT+3)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fast-Track Response Guarantee -->
+              <div class="c-guarantee-card">
+                <div class="c-guarantee-dot"></div>
+                <div class="c-guarantee-text">
+                  <strong>48-Hour Technical Feasibility Guarantee</strong>
+                  <p>Every brief, capacity request, or swatch submission is reviewed by a senior textile engineer in Amman within 24–48 hours.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Column: Tailored Dynamic Form Panels -->
+          <div class="contact-form-col reveal">
+            <div class="contact-form-wrapper" id="contactFormContainer">
+              
+              <div class="form-header">
+                <div>
+                  <span class="form-tag" id="currentFormTag">PATHWAY 01 · SWATCH &amp; DISCOVERY</span>
+                  <h3 id="currentFormTitle">Request Fabric Swatches &amp; Lab Hangers</h3>
+                </div>
+                <span class="pathway-current-pill" id="currentPathwayPill">
+                  <span style="color: var(--red);">●</span> <span id="currentPathwayName">I need a fabric</span>
+                </span>
+              </div>
+
+              <form id="contactForm" class="contact-form" novalidate>
+                <input type="hidden" id="enquiryTopic" name="topic" value="fabric" />
+
+                <!-- ================= PANEL 1: I NEED A FABRIC ================= -->
+                <div class="pathway-form-panel active" id="panel-fabric">
+                  <div class="form-group">
+                    <label class="form-label">DESIRED FABRIC CONSTRUCTION (SELECT ALL THAT APPLY)</label>
+                    <div class="multi-chips" data-target="fabric_construction">
+                      <button type="button" class="f-chip active" data-val="Single Jersey">Single Jersey</button>
+                      <button type="button" class="f-chip" data-val="Double Interlock">Double Interlock</button>
+                      <button type="button" class="f-chip" data-val="Performance Pique">Performance Pique</button>
+                      <button type="button" class="f-chip" data-val="Engineered Mesh">Engineered Mesh</button>
+                      <button type="button" class="f-chip" data-val="French Terry & Fleece">French Terry &amp; Fleece</button>
+                      <button type="button" class="f-chip" data-val="Technical Jacquard">Technical Jacquard</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">TARGET WEIGHT (GSM)</label>
+                    <div class="multi-chips" data-target="fabric_gsm">
+                      <button type="button" class="f-chip" data-val="Sub-140 GSM (Ultra-Light)">Sub-140 GSM (Ultra-Light)</button>
+                      <button type="button" class="f-chip active" data-val="140–180 GSM (Lightweight)">140–180 GSM (Lightweight)</button>
+                      <button type="button" class="f-chip" data-val="190–240 GSM (Midweight)">190–240 GSM (Midweight)</button>
+                      <button type="button" class="f-chip" data-val="250+ GSM (Heavy/Compression)">250+ GSM (Heavy/Compression)</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">SWATCH PACKAGE TYPE</label>
+                    <div class="multi-chips" data-target="fabric_package">
+                      <button type="button" class="f-chip active" data-val="Physical Hanger Swatches & Color Cards">Physical Hangers &amp; Cards</button>
+                      <button type="button" class="f-chip" data-val="Sample Yardage for Prototype (3-5m)">Sample Yardage (3–5m)</button>
+                      <button type="button" class="f-chip" data-val="Digital Technical Spec Sheet Only">Digital Spec Sheet</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="swatchAddress" class="form-label">COURIER DISPATCH ADDRESS</label>
+                    <input type="text" id="swatchAddress" class="form-input" placeholder="Street Address, City, Country, Postal Code (for DHL/FedEx swatch delivery)" />
+                  </div>
+                </div>
+
+                <!-- ================= PANEL 2: I HAVE A DEVELOPMENT BRIEF ================= -->
+                <div class="pathway-form-panel" id="panel-development">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">GARMENT APPLICATION</label>
+                      <select id="devApplication" class="form-select">
+                        <option value="Running & Marathon Performance">Running &amp; Marathon Performance</option>
+                        <option value="High-Compression Athleisure & Yoga">High-Compression Athleisure &amp; Yoga</option>
+                        <option value="Outdoor, Tactical & Mountain Wear">Outdoor, Tactical &amp; Mountain Wear</option>
+                        <option value="Premium Everyday Lifestyle & Basics">Premium Everyday Lifestyle &amp; Basics</option>
+                        <option value="Technical Seamless & Underwear">Technical Seamless &amp; Underwear</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">TARGET SEASON</label>
+                      <select id="devSeason" class="form-select">
+                        <option value="Spring / Summer 2027">Spring / Summer 2027</option>
+                        <option value="Fall / Winter 2027">Fall / Winter 2027</option>
+                        <option value="Fast-Track Immediate Sampling (7-10 Days)">Fast-Track Immediate Sampling (7–10 Days)</option>
+                        <option value="Ongoing Core Replenishment Program">Ongoing Core Program</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">KEY PERFORMANCE BENCHMARKS</label>
+                    <div class="multi-chips" data-target="dev_benchmarks">
+                      <button type="button" class="f-chip active" data-val="0% US-Jordan FTA Tariff">0% US-FTA Tariff</button>
+                      <button type="button" class="f-chip active" data-val="Fast Dry & Moisture Wicking">Fast Dry &amp; Wick</button>
+                      <button type="button" class="f-chip" data-val="Zero Pilling (Grade 4.5+)">Zero Pilling (Grade 4.5+)</button>
+                      <button type="button" class="f-chip" data-val="Squat-Proof Opacity">Squat-Proof Opacity</button>
+                      <button type="button" class="f-chip" data-val="UPF 50+ UV Defense">UPF 50+ UV Defense</button>
+                      <button type="button" class="f-chip" data-val="Bio-Based DWR Finish">Bio-Based DWR</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="devSpecs" class="form-label">TECHNICAL COMPOSITION &amp; BRIEF DETAILS</label>
+                    <textarea id="devSpecs" class="form-textarea" rows="3" placeholder="Target yarn blend (e.g. 88% Recycled Poly / 12% Spandex), cuttable width, target hand-feel, shade delta requirements..."></textarea>
+                  </div>
+                </div>
+
+                <!-- ================= PANEL 3: I NEED PRODUCTION CAPACITY ================= -->
+                <div class="pathway-form-panel" id="panel-capacity">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">ESTIMATED MONTHLY TONNAGE</label>
+                      <select id="capVolume" class="form-select">
+                        <option value="5 – 20 Metric Tonnes / Month">5 – 20 Metric Tonnes / Month</option>
+                        <option value="20 – 50 Metric Tonnes / Month">20 – 50 Metric Tonnes / Month</option>
+                        <option value="50 – 100+ Metric Tonnes / Month">50 – 100+ Metric Tonnes / Month</option>
+                        <option value="Dedicated Seasonal Bulk Run">Dedicated Seasonal Bulk Run</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">SUPPLY CHAIN MODEL</label>
+                      <select id="capModel" class="form-select">
+                        <option value="Fabric Only (Ex-Mill Amman / FOB Aqaba)">Fabric Only (Ex-Mill / FOB Aqaba)</option>
+                        <option value="Full Vertical Garment OEM via Classic Fashion">Fabric + Garment OEM (Classic Fashion)</option>
+                        <option value="Custom Yarn Consignment Processing">Commission Dyeing / Knitting</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">TARGET EXPORT DESTINATIONS</label>
+                    <div class="multi-chips" data-target="cap_markets">
+                      <button type="button" class="f-chip active" data-val="United States (0% Duty FTA)">United States (0% FTA)</button>
+                      <button type="button" class="f-chip" data-val="Canada">Canada</button>
+                      <button type="button" class="f-chip" data-val="United Kingdom & Europe">UK &amp; Europe</button>
+                      <button type="button" class="f-chip" data-val="Middle East & GCC">Middle East &amp; GCC</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="capTimeline" class="form-label">DELIVERY WINDOW &amp; NOTES</label>
+                    <input type="text" id="capTimeline" class="form-input" placeholder="Required ramp-up date, packaging specifications, FOB/CIF terms..." />
+                  </div>
+                </div>
+
+                <!-- ================= PANEL 4: I WANT TO VISIT BIA ================= -->
+                <div class="pathway-form-panel" id="panel-mill_visit">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label for="visitDates" class="form-label">PREFERRED VISIT WINDOW</label>
+                      <input type="text" id="visitDates" class="form-input" placeholder="e.g. Third week of November 2026" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">DELEGATION SIZE</label>
+                      <select id="visitDelegation" class="form-select">
+                        <option value="1 – 2 Executive Decision Makers">1 – 2 Executive Decision Makers</option>
+                        <option value="3 – 5 Sourcing & Quality Leaders">3 – 5 Sourcing &amp; Quality Leaders</option>
+                        <option value="Brand Sourcing & Technical Team (5+)">Brand Technical Team (5+)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">FACILITY FOCUS AREAS</label>
+                    <div class="multi-chips" data-target="visit_focus">
+                      <button type="button" class="f-chip active" data-val="Circular Knitting Mill Hall">Circular Knitting Hall</button>
+                      <button type="button" class="f-chip active" data-val="Automated Dye House & Finishing">Automated Dye House</button>
+                      <button type="button" class="f-chip active" data-val="Accredited Physical & Chemical QA Lab">QA Testing Lab</button>
+                      <button type="button" class="f-chip" data-val="Classic Fashion Garment Manufacturing">Classic Fashion Garment Units</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">HOST &amp; LOGISTICS ASSISTANCE</label>
+                    <div class="multi-chips" data-target="visit_assistance">
+                      <button type="button" class="f-chip active" data-val="Airport VIP Escort & Amman Transit">Amman Airport Transit</button>
+                      <button type="button" class="f-chip" data-val="Visa Support Letter">Visa Support Letter</button>
+                      <button type="button" class="f-chip" data-val="Executive Boardroom Briefing">Executive Briefing Session</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ================= PANEL 5: I WANT TO BECOME A SUPPLIER ================= -->
+                <div class="pathway-form-panel" id="panel-supplier">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">SUPPLY CATEGORY</label>
+                      <select id="supCategory" class="form-select">
+                        <option value="Spun & Filament Yarns (Recycled / Specialty)">Spun &amp; Filament Yarns</option>
+                        <option value="Dyes, Auxiliaries & Functional Chemistry">Dyes &amp; Functional Chemistry</option>
+                        <option value="Knitting & Dyeing Machinery / Spare Parts">Knitting / Dyeing Machinery</option>
+                        <option value="Recycled Polymer Feedstocks">Recycled Polymer Feedstocks</option>
+                        <option value="Eco-Friendly Packaging & Logistics">Sustainable Packaging &amp; Logistics</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="supOrigin" class="form-label">MANUFACTURING ORIGIN / COUNTRY</label>
+                      <input type="text" id="supOrigin" class="form-input" placeholder="e.g. Germany, Japan, India, Turkey..." />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">CERTIFICATIONS &amp; MRSL COMPLIANCE</label>
+                    <div class="multi-chips" data-target="sup_certs">
+                      <button type="button" class="f-chip active" data-val="ZDHC Level 3 MRSL">ZDHC Level 3</button>
+                      <button type="button" class="f-chip active" data-val="GRS 4.0 Certified">GRS 4.0</button>
+                      <button type="button" class="f-chip" data-val="bluesign System Partner">bluesign® Partner</button>
+                      <button type="button" class="f-chip" data-val="OEKO-TEX ECO PASSPORT">OEKO-TEX ECO PASSPORT</button>
+                      <button type="button" class="f-chip" data-val="ISO 9001 / 14001">ISO 9001 / 14001</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="supInnovation" class="form-label">TECHNICAL PROPOSITION &amp; PRODUCT DETAILS</label>
+                    <textarea id="supInnovation" class="form-textarea" rows="3" placeholder="Tell us about your technical differentiation, pricing tier, sustainability metrics, and delivery reliability..."></textarea>
+                  </div>
+                </div>
+
+                <!-- ================= PANEL 6: I'M LOOKING FOR A CAREER ================= -->
+                <div class="pathway-form-panel" id="panel-careers">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">DESIRED DEPARTMENT</label>
+                      <select id="carDepartment" class="form-select">
+                        <option value="Textile Engineering & Fabric Innovation">Textile Engineering &amp; R&amp;D</option>
+                        <option value="Circular Knitting Mill Operations">Circular Knitting Mill Operations</option>
+                        <option value="Dyeing Chemistry & Color Formulation">Dyeing Chemistry &amp; Finishing</option>
+                        <option value="Quality Assurance & Laboratory Testing">Quality Assurance &amp; QA Lab</option>
+                        <option value="Supply Chain & Global Logistics">Supply Chain &amp; Logistics</option>
+                        <option value="International Brand Account Management">Commercial Sales &amp; Accounts</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">EXPERIENCE LEVEL</label>
+                      <select id="carExperience" class="form-select">
+                        <option value="Graduate / Apprentice (0-2 Years)">Graduate / Entry (0–2 Years)</option>
+                        <option value="Specialist / Engineer (3-6 Years)">Specialist / Engineer (3–6 Years)</option>
+                        <option value="Senior Manager / Department Lead (7-12 Years)">Senior Lead / Manager (7–12 Years)</option>
+                        <option value="Executive Leadership (12+ Years)">Executive Leadership (12+ Years)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label for="carLinkedin" class="form-label">LINKEDIN PROFILE / PORTFOLIO URL</label>
+                      <input type="url" id="carLinkedin" class="form-input" placeholder="https://linkedin.com/in/yourname" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">RELOCATION TO AMMAN, JORDAN</label>
+                      <select id="carRelocation" class="form-select">
+                        <option value="Currently based in Jordan">Currently based in Jordan</option>
+                        <option value="Available to relocate immediately">Available to relocate immediately</option>
+                        <option value="Open to international assignment">Open to international assignment</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="carSummary" class="form-label">PROFESSIONAL SUMMARY &amp; EXPERTISE</label>
+                    <textarea id="carSummary" class="form-textarea" rows="3" placeholder="Briefly introduce your career background, machine proficiencies, or academic achievements..."></textarea>
+                  </div>
+                </div>
+
+                <!-- ================= COMMON CONTACT DETAILS ================= -->
+                <div style="border-top: 1px solid rgba(19, 16, 20, 0.08); padding-top: 20px; margin-top: 6px;">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label for="contactName" class="form-label">FULL NAME <span class="req">*</span></label>
+                      <input type="text" id="contactName" name="name" class="form-input" placeholder="e.g. Sarah Jenkins" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="contactEmail" class="form-label">WORK EMAIL <span class="req">*</span></label>
+                      <input type="email" id="contactEmail" name="email" class="form-input" placeholder="e.g. s.jenkins@brand.com" required />
+                    </div>
+                  </div>
+
+                  <div class="form-row-2" style="margin-top: 14px;">
+                    <div class="form-group">
+                      <label for="contactCompany" class="form-label">COMPANY / BRAND / ENTITY</label>
+                      <input type="text" id="contactCompany" name="company" class="form-input" placeholder="e.g. Apex Sportswear / Global Sourcing" />
+                    </div>
+                    <div class="form-group">
+                      <label for="contactPhone" class="form-label">PHONE / WHATSAPP</label>
+                      <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="+1 (555) 019-2834" />
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="margin-top: 14px;">
+                    <label for="contactMessage" class="form-label">ADDITIONAL NOTES / SPECIFICATIONS (OPTIONAL)</label>
+                    <textarea id="contactMessage" name="message" class="form-textarea" rows="2" placeholder="Any additional requirements or specifics for our team in Amman..."></textarea>
+                  </div>
+                </div>
+
+                <div class="form-actions" style="margin-top: 10px;">
+                  <button type="submit" class="btn btn-red form-submit" id="contactSubmitBtn">
+                    <span id="submitBtnLabel">Request Fabric Swatches</span>
+                    <span class="arrow">→</span>
+                  </button>
+                  <span class="form-privacy-note">Your specifications are protected under strict BIA confidentiality agreements.</span>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= ENQUIRY SUCCESS POPUP MODAL ================= -->
+  <div class="enquiry-modal" id="enquirySuccessModal" aria-hidden="true" role="dialog">
+    <div class="enquiry-modal-backdrop" id="enquiryModalBackdrop"></div>
+    <div class="enquiry-modal-card">
+      <button class="enquiry-modal-close" id="enquiryModalClose" aria-label="Close dialog">✕</button>
+
+      <div class="enquiry-modal-icon-wrap">
+        <div class="enquiry-modal-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <h3 class="enquiry-modal-title" id="enquirySuccessTitle">Request Transmitted</h3>
+      <p class="enquiry-modal-desc" id="enquirySuccessDesc">
+        Thank you for reaching out. Your request has been assigned directly to our fabric engineering &amp; commercial division in Amman, Jordan.
+      </p>
+
+      <div class="enquiry-modal-ref-card">
+        <span class="enquiry-modal-ref-label">TRANSMISSION REFERENCE</span>
+        <strong class="enquiry-modal-ref-code" id="enquiryModalRef">BIA-FAB-XXXXXX</strong>
+      </div>
+
+      <p class="enquiry-modal-note">
+        A senior textile specialist or department manager will review your submission and contact you within 24–48 hours. A verification copy has been dispatched to your email.
+      </p>
+
+      <div class="enquiry-modal-actions">
+        <button type="button" class="btn btn-ghost-dark enquiry-modal-btn" id="enquiryModalDoneBtn">DONE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" aria-label="BIA home">
+          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="footer-logo-img" />
+        </a>
+        <p>BRILLIANCE, WOVEN IN.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span>DISCOVER</span>
+          <a href="/story">Our Story</a>
+          <a href="/ecosystem">BIA × Classic</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/story#leadership">Leadership</a>
+        </div>
+        <div class="footer-col">
+          <span>CREATE</span>
+          <a href="/fabrics">Fabric Lab</a>
+          <a href="/fabrics#technologies">Technologies</a>
+          <a href="/innovation">BIA Next</a>
+          <a href="/contact?pathway=fabric">Request Swatch</a>
+        </div>
+        <div class="footer-col">
+          <span>IMPACT</span>
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/inside#quality">Quality</a>
+          <a href="/inside#certifications">Certifications</a>
+        </div>
+        <div class="footer-col">
+          <span>CONNECT</span>
+          <a href="/contact">Contact</a>
+          <a href="/contact?pathway=careers">Careers</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mid">
+      <span>Amman, Jordan · Al-Tajamouat Industrial City, Sahab</span>
+      <span>+962 6 402 0000</span>
+      <span>develop@bia.jo</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <span class="sep">·</span>
+        <a href="#">Cookies</a>
+        <span class="sep">·</span>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-line">
+      <span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261008_07"></script>
+</body>
+
+</html>

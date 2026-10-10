@@ -1,0 +1,2631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIA — Brilliance in Apparel | Master Specification Mock</title>
+  <meta name="description" content="BIA is a world-class fabric manufacturing facility. From yarn to innovation, from fabric to fashion, from Jordan to the world. Brilliance, Woven In." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ==========================================================================
+       BIA — MASTER DESIGN SYSTEM & TOKENS
+       ========================================================================== */
+    :root {
+      --red: #c8102e;
+      --red-hover: #e01436;
+      --red-glow: rgba(200, 16, 46, 0.45);
+      --ink: #110e12;
+      --ink-2: #19141a;
+      --ink-3: #221c24;
+      --graphite: #0c0a0d;
+      --paper: #f7f5f0;
+      --paper-card: #ffffff;
+      --concrete: #8c8682;
+      --steel: #b8b3ae;
+      --hair-dark: rgba(247, 245, 240, 0.1);
+      --hair-light: rgba(17, 14, 18, 0.1);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+      --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --nav-height: 76px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; color-scheme: dark light; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--graphite);
+      color: var(--paper);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Common Typography & Utilities */
+    h1, h2, h3, h4, .eyebrow, .nav-links a, .btn, .stat-num {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+    }
+    .sec-title {
+      font-size: clamp(32px, 4vw, 58px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .sec-subtitle {
+      font-size: clamp(16px, 1.3vw, 20px);
+      color: var(--steel);
+      max-width: 65ch;
+      line-height: 1.6;
+    }
+
+    /* Section Themes */
+    .section {
+      padding: 120px 6vw;
+      position: relative;
+    }
+    .section.dark {
+      background: var(--graphite);
+      color: var(--paper);
+    }
+    .section.light {
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .section.light .sec-subtitle { color: #69625d; }
+    .section.light .eyebrow { color: var(--red); }
+
+    /* Interactive Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 32px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border: 1px solid transparent;
+      outline: none;
+    }
+    .btn-red {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 8px 24px var(--red-glow);
+    }
+    .btn-red:hover {
+      background: var(--red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(200, 16, 46, 0.6);
+    }
+    .btn-ghost-light {
+      border-color: rgba(247, 245, 240, 0.3);
+      color: var(--paper);
+      background: rgba(247, 245, 240, 0.04);
+    }
+    .btn-ghost-light:hover {
+      border-color: var(--paper);
+      background: rgba(247, 245, 240, 0.12);
+      transform: translateY(-2px);
+    }
+    .btn-ghost-dark {
+      border-color: rgba(17, 14, 18, 0.28);
+      color: var(--ink);
+      background: transparent;
+    }
+    .btn-ghost-dark:hover {
+      border-color: var(--ink);
+      background: rgba(17, 14, 18, 0.06);
+      transform: translateY(-2px);
+    }
+    .btn .arrow { transition: transform 0.25s ease; }
+    .btn:hover .arrow { transform: translateX(5px); }
+
+    /* ==========================================================================
+       1. NAVIGATION BAR
+       ========================================================================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: rgba(12, 10, 13, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--hair-dark);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4vw;
+      transition: all 0.3s ease;
+    }
+    .nav-logo-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .nav-logo-badge {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-logo-badge .red-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 10px var(--red);
+    }
+    .nav-logo-sub {
+      font-family: var(--font-display);
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      color: var(--steel);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      padding-left: 10px;
+      text-transform: uppercase;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+    .nav-menu a {
+      color: var(--steel);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      position: relative;
+      padding: 6px 0;
+    }
+    .nav-menu a:hover, .nav-menu a.active {
+      color: #ffffff;
+    }
+    .nav-menu a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--red);
+    }
+
+    /* Mobile hamburger */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       2. CINEMATIC HERO & OPENING THREAD ANIMATION
+       ========================================================================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 6vw;
+      background: #0a080b;
+      overflow: hidden;
+    }
+    .hero-bg-visual {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 70%;
+      background: radial-gradient(circle at 75% 45%, rgba(200, 16, 46, 0.15) 0%, transparent 60%),
+                  linear-gradient(to right, #0a080b 0%, rgba(10, 8, 11, 0.75) 30%, transparent 70%),
+                  url('/static/assets/hero-dark.png') center/cover no-repeat;
+      opacity: 0.85;
+      animation: heroZoom 20s infinite alternate ease-in-out;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.06) translateX(-1%); }
+    }
+    .hero-thread-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 800px;
+    }
+    .hero-stage-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(200, 16, 46, 0.12);
+      border: 1px solid rgba(200, 16, 46, 0.35);
+      border-radius: var(--radius-full);
+      padding: 8px 18px;
+      margin-bottom: 24px;
+      font-family: var(--font-display);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      color: #ff3355;
+    }
+    .hero-stage-badge .pulsing-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 10px var(--red);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+    .hero-title {
+      font-size: clamp(42px, 6vw, 86px);
+      font-weight: 900;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    .hero-title .red-text { color: var(--red); text-shadow: 0 0 30px rgba(200, 16, 46, 0.4); }
+    .hero-microcopy {
+      font-size: clamp(17px, 1.5vw, 22px);
+      color: var(--steel);
+      line-height: 1.55;
+      margin-bottom: 36px;
+      min-height: 68px;
+      transition: opacity 0.3s ease;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .hero-controls {
+      position: absolute;
+      bottom: 40px;
+      right: 6vw;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--steel);
+    }
+    .hero-ctrl-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .hero-ctrl-btn:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    /* ==========================================================================
+       3. STATS STRIP
+       ========================================================================== */
+    .stats-strip {
+      background: #ffffff;
+      color: var(--ink);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(17, 14, 18, 0.08);
+      border-bottom: 1px solid rgba(17, 14, 18, 0.08);
+    }
+    .stat-box {
+      padding: 36px 32px;
+      border-right: 1px solid rgba(17, 14, 18, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .stat-box:last-child { border-right: none; }
+    .stat-num {
+      font-size: clamp(36px, 3.8vw, 56px);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-num.red { color: var(--red); }
+    .stat-lbl {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      color: #726b66;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       4. WHAT IS BIA? (POSITIONING)
+       ========================================================================== */
+    .position-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 6vw;
+      align-items: center;
+    }
+    .pos-quote {
+      font-size: clamp(28px, 3.2vw, 48px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .pos-quote .red-span { color: var(--red); display: block; margin-top: 6px; }
+    .pos-body {
+      font-size: 17.5px;
+      color: #59534f;
+      line-height: 1.7;
+    }
+    .pos-body p { margin-bottom: 26px; }
+
+    /* ==========================================================================
+       5. FOLLOW THE RED THREAD (8-STEP JOURNEY)
+       ========================================================================== */
+    .journey-section {
+      background: #0c090d;
+      position: relative;
+    }
+    .journey-thread-line {
+      position: absolute;
+      top: 220px;
+      bottom: 220px;
+      left: 50%;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--red) 0%, #ff1a40 50%, var(--red) 100%);
+      transform: translateX(-50%);
+      box-shadow: 0 0 18px var(--red);
+      z-index: 1;
+    }
+    .journey-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 90px;
+      position: relative;
+      z-index: 2;
+      margin-top: 60px;
+    }
+    .journey-step {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8vw;
+      align-items: center;
+    }
+    .journey-step.flip {
+      direction: rtl;
+    }
+    .journey-step.flip .journey-info {
+      direction: ltr;
+    }
+    .journey-card {
+      background: rgba(22, 17, 22, 0.85);
+      border: 1px solid rgba(247, 245, 240, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 38px 42px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .journey-card:hover {
+      border-color: rgba(200, 16, 46, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.7), 0 0 30px rgba(200, 16, 46, 0.15);
+    }
+    .journey-num {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .journey-card h3 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+    .journey-card p {
+      color: var(--steel);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .journey-media-box {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      background: #181318;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+    .journey-media-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .journey-step:hover .journey-media-box img {
+      transform: scale(1.05);
+    }
+    .journey-outro {
+      text-align: center;
+      margin-top: 100px;
+      padding-top: 60px;
+      border-top: 1px solid var(--hair-dark);
+    }
+    .journey-outro h3 {
+      font-size: clamp(26px, 3.5vw, 48px);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
+
+    /* ==========================================================================
+       6. OUR STORY (WHY BIA EXISTS)
+       ========================================================================== */
+    .story-chapters-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 5vw;
+      margin-top: 50px;
+      background: #ffffff;
+      border: 1px solid rgba(17, 14, 18, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+    }
+    .chapter-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-right: 1px solid rgba(17, 14, 18, 0.08);
+      padding-right: 30px;
+    }
+    .chapter-tab-btn {
+      background: none;
+      border: 1px solid transparent;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      text-align: left;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #69625d;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chapter-tab-btn:hover {
+      background: rgba(17, 14, 18, 0.04);
+      color: var(--ink);
+    }
+    .chapter-tab-btn.active {
+      background: var(--ink);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(17, 14, 18, 0.15);
+    }
+    .chapter-content-panel {
+      display: none;
+    }
+    .chapter-content-panel.active {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .chapter-content-panel h3 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+    .chapter-content-panel p {
+      font-size: 16px;
+      color: #59534f;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .value-card {
+      background: #fbf9f6;
+      border: 1px solid rgba(17, 14, 18, 0.08);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .value-card h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .value-card h4::before { content: '—'; color: var(--red); font-weight: 900; }
+    .value-card p { font-size: 13.5px; color: #69625d; margin: 0; }
+
+    /* ==========================================================================
+       7. BIA × CLASSIC FASHION (INTEGRATED VALUE CHAIN)
+       ========================================================================== */
+    .eco-wrapper {
+      background: #0d0a0e;
+      border-radius: var(--radius-lg);
+      padding: 60px;
+      border: 1px solid rgba(247, 245, 240, 0.12);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+    .eco-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('/static/assets/ecosystem-wall-garment-04-garment-floor.png') center/cover no-repeat;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .eco-flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 24px;
+      align-items: center;
+      margin: 40px 0;
+      position: relative;
+      z-index: 2;
+    }
+    .eco-node {
+      background: rgba(22, 17, 22, 0.9);
+      border: 1px solid rgba(247, 245, 240, 0.16);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      backdrop-filter: blur(10px);
+    }
+    .eco-node-tag {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      color: var(--red);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .eco-node h4 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+    .eco-node p { color: var(--steel); font-size: 14.5px; }
+    .eco-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .eco-connector .line {
+      width: 100%;
+      height: 2px;
+      background: var(--red);
+      box-shadow: 0 0 12px var(--red);
+      position: relative;
+    }
+    .eco-connector .line::after {
+      content: '→';
+      position: absolute;
+      right: -8px;
+      top: -12px;
+      color: var(--red);
+      font-size: 18px;
+    }
+    .eco-benefits-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+      position: relative;
+      z-index: 2;
+    }
+    .benefit-item {
+      background: rgba(14, 11, 15, 0.8);
+      border: 1px solid rgba(247, 245, 240, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .benefit-item strong {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #fff;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .benefit-item span {
+      font-size: 12px;
+      color: var(--concrete);
+      line-height: 1.35;
+      display: block;
+    }
+
+    /* ==========================================================================
+       8. MATERIAL LIBRARY & MAKE YOUR FABRIC BUILDER
+       ========================================================================== */
+    .mat-tabs-bar {
+      display: flex;
+      gap: 30px;
+      border-bottom: 1px solid rgba(17, 14, 18, 0.12);
+      margin-bottom: 36px;
+    }
+    .mat-tab-btn {
+      background: none;
+      border: none;
+      padding: 14px 0;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #726b66;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .mat-tab-btn.active {
+      color: var(--ink);
+      font-weight: 800;
+    }
+    .mat-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--red);
+    }
+    .mat-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .filter-chip {
+      background: #ffffff;
+      border: 1px solid rgba(17, 14, 18, 0.18);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-display);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-chip:hover, .filter-chip.active {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .swatch-card {
+      background: #ffffff;
+      border: 1px solid rgba(17, 14, 18, 0.1);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .swatch-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+      border-color: rgba(200, 16, 46, 0.4);
+    }
+    .swatch-media {
+      aspect-ratio: 16/10;
+      background: #141014;
+      overflow: hidden;
+      position: relative;
+    }
+    .swatch-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .swatch-card:hover .swatch-media img { transform: scale(1.08); }
+    .swatch-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .swatch-cat {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .swatch-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .swatch-specs {
+      font-size: 13px;
+      color: #69625d;
+      margin-bottom: 16px;
+    }
+    .swatch-actions {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(17, 14, 18, 0.06);
+      padding-top: 14px;
+    }
+    .swatch-link {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    /* Make Your Fabric Configurator Box */
+    .maker-box {
+      background: linear-gradient(145deg, #181318 0%, #0c090c 100%);
+      border: 1px solid rgba(200, 16, 46, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      color: var(--paper);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(200, 16, 46, 0.15);
+      margin-top: 40px;
+    }
+    .maker-step-row {
+      margin-bottom: 28px;
+    }
+    .maker-step-label {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      color: var(--steel);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .maker-options-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .maker-chip {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .maker-chip:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.14);
+    }
+    .maker-chip.active {
+      background: var(--red);
+      border-color: var(--red);
+      box-shadow: 0 4px 16px var(--red-glow);
+    }
+    .maker-submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .maker-summary-text {
+      font-size: 14.5px;
+      color: var(--steel);
+    }
+    .maker-summary-text b { color: #fff; }
+
+    /* ==========================================================================
+       9. BIA NEXT / INNOVATION PLATFORM
+       ========================================================================== */
+    .next-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      margin-top: 40px;
+    }
+    .next-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .next-pillar-card {
+      background: rgba(24, 18, 24, 0.8);
+      border: 1px solid rgba(247, 245, 240, 0.1);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .next-pillar-card h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .next-pillar-card p {
+      font-size: 13px;
+      color: var(--steel);
+      margin: 0;
+    }
+    .challenge-form-card {
+      background: #171217;
+      border: 1px solid rgba(200, 16, 46, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--steel);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .form-control {
+      width: 100%;
+      background: rgba(10, 8, 10, 0.85);
+      border: 1px solid rgba(247, 245, 240, 0.15);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .form-control:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.2);
+    }
+
+    /* ==========================================================================
+       10. INSIDE BIA (VIRTUAL MILL TOUR)
+       ========================================================================== */
+    .tour-rail {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: rgba(17, 14, 18, 0.12);
+      border: 1px solid rgba(17, 14, 18, 0.12);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+    .tour-stop {
+      background: #ffffff;
+      padding: 26px 20px 28px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .tour-stop:hover {
+      background: #fdfcfb;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      z-index: 2;
+    }
+    .tour-stop-n {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.28em;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .tour-stop h3 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+    .tour-stop p { font-size: 13px; color: #726b66; line-height: 1.45; }
+    .tour-stop-stat {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid rgba(17, 14, 18, 0.08);
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* ==========================================================================
+       11. SCALE & CAPABILITY (ANIMATED METRICS)
+       ========================================================================== */
+    .scale-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 50px;
+    }
+    .scale-card {
+      background: rgba(22, 17, 22, 0.85);
+      border: 1px solid rgba(247, 245, 240, 0.1);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: all 0.25s;
+    }
+    .scale-card:hover {
+      border-color: rgba(200, 16, 46, 0.4);
+      transform: translateY(-3px);
+    }
+    .scale-val {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .scale-val .red-plus { color: var(--red); }
+    .scale-title {
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       12. RESPONSIBILITY (PROVE. DON'T PROCLAIM.)
+       ========================================================================== */
+    .resp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .resp-card {
+      background: #ffffff;
+      border: 1px solid rgba(17, 14, 18, 0.1);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    }
+    .resp-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(200, 16, 46, 0.08);
+      color: var(--red);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+    .resp-card h4 { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+    .resp-card p { font-size: 14px; color: #69625d; margin-bottom: 16px; }
+    .resp-metric-badge {
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+    }
+
+    /* ==========================================================================
+       13. PEOPLE & CULTURE (MEET THE MAKERS)
+       ========================================================================== */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .person-card {
+      background: rgba(22, 17, 22, 0.85);
+      border: 1px solid rgba(247, 245, 240, 0.12);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .person-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(200, 16, 46, 0.4);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+    }
+    .person-photo {
+      aspect-ratio: 1/1;
+      background: #181318;
+      overflow: hidden;
+      position: relative;
+    }
+    .person-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .person-play-btn {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      box-shadow: 0 4px 14px var(--red-glow);
+    }
+    .person-info {
+      padding: 20px;
+    }
+    .person-name { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .person-role { font-family: var(--font-display); font-size: 11px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; margin-bottom: 10px; }
+    .person-quote { font-size: 13px; color: var(--steel); font-style: italic; }
+
+    /* ==========================================================================
+       14. QUALITY & CERTIFICATIONS
+       ========================================================================== */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .cert-card {
+      background: #ffffff;
+      border: 1px solid rgba(17, 14, 18, 0.1);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .cert-card:hover {
+      border-color: var(--red);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+    .cert-card h4 { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+    .cert-card p { font-size: 13px; color: #69625d; margin-bottom: 14px; }
+    .cert-download-link { font-family: var(--font-display); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: var(--red); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+
+    /* ==========================================================================
+       15. GLOBAL REACH (MAP & CASE STUDIES)
+       ========================================================================== */
+    .map-banner {
+      background: #110e12;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(247, 245, 240, 0.12);
+      padding: 48px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5vw;
+      align-items: center;
+    }
+    .map-visual {
+      border-radius: var(--radius-md);
+      aspect-ratio: 16/10;
+      background: radial-gradient(circle at center, #241b24 0%, #0e0a0e 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .map-hub-pin {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 20px var(--red);
+      position: absolute;
+      top: 46%;
+      left: 54%;
+      animation: pulse 2s infinite;
+    }
+    .map-hub-label {
+      position: absolute;
+      top: 52%;
+      left: 54%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: #fff;
+    }
+    .case-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-top: 14px;
+    }
+    .case-tag { font-family: var(--font-display); font-size: 10px; font-weight: 800; color: var(--red); letter-spacing: 0.2em; margin-bottom: 6px; }
+    .case-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .case-desc { font-size: 13px; color: var(--steel); line-height: 1.5; margin: 0; }
+
+    /* ==========================================================================
+       16. FABRIC STORIES (ARTICLES)
+       ========================================================================== */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .story-card {
+      background: #ffffff;
+      border: 1px solid rgba(17, 14, 18, 0.1);
+      border-radius: var(--radius-md);
+      padding: 36px 32px 50px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .story-card:hover {
+      background: var(--ink);
+      color: #fff;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+    }
+    .story-card:hover .story-card-tag { color: var(--red); }
+    .story-card:hover .story-card-arrow { transform: translateX(6px); color: var(--red); }
+    .story-card-tag { font-family: var(--font-display); font-size: 11px; font-weight: 800; letter-spacing: 0.22em; color: #726b66; margin-bottom: 12px; transition: color 0.25s; }
+    .story-card h3 { font-size: 21px; font-weight: 800; line-height: 1.35; margin-bottom: 16px; }
+    .story-card-arrow { position: absolute; bottom: 24px; right: 28px; font-size: 20px; color: var(--red); transition: transform 0.25s; }
+
+    /* ==========================================================================
+       17. CONTACT & MULTI-PURPOSE ENQUIRY
+       ========================================================================== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6vw;
+      margin-top: 40px;
+    }
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .topic-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .topic-pill.active {
+      background: var(--red);
+      border-color: var(--red);
+      box-shadow: 0 4px 14px var(--red-glow);
+    }
+
+    /* ==========================================================================
+       18. FOOTER
+       ========================================================================== */
+    .footer {
+      background: #080608;
+      border-top: 1px solid var(--hair-dark);
+      padding: 80px 6vw 40px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 6vw;
+      padding-bottom: 60px;
+      border-bottom: 1px solid var(--hair-dark);
+    }
+    .footer-brand h3 { font-size: 24px; font-weight: 900; letter-spacing: 0.1em; color: #fff; margin-bottom: 10px; }
+    .footer-brand p { font-size: 12px; font-weight: 700; letter-spacing: 0.25em; color: var(--steel); }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    .f-col span {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.26em;
+      color: var(--red);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .f-col a {
+      display: block;
+      color: var(--steel);
+      font-size: 13.5px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .f-col a:hover { color: #fff; }
+    .footer-bottom {
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--steel);
+      font-size: 13px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-line-motto {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: clamp(14px, 2vw, 24px);
+      font-weight: 900;
+      letter-spacing: 0.32em;
+      color: rgba(247, 245, 240, 0.15);
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* ==========================================================================
+       19. POPUP MODALS
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 3, 5, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background: #141014;
+      border: 1px solid rgba(200, 16, 46, 0.38);
+      border-radius: var(--radius-lg);
+      max-width: 800px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      color: #fff;
+      transform: scale(0.94) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85);
+    }
+    .modal-overlay.is-open .modal-card {
+      transform: scale(1) translateY(0);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: var(--red);
+      transform: rotate(90deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .nav-menu { display: none; }
+      .nav-toggle { display: block; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .position-grid, .next-grid, .map-banner, .contact-layout, .footer-top { grid-template-columns: 1fr; }
+      .journey-step, .journey-step.flip { grid-template-columns: 1fr; }
+      .journey-thread-line { left: 24px; }
+      .journey-steps { padding-left: 48px; }
+      .eco-flow-grid { grid-template-columns: 1fr; }
+      .eco-connector { transform: rotate(90deg); height: 40px; }
+      .eco-benefits-strip { grid-template-columns: repeat(3, 1fr); }
+      .swatch-grid, .stories-grid, .values-grid, .scale-grid, .resp-grid, .people-grid, .certs-grid { grid-template-columns: 1fr 1fr; }
+      .tour-rail { grid-template-columns: repeat(7, 260px); overflow-x: auto; }
+      .story-chapters-grid { grid-template-columns: 1fr; }
+      .chapter-nav { border-right: none; border-bottom: 1px solid rgba(17, 14, 18, 0.08); padding-bottom: 20px; padding-right: 0; }
+    }
+    @media (max-width: 640px) {
+      .stats-strip, .swatch-grid, .stories-grid, .values-grid, .scale-grid, .resp-grid, .people-grid, .certs-grid, .eco-benefits-strip { grid-template-columns: 1fr; }
+      .section { padding: 80px 5vw; }
+      .modal-card { padding: 26px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 1. NAVIGATION ================= -->
+  <nav class="nav" id="navBar">
+    <a class="nav-logo-box" href="#hero">
+      <div class="nav-logo-badge">
+        BIA <span class="red-dot"></span>
+      </div>
+      <div class="nav-logo-sub">Brilliance in Apparel</div>
+    </a>
+    
+    <div class="nav-menu">
+      <a href="#story">Our Story</a>
+      <a href="#fabrics">Fabric &amp; Technologies</a>
+      <a href="#innovation">Innovation</a>
+      <a href="#inside">Inside BIA</a>
+      <a href="#ecosystem">BIA × Classic</a>
+      <a href="#responsibility">Responsibility</a>
+      <a href="#people">People</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <a href="#fabrics" onclick="if(window.switchTab){window.switchTab('maker');}" class="btn btn-red">DEVELOP WITH BIA <span class="arrow">→</span></a>
+  </nav>
+
+  <!-- ================= 2. CINEMATIC HERO OPENING ================= -->
+  <header class="hero" id="hero">
+    <div class="hero-bg-visual"></div>
+    
+    <svg class="hero-thread-canvas" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <filter id="threadGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="5" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <path id="heroThreadAnim" d="M -20 540 C 220 520, 320 400, 480 440 S 720 600, 860 500 S 1080 320, 1220 380 S 1380 440, 1500 400" fill="none" stroke="#c8102e" stroke-width="4" stroke-linecap="round" filter="url(#threadGlow)" />
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-stage-badge">
+        <span class="pulsing-dot"></span>
+        <span id="heroStageLabel">STAGE 01 · YARN FOUNDATION</span>
+      </div>
+
+      <h1 class="hero-title">
+        BRILLIANCE,<br /><span class="red-text">WOVEN IN.</span>
+      </h1>
+
+      <p class="hero-microcopy" id="heroMicro">
+        It begins with a single thread. From yarn to innovation. From fabric to fashion. From Jordan to the world.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#thread" class="btn btn-red">EXPLORE BIA <span class="arrow">→</span></a>
+        <a href="#fabrics" class="btn btn-ghost-light">DEVELOP WITH US <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-controls">
+      <button class="hero-ctrl-btn" id="heroSkipBtn">SKIP INTRO</button>
+      <span>SOUND OFF</span>
+    </div>
+  </header>
+
+  <!-- ================= 3. STATS STRIP ================= -->
+  <section class="stats-strip" aria-label="BIA at a glance">
+    <div class="stat-box">
+      <span class="stat-num">100<span style="color:var(--red);">+</span></span>
+      <span class="stat-lbl">Tonnes Daily Capacity</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">40<span style="color:var(--red);">+</span></span>
+      <span class="stat-lbl">Global Markets Served</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">1,000<span style="color:var(--red);">+</span></span>
+      <span class="stat-lbl">Specialists &amp; Engineers</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num red">100%</span>
+      <span class="stat-lbl">Traceable Value Chain</span>
+    </div>
+  </section>
+
+  <!-- ================= 4. WHAT IS BIA? (POSITIONING) ================= -->
+  <section class="section light" id="about">
+    <div class="position-grid">
+      <div>
+        <p class="eyebrow">WHAT IS BIA?</p>
+        <h2 class="pos-quote">
+          WE DON'T JUST MAKE FABRIC.
+          <span class="red-span">WE ENGINEER WHAT FASHION IS MADE OF.</span>
+        </h2>
+      </div>
+      <div class="pos-body">
+        <p>
+          BIA is a world-class fabric manufacturing facility creating high-performance fabrics for leading global apparel brands. With material innovation, industrial scale, and environmental responsibility at our core, we turn possibilities into material reality — from Jordan to the world.
+        </p>
+        <a href="#story" class="btn btn-ghost-dark">DISCOVER OUR STORY <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. FOLLOW THE RED THREAD ================= -->
+  <section class="section dark journey-section" id="thread">
+    <div class="journey-thread-line"></div>
+
+    <div style="text-align:center; max-width:700px; margin:0 auto;">
+      <p class="eyebrow" style="justify-content:center;">THE JOURNEY OF BRILLIANCE</p>
+      <h2 class="sec-title">FOLLOW THE RED THREAD</h2>
+      <p class="sec-subtitle" style="margin:0 auto;">
+        From a single filament of yarn to world-class apparel, experience how BIA’s red thread weaves possibility into industrial reality.
+      </p>
+    </div>
+
+    <div class="journey-steps">
+      <!-- Step 01 -->
+      <div class="journey-step">
+        <div class="journey-card">
+          <div class="journey-num">01 — IDEA</div>
+          <h3>Performance Requirement Begins</h3>
+          <p>Every breakthrough fabric begins as a target performance brief: lightweight breathability, rapid wicking, or tailored compression engineered for athletic movement.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/stage-yarn.png" alt="Yarn foundation" />
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="journey-step flip">
+        <div class="journey-card">
+          <div class="journey-num">02 — YARN</div>
+          <h3>Selecting &amp; Engineering Foundation</h3>
+          <p>High-grade virgin polymers, certified recycled micro-deniers, and technical elastanes are selected and tension-tested before production.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/ecosystem-wall-02-yarn-warping.jpg" alt="Yarn creel lines" />
+        </div>
+      </div>
+
+      <!-- Step 03 -->
+      <div class="journey-step">
+        <div class="journey-card">
+          <div class="journey-num">03 — KNIT</div>
+          <h3>Precision Turns Yarn into Structure</h3>
+          <p>High-speed European circular knitting machines form continuous loops with electronic fault monitoring down to the millimeter.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/ecosystem-wall-01-knitting-hall.jpg" alt="Knitting machines hall" />
+        </div>
+      </div>
+
+      <!-- Step 04 -->
+      <div class="journey-step flip">
+        <div class="journey-card">
+          <div class="journey-num">04 — COLOUR</div>
+          <h3>Dyeing Gives the Material Identity</h3>
+          <p>Ultra-low liquor ratio vats and spectrophotometers ensure exact shade consistency under ΔE &lt; 0.5 tolerances while saving 40% water.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/dyeing_hall_hd.jpg" alt="Automated Dyeing Hall" />
+        </div>
+      </div>
+
+      <!-- Step 05 -->
+      <div class="journey-step">
+        <div class="journey-card">
+          <div class="journey-num">05 — FINISH</div>
+          <h3>Performance &amp; Character Engineered</h3>
+          <p>Thermal stenters and non-toxic surface treatments impart moisture wicking, cooling touch, antimicrobial resistance, and durable stretch recovery.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/ecosystem-wall-04-roller-precision.jpg" alt="Finishing rollers" />
+        </div>
+      </div>
+
+      <!-- Step 06 -->
+      <div class="journey-step flip">
+        <div class="journey-card">
+          <div class="journey-num">06 — TEST</div>
+          <h3>Every Claim Has to Perform</h3>
+          <p>Accredited in-house ISO testing verifies dimensional stability, wash fastness, tensile burst strength, and vertical capillary wicking rate.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/color_lab_testing_4k.jpg" alt="Testing laboratory" />
+        </div>
+      </div>
+
+      <!-- Step 07 -->
+      <div class="journey-step">
+        <div class="journey-card">
+          <div class="journey-num">07 — FABRIC</div>
+          <h3>Ready for Apparel Creation</h3>
+          <p>Precision-rolled technical textiles packaged and barcode-tagged with 100% digital traceability from Jordan to the cutting line.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/stage-fabric.png" alt="Finished fabric roll" />
+        </div>
+      </div>
+
+      <!-- Step 08 -->
+      <div class="journey-step flip">
+        <div class="journey-card">
+          <div class="journey-num">08 — FASHION</div>
+          <h3>Classic Fashion Apparel Integration</h3>
+          <p>Seamless transition into garment manufacturing, precision laser cutting, automated stitching, and delivery to leading global brands.</p>
+        </div>
+        <div class="journey-media-box">
+          <img src="/static/assets/stage-shirt.png" alt="Performance polo shirt" />
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-outro">
+      <h3>ONE THREAD. ONE ECOSYSTEM.<br /><span style="color:var(--red);">ENDLESS POSSIBILITIES.</span></h3>
+    </div>
+  </section>
+
+  <!-- ================= 6. OUR STORY (PAGE 02 IN BRIEF) ================= -->
+  <section class="section light" id="story">
+    <p class="eyebrow">OUR STORY</p>
+    <h2 class="sec-title" style="color:var(--ink);">WHY BIA EXISTS</h2>
+    <p class="sec-subtitle">
+      A deliberate response to the global apparel industry's need for greater agility, vertical traceability, and sustainable manufacturing scale.
+    </p>
+
+    <div class="story-chapters-grid">
+      <div class="chapter-nav">
+        <button class="chapter-tab-btn active" onclick="switchChapter(0)">Chapter 01 · The Idea <span>→</span></button>
+        <button class="chapter-tab-btn" onclick="switchChapter(1)">Chapter 02 · The Opportunity <span>→</span></button>
+        <button class="chapter-tab-btn" onclick="switchChapter(2)">Chapter 03 · The Mill <span>→</span></button>
+        <button class="chapter-tab-btn" onclick="switchChapter(3)">Chapter 04 · The Ecosystem <span>→</span></button>
+        <button class="chapter-tab-btn" onclick="switchChapter(4)">Chapter 05 · The Future <span>→</span></button>
+      </div>
+
+      <div>
+        <div class="chapter-content-panel active" id="ch0">
+          <h3>The Genesis of Brilliance</h3>
+          <p>BIA was founded on the fundamental principle that modern apparel brands cannot afford fragmented supply chains. Speed to market and technical performance cannot come at the expense of environmental accountability.</p>
+          <p>By establishing a purpose-built, high-capacity textile mill in Jordan, BIA unites world-class European machinery with agile manufacturing culture.</p>
+        </div>
+
+        <div class="chapter-content-panel" id="ch1">
+          <h3>The Value Chain Opportunity</h3>
+          <p>Traditional fabric sourcing suffers from disconnected handovers: raw yarn suppliers in one country, knitters in another, dyeing mills elsewhere, and final garment assembly thousands of miles away.</p>
+          <p>BIA bridges this gap with end-to-end integration, eliminating weeks of transit latency and misaligned quality standards.</p>
+        </div>
+
+        <div class="chapter-content-panel" id="ch2">
+          <h3>The Scale of the Mill</h3>
+          <p>Over 120,000 square meters of high-precision circular knitting, computerized low-liquor dyeing, and automated finishing systems operating 24/7 with over 100 tonnes daily capacity.</p>
+        </div>
+
+        <div class="chapter-content-panel" id="ch3">
+          <h3>Strategic Partnership with Classic Fashion</h3>
+          <p>In tandem with Classic Fashion—the region's largest apparel manufacturer—BIA enables complete fiber-to-finished-apparel synergy under one collaborative corporate umbrella.</p>
+        </div>
+
+        <div class="chapter-content-panel" id="ch4">
+          <h3>The Sustainable Future</h3>
+          <p>Pioneering closed-loop water recovery, rooftop solar generation, bio-synthetic yarn research, and carbon-neutral fabric developments engineered for next-generation fashion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="values-grid">
+      <div class="value-card"><h4>Think Beyond Fabric</h4><p>We solve the end garment's performance, comfort, and drape challenges.</p></div>
+      <div class="value-card"><h4>Engineer with Purpose</h4><p>Every stitch, fiber blend, and finish serves a tangible functional benefit.</p></div>
+      <div class="value-card"><h4>Precision Matters</h4><p>Strict quality tolerances under ΔE &lt; 0.5 and 4-point inspection standards.</p></div>
+      <div class="value-card"><h4>Move as One</h4><p>Aligned seamlessly with our apparel partners from initial lab dip to shipping.</p></div>
+      <div class="value-card"><h4>Make Responsibility Real</h4><p>Measurable water recycling, non-toxic chemistry, and audited green metrics.</p></div>
+      <div class="value-card"><h4>Never Stop Improving</h4><p>Continuous R&amp;D with global material scientists and sportswear pioneers.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= 7. BIA × CLASSIC FASHION ================= -->
+  <section class="section dark" id="ecosystem">
+    <p class="eyebrow">BIA × CLASSIC FASHION</p>
+    <h2 class="sec-title">FROM FABRIC TO FASHION.<br /><span style="color:var(--red);">ONE INTEGRATED ECOSYSTEM.</span></h2>
+    <p class="sec-subtitle">
+      A significant commercial differentiator: vertical synchronization between high-tech textile manufacturing and large-scale apparel manufacturing.
+    </p>
+
+    <div class="eco-wrapper">
+      <div class="eco-flow-grid">
+        <div class="eco-node">
+          <span class="eco-node-tag">BIA TEXTILES</span>
+          <h4>Raw Yarn to Engineered Fabric</h4>
+          <p>Yarn Sourcing → Circular Knitting → Low-Liquor Dyeing → Performance Finishing → In-House Lab Testing → Finished Fabric Rolls</p>
+        </div>
+
+        <div class="eco-connector">
+          <div class="line"></div>
+        </div>
+
+        <div class="eco-node">
+          <span class="eco-node-tag">CLASSIC FASHION</span>
+          <h4>Garment Production to Global Delivery</h4>
+          <p>Apparel Design → 3D Sampling → Precision Cutting → Sewing &amp; Assembly → Final Quality Control → Export &amp; Retail Delivery</p>
+        </div>
+      </div>
+
+      <div class="eco-benefits-strip">
+        <div class="benefit-item"><strong>SPEED</strong><span>Reduced transit and approval handovers.</span></div>
+        <div class="benefit-item"><strong>CONTROL</strong><span>Full visibility across the entire batch lifecycle.</span></div>
+        <div class="benefit-item"><strong>QUALITY</strong><span>Aligned standards from polymer to seam.</span></div>
+        <div class="benefit-item"><strong>AGILITY</strong><span>Rapid color lab dips and prototype iterations.</span></div>
+        <div class="benefit-item"><strong>INNOVATION</strong><span>Fabric &amp; apparel designers co-develop together.</span></div>
+        <div class="benefit-item"><strong>SCALE</strong><span>Industrial volume capability for tier-1 brands.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. MATERIAL LIBRARY & FABRIC LAB ================= -->
+  <section class="section light" id="fabrics">
+    <p class="eyebrow">THE BIA MATERIAL LIBRARY</p>
+    <h2 class="sec-title" style="color:var(--ink);">WHAT SHOULD YOUR FABRIC DO?</h2>
+    <p class="sec-subtitle">
+      Explore technical swatch developments filtered by performance attributes, recommended applications, constructions, and sustainable compositions.
+    </p>
+
+    <div class="mat-tabs-bar">
+      <button class="mat-tab-btn active" id="tabCatBtn" onclick="switchMatView('catalog')">Catalog Discovery (6 Developments)</button>
+      <button class="mat-tab-btn" id="tabMakerBtn" onclick="switchMatView('maker')">Interactive Brief Builder (Make Your Fabric)</button>
+    </div>
+
+    <!-- Swatch Catalog Panel -->
+    <div id="matCatalogPanel">
+      <div class="mat-filter-row">
+        <button class="filter-chip active" onclick="filterSwatches('all', this)">All Technologies</button>
+        <button class="filter-chip" onclick="filterSwatches('quick-dry', this)">Quick Dry &amp; Cool</button>
+        <button class="filter-chip" onclick="filterSwatches('stretch', this)">4-Way Stretch</button>
+        <button class="filter-chip" onclick="filterSwatches('recycled', this)">Recycled Poly</button>
+        <button class="filter-chip" onclick="filterSwatches('mesh', this)">Ventilated Mesh</button>
+      </div>
+
+      <div class="swatch-grid">
+        <!-- Swatch 1 -->
+        <div class="swatch-card" data-cat="quick-dry" onclick="openSwatchModal('DEV-01 · Performance Single Jersey', '88% Recycled Polyester, 12% Spandex', '180 GSM', 'Running / Training', 'Quick Dry · Capillary Wick · UPF 50+', '/static/assets/fabric_product_01.jpg')">
+          <div class="swatch-media"><img src="/static/assets/fabric_product_01.jpg" alt="Performance jersey" /></div>
+          <div class="swatch-body">
+            <span class="swatch-cat">JERSEY / RUNNING</span>
+            <h3 class="swatch-title">Performance Single Jersey</h3>
+            <p class="swatch-specs">88% Recycled Poly, 12% Spandex · 180 GSM</p>
+            <div class="swatch-actions">
+              <span class="swatch-link">VIEW SPEC SHEET →</span>
+              <span style="font-size:11px; font-weight:700; color:var(--red);">IN PRODUCTION</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 2 -->
+        <div class="swatch-card" data-cat="stretch" onclick="openSwatchModal('DEV-02 · Compressive Interlock', '78% Micro-Nylon, 22% Elastane', '240 GSM', 'Training / Athleisure', '4-Way Compression · Squat Proof · Matte Finish', '/static/assets/fabric_product_02.jpg')">
+          <div class="swatch-media"><img src="/static/assets/fabric_product_02.jpg" alt="Compressive interlock" /></div>
+          <div class="swatch-body">
+            <span class="swatch-cat">INTERLOCK / ATHLEISURE</span>
+            <h3 class="swatch-title">Compressive Interlock Knit</h3>
+            <p class="swatch-specs">78% Micro-Nylon, 22% Elastane · 240 GSM</p>
+            <div class="swatch-actions">
+              <span class="swatch-link">VIEW SPEC SHEET →</span>
+              <span style="font-size:11px; font-weight:700; color:var(--red);">IN PRODUCTION</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 3 -->
+        <div class="swatch-card" data-cat="mesh" onclick="openSwatchModal('DEV-03 · Aerodynamic Jacquard Mesh', '92% Polyester, 8% Spandex', '135 GSM', 'Marathon / Outdoor', 'Engineered Zoned Airflow · Featherweight', '/static/assets/fabric_product_03.jpg')">
+          <div class="swatch-media"><img src="/static/assets/fabric_product_03.jpg" alt="Jacquard mesh" /></div>
+          <div class="swatch-body">
+            <span class="swatch-cat">MESH / RACING</span>
+            <h3 class="swatch-title">Aerodynamic Jacquard Mesh</h3>
+            <p class="swatch-specs">92% Poly, 8% Spandex · 135 GSM</p>
+            <div class="swatch-actions">
+              <span class="swatch-link">VIEW SPEC SHEET →</span>
+              <span style="font-size:11px; font-weight:700; color:var(--red);">IN PRODUCTION</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 4 -->
+        <div class="swatch-card" data-cat="recycled" onclick="openSwatchModal('DEV-04 · Sustainable Eco-Pique', '100% GRS Certified Recycled Poly', '195 GSM', 'Golf / Teamwear', 'Moisture Dispersal · Wrinkle Free · Anti-Snag', '/static/assets/fabric_product_04.jpg')">
+          <div class="swatch-media"><img src="/static/assets/fabric_product_04.jpg" alt="Eco pique" /></div>
+          <div class="swatch-body">
+            <span class="swatch-cat">PIQUE / POLO</span>
+            <h3 class="swatch-title">Sustainable Eco-Pique</h3>
+            <p class="swatch-specs">100% GRS Recycled Poly · 195 GSM</p>
+            <div class="swatch-actions">
+              <span class="swatch-link">VIEW SPEC SHEET →</span>
+              <span style="font-size:11px; font-weight:700; color:var(--red);">IN PRODUCTION</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 5 -->
+        <div class="swatch-card" data-cat="quick-dry" onclick="openSwatchModal('DEV-05 · Hydro-Thermal Double Knit', '60% Cotton, 40% Poly Wick Filaments', '220 GSM', 'Lifestyle / Warmup', 'Natural Cotton Face · Synthetic Wick Inner', '/static/assets/fabric_product_05.jpg')">
+          <div class="swatch-media"><img src="/static/assets/fabric_product_05.jpg" alt="Double knit" /></div>
+          <div class="swatch-body">
+            <span class="swatch-cat">DOUBLE KNIT / WARMUP</span>
+            <h3 class="swatch-title">Hydro-Thermal Dual Face</h3>
+            <p class="swatch-specs">60% Cotton, 40% Poly · 220 GSM</p>
+            <div class="swatch-actions">
+              <span class="swatch-link">VIEW SPEC SHEET →</span>
+              <span style="font-size:11px; font-weight:700; color:var(--red);">IN PRODUCTION</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 6 -->
+        <div class="swatch-card" data-cat="stretch" onclick="openSwatchModal('DEV-06 · Ultra-Flex Micro Rib', '85% Modal, 15% Elastane', '210 GSM', 'Loungewear / Base Layer', 'Silk Touch · Supreme Stretch Recovery', '/static/assets/fabric_product_06.jpg')">
+          <div class="swatch-media"><img src="/static/assets/fabric_product_06.jpg" alt="Micro rib" /></div>
+          <div class="swatch-body">
+            <span class="swatch-cat">RIB / BASELAYER</span>
+            <h3 class="swatch-title">Ultra-Flex Micro Rib</h3>
+            <p class="swatch-specs">85% Modal, 15% Elastane · 210 GSM</p>
+            <div class="swatch-actions">
+              <span class="swatch-link">VIEW SPEC SHEET →</span>
+              <span style="font-size:11px; font-weight:700; color:var(--red);">IN PRODUCTION</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Make Your Fabric Brief Builder -->
+    <div id="matMakerPanel" style="display:none;">
+      <div class="maker-box">
+        <h3 style="font-size:28px; font-weight:800; margin-bottom:8px;">MAKE YOUR FABRIC</h3>
+        <p style="color:var(--steel); margin-bottom:30px;">Select your desired material attributes and submit your development brief straight to the BIA engineering team.</p>
+
+        <div class="maker-step-row">
+          <span class="maker-step-label">1. I WANT IT TO FEEL:</span>
+          <div class="maker-options-wrap">
+            <button class="maker-chip active" onclick="selectMaker('feel', 'Soft', this)">Soft</button>
+            <button class="maker-chip" onclick="selectMaker('feel', 'Structured', this)">Structured</button>
+            <button class="maker-chip" onclick="selectMaker('feel', 'Lightweight', this)">Lightweight</button>
+          </div>
+        </div>
+
+        <div class="maker-step-row">
+          <span class="maker-step-label">2. I WANT IT TO (PERFORMANCE):</span>
+          <div class="maker-options-wrap">
+            <button class="maker-chip active" onclick="selectMaker('perf', 'Cool', this)">Cool</button>
+            <button class="maker-chip" onclick="selectMaker('perf', 'Wick', this)">Wick</button>
+            <button class="maker-chip" onclick="selectMaker('perf', 'Stretch', this)">Stretch</button>
+            <button class="maker-chip" onclick="selectMaker('perf', 'Protect', this)">Protect</button>
+            <button class="maker-chip" onclick="selectMaker('perf', 'Insulate', this)">Insulate</button>
+          </div>
+        </div>
+
+        <div class="maker-step-row">
+          <span class="maker-step-label">3. I WANT IT FOR (APPLICATION):</span>
+          <div class="maker-options-wrap">
+            <button class="maker-chip active" onclick="selectMaker('app', 'Running', this)">Running</button>
+            <button class="maker-chip" onclick="selectMaker('app', 'Training', this)">Training</button>
+            <button class="maker-chip" onclick="selectMaker('app', 'Lifestyle', this)">Lifestyle</button>
+            <button class="maker-chip" onclick="selectMaker('app', 'Outdoor', this)">Outdoor</button>
+            <button class="maker-chip" onclick="selectMaker('app', 'Workwear', this)">Workwear</button>
+          </div>
+        </div>
+
+        <div class="maker-submit-row">
+          <div class="maker-summary-text">
+            Configured Brief: <b id="briefSummary">Soft</b> feel · Engineered to <b id="briefPerf">Cool</b> · Designed for <b id="briefApp">Running</b>
+          </div>
+          <button class="btn btn-red" onclick="submitFabricBrief()">LET BIA ENGINEER IT <span class="arrow">→</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9. BIA NEXT / INNOVATION ================= -->
+  <section class="section dark" id="innovation">
+    <p class="eyebrow">BIA NEXT · INNOVATION PLATFORM</p>
+    <h2 class="sec-title">WHAT WILL FABRIC DO NEXT?</h2>
+    <p class="sec-subtitle">
+      Our dedicated research and co-development incubator pushing boundaries in smart micro-structures, bio-derived circular fibers, and responsive textiles.
+    </p>
+
+    <div class="next-grid">
+      <div class="next-pillars">
+        <div class="next-pillar-card"><h4>Advanced R&amp;D</h4><p>Proprietary yarn twisting, micro-denier filament spinning, and thermal modeling.</p></div>
+        <div class="next-pillar-card"><h4>Bio-Synthetics</h4><p>Plant-derived polymers and enzyme-degradable yarn compositions.</p></div>
+        <div class="next-pillar-card"><h4>Smart Sensors</h4><p>Electrically conductive knits capable of physiological tracking integration.</p></div>
+        <div class="next-pillar-card"><h4>Co-Development</h4><p>Dedicated sprint teams partnering directly with brand innovation labs.</p></div>
+      </div>
+
+      <div class="challenge-form-card">
+        <h3 style="font-size:22px; font-weight:800; margin-bottom:12px;">CHALLENGE US.</h3>
+        <p style="color:var(--steel); font-size:14px; margin-bottom:20px;">Tell us what you need your next breakthrough fabric to achieve.</p>
+        
+        <form onsubmit="event.preventDefault(); submitChallengeForm();">
+          <div class="form-group">
+            <label>Target Application</label>
+            <input type="text" class="form-control" placeholder="e.g. Extreme Cold Weather Trail Running" required />
+          </div>
+          <div class="form-group">
+            <label>Desired Performance Properties</label>
+            <input type="text" class="form-control" placeholder="e.g. Sub-zero thermal lock with zero sweat accumulation" required />
+          </div>
+          <div class="form-group">
+            <label>Target GSM &amp; Timeline</label>
+            <input type="text" class="form-control" placeholder="e.g. 190 GSM · Q3 Prototyping" required />
+          </div>
+          <button type="submit" class="btn btn-red" style="width:100%;">SUBMIT A FABRIC CHALLENGE <span class="arrow">→</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 10. INSIDE BIA (VIRTUAL TOUR) ================= -->
+  <section class="section light" id="inside">
+    <p class="eyebrow">INSIDE BIA</p>
+    <h2 class="sec-title" style="color:var(--ink);">STEP INSIDE THE MILL.</h2>
+    <p class="sec-subtitle">
+      Take a digital mill tour across the seven critical stops from raw yarn loading to ready-to-cut finished fabric.
+    </p>
+
+    <div class="tour-rail">
+      <div class="tour-stop"><span class="tour-stop-n">STOP 01</span><h3>Yarn</h3><p>Raw cone staging &amp; tension conditioning.</p><span class="tour-stop-stat">100+ Tonnes daily</span></div>
+      <div class="tour-stop"><span class="tour-stop-n">STOP 02</span><h3>Knitting</h3><p>High-precision circular gauge control.</p><span class="tour-stop-stat">300+ Modern Machines</span></div>
+      <div class="tour-stop"><span class="tour-stop-n">STOP 03</span><h3>Dyeing</h3><p>Low-liquor spectrophotometer matching.</p><span class="tour-stop-stat">ΔE &lt; 0.5 Tolerance</span></div>
+      <div class="tour-stop"><span class="tour-stop-n">STOP 04</span><h3>Finishing</h3><p>Wicking &amp; thermal stabilization stenters.</p><span class="tour-stop-stat">Continuous Finishing</span></div>
+      <div class="tour-stop"><span class="tour-stop-n">STOP 05</span><h3>Laboratory</h3><p>ISO accredited physical &amp; wash testing.</p><span class="tour-stop-stat">100% Batch Tested</span></div>
+      <div class="tour-stop"><span class="tour-stop-n">STOP 06</span><h3>Quality</h3><p>Electronic optical &amp; 4-point inspection.</p><span class="tour-stop-stat">Zero Defect Target</span></div>
+      <div class="tour-stop"><span class="tour-stop-n">STOP 07</span><h3>Finished Fabric</h3><p>Barcode wrapped rolls ready for apparel.</p><span class="tour-stop-stat">Worldwide Dispatch</span></div>
+    </div>
+
+    <div style="text-align:center; margin-top:60px;">
+      <h3 style="font-size:24px; font-weight:800; color:var(--ink); margin-bottom:20px;">YOU'VE SEEN THE MILL. NOW LET'S MAKE SOMETHING.</h3>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="#contact" class="btn btn-red">BOOK A MILL VISIT <span class="arrow">→</span></a>
+        <a href="#fabrics" onclick="if(window.switchTab){window.switchTab('maker');}" class="btn btn-ghost-dark">START A DEVELOPMENT <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 11. SCALE & CAPABILITY ================= -->
+  <section class="section dark" id="scale">
+    <p class="eyebrow">SCALE &amp; CAPABILITY</p>
+    <h2 class="sec-title">BUILT FOR SCALE.<br /><span style="color:var(--red);">ENGINEERED FOR PRECISION.</span></h2>
+    <p class="sec-subtitle">
+      Industrial infrastructure designed to meet the rigorous volume, speed, and consistency benchmarks of global sportswear leaders.
+    </p>
+
+    <div class="scale-grid">
+      <div class="scale-card"><div class="scale-val">100<span class="red-plus">+</span></div><div class="scale-title">Tonnes Daily Capacity</div></div>
+      <div class="scale-card"><div class="scale-val">300<span class="red-plus">+</span></div><div class="scale-title">Knitting Machines</div></div>
+      <div class="scale-card"><div class="scale-val">45<span class="red-plus">+</span></div><div class="scale-title">Automated Dyeing Vats</div></div>
+      <div class="scale-card"><div class="scale-val">120K</div><div class="scale-title">SQ.M Facility Area</div></div>
+      <div class="scale-card"><div class="scale-val">400<span class="red-plus">+</span></div><div class="scale-title">Developments Annually</div></div>
+      <div class="scale-card"><div class="scale-val">1,000<span class="red-plus">+</span></div><div class="scale-title">Specialist Workforce</div></div>
+      <div class="scale-card"><div class="scale-val">40<span class="red-plus">+</span></div><div class="scale-title">Global Markets Served</div></div>
+      <div class="scale-card"><div class="scale-val">100%</div><div class="scale-title">Digital Lot Traceability</div></div>
+    </div>
+  </section>
+
+  <!-- ================= 12. RESPONSIBILITY ================= -->
+  <section class="section light" id="responsibility">
+    <p class="eyebrow">RESPONSIBILITY</p>
+    <h2 class="sec-title" style="color:var(--ink);">BRILLIANCE WITH RESPONSIBILITY.<br />PROVE. DON'T PROCLAIM.</h2>
+    <p class="sec-subtitle">
+      Measurable ecological impact reduction backed by verified industrial audits and third-party certifications.
+    </p>
+
+    <div class="resp-grid">
+      <div class="resp-card">
+        <div class="resp-icon">💧</div>
+        <h4>Water Conservation</h4>
+        <p>Closed-loop treatment plant recycling process water for secondary manufacturing stages.</p>
+        <span class="resp-metric-badge">40% Water Recycled</span>
+      </div>
+      <div class="resp-card">
+        <div class="resp-icon">⚡</div>
+        <h4>Clean Solar Power</h4>
+        <p>Extensive rooftop photovoltaic arrays generating renewable energy for spinning and knitting halls.</p>
+        <span class="resp-metric-badge">35% Clean Energy</span>
+      </div>
+      <div class="resp-card">
+        <div class="resp-icon">🧪</div>
+        <h4>Green Chemistry</h4>
+        <p>100% compliant with ZDHC MRSL guidelines, ensuring zero hazardous chemical effluent.</p>
+        <span class="resp-metric-badge">ZDHC Level 3 Certified</span>
+      </div>
+      <div class="resp-card">
+        <div class="resp-icon">♻️</div>
+        <h4>Recycled Fibers</h4>
+        <p>High utilization of GRS-certified post-consumer recycled polyester and ocean-bound polymers.</p>
+        <span class="resp-metric-badge">65% Recycled Lines</span>
+      </div>
+      <div class="resp-card">
+        <div class="resp-icon">🌿</div>
+        <h4>Zero Waste to Landfill</h4>
+        <p>Yarn trimmings, selvage offcuts, and fiber dust reclaimed into industrial insulation.</p>
+        <span class="resp-metric-badge">92% Waste Diverted</span>
+      </div>
+      <div class="resp-card">
+        <div class="resp-icon">🔒</div>
+        <h4>100% Traceability</h4>
+        <p>Every roll tagged with digital batch IDs linking raw polymer origin to the finished garment.</p>
+        <span class="resp-metric-badge">Full Audit Trail</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 13. PEOPLE & CULTURE ================= -->
+  <section class="section dark" id="people">
+    <p class="eyebrow">PEOPLE &amp; CULTURE</p>
+    <h2 class="sec-title">THE HUMAN SIDE OF BRILLIANCE.<br /><span style="color:var(--red);">MEET THE MAKERS.</span></h2>
+    <p class="sec-subtitle">
+      Machines create precision. People create possibility. Discover the engineers, technicians, and specialists behind BIA.
+    </p>
+
+    <div class="people-grid">
+      <div class="person-card" onclick="openPersonModal('Rania', 'Laboratory Technician', 'Quality is not a final check for us — it is the standard we engineer into every single formula before it touches the machine.', '/static/assets/stage-knit.png')">
+        <div class="person-photo">
+          <img src="/static/assets/stage-knit.png" alt="Rania" />
+          <div class="person-play-btn">▶</div>
+        </div>
+        <div class="person-info">
+          <div class="person-name">Rania</div>
+          <div class="person-role">LABORATORY TECHNICIAN</div>
+          <div class="person-quote">"Quality is the formula we engineer from day one."</div>
+        </div>
+      </div>
+
+      <div class="person-card" onclick="openPersonModal('Ahmed', 'Knitting Specialist', 'Monitoring 30 machines at high speed requires an ear for rhythm and an eye for tension precision.', '/static/assets/ecosystem-wall-01-knitting-hall.jpg')">
+        <div class="person-photo">
+          <img src="/static/assets/ecosystem-wall-01-knitting-hall.jpg" alt="Ahmed" />
+          <div class="person-play-btn">▶</div>
+        </div>
+        <div class="person-info">
+          <div class="person-name">Ahmed</div>
+          <div class="person-role">KNITTING SPECIALIST</div>
+          <div class="person-quote">"Tension precision is what makes the knit perfect."</div>
+        </div>
+      </div>
+
+      <div class="person-card" onclick="openPersonModal('Layla', 'Quality Assurance Manager', 'Our 4-point inspection leaves zero room for error. What reaches the cutting table must be flawless.', '/static/assets/ecosystem-wall-04-roller-precision.jpg')">
+        <div class="person-photo">
+          <img src="/static/assets/ecosystem-wall-04-roller-precision.jpg" alt="Layla" />
+          <div class="person-play-btn">▶</div>
+        </div>
+        <div class="person-info">
+          <div class="person-name">Layla</div>
+          <div class="person-role">QUALITY MANAGER</div>
+          <div class="person-quote">"Zero defects is our standard, not just a target."</div>
+        </div>
+      </div>
+
+      <div class="person-card" onclick="openPersonModal('Tariq', 'Senior Dye Chemist', 'Matching shades under ΔE 0.5 is about understanding the physics of light on micro-fibers.', '/static/assets/ecosystem-wall-03-tech-lab.png')">
+        <div class="person-photo">
+          <img src="/static/assets/ecosystem-wall-03-tech-lab.png" alt="Tariq" />
+          <div class="person-play-btn">▶</div>
+        </div>
+        <div class="person-info">
+          <div class="person-name">Tariq</div>
+          <div class="person-role">SENIOR DYE CHEMIST</div>
+          <div class="person-quote">"Color accuracy across 100,000 meters requires pure science."</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:50px;">
+      <a href="#contact" class="btn btn-ghost-light">COME MAKE THE FUTURE WITH US · VIEW CAREERS <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- ================= 14. QUALITY & CERTIFICATIONS ================= -->
+  <section class="section light" id="certifications">
+    <p class="eyebrow">QUALITY &amp; CERTIFICATIONS</p>
+    <h2 class="sec-title" style="color:var(--ink);">QUALITY YOU CAN MEASURE</h2>
+    <p class="sec-subtitle">
+      Internationally audited compliance verifying safety, sustainable sourcing, chemical safety, and manufacturing excellence.
+    </p>
+
+    <div class="certs-grid">
+      <div class="cert-card" onclick="openCertModal('OEKO-TEX Standard 100', 'Certifies that all BIA finished fabrics are completely free from harmful chemicals, allergens, and heavy metals, safe even for direct babywear contact.')">
+        <h4>OEKO-TEX Standard 100</h4>
+        <p>Class 1 certified free from harmful chemical residues.</p>
+        <span class="cert-download-link">VIEW DETAILS <span>→</span></span>
+      </div>
+      <div class="cert-card" onclick="openCertModal('Global Recycled Standard (GRS)', 'Validates the verified supply chain percentage of recycled synthetic content in all BIA eco-polyester and nylon knit ranges.')">
+        <h4>Global Recycled Standard</h4>
+        <p>Audited chain of custody for 100% recycled fibers.</p>
+        <span class="cert-download-link">VIEW DETAILS <span>→</span></span>
+      </div>
+      <div class="cert-card" onclick="openCertModal('HIGG Index (FEM / FSLM)', 'Standardized holistic framework measuring environmental facility performance, carbon tracking, and fair labor practices.')">
+        <h4>HIGG Index (FEM / FSLM)</h4>
+        <p>Comprehensive environmental &amp; labor transparency.</p>
+        <span class="cert-download-link">VIEW DETAILS <span>→</span></span>
+      </div>
+      <div class="cert-card" onclick="openCertModal('ISO 9001 &amp; ISO 14001', 'International standards for total quality management systems and environmental stewardship across all manufacturing units.')">
+        <h4>ISO 9001 / ISO 14001</h4>
+        <p>Certified operational &amp; environmental excellence.</p>
+        <span class="cert-download-link">VIEW DETAILS <span>→</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 15. GLOBAL REACH ================= -->
+  <section class="section dark" id="global">
+    <p class="eyebrow">GLOBAL REACH</p>
+    <h2 class="sec-title">MADE IN JORDAN.<br /><span style="color:var(--red);">BUILT FOR GLOBAL BRANDS.</span></h2>
+    <p class="sec-subtitle">
+      Strategic crossroads offering tariff-free trade access to major Western markets combined with rapid marine and air freight connectivity.
+    </p>
+
+    <div class="map-banner">
+      <div class="map-visual">
+        <div class="map-hub-pin"></div>
+        <div class="map-hub-label">JORDAN HQ</div>
+        <span style="color:var(--steel); font-size:12px; font-weight:700; letter-spacing:0.15em; text-align:center; padding:20px;">
+          EXPORT CORRIDORS:<br />🇺🇸 USA (Duty-Free FTA) · 🇪🇺 EUROPE · 🇦🇪 MIDDLE EAST · 🇯🇵 ASIA
+        </span>
+      </div>
+
+      <div>
+        <h3 style="font-size:24px; font-weight:800; margin-bottom:12px;">GLOBAL EXPECTATIONS. ONE STANDARD.</h3>
+        <p style="color:var(--steel); font-size:14.5px; line-height:1.6; margin-bottom:20px;">
+          BIA engineers high-performance textiles engineered to meet the strict testing protocols of the world’s most demanding retail brands.
+        </p>
+
+        <div class="case-card">
+          <div class="case-tag">CASE STUDY · MARATHON RUNNING APPAREL</div>
+          <div class="case-title">Lightweight Wicking Under High Humidity</div>
+          <p class="case-desc">Engineered 135 GSM micro-channel jersey that reduced sweat clinging by 42% for a top-tier North American running brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 16. FABRIC STORIES ================= -->
+  <section class="section light" id="insights">
+    <p class="eyebrow">FABRIC STORIES</p>
+    <h2 class="sec-title" style="color:var(--ink);">INSIGHTS IN TEXTILE ENGINEERING</h2>
+    <p class="sec-subtitle">
+      Technical knowledge, material science explorations, and laboratory discoveries written by BIA’s engineering division.
+    </p>
+
+    <div class="stories-grid">
+      <div class="story-card" onclick="openStoryReader('quick-dry')">
+        <span class="story-card-tag">TECHNOLOGY</span>
+        <h3>What actually makes a fabric quick-dry?</h3>
+        <p style="color:#69625d; font-size:14px;">The physics of micro-capillary channels and dual-face moisture dispersal.</p>
+        <span class="story-card-arrow">→</span>
+      </div>
+
+      <div class="story-card" onclick="openStoryReader('colour-lab')">
+        <span class="story-card-tag">INSIDE BIA</span>
+        <h3>Inside the BIA colour lab</h3>
+        <p style="color:#69625d; font-size:14px;">How spectrophotometers achieve ΔE &lt; 0.5 tolerances across 1,000kg batches.</p>
+        <span class="story-card-arrow">→</span>
+      </div>
+
+      <div class="story-card" onclick="openStoryReader('gsm-story')">
+        <span class="story-card-tag">INNOVATION</span>
+        <h3>Why GSM doesn't tell the whole fabric story</h3>
+        <p style="color:#69625d; font-size:14px;">Why gauge density, yarn count, and filament geometry matter far more than weight.</p>
+        <span class="story-card-arrow">→</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 17. CONTACT / DEVELOP WITH BIA ================= -->
+  <section class="section dark" id="contact">
+    <p class="eyebrow">CONTACT BIA</p>
+    <h2 class="sec-title">LET'S CREATE WHAT'S NEXT.</h2>
+    <p class="sec-subtitle">
+      Connect directly with our fabric development team in Amman, Jordan. What brings you to BIA today?
+    </p>
+
+    <div class="contact-layout">
+      <div>
+        <div class="topic-pills">
+          <button class="topic-pill active" onclick="setContactTopic('fabric', this)">I need a fabric</button>
+          <button class="topic-pill" onclick="setContactTopic('development', this)">I have a development brief</button>
+          <button class="topic-pill" onclick="setContactTopic('mill_visit', this)">I want to visit BIA</button>
+          <button class="topic-pill" onclick="setContactTopic('capacity', this)">Production capacity</button>
+          <button class="topic-pill" onclick="setContactTopic('careers', this)">Careers at BIA</button>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-md); padding:28px;">
+          <h4 style="font-size:16px; font-weight:800; margin-bottom:12px;">BIA HEADQUARTERS &amp; MILL</h4>
+          <p style="color:var(--steel); font-size:14px; margin-bottom:10px;">📍 Amman Industrial Estate, Jordan</p>
+          <p style="color:var(--steel); font-size:14px; margin-bottom:10px;">✉️ develop@bia.jo</p>
+          <p style="color:var(--steel); font-size:14px; margin-bottom:0;">📞 +962 6 000 0000</p>
+        </div>
+      </div>
+
+      <div style="background:#171217; border:1px solid rgba(200,16,46,0.3); border-radius:var(--radius-lg); padding:36px;">
+        <form id="contactForm" onsubmit="event.preventDefault(); submitContactForm();">
+          <input type="hidden" id="contactTopicInput" value="fabric" />
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="cName" class="form-control" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label>Business Email *</label>
+            <input type="email" id="cEmail" class="form-control" placeholder="name@company.com" required />
+          </div>
+          <div class="form-group">
+            <label>Company / Brand</label>
+            <input type="text" id="cCompany" class="form-control" placeholder="Apparel brand or organization" />
+          </div>
+          <div class="form-group">
+            <label>Message / Specifications</label>
+            <textarea id="cMessage" class="form-control" rows="4" placeholder="Tell us about your fabric requirements, quantities, or visit dates..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-red" style="width:100%;">SEND ENQUIRY TO BIA <span class="arrow">→</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 18. FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" aria-label="BIA home">
+          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="footer-logo-img" style="height: 38px; width: auto; margin-bottom: 12px; display: block;" />
+        </a>
+        <p>BRILLIANCE, WOVEN IN.</p>
+      </div>
+
+      <div class="footer-cols">
+        <div class="f-col">
+          <span>DISCOVER</span>
+          <a href="/story">Our Story</a>
+          <a href="/ecosystem">BIA × Classic</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/story#leadership">Leadership</a>
+        </div>
+        <div class="f-col">
+          <span>CREATE</span>
+          <a href="/fabrics">Fabric Lab</a>
+          <a href="/fabrics#technologies">Technologies</a>
+          <a href="/innovation">BIA Next</a>
+          <a href="/contact?pathway=fabric">Request Swatch</a>
+        </div>
+        <div class="f-col">
+          <span>IMPACT</span>
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/inside#quality">Quality</a>
+          <a href="/inside#certifications">Certifications</a>
+        </div>
+        <div class="f-col">
+          <span>CONNECT</span>
+          <a href="/contact">Contact</a>
+          <a href="/contact?pathway=careers">Careers</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>Amman, Jordan · Al-Tajamouat Industrial City, Sahab</span>
+      <span>+962 6 402 0000</span>
+      <span>develop@bia.jo</span>
+      <span class="footer-legal">Privacy · Cookies · Terms</span>
+    </div>
+
+    <div class="footer-line-motto">
+      FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.
+    </div>
+  </footer>
+
+  <!-- ================= POPUP MODALS ================= -->
+  
+  <!-- General Popup Modal -->
+  <div class="modal-overlay" id="genericModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal('genericModal')">✕</button>
+      <div id="genericModalContent"></div>
+    </div>
+  </div>
+
+  <!-- Success Notification Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-card" style="text-align:center; max-width:520px;">
+      <button class="modal-close-btn" onclick="closeModal('successModal')">✕</button>
+      <div style="width:64px; height:64px; border-radius:50%; background:var(--red); color:#fff; display:grid; place-items:center; font-size:28px; margin:0 auto 20px; box-shadow:0 0 30px var(--red-glow);">✓</div>
+      <h3 style="font-size:24px; font-weight:800; margin-bottom:10px;">Request Received</h3>
+      <p style="color:var(--steel); font-size:14.5px; margin-bottom:20px;" id="successModalMsg">
+        Thank you. Your brief has been dispatched directly to the BIA fabric engineering lab.
+      </p>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(200,16,46,0.3); border-radius:12px; padding:14px; margin-bottom:24px;">
+        <span style="font-size:10px; font-weight:800; letter-spacing:0.2em; color:var(--steel); display:block;">REFERENCE ID</span>
+        <strong style="font-size:22px; font-weight:900; color:#ff3355; letter-spacing:0.12em;" id="successModalRef">BIA-782910</strong>
+      </div>
+      <button class="btn btn-red" onclick="closeModal('successModal')">CONTINUE BROWSING</button>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    // --- 1. HERO ANIMATION SEQUENCE ---
+    (function() {
+      var STAGES = [
+        { t: 0.5, label: 'STAGE 01 · YARN FOUNDATION', text: 'It begins with a single thread. Selected virgin & recycled micro-denier filaments.' },
+        { t: 2.5, label: 'STAGE 02 · KNIT STRUCTURE', text: 'Engineered with precision. Circular gauge interlocks into high-performance structure.' },
+        { t: 5.0, label: 'STAGE 03 · ENGINEERED FABRIC', text: 'Fabric engineered for performance. Moisture management, stretch & dynamic recovery.' },
+        { t: 7.5, label: 'STAGE 04 · APPAREL REALITY', text: 'From possibility to performance. Transformed into global activewear through Classic Fashion.' },
+        { t: 9.5, label: 'BRILLIANCE, WOVEN IN.', text: 'From yarn to innovation. From fabric to fashion. From Jordan to the world.' }
+      ];
+
+      var path = document.getElementById('heroThreadAnim');
+      var badge = document.getElementById('heroStageLabel');
+      var micro = document.getElementById('heroMicro');
+      var skipBtn = document.getElementById('heroSkipBtn');
+
+      if (path && badge && micro) {
+        var len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+
+        var start = null;
+        var done = false;
+        var curIdx = -1;
+
+        function frame(now) {
+          if (done) return;
+          if (!start) start = now;
+          var s = (now - start) / 1000;
+          var p = Math.min(s / 10.0, 1.0);
+          var eased = 1 - Math.pow(1 - p, 1.5);
+          path.style.strokeDashoffset = len * (1 - eased);
+
+          for (var i = 0; i < STAGES.length; i++) {
+            if (s >= STAGES[i].t) {
+              if (curIdx !== i) {
+                curIdx = i;
+                badge.textContent = STAGES[i].label;
+                micro.textContent = STAGES[i].text;
+              }
+            }
+          }
+
+          if (s >= 10.0) {
+            done = true;
+            path.style.strokeDashoffset = 0;
+            if (skipBtn) skipBtn.style.display = 'none';
+            return;
+          }
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+
+        if (skipBtn) {
+          skipBtn.addEventListener('click', function() {
+            done = true;
+            path.style.strokeDashoffset = 0;
+            badge.textContent = 'BRILLIANCE, WOVEN IN.';
+            micro.textContent = 'From yarn to innovation. From fabric to fashion. From Jordan to the world.';
+            skipBtn.style.display = 'none';
+          });
+        }
+      }
+    })();
+
+    // --- 2. CHAPTER TABS (OUR STORY) ---
+    function switchChapter(idx) {
+      document.querySelectorAll('.chapter-tab-btn').forEach(function(b, i) {
+        b.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.chapter-content-panel').forEach(function(p, i) {
+        p.classList.toggle('active', i === idx);
+      });
+    }
+
+    // --- 3. MATERIAL LIBRARY & BRIEF BUILDER ---
+    function switchMatView(view) {
+      var catBtn = document.getElementById('tabCatBtn');
+      var makerBtn = document.getElementById('tabMakerBtn');
+      var catPanel = document.getElementById('matCatalogPanel');
+      var makerPanel = document.getElementById('matMakerPanel');
+
+      if (view === 'maker') {
+        makerBtn.classList.add('active');
+        catBtn.classList.remove('active');
+        makerPanel.style.display = 'block';
+        catPanel.style.display = 'none';
+      } else {
+        catBtn.classList.add('active');
+        makerBtn.classList.remove('active');
+        catPanel.style.display = 'block';
+        makerPanel.style.display = 'none';
+      }
+    }
+    window.switchTab = switchMatView;
+
+    function filterSwatches(cat, btn) {
+      document.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.swatch-card').forEach(function(card) {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    var makerState = { feel: 'Soft', perf: 'Cool', app: 'Running' };
+    function selectMaker(key, val, el) {
+      makerState[key] = val;
+      el.parentElement.querySelectorAll('.maker-chip').forEach(function(c) { c.classList.remove('active'); });
+      el.classList.add('active');
+      document.getElementById('briefSummary').textContent = makerState.feel;
+      document.getElementById('briefPerf').textContent = makerState.perf;
+      document.getElementById('briefApp').textContent = makerState.app;
+    }
+
+    function submitFabricBrief() {
+      var ref = 'BIA-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      document.getElementById('successModalRef').textContent = ref;
+      document.getElementById('successModalMsg').textContent = 
+        'Development brief for ' + makerState.feel + ' / ' + makerState.perf + ' / ' + makerState.app + ' fabric received. Our engineering lab will review your formulation.';
+      openModal('successModal');
+    }
+
+    // --- 4. SWATCH MODAL ---
+    function openSwatchModal(title, comp, gsm, app, feats, img) {
+      var html = 
+        '<div style="display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center;">' +
+          '<div style="border-radius:16px; overflow:hidden; aspect-ratio:1/1; background:#0c0a0d;"><img src="' + img + '" style="width:100%; height:100%; object-fit:cover;" /></div>' +
+          '<div>' +
+            '<span style="font-family:var(--font-display); font-size:11px; font-weight:800; color:var(--red); letter-spacing:0.2em;">TECHNICAL SPECIFICATION</span>' +
+            '<h3 style="font-size:24px; font-weight:800; margin:8px 0 16px;">' + title + '</h3>' +
+            '<div style="font-size:14px; color:var(--steel); line-height:1.7; margin-bottom:24px;">' +
+              '<p><b>Composition:</b> ' + comp + '</p>' +
+              '<p><b>Weight:</b> ' + gsm + '</p>' +
+              '<p><b>Application:</b> ' + app + '</p>' +
+              '<p><b>Key Attributes:</b> ' + feats + '</p>' +
+            '</div>' +
+            '<div style="display:flex; gap:12px; flex-wrap:wrap;">' +
+              '<button class="btn btn-red" onclick="requestSwatch(\'' + title + '\')">REQUEST A SWATCH →</button>' +
+              '<button class="btn btn-ghost-light" onclick="closeModal(\'genericModal\')">CLOSE</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      document.getElementById('genericModalContent').innerHTML = html;
+      openModal('genericModal');
+    }
+
+    function requestSwatch(name) {
+      closeModal('genericModal');
+      var ref = 'SWATCH-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      document.getElementById('successModalRef').textContent = ref;
+      document.getElementById('successModalMsg').textContent = 'Swatch sample request for ' + name + ' registered. Dispatch will be arranged via DHL Express.';
+      openModal('successModal');
+    }
+
+    // --- 5. FABRIC STORY READER MODAL ---
+    var STORY_DATA = {
+      'quick-dry': {
+        title: 'What actually makes a fabric quick-dry?',
+        tag: 'TECHNOLOGY · PERFORMANCE APPAREL',
+        body: '<p style="font-size:16px; color:#fff; border-left:3px solid var(--red); padding-left:16px; margin-bottom:20px;">Contrary to common belief, quick-dry fabrics don\'t simply repel water. True quick-dry performance is a triumph of micro-engineered capillary physics and filament geometry.</p>' +
+              '<h4 style="font-size:18px; margin:20px 0 8px;">1. Capillary Action & Micro-Groove Geometry</h4><p style="color:var(--steel); margin-bottom:16px;">Traditional round polyester filaments hold moisture in bulk pockets. At BIA, our quick-dry textiles utilize modified cross-sectional yarn geometries with multi-channel micro-grooves. These micro-channels draw liquid sweat along the filament surface via capillary action, spreading moisture across a 300% wider evaporation zone in milliseconds.</p>' +
+              '<h4 style="font-size:18px; margin:20px 0 8px;">2. Dual-Face Moisture Gradient</h4><p style="color:var(--steel); margin-bottom:16px;">Our engineered dual-knit structures combine hydrophobic filament yarns on the skin-contact side with hydrophilic outer yarns, pulling moisture outward in under 1.2 seconds.</p>'
+      },
+      'colour-lab': {
+        title: 'Inside the BIA colour lab',
+        tag: 'INSIDE BIA · SPECTROPHOTOMETRY',
+        body: '<p style="font-size:16px; color:#fff; border-left:3px solid var(--red); padding-left:16px; margin-bottom:20px;">Colour in technical textiles is both a fine art and an exact science. Inside BIA\'s climate-controlled laboratory, every hue is formulated with digital reflectance precision.</p>' +
+              '<h4 style="font-size:18px; margin:20px 0 8px;">1. Spectral Tolerances Under ΔE 0.5</h4><p style="color:var(--steel); margin-bottom:16px;">Using advanced Datacolor spectrophotometers, our chemists calculate spectral reflectance across 360nm–700nm to eliminate metamerism under daylight, fluorescent, and retail lighting.</p>'
+      },
+      'gsm-story': {
+        title: 'Why GSM doesn\'t tell the whole fabric story',
+        tag: 'INNOVATION · TEXTILE ARCHITECTURE',
+        body: '<p style="font-size:16px; color:#fff; border-left:3px solid var(--red); padding-left:16px; margin-bottom:20px;">Grams per Square Meter (GSM) is the most common metric, but relying on GSM alone is like judging a smartphone purely by its weight.</p>' +
+              '<h4 style="font-size:18px; margin:20px 0 8px;">1. Weight vs. Structural Gauge Density</h4><p style="color:var(--steel); margin-bottom:16px;">A 180 GSM jersey on a 20-gauge machine feels loose. Knitted on a 32-gauge high-precision circular machine, that same 180 GSM becomes a compressive, squat-proof second-skin fabric.</p>'
+      }
+    };
+
+    function openStoryReader(id) {
+      var s = STORY_DATA[id] || STORY_DATA['quick-dry'];
+      var html = 
+        '<div>' +
+          '<span style="font-family:var(--font-display); font-size:11px; font-weight:800; color:var(--red); letter-spacing:0.2em;">' + s.tag + '</span>' +
+          '<h3 style="font-size:28px; font-weight:800; margin:10px 0 24px;">' + s.title + '</h3>' +
+          '<div>' + s.body + '</div>' +
+          '<div style="margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:flex-end;">' +
+            '<button class="btn btn-red" onclick="closeModal(\'genericModal\')">CLOSE ARTICLE</button>' +
+          '</div>' +
+        '</div>';
+      document.getElementById('genericModalContent').innerHTML = html;
+      openModal('genericModal');
+    }
+
+    // --- 6. PERSON & CERT MODALS ---
+    function openPersonModal(name, role, quote, img) {
+      var html = 
+        '<div style="text-align:center;">' +
+          '<div style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:0 auto 16px; border:2px solid var(--red);"><img src="' + img + '" style="width:100%; height:100%; object-fit:cover;" /></div>' +
+          '<span style="font-family:var(--font-display); font-size:11px; font-weight:800; color:var(--red); letter-spacing:0.2em;">' + role + '</span>' +
+          '<h3 style="font-size:24px; font-weight:800; margin:6px 0 16px;">' + name + '</h3>' +
+          '<div style="background:rgba(255,255,255,0.04); border-left:3px solid var(--red); padding:16px 20px; font-style:italic; color:#fff; font-size:15px; margin-bottom:24px; text-align:left;">"' + quote + '"</div>' +
+          '<button class="btn btn-ghost-light" onclick="closeModal(\'genericModal\')">CLOSE</button>' +
+        '</div>';
+      document.getElementById('genericModalContent').innerHTML = html;
+      openModal('genericModal');
+    }
+
+    function openCertModal(title, desc) {
+      var html = 
+        '<div>' +
+          '<span style="font-family:var(--font-display); font-size:11px; font-weight:800; color:var(--red); letter-spacing:0.2em;">AUDITED CERTIFICATION</span>' +
+          '<h3 style="font-size:24px; font-weight:800; margin:10px 0 16px;">' + title + '</h3>' +
+          '<p style="color:var(--steel); font-size:15px; line-height:1.7; margin-bottom:24px;">' + desc + '</p>' +
+          '<div style="display:flex; gap:12px;">' +
+            '<button class="btn btn-red" onclick="alert(\'Downloading official certification spec PDF...\');">DOWNLOAD CERTIFICATE (PDF) →</button>' +
+            '<button class="btn btn-ghost-light" onclick="closeModal(\'genericModal\')">CLOSE</button>' +
+          '</div>' +
+        '</div>';
+      document.getElementById('genericModalContent').innerHTML = html;
+      openModal('genericModal');
+    }
+
+    // --- 7. CONTACT & FORMS ---
+    function setContactTopic(topic, btn) {
+      document.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('contactTopicInput').value = topic;
+    }
+
+    function submitChallengeForm() {
+      var ref = 'CHALLENGE-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      document.getElementById('successModalRef').textContent = ref;
+      document.getElementById('successModalMsg').textContent = 'Fabric Challenge brief submitted. Our BIA NEXT R&D lab will formulate a prototype proposal.';
+      openModal('successModal');
+    }
+
+    function submitContactForm() {
+      var name = document.getElementById('cName').value;
+      var ref = 'ENQ-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      document.getElementById('successModalRef').textContent = ref;
+      document.getElementById('successModalMsg').textContent = 'Thank you, ' + name + '. Your enquiry has been received by our Jordan sales & engineering division.';
+      document.getElementById('contactForm').reset();
+      openModal('successModal');
+    }
+
+    // --- 8. MODAL CONTROLS ---
+    function openModal(id) {
+      var el = document.getElementById(id);
+      if (el) { el.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeModal(id) {
+      var el = document.getElementById(id);
+      if (el) { el.classList.remove('is-open'); document.body.style.overflow = ''; }
+    }
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.is-open').forEach(function(m) {
+          m.classList.remove('is-open');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

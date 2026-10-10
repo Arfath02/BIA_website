@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scale, Quality &amp; Certifications — Inside BIA | Quality You Can Measure</title>
+  <meta name="description"
+    content="Inside BIA: Quality You Can Measure. Explore our 8-step quality control architecture, raw material checks to digital traceability, 100+ Tonnes daily capacity, and interactive accredited certifications (OEKO-TEX, GRS, ZDHC, ISO, HIGG)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261010_inside_tour" />
+</head>
+
+<body>
+
+  <!-- ================= NAV ================= -->
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="/" aria-label="BIA home">
+      <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="nav-logo-img" />
+    </a>
+
+    <div class="nav-links">
+      <a href="/story">Our Story</a>
+      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <a href="/innovation">Innovation</a>
+      <a href="/inside" class="active">Inside BIA</a>
+      <a href="/ecosystem">BIA × Classic</a>
+      <a href="/responsibility">Responsibility</a>
+      <a href="/people">People</a>
+      <a href="/stories">Insights</a>
+      <a href="/contact">Contact</a>
+    </div>
+
+    <a href="/contact?topic=mill_visit" class="btn btn-red nav-cta">BOOK MILL TOUR <span class="arrow">→</span></a>
+  </nav>
+
+  <!-- ================= SUBPAGE HERO ================= -->
+  <header class="subpage-hero">
+    <div class="subpage-hero-bg" style="background-image: url('{{ url_for('static', filename='assets/warp_knitting_hall_4k.jpg') }}');"></div>
+    <div class="subpage-hero-veil"></div>
+
+    <div class="subpage-hero-inner reveal">
+      <div class="subpage-breadcrumbs">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Inside BIA · Digital Mill Tour</span>
+      </div>
+      <p class="eyebrow">DIGITAL MILL TOUR · VIRTUAL FACILITY EXPERIENCE</p>
+      <h1 class="subpage-title">STEP INSIDE BIA.<br /><span style="color: var(--red);">TAKE THE DIGITAL MILL TOUR.</span></h1>
+      <p class="subpage-lede">
+        Instead of a static photo gallery, step into a scrolling virtual journey through our 45,000 sq.m technical knit complex in Amman, Jordan. Experience seven synchronized manufacturing stops—from raw yarn creel to inspection-certified fabric rolls ready for global apparel production.
+      </p>
+      <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="#tour-journey" class="btn btn-red">START DIGITAL TOUR (7 STOPS) <span class="arrow">↓</span></a>
+        <a href="/contact?topic=mill_visit" class="btn btn-ghost" style="border-color: rgba(244,241,236,0.3); color: #fff;">Book A Mill Visit <span class="arrow">→</span></a>
+        <a href="#quality" class="btn btn-ghost" style="border-color: rgba(200,16,46,0.5); color: var(--red);">Quality &amp; Certifications ↓</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SUBPAGE QUICKNAV ================= -->
+  <nav class="subpage-quicknav" aria-label="Page navigation">
+    <div class="subpage-quicknav-inner">
+      <a href="#tour-journey" class="quicknav-link" style="color: var(--red); font-weight: 700;">Digital Mill Tour (7 Stops)</a>
+      <a href="#quality" class="quicknav-link">Quality Architecture</a>
+      <a href="#certs" class="quicknav-link">Interactive Certifications</a>
+      <a href="#stats" class="quicknav-link">Capacity Stats</a>
+      <a href="#procurement-matrix" class="quicknav-link">Procurement SLA</a>
+      <a href="/contact?topic=mill_visit" class="quicknav-link" style="color: #fff; background: var(--red); padding: 6px 14px; border-radius: 99px;">Book Mill Visit →</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ================= VIRTUAL MILL TOUR: SCROLLING VIRTUAL JOURNEY (7 STOPS) ================= -->
+    <section class="virtual-tour-section" id="tour-journey">
+      
+      <div class="virtual-tour-header reveal">
+        <span class="virtual-tour-kicker">STEP INSIDE BIA · 45,000 SQ.M COMPLEX</span>
+        <h2 class="virtual-tour-title">
+          FROM RAW YARN CONE<br />
+          <span>TO PERFORMANCE FABRIC ROLL.</span>
+        </h2>
+        <p class="virtual-tour-sub">
+          A scrolling virtual journey across seven synchronized manufacturing stations in Amman, Jordan.
+        </p>
+      </div>
+
+      <!-- Sticky Tour Navigation Bar -->
+      <nav class="tour-nav-sticky" id="tourNavSticky" aria-label="Mill Tour Stops">
+        <div class="tour-nav-inner">
+          <span class="tour-nav-label">MILL TOUR:</span>
+          <a href="#stop-yarn" class="tour-nav-link active">01 Yarn</a>
+          <a href="#stop-knitting" class="tour-nav-link">02 Knitting</a>
+          <a href="#stop-dyeing" class="tour-nav-link">03 Dyeing</a>
+          <a href="#stop-finishing" class="tour-nav-link">04 Finishing</a>
+          <a href="#stop-lab" class="tour-nav-link">05 Laboratory</a>
+          <a href="#stop-quality" class="tour-nav-link">06 Quality</a>
+          <a href="#stop-fabric" class="tour-nav-link">07 Finished Fabric</a>
+        </div>
+      </nav>
+
+      <!-- 7 Tour Stop Cards -->
+      <div class="tour-stops-container">
+
+        <!-- Stop 01 — Yarn -->
+        <article class="tour-stop-card reveal" id="stop-yarn">
+          <div class="tour-stop-media">
+            <span class="tour-media-badge"><span class="badge-dot"></span> LIVE PROCESS VIDEO</span>
+            <video autoplay muted loop playsinline poster="{{ url_for('static', filename='assets/warp_knitting_hall_4k.jpg') }}">
+              <source src="{{ url_for('static', filename='assets/bia-brand-film.mp4') }}" type="video/mp4" />
+            </video>
+          </div>
+          <div class="tour-stop-content">
+            <div class="stop-meta-row">
+              <span class="stop-number">STOP 01</span>
+              <span class="stop-divider"></span>
+              <span class="stop-tag">Raw Material Integrity</span>
+            </div>
+            <h3 class="tour-stop-headline">Stop 01 — Yarn</h3>
+            <p class="tour-stop-desc">
+              Electronic positive feeders calibrate tension with sub-gram sensitivity to eliminate filament twist and friction drift before needle engagement.
+            </p>
+            <div class="tour-stat-block">
+              <span class="tour-stat-val">±0.5 cN Tension Precision</span>
+              <span class="tour-stat-label">Continuous Electronic Positive Feeders</span>
+            </div>
+            <div class="tour-small-fact">
+              <strong>Small Fact:</strong> Electronic tensioners eliminate yarn breakage before the filament even meets the needle bed.
+            </div>
+          </div>
+        </article>
+
+        <!-- Stop 02 — Knitting -->
+        <article class="tour-stop-card reverse reveal" id="stop-knitting">
+          <div class="tour-stop-media">
+            <span class="tour-media-badge"><span class="badge-dot"></span> MACHINE CLOSE-UP</span>
+            <img src="{{ url_for('static', filename='assets/circular_knitting_hall_4k.jpg') }}" alt="Circular knitting machine close-up" loading="lazy" />
+          </div>
+          <div class="tour-stop-content">
+            <div class="stop-meta-row">
+              <span class="stop-number">STOP 02</span>
+              <span class="stop-divider"></span>
+              <span class="stop-tag">Circular &amp; Warp Engineering</span>
+            </div>
+            <h3 class="tour-stop-headline">Stop 02 — Knitting</h3>
+            <p class="tour-stop-desc">
+              German Mayer &amp; Cie and Terrot circular knitting frames run continuously with integrated optical laser defect scanners delivering flawless jersey, rib, and interlock structures.
+            </p>
+            <div class="tour-stat-block">
+              <span class="tour-stat-val">120+ High-Speed Frames · 100+ TPD</span>
+              <span class="tour-stat-label">Capacity Statistic: High-speed circular and warp knitting running at 35 RPM</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Stop 03 — Dyeing -->
+        <article class="tour-stop-card reveal" id="stop-dyeing">
+          <div class="tour-stop-media">
+            <span class="tour-media-badge"><span class="badge-dot"></span> CINEMATIC VISUAL</span>
+            <img src="{{ url_for('static', filename='assets/dyeing_hall_hd.jpg') }}" alt="Automated low-liquor jet dyeing vessels" loading="lazy" />
+          </div>
+          <div class="tour-stop-content">
+            <div class="stop-meta-row">
+              <span class="stop-number">STOP 03</span>
+              <span class="stop-divider"></span>
+              <span class="stop-tag">Color Chemistry</span>
+            </div>
+            <h3 class="tour-stop-headline">Stop 03 — Dyeing</h3>
+            <p class="tour-stop-desc">
+              European Thies &amp; Fong's low-liquor jet vessels operate with automated robotic dye kitchens, ensuring exact shade formulation with zero batch-to-batch color drift.
+            </p>
+            <div class="tour-stat-block">
+              <span class="tour-stat-val">1:3.5 Low-Liquor Ratio · ΔE &lt; 0.5</span>
+              <span class="tour-stat-label">Technology Information: Computerized dyestuff kitchen with multi-illuminant spectrophotometer matching</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Stop 04 — Finishing -->
+        <article class="tour-stop-card reverse reveal" id="stop-finishing">
+          <div class="tour-stop-media">
+            <span class="tour-media-badge"><span class="badge-dot"></span> MACHINE + PROCESS</span>
+            <img src="{{ url_for('static', filename='assets/hero-sample-roller-precision.jpg') }}" alt="Bruckner 8-chamber stenter finishing line" loading="lazy" />
+          </div>
+          <div class="tour-stop-content">
+            <div class="stop-meta-row">
+              <span class="stop-number">STOP 04</span>
+              <span class="stop-divider"></span>
+              <span class="stop-tag">Thermal &amp; Chemical Engineering</span>
+            </div>
+            <h3 class="tour-stop-headline">Stop 04 — Finishing</h3>
+            <p class="tour-stop-desc">
+              Continuous Bruckner 8-chamber stenter frames lock in dimensional stability, moisture-wicking chemical curing, and permanent hand-feel across every yard.
+            </p>
+            <div class="tour-stat-block">
+              <span class="tour-stat-val">6 Bruckner Lines · ±1°C Heat-Setting</span>
+              <span class="tour-stat-label">Machine + Process: 8-chamber thermal dwell with dual-direction mechanical compaction</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Stop 05 — Laboratory -->
+        <article class="tour-stop-card reveal" id="stop-lab">
+          <div class="tour-stop-media">
+            <span class="tour-media-badge"><span class="badge-dot"></span> TESTING FOOTAGE</span>
+            <img src="{{ url_for('static', filename='assets/fabric_test_labtec_stenter_hd.jpg') }}" alt="Lab technician testing fabric sample on LABTEC frame" loading="lazy" />
+          </div>
+          <div class="tour-stop-content">
+            <div class="stop-meta-row">
+              <span class="stop-number">STOP 05</span>
+              <span class="stop-divider"></span>
+              <span class="stop-tag">Accredited Testing Lab</span>
+            </div>
+            <h3 class="tour-stop-headline">Stop 05 — Laboratory</h3>
+            <p class="tour-stop-desc">
+              Our in-house climate-controlled testing lab validates wash fastness, capillary wicking velocity, burst tensile strength, and color chemistry before bulk production signoff.
+            </p>
+            <div class="tour-stat-block">
+              <span class="tour-stat-val">ASTM, AATCC &amp; ISO Accredited</span>
+              <span class="tour-stat-label">Testing Footage: 100% recipe repeatability under standardized D65/TL84 lighting</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Stop 06 — Quality -->
+        <article class="tour-stop-card reverse reveal" id="stop-quality">
+          <div class="tour-stop-media">
+            <span class="tour-media-badge"><span class="badge-dot"></span> INSPECTION</span>
+            <img src="{{ url_for('static', filename='assets/fabric_test_pad_mangle_hd.jpg') }}" alt="Precision pad-mangle fabric testing apparatus" loading="lazy" />
+          </div>
+          <div class="tour-stop-content">
+            <div class="stop-meta-row">
+              <span class="stop-number">STOP 06</span>
+              <span class="stop-divider"></span>
+              <span class="stop-tag">Physical QA &amp; 4-Point Audit</span>
+            </div>
+            <h3 class="tour-stop-headline">Stop 06 — Quality</h3>
+            <p class="tour-stop-desc">
+              Every production meter undergoes ASTM D5430 4-point inspection on digital illuminated viewing bridges, generating roll defect maps and verifying edge-to-edge weight consistency.
+            </p>
+            <div class="tour-stat-block">
+              <span class="tour-stat-val">ASTM D5430 · AQL 1.5 Benchmark</span>
+              <span class="tour-stat-label">Inspection: Defect score strictly capped at &lt;20 penalty points per 100 sq. yards</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Stop 07 — Finished Fabric -->
+        <article class="tour-stop-card reveal" id="stop-fabric">
+          <div class="tour-stop-media">
+            <span class="tour-media-badge"><span class="badge-dot"></span> ROLLS READY FOR APPAREL</span>
+            <img src="{{ url_for('static', filename='assets/classic-fashion-ecosystem-floor.jpg') }}" alt="Finished fabric rolls ready for apparel production" loading="lazy" />
+          </div>
+          <div class="tour-stop-content">
+            <div class="stop-meta-row">
+              <span class="stop-number">STOP 07</span>
+              <span class="stop-divider"></span>
+              <span class="stop-tag">Global Apparel Readiness</span>
+            </div>
+            <h3 class="tour-stop-headline">Stop 07 — Finished Fabric</h3>
+            <p class="tour-stop-desc">
+              Inspection-certified performance rolls are barcode-tagged with 100% digital traceability and dispatched directly into Classic Fashion cutting suites or containerized for global brand export.
+            </p>
+            <div class="tour-stat-block">
+              <span class="tour-stat-val">100+ Tonnes Daily · 0% US Duty</span>
+              <span class="tour-stat-label">Rolls Ready for Apparel Production: Direct transfer to high-speed automated cutting lines</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Finale Card -->
+      <div class="tour-finale-card reveal">
+        <span class="tour-finale-kicker">MILL TOUR COMPLETE · 45,000 SQ.M COMPLEX</span>
+        <h2 class="tour-finale-title">
+          YOU'VE SEEN THE MILL.<br />
+          <span class="red-text">NOW LET'S MAKE SOMETHING.</span>
+        </h2>
+        <p class="tour-finale-sub">
+          From rapid prototype swatches to commercial monthly knitting and dyeing tonnage with 0% US duty bilateral advantages, our engineering team is ready.
+        </p>
+        <div class="tour-finale-buttons">
+          <a href="/contact?topic=mill_visit" class="btn btn-red btn-tour-cta">BOOK A MILL VISIT <span class="arrow">→</span></a>
+          <a href="/contact?topic=dev_brief" class="btn btn-ghost btn-tour-cta" style="border-color: rgba(255,255,255,0.3); color: #fff;">START A DEVELOPMENT <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= SECTION 01: QUALITY YOU CAN MEASURE (8-STEP ARCHITECTURE) ================= -->
+    <section class="section light" id="quality" style="padding-top: 110px; padding-bottom: 110px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="reveal">
+          <p class="eyebrow">EMPIRICAL RIGOR · 8-STAGE CONTROL</p>
+          <h2 style="font-size: clamp(34px, 4.2vw, 58px); margin-top: 14px; line-height: 1.15; color: var(--ink);">
+            QUALITY YOU CAN MEASURE
+          </h2>
+          <p class="subpage-lede" style="color: #4a433e; max-width: 860px; margin-top: 16px;">
+            True quality in high-performance textiles is never accidental. Every square meter moving through our Amman facility is measured, calibrated, and validated across eight consecutive testing stages.
+          </p>
+        </div>
+
+        <!-- 8 QUALITY PILLARS GRID -->
+        <div class="quality-steps-grid-8 reveal" style="margin-top: 56px;">
+          
+          <!-- Step 01: Raw Material Checks -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">01</span>
+              <span class="q-step-badge">INPUT INTEGRITY</span>
+            </div>
+            <h3>Raw Material Checks</h3>
+            <p class="q-step-summary">
+              Strict incoming yarn quarantine and lab validation before a single cone reaches a creel frame.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>Filament Tensile &amp; Elongation:</strong> Testing tenacity and breaking strength on calibrated single-yarn testers.</li>
+              <li><strong>Uster Evenness (CVm%):</strong> Optical detection of slubs, neps, and mass variance across every spinning lot.</li>
+              <li><strong>Twist &amp; Moisture Regain:</strong> TPI verification and ASTM D2654 moisture regain equilibration.</li>
+              <li><strong>Lot Segregation:</strong> 100% batch isolation preventing merge mixing or cross-lot dye disparities.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Standard: ASTM D2256 / ISO 2060</span>
+            </div>
+          </div>
+
+          <!-- Step 02: In-Process Control -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">02</span>
+              <span class="q-step-badge">REAL-TIME TELEMETRY</span>
+            </div>
+            <h3>In-Process Control</h3>
+            <p class="q-step-summary">
+              Continuous electronic monitoring during knitting, dyeing, and thermal finishing to prevent drift before it occurs.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>Electronic Tension Sensors:</strong> Constant positive yarn feeding with ±0.5 cN micro-calibration.</li>
+              <li><strong>Laser Needle Scanners:</strong> Optical defect detectors on all 120+ circular frames with instant stop triggers.</li>
+              <li><strong>Automated Stenter Dwell:</strong> Sensor-monitored heat-setting temperatures (±1°C) and chamber moisture control.</li>
+              <li><strong>Continuous Width &amp; GSM:</strong> In-line ultrasonic scanners verifying continuous roll geometry.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Tolerance: ±0.5 cN / ±1°C Chamber</span>
+            </div>
+          </div>
+
+          <!-- Step 03: Lab Testing -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">03</span>
+              <span class="q-step-badge">ACCREDITED FACILITY</span>
+            </div>
+            <h3>Lab Testing</h3>
+            <p class="q-step-summary">
+              In-house climate-controlled laboratory operating ASTM, AATCC, and ISO testing protocols.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>Diaphragm Bursting Strength:</strong> ASTM D3786 pneumatic burst testing certifying knit strength up to 450 kPa.</li>
+              <li><strong>Seam Slippage &amp; Tear:</strong> ASTM D1683 load resistance under multi-directional garment stress.</li>
+              <li><strong>Elastic Recovery &amp; Growth:</strong> ASTM D2594 testing 4-way stretch rebound and permanent deformation.</li>
+              <li><strong>Conditioned Testing:</strong> 24-hour pre-conditioning at 21°C ± 1°C and 65% ± 2% relative humidity.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Standard: ASTM D3786 / ISO 13938</span>
+            </div>
+          </div>
+
+          <!-- Step 04: Colour Control -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">04</span>
+              <span class="q-step-badge">SPECTRAL PRECISION</span>
+            </div>
+            <h3>Colour Control</h3>
+            <p class="q-step-summary">
+              Digital colorimetry eliminating human visual bias with strict Delta-E tolerances across bulk output.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>Datacolor 1000 Spectrophotometers:</strong> Spectral reflectance measurement calibrated to Delta-E (CMC 2:1) &lt; 0.6.</li>
+              <li><strong>Multi-Illuminant Matching:</strong> Verified under D65 Daylight, TL84 Retail, CWF Fluorescent, and A Incandescent.</li>
+              <li><strong>Zero Metamerism Flare:</strong> Spectral curve alignment guaranteeing consistent shade under variable retail lighting.</li>
+              <li><strong>Robotic Dye Kitchen:</strong> Automated precision pipetting and chemical dosing for 100% recipe repeatability.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Target: Delta-E (CMC 2:1) &lt; 0.6</span>
+            </div>
+          </div>
+
+          <!-- Step 05: Physical Testing -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">05</span>
+              <span class="q-step-badge">DURABILITY DYNAMICS</span>
+            </div>
+            <h3>Physical Testing</h3>
+            <p class="q-step-summary">
+              Exhaustive mechanical stress testing ensuring long-term athletic endurance and garment shape retention.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>Martindale Abrasion &amp; Pilling:</strong> ISO 12945-2 / ASTM D4970 running 10,000+ rubs to achieve Grade 4–5.</li>
+              <li><strong>Dimensional Stability (Shrinkage):</strong> AATCC 135 wash-and-dry cycles guaranteeing length/width change &lt; ±3%.</li>
+              <li><strong>Spirality &amp; Torque:</strong> AATCC 179 testing rotational distortion to keep side seams perfectly vertical (&lt; 2.5%).</li>
+              <li><strong>Wash Fastness &amp; Crocking:</strong> AATCC 61 / AATCC 8 wet/dry rubbing fastness rating Grade 4.5+.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Pilling: Grade 4–5 / Shrinkage: &lt; ±3%</span>
+            </div>
+          </div>
+
+          <!-- Step 06: Performance Testing -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">06</span>
+              <span class="q-step-badge">ATHLETIC CLAIMS</span>
+            </div>
+            <h3>Performance Testing</h3>
+            <p class="q-step-summary">
+              Empirical verification of moisture management, thermoregulation, and protective finishes.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>Vertical Wicking Velocity:</strong> AATCC 197 testing capillary rise height (&gt; 150mm in 10 minutes).</li>
+              <li><strong>Liquid Moisture Management (MMT):</strong> AATCC 195 measuring one-way transfer index and overall moisture grade.</li>
+              <li><strong>Rapid Drying Rate:</strong> AATCC 201 heated plate method certifying dry rates exceeding 1.8 mL/hr.</li>
+              <li><strong>UPF 50+ Solar Block:</strong> AATCC 183 spectrophotometer UV transmittance blocking 98%+ of UVA/UVB rays.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Standard: AATCC 195 / AATCC 197 / UPF 50+</span>
+            </div>
+          </div>
+
+          <!-- Step 07: Final Fabric Inspection -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">07</span>
+              <span class="q-step-badge">100% ROLL AUDIT</span>
+            </div>
+            <h3>Final Fabric Inspection</h3>
+            <p class="q-step-summary">
+              100% of finished yardage is inspected on illuminated viewing bridges under ASTM D5430 standards.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>ASTM D5430 4-Point System:</strong> Point penalties assigned for slubs, barre, drop stitches, and oil spots.</li>
+              <li><strong>AQL 1.5 Acceptance Standard:</strong> Maximum penalty score capped at &lt; 20 points per 100 square yards.</li>
+              <li><strong>Digital Roll Defect Map:</strong> Every roll is digitally mapped so garment cut-plans can avoid any flaw zone.</li>
+              <li><strong>Continuous Usable Width &amp; Weight:</strong> In-line load cells validating GSM consistency edge-to-edge.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Standard: ASTM D5430 4-Point (AQL 1.5)</span>
+            </div>
+          </div>
+
+          <!-- Step 08: Traceability -->
+          <div class="q-step-card">
+            <div class="q-step-head">
+              <span class="q-step-num">08</span>
+              <span class="q-step-badge">CHAIN OF CUSTODY</span>
+            </div>
+            <h3>Traceability</h3>
+            <p class="q-step-summary">
+              Unbroken digital pedigree from raw polymer lot to cut garment panels on the Classic Fashion floor.
+            </p>
+            <ul class="q-step-list">
+              <li><strong>QR Code Roll Passports:</strong> Every roll carries a scannable encrypted QR passport linking full mill telemetry.</li>
+              <li><strong>Spinning &amp; Polymer Pedigree:</strong> Transaction certificates (TC) connecting GRS recycled or organic origin.</li>
+              <li><strong>Chemical Batch Trace:</strong> Direct digital link to dyehouse recipe logs and ZDHC-approved auxiliary lots.</li>
+              <li><strong>Seamless Garment Transfer:</strong> Instant scan integration into Classic Fashion automated spreading systems.</li>
+            </ul>
+            <div class="q-step-footer">
+              <span>Unbroken Digital Chain of Custody</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 02: ACCREDITED CERTIFICATIONS (ELEGANT INTERACTIVE CARDS) ================= -->
+    <section class="section dark quality-section" id="certs" style="background: #090609; padding-top: 110px; padding-bottom: 110px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="reveal">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;">
+            <div>
+              <p class="eyebrow">INDEPENDENT THIRD-PARTY AUDITS</p>
+              <h2 style="font-size: clamp(34px, 4.2vw, 56px); margin-top: 14px; color: #ffffff;">
+                ACCREDITED GLOBAL CERTIFICATIONS
+              </h2>
+              <p style="font-size: 17px; color: var(--steel); max-width: 720px; margin-top: 14px; line-height: 1.6;">
+                We don’t display a static wall of tiny logos. Tap any certification card below to inspect <strong>what it means</strong>, <strong>what BIA coverage includes</strong>, and <strong>download the official audited certificates</strong>.
+              </p>
+            </div>
+            <div class="cert-interactive-badge">
+              <span class="cert-pulse-dot"></span>
+              <span>TAP ANY CARD TO INSPECT &amp; DOWNLOAD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 INTERACTIVE CERTIFICATION CARDS GRID -->
+        <div class="interactive-certs-grid reveal" style="margin-top: 56px;">
+          
+          <!-- Cert 1: OEKO-TEX Standard 100 -->
+          <div class="i-cert-card" data-cert-id="oeko" data-cert-title="OEKO-TEX® Standard 100" data-cert-subtitle="Annex 6, Product Class 1 (Safe for Direct Skin &amp; Infants)" data-cert-tag="CHEMICAL SAFETY &amp; CONSUMER ECOLOGY" data-cert-body="TESTEX AG, Swiss Textile Testing Institute" data-cert-number="24.0.12849" data-cert-validity="Valid through Dec 2026 (Annual Audit)" data-cert-means="OEKO-TEX® Standard 100 is the world's most rigorous independent testing standard for harmful substances in textiles. Class 1 certification represents the strictest safety tier, testing for over 300 regulated and non-regulated harmful chemicals including formaldehyde, heavy metals, banned azo dyes, PFCs, and phthalates." data-cert-covers="100% of circular knitted fabrics manufactured at BIA's Sahab complex, including 100% polyester, recycled polyester, nylon 6/6.6, cotton, Tencel™, modal, and elastane blends dyed with approved low-impact auxiliaries." data-cert-download-name="BIA_OEKO_TEX_Standard_100_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">CLASS 1 VERIFIED</span>
+              <span class="i-cert-icon">🌿</span>
+            </div>
+            <h3 class="i-cert-name">OEKO-TEX® Standard 100</h3>
+            <p class="i-cert-scope">Tested free from 300+ harmful chemicals; certified safe for next-to-skin athletic and infant wear.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> TESTEX Zürich</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Knitted, Dyed &amp; Finished</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 2: Global Recycled Standard (GRS) -->
+          <div class="i-cert-card" data-cert-id="grs" data-cert-title="Global Recycled Standard (GRS 4.0)" data-cert-subtitle="Certified Chain of Custody for Post-Consumer Recycled Synthetics" data-cert-tag="RECYCLED VERIFICATION &amp; CHAIN OF CUSTODY" data-cert-body="Control Union Certifications B.V." data-cert-number="CU-892401-GRS" data-cert-validity="Valid through Oct 2026 (Annual Renewal)" data-cert-means="The Global Recycled Standard (GRS) is an international, voluntary product standard that sets strict requirements for third-party certification of recycled content, chain of custody, social and environmental practices, and chemical restrictions across the entire value chain." data-cert-covers="100% post-consumer recycled polyester (rPET) and recycled nylon filaments processed through BIA's warping, circular knitting, and dyehouse. Every production run is backed by unbroken Transaction Certificates (TC) tracking polymer origin." data-cert-download-name="BIA_Global_Recycled_Standard_GRS_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">100% rPET VERIFIED</span>
+              <span class="i-cert-icon">♻️</span>
+            </div>
+            <h3 class="i-cert-name">Global Recycled Standard</h3>
+            <p class="i-cert-scope">Third-party audited recycled synthetic inputs with unbroken digital chain-of-custody transaction certificates.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> Control Union</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Post-Consumer rPET &amp; rNylon</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 3: ZDHC Level 3 MRSL -->
+          <div class="i-cert-card" data-cert-id="zdhc" data-cert-title="ZDHC Level 3 MRSL (Roadmap to Zero)" data-cert-subtitle="Highest Input Chemistry Conformance Standard in Wet Processing" data-cert-tag="GREEN INPUT CHEMISTRY &amp; CLEAN EFFLUENT" data-cert-body="ZDHC Gateway Verified / In-House Lab Audited" data-cert-number="ORG-BIA-JO-2024" data-cert-validity="Continuously Synced via ZDHC Gateway" data-cert-means="Zero Discharge of Hazardous Chemicals (ZDHC) Level 3 is the pinnacle of sustainable chemistry in the textile supply chain. It requires third-party verification that zero priority hazardous chemicals enter the manufacturing process, preventing wastewater toxicity at the source." data-cert-covers="100% of chemical formulations, disperse dyes, reactive dyes, leveling agents, and moisture-wicking finishes stored and mixed in BIA's automated robotic dye kitchen." data-cert-download-name="BIA_ZDHC_Level_3_Chemical_Compliance_Report.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">LEVEL 3 GATEWAY</span>
+              <span class="i-cert-icon">🧪</span>
+            </div>
+            <h3 class="i-cert-name">ZDHC Level 3 Conformance</h3>
+            <p class="i-cert-scope">Zero discharge of hazardous priority chemicals across all automated dye kitchens and finishing lines.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> ZDHC Gateway</span>
+              <span class="i-meta-item"><strong>Scope:</strong> 100% Dyestuff &amp; Auxiliaries</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 4: ISO 9001 & ISO 14001 -->
+          <div class="i-cert-card" data-cert-id="iso" data-cert-title="ISO 9001:2015 &amp; ISO 14001:2015" data-cert-subtitle="Integrated Quality &amp; Environmental Management Systems" data-cert-tag="OPERATIONAL EXCELLENCE &amp; ENVIRONMENTAL SYSTEM" data-cert-body="SGS United Kingdom Ltd / Jordan Branch" data-cert-number="JO24/00812-QMS-EMS" data-cert-validity="Certified through 2027 (Surveillance Audits Active)" data-cert-means="ISO 9001 specifies rigorous quality management systems guaranteeing procedural consistency and defect reduction. ISO 14001 sets strict operational criteria for environmental resource optimization, energy reduction, and emissions mitigation." data-cert-covers="All management operations, manufacturing divisions, technical R&amp;D laboratories, raw material warehousing, and water recycling plants at BIA Amman." data-cert-download-name="BIA_ISO_9001_14001_Integrated_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">DUAL ISO CERTIFIED</span>
+              <span class="i-cert-icon">⚙️</span>
+            </div>
+            <h3 class="i-cert-name">ISO 9001 &amp; ISO 14001</h3>
+            <p class="i-cert-scope">Integrated quality and environmental management systems audited across all manufacturing divisions.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> SGS International</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Full Facility Operations</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 5: ISO 45001 -->
+          <div class="i-cert-card" data-cert-id="iso45001" data-cert-title="ISO 45001:2018 (Occupational Health &amp; Safety)" data-cert-subtitle="World Benchmark for Industrial Workforce Welfare &amp; Safety" data-cert-tag="HUMAN WELFARE &amp; OCCUPATIONAL SAFETY" data-cert-body="SGS Systems &amp; Services Certification" data-cert-number="JO24/00813-OHSMS" data-cert-validity="Certified through 2027" data-cert-means="ISO 45001 is the international standard for occupational health and safety management systems, designed to eliminate workplace hazards, minimize industrial injury risk, and ensure safe working environments." data-cert-covers="All 1,000+ manufacturing technicians, laboratory engineers, maintenance teams, and logistics operators across BIA's climate-controlled 45,000 sq.m facility." data-cert-download-name="BIA_ISO_45001_Workplace_Safety_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">SAFETY PROTOCOL</span>
+              <span class="i-cert-icon">🛡️</span>
+            </div>
+            <h3 class="i-cert-name">ISO 45001 Health &amp; Safety</h3>
+            <p class="i-cert-scope">Zero-accident safety protocols, ergonomic engineering, and dedicated 24/7 on-site medical care.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> SGS International</span>
+              <span class="i-meta-item"><strong>Scope:</strong> 1,000+ Plant Specialists</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 6: HIGG Index FEM & FSLM -->
+          <div class="i-cert-card" data-cert-id="higg" data-cert-title="HIGG Index (FEM 4.0 &amp; FSLM / SLCP)" data-cert-subtitle="Cascaled Audited Environmental &amp; Social Labor Benchmark" data-cert-tag="GLOBAL BRAND ESG VERIFICATION" data-cert-body="Sustainable Apparel Coalition (SAC) / Cascale" data-cert-number="Higg Facility ID: 142981" data-cert-validity="Verified Annual Submission (Current Cycle)" data-cert-means="The Higg Facility Environmental Module (FEM) and Facility Social and Labor Module (FSLM) quantify environmental performance across water, energy, waste, chemicals, and greenhouse gas emissions, alongside fair labor practices." data-cert-covers="Annual third-party verified scores shared transparently on global brand partner portals including Nike, Under Armour, Lululemon, and Target sourcing networks." data-cert-download-name="BIA_Higg_Index_FEM_FSLM_Verified_Report.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">VERIFIED FEM &amp; FSLM</span>
+              <span class="i-cert-icon">📊</span>
+            </div>
+            <h3 class="i-cert-name">HIGG Index (FEM &amp; FSLM)</h3>
+            <p class="i-cert-scope">Verified environmental scoring and social labor transparency aligned directly with global brand portals.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> SAC / Cascale Verified</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Environmental &amp; Labor ESG</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Compliance Pack Banner -->
+        <div class="subpage-cta reveal" id="dossier" style="margin-top: 60px;">
+          <p class="eyebrow" style="color: var(--red); justify-content: center;">PROCUREMENT COMPLIANCE PACK</p>
+          <h3 style="color: #ffffff;">REQUEST OUR AUDITED COMPLIANCE DOSSIER.</h3>
+          <p style="color: var(--steel);">
+            Receive our comprehensive third-party audit dossier including verified HIGG FEM scores, ZDHC chemical discharge certificates, and lab accreditations directly to your procurement inbox.
+          </p>
+          <div class="subpage-cta-actions">
+            <a href="/contact?topic=capacity" class="btn btn-red">Request Complete Audit Dossier <span class="arrow">→</span></a>
+            <a href="/contact?topic=mill_visit" class="btn btn-ghost" style="border-color: rgba(244,241,236,0.3); color: #fff;">Schedule On-Site Facility Audit <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 03: CAPACITY & FLEET STATS ================= -->
+    <section class="section dark scale-stats-section" id="stats" style="background: radial-gradient(ellipse 90% 70% at 85% 20%, rgba(200, 16, 46, 0.12), transparent 70%), #0c090d; padding-top: 90px; padding-bottom: 90px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="reveal" style="text-align: center; max-width: 900px; margin: 0 auto 60px;">
+          <p class="eyebrow" style="justify-content: center;">VERIFIED INDUSTRIAL CAPACITY</p>
+          <h2 style="font-size: clamp(30px, 3.6vw, 50px); margin-top: 14px; line-height: 1.15; color: #ffffff;">
+            THE NUMBERS BEHIND BIA’S OUTPUT.
+          </h2>
+          <p style="font-size: 17px; color: var(--steel); margin-top: 16px; line-height: 1.6;">
+            Communicating scale confidently with internally verified metrics across throughput, equipment footprint, workforce, and international market reach.
+          </p>
+        </div>
+
+        <!-- 8 LARGE ANIMATED STATISTICS GRID -->
+        <div class="scale-stats-grid-8 reveal">
+          
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="100" data-suffix="+">0</span></span>
+            <span class="scale-stat-unit">TONNES</span>
+            <h3 class="scale-stat-label">Daily Capacity</h3>
+            <p class="scale-stat-desc">Throughput across circular knitting, low-liquor dyeing, and automated finishing.</p>
+          </div>
+
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="120" data-suffix="+">0</span></span>
+            <span class="scale-stat-unit">MACHINES</span>
+            <h3 class="scale-stat-label">Knitting Machines</h3>
+            <p class="scale-stat-desc">High-speed German Mayer &amp; Cie and Italian Terrot circular knitting frames (20G–36G).</p>
+          </div>
+
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="28" data-suffix="">0</span></span>
+            <span class="scale-stat-unit">VESSELS</span>
+            <h3 class="scale-stat-label">Dyeing Machines</h3>
+            <p class="scale-stat-desc">Low-liquor ratio (1:3.5 – 1:4.5) jet dyeing vessels with computerized dye kitchens.</p>
+          </div>
+
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="6" data-suffix="">0</span></span>
+            <span class="scale-stat-unit">LINES</span>
+            <h3 class="scale-stat-label">Finishing Lines</h3>
+            <p class="scale-stat-desc">Bruckner 8-chamber stenters, tensionless dryers, and continuous compactors.</p>
+          </div>
+
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="45000" data-suffix="">0</span></span>
+            <span class="scale-stat-unit">SQ.M</span>
+            <h3 class="scale-stat-label">Facility Footprint</h3>
+            <p class="scale-stat-desc">State-of-the-art climate-controlled industrial complex in Sahab Industrial City, Amman.</p>
+          </div>
+
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="500" data-suffix="+">0</span></span>
+            <span class="scale-stat-unit">FORMULATIONS</span>
+            <h3 class="scale-stat-label">Developments Annually</h3>
+            <p class="scale-stat-desc">New knit structures, bio-synthetics, and cooling finishes engineered by BIA Next.</p>
+          </div>
+
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="1000" data-suffix="+">0</span></span>
+            <span class="scale-stat-unit">SPECIALISTS</span>
+            <h3 class="scale-stat-label">Employees Powering BIA</h3>
+            <p class="scale-stat-desc">Textile scientists, dye chemists, machine operators, and certified QA technicians.</p>
+          </div>
+
+          <div class="scale-stat-card">
+            <span class="scale-stat-num"><span class="stat-n" data-count="40" data-suffix="+">0</span></span>
+            <span class="scale-stat-unit">COUNTRIES</span>
+            <h3 class="scale-stat-label">Markets Served</h3>
+            <p class="scale-stat-desc">Global apparel brands across the United States, Canada, Europe, and Latin America.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 04: PROCUREMENT SPECIFICATION MATRIX ================= -->
+    <section class="section light" id="procurement-matrix" style="padding-top: 80px; padding-bottom: 90px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="reveal">
+          <p class="eyebrow">PROCUREMENT SPECIFICATIONS</p>
+          <h2 style="font-size: clamp(32px, 3.8vw, 54px); margin-top: 14px; line-height: 1.15; color: var(--ink);">
+            ANSWERS FOR SOURCING EXECUTIVES.
+          </h2>
+          <p style="font-size: 17px; color: #6a635f; margin-top: 14px; max-width: 800px; line-height: 1.6;">
+            Key operational parameters, sample lead times, minimum order quantities (MOQ), and trade compliance details for brand sourcing teams.
+          </p>
+        </div>
+
+        <div class="procurement-grid reveal" style="margin-top: 48px;">
+          
+          <div class="procurement-card">
+            <div class="p-card-icon">⚡</div>
+            <h4>Lead Times &amp; MOQ Flexibility</h4>
+            <ul class="p-card-list">
+              <li><strong>Lab Dip Turnaround:</strong> 48 hours (Spectrophotometer verified)</li>
+              <li><strong>Sampling Lead Time:</strong> 7 to 10 days with on-site milled yardage</li>
+              <li><strong>Bulk Production:</strong> 21 to 28 days from lab dip sign-off</li>
+              <li><strong>Sample MOQ:</strong> 50 kg per colorway for custom prototyping</li>
+              <li><strong>Bulk MOQ:</strong> 300 kg per colorway (flexible for core programs)</li>
+            </ul>
+          </div>
+
+          <div class="procurement-card">
+            <div class="p-card-icon">🚢</div>
+            <h4>0% US Tariff &amp; Logistics</h4>
+            <ul class="p-card-list">
+              <li><strong>US Import Tariff:</strong> <strong>0% Duty</strong> under US-Jordan FTA</li>
+              <li><strong>EU Market Access:</strong> Rules of Origin Trade Agreement</li>
+              <li><strong>Transit to US East Coast:</strong> 14–16 days direct sea transit from Aqaba</li>
+              <li><strong>Air Freight:</strong> 48 hours to major US/European distribution hubs</li>
+              <li><strong>Single Billing Partner:</strong> End-to-end with Classic Fashion</li>
+            </ul>
+          </div>
+
+          <div class="procurement-card">
+            <div class="p-card-icon">🎯</div>
+            <h4>Quality &amp; Sustainability SLA</h4>
+            <ul class="p-card-list">
+              <li><strong>Visual Inspection:</strong> 100% 4-Point System (ASTM D5430)</li>
+              <li><strong>AQL Baseline:</strong> 1.5 Major / 2.5 Minor standard</li>
+              <li><strong>Chemical Compliance:</strong> 100% ZDHC Level 3 MRSL conformance</li>
+              <li><strong>Water Stewardship:</strong> 85% closed-loop process water recycled</li>
+              <li><strong>Clean Energy:</strong> 4.2 MW rooftop solar array operational</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= INTERACTIVE CERTIFICATION MODAL ================= -->
+  <div class="cert-detail-modal" id="certDetailModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="cert-modal-backdrop" id="certModalBackdrop"></div>
+    
+    <div class="cert-modal-dialog">
+      <button class="cert-modal-close" id="certModalClose" aria-label="Close certificate inspector">✕</button>
+      
+      <div class="cert-modal-content">
+        <div class="cert-modal-top">
+          <span class="cert-modal-tag" id="modalCertTag">CHEMICAL SAFETY &amp; ECOLOGY</span>
+          <h3 class="cert-modal-title" id="modalCertTitle">OEKO-TEX® Standard 100</h3>
+          <p class="cert-modal-sub" id="modalCertSub">Annex 6, Product Class 1 (Safe for Direct Skin &amp; Infants)</p>
+        </div>
+
+        <div class="cert-modal-body-grid">
+          
+          <!-- Column 1: What it means -->
+          <div class="cert-modal-block">
+            <span class="cert-block-lbl">01 · WHAT IT MEANS</span>
+            <h4 class="cert-block-h">Global Benchmark Definition</h4>
+            <p class="cert-block-text" id="modalCertMeans">
+              OEKO-TEX® Standard 100 is the world's leading independent testing standard for harmful substances in textiles, certifying products free from regulated and non-regulated harmful chemicals.
+            </p>
+          </div>
+
+          <!-- Column 2: What BIA certification covers -->
+          <div class="cert-modal-block">
+            <span class="cert-block-lbl">02 · WHAT BIA CERTIFICATION COVERS</span>
+            <h4 class="cert-block-h">Scope of BIA Facility &amp; Fabric Output</h4>
+            <p class="cert-block-text" id="modalCertCovers">
+              100% of circular knitted fabrics manufactured at BIA Sahab complex, including polyester, recycled polyester, nylon, modal, and elastane blends dyed with approved auxiliaries.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Verification Data Box -->
+        <div class="cert-verify-box">
+          <div class="c-verify-item">
+            <span class="c-verify-lbl">AUDITING BODY</span>
+            <strong class="c-verify-val" id="modalCertBody">TESTEX AG Zürich</strong>
+          </div>
+          <div class="c-verify-item">
+            <span class="c-verify-lbl">CERTIFICATE / LICENSE #</span>
+            <strong class="c-verify-val" id="modalCertNumber">24.0.12849</strong>
+          </div>
+          <div class="c-verify-item">
+            <span class="c-verify-lbl">AUDIT STATUS &amp; VALIDITY</span>
+            <strong class="c-verify-val" id="modalCertValidity" style="color: #34d399;">Active · Valid through 2026</strong>
+          </div>
+        </div>
+
+        <!-- Modal Download Action Bar -->
+        <div class="cert-modal-actions">
+          <button class="btn btn-red cert-download-btn" id="modalDownloadBtn" type="button">
+            <span>Download Official Certificate PDF</span> <span class="arrow">↓</span>
+          </button>
+          <a href="/contact?topic=compliance" class="btn btn-ghost" style="color: #fff; border-color: rgba(244,241,236,0.25);">
+            Request Full Compliance Pack <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" aria-label="BIA home">
+          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="footer-logo-img" />
+        </a>
+        <p>BRILLIANCE, WOVEN IN.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span>DISCOVER</span>
+          <a href="/story">Our Story</a>
+          <a href="/ecosystem">BIA × Classic</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/story#leadership">Leadership</a>
+        </div>
+        <div class="footer-col">
+          <span>CREATE</span>
+          <a href="/fabrics">Fabric Lab</a>
+          <a href="/fabrics#technologies">Technologies</a>
+          <a href="/innovation">BIA Next</a>
+          <a href="/contact?pathway=fabric">Request Swatch</a>
+        </div>
+        <div class="footer-col">
+          <span>IMPACT</span>
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/inside#quality">Quality</a>
+          <a href="/inside#certifications">Certifications</a>
+        </div>
+        <div class="footer-col">
+          <span>CONNECT</span>
+          <a href="/contact">Contact</a>
+          <a href="/contact?pathway=careers">Careers</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mid">
+      <span>Amman, Jordan · Al-Tajamouat Industrial City, Sahab</span>
+      <span>+962 6 402 0000</span>
+      <span>develop@bia.jo</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <span class="sep">·</span>
+        <a href="#">Cookies</a>
+        <span class="sep">·</span>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-line">
+      <span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261010_inside_tour"></script>
+</body>
+
+</html>

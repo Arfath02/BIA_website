@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brilliance with Responsibility — Prove. Don't Proclaim. | BIA</title>
+  <meta name="description"
+    content="Prove. Don't proclaim. At BIA, sustainability is measurable: 85% water recycled, 4.2 MW rooftop solar power, 100% ZDHC Level 3 chemistry, 0% landfill waste, and complete yarn-to-garment traceability." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261008_08" />
+</head>
+
+<body>
+
+  <!-- ================= NAV ================= -->
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="/" aria-label="BIA home">
+      <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="nav-logo-img" />
+    </a>
+
+    <div class="nav-links">
+      <a href="/story">Our Story</a>
+      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <a href="/innovation">Innovation</a>
+      <a href="/inside">Inside BIA</a>
+      <a href="/ecosystem">BIA × Classic</a>
+      <a href="/responsibility" class="active">Responsibility</a>
+      <a href="/people">People</a>
+      <a href="/stories">Insights</a>
+      <a href="/contact">Contact</a>
+    </div>
+
+    <a href="/fabrics" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">→</span></a>
+  </nav>
+
+  <!-- ================= SUBPAGE HERO ================= -->
+  <header class="subpage-hero">
+    <div class="subpage-hero-bg" style="background-image: url('{{ url_for('static', filename='assets/fabric_product_04.jpg') }}');"></div>
+    <div class="subpage-hero-veil"></div>
+
+    <div class="subpage-hero-inner reveal">
+      <div class="subpage-breadcrumbs">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Responsibility</span>
+      </div>
+
+      <div class="bia-next-badge">PROVE. DON'T PROCLAIM.</div>
+      <h1 class="subpage-title">BRILLIANCE WITH<br />RESPONSIBILITY</h1>
+      <p class="subpage-lede">
+        We reject vague slogans. At BIA, environmental stewardship and ethical manufacturing are audited through verifiable engineering: closed-loop reverse osmosis water treatment, on-site solar power, zero-hazardous input chemistry, and zero manufacturing waste to landfill.
+      </p>
+
+      <div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
+        <a href="#metrics" class="btn btn-red">View Audited Metrics <span class="arrow">↓</span></a>
+        <a href="#dossier" class="btn btn-ghost">Request Compliance Dossier <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SUBPAGE QUICKNAV ================= -->
+  <nav class="subpage-quicknav" aria-label="Responsibility Sections Navigation">
+    <div class="subpage-quicknav-inner">
+      <a href="#metrics" class="quicknav-link">Key Metrics</a>
+      <a href="#material" class="quicknav-link">01 Material</a>
+      <a href="#water" class="quicknav-link">02 Water</a>
+      <a href="#energy" class="quicknav-link">03 Energy</a>
+      <a href="#chemistry" class="quicknav-link">04 Chemistry</a>
+      <a href="#waste" class="quicknav-link">05 Waste</a>
+      <a href="#people" class="quicknav-link">06 People</a>
+      <a href="#traceability" class="quicknav-link">07 Traceability</a>
+      <a href="#certs" class="quicknav-link" style="color: var(--red); font-weight: 800;">Audits &amp; Certifications →</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ================= KEY VERIFIED METRICS (PROVE. DON'T PROCLAIM.) ================= -->
+    <section class="section dark responsibility-section" id="metrics" style="background: #0d0a0d;">
+      <div class="responsibility-inner">
+        <div class="responsibility-head reveal">
+          <p class="eyebrow">VERIFIABLE OPERATIONAL DATA</p>
+          <h2 style="font-size: clamp(32px, 3.8vw, 54px); line-height: 1.15; color: #ffffff;">
+            PROVE. DON'T PROCLAIM.
+          </h2>
+          <p class="responsibility-lede">
+            Every metric below is audited independently and backed by third-party testing reports, municipal water meters, and certified chain-of-custody documentation in Sahab Industrial City, Amman.
+          </p>
+        </div>
+
+        <div class="metrics-grid reveal">
+          <div class="metric-card">
+            <span class="metric-val">85%</span>
+            <h4>Water Recycled &amp; Reused</h4>
+            <p>Advanced multi-stage membrane bioreactors (MBR) and reverse osmosis (RO) systems recovering 85% of dyehouse water for continuous re-use.</p>
+            <span class="metric-sub">CLOSED-LOOP EFFLUENT RECOVERY</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-val">4.2 MW</span>
+            <h4>On-Site Clean Solar Power</h4>
+            <p>Rooftop solar photovoltaic generation supplying clean renewable electricity directly to high-speed European circular knitting machinery.</p>
+            <span class="metric-sub">RENEWABLE INDUSTRIAL ENERGY</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-val">100%</span>
+            <h4>ZDHC Level 3 Input Chemistry</h4>
+            <p>100% of auxiliary chemicals, dyes, and finishing formulations comply with ZDHC MRSL v3.1, Bluesign® and OEKO-TEX® Standard 100 Class 1.</p>
+            <span class="metric-sub">ZERO HAZARDOUS DISCHARGE</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-val">0%</span>
+            <h4>Fabric Waste to Landfill</h4>
+            <p>100% of selvage edges, knitting test swatches, and cutting remnants are mechanically shredded and baled for secondary spinning.</p>
+            <span class="metric-sub">ZERO LANDFILL COMMITMENT</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-val">60%+</span>
+            <h4>Certified Recycled &amp; Eco Yarn Share</h4>
+            <p>Global Recycled Standard (GRS) certified portfolio offering post-consumer PET, closed-loop botanical modal, and organic cotton.</p>
+            <span class="metric-sub">GRS CERTIFIED FEEDSTOCKS</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-val">100%</span>
+            <h4>Digital Batch Traceability</h4>
+            <p>Complete QR-coded batch traceability connecting spinning origin, knitting machine logs, dye lot formulas, and finished apparel assembly.</p>
+            <span class="metric-sub">TRANSPARENT VALUE CHAIN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 01. MATERIAL (RESPONSIBLE FIBRES) ================= -->
+    <section class="section light" id="material">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow">01 · MATERIAL INTEGRITY</p>
+          <h2 class="next-section-title" style="color: var(--ink);">
+            RESPONSIBLE FIBRES &amp; CIRCULAR FOUNDATIONS
+          </h2>
+          <p class="innovation-lede">
+            Sustainable textiles begin at the raw polymer level. We eliminate virgin petroleum inputs through certified recycled synthetics, responsibly harvested wood pulp, and organic agricultural fibres.
+          </p>
+        </div>
+
+        <div class="next-grid-3 reveal">
+          <div class="next-card">
+            <span class="next-card-num">MAT 01</span>
+            <h3 class="next-card-h">GRS Post-Consumer Recycled PET</h3>
+            <p>100% certified recycled polyester filaments derived from post-consumer plastic bottles. Independently audited under the Global Recycled Standard with unbroken chain-of-custody transaction certificates.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">GRS Certified</span>
+              <span class="next-card-pill">Post-Consumer</span>
+            </div>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">MAT 02</span>
+            <h3 class="next-card-h">Closed-Loop Botanical Tencel™ &amp; Modal</h3>
+            <p>Derived from sustainably managed European beechwood forests. Processed using closed-loop solvent recovery systems that recycle over 99.8% of process solvents and water.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">99.8% Solvent Recovery</span>
+              <span class="next-card-pill">FSC / PEFC Certified</span>
+            </div>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">MAT 03</span>
+            <h3 class="next-card-h">Monomaterial Zero-Elastane Stretch</h3>
+            <p>Engineering 100% single-polymer polyester with helical spring mechanics, providing 4-way athletic stretch without blending elastane — allowing garments to be recycled directly back into yarn at end of life.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Mono-Material</span>
+              <span class="next-card-pill">100% Recyclable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02. WATER (EFFICIENCY & CLOSED-LOOP RECYCLING) ================= -->
+    <section class="section dark" id="water" style="background: #0f0b10;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow">02 · WATER STEWARDSHIP</p>
+          <h2 class="next-section-title" style="color: #ffffff;">
+            85% CLOSED-LOOP WATER RECYCLING
+          </h2>
+          <p class="innovation-lede" style="color: var(--steel);">
+            Jordan is one of the world's most water-conscious nations. At BIA, our facility was engineered from the foundation to lead the Middle East in industrial water efficiency and effluent purification.
+          </p>
+        </div>
+
+        <div class="next-grid-3 reveal">
+          <div class="next-card dark-card">
+            <span class="next-card-num">WATER 01</span>
+            <h3 class="next-card-h">Multi-Stage Membrane Bioreactors</h3>
+            <p>Our biological effluent treatment plant combines aerobic bacterial digestion with micro-filtration membranes, removing 99.5% of organic biological oxygen demand (BOD) and suspended solids.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">MBR Filtration</span>
+              <span class="next-card-pill">99.5% BOD Removal</span>
+            </div>
+          </div>
+
+          <div class="next-card dark-card">
+            <span class="next-card-num">WATER 02</span>
+            <h3 class="next-card-h">Industrial Reverse Osmosis (RO)</h3>
+            <p>Treated effluent passes through high-pressure reverse osmosis membranes to remove dissolved mineral salts and trace colorants, returning pure demineralized water directly back to dye vats.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">85% Water Reused</span>
+              <span class="next-card-pill">RO Demineralization</span>
+            </div>
+          </div>
+
+          <div class="next-card dark-card">
+            <span class="next-card-num">WATER 03</span>
+            <h3 class="next-card-h">Ultra-Low Liquor Ratio Dyeing</h3>
+            <p>Our modern European Thies &amp; Fong's dyeing vessels operate at a 1:4.2 liquor ratio, reducing freshwater consumption by over 60% compared to traditional 1:10 commercial dye houses.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">1:4.2 Liquor Ratio</span>
+              <span class="next-card-pill">60% Water Saved</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03. ENERGY (EFFICIENCY & CLEAN SOLAR POWER) ================= -->
+    <section class="section light" id="energy">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow">03 · CLEAN ENERGY &amp; EFFICIENCY</p>
+          <h2 class="next-section-title" style="color: var(--ink);">
+            4.2 MW ROOFTOP SOLAR GENERATION
+          </h2>
+          <p class="innovation-lede">
+            Harnessing Jordan's abundant sunshine to power advanced circular manufacturing while optimizing thermal recovery across every drying and finishing stenter.
+          </p>
+        </div>
+
+        <div class="next-grid-3 reveal">
+          <div class="next-card">
+            <span class="next-card-num">ENERGY 01</span>
+            <h3 class="next-card-h">4.2 MW Solar Photovoltaic Roof</h3>
+            <p>Over 8,000 high-efficiency tier-1 solar panels mounted across our plant roof, generating clean renewable electricity and avoiding thousands of tonnes of CO2 emissions each year.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">4.2 MW Capacity</span>
+              <span class="next-card-pill">Zero-Emission Power</span>
+            </div>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">ENERGY 02</span>
+            <h3 class="next-card-h">Stenter Heat Recovery Exchangers</h3>
+            <p>Air-to-water heat exchangers installed on stenter exhaust stacks recover high-temperature exhaust heat, pre-heating incoming dyehouse wash waters without burning auxiliary fuel.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Thermal Recovery</span>
+              <span class="next-card-pill">32% Thermal Savings</span>
+            </div>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">ENERGY 03</span>
+            <h3 class="next-card-h">Variable-Frequency Drive Machinery</h3>
+            <p>All knitting, pump, and ventilation motors are equipped with IE4 high-efficiency variable-frequency drives (VFD), optimizing electrical power draw in real time based on active torque.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">IE4 Super Premium</span>
+              <span class="next-card-pill">VFD Motor Control</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04. CHEMISTRY (RESPONSIBLE CHEMICAL MANAGEMENT) ================= -->
+    <section class="section dark" id="chemistry" style="background: #0b080c;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow">04 · RESPONSIBLE CHEMICAL MANAGEMENT</p>
+          <h2 class="next-section-title" style="color: #ffffff;">
+            100% ZDHC LEVEL 3 GREEN INPUTS
+          </h2>
+          <p class="innovation-lede" style="color: var(--steel);">
+            Clean chemistry is non-negotiable. We verify every dyestuff, softener, and auxiliary against strict international chemical gatekeeping lists before it enters our automated dispensing tanks.
+          </p>
+        </div>
+
+        <div class="next-grid-3 reveal">
+          <div class="next-card dark-card">
+            <span class="next-card-num">CHEM 01</span>
+            <h3 class="next-card-h">ZDHC MRSL v3.1 Level 3 Verification</h3>
+            <p>All chemicals uploaded to the ZDHC Chemical Gateway with verified Level 3 laboratory certification, ensuring zero presence of banned alkylphenols, heavy metals, or hazardous azo dyes.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">ZDHC Level 3</span>
+              <span class="next-card-pill">Zero Banned Toxins</span>
+            </div>
+          </div>
+
+          <div class="next-card dark-card">
+            <span class="next-card-num">CHEM 02</span>
+            <h3 class="next-card-h">OEKO-TEX® Standard 100 Class 1</h3>
+            <p>Every finished fabric lot is certified to Class 1 baby-safe ecological standards, guaranteeing freedom from harmful residual substances under strict saliva, sweat, and friction testing.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Class 1 Baby-Safe</span>
+              <span class="next-card-pill">Tested for Harmfuls</span>
+            </div>
+          </div>
+
+          <div class="next-card dark-card">
+            <span class="next-card-num">CHEM 03</span>
+            <h3 class="next-card-h">Automated Robotic Dispensing</h3>
+            <p>Dye recipes and liquid auxiliaries are dispensed by computer-controlled robotic pipetting systems, eliminating human dosing error and preventing chemical overdosing or spills.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Automated Kitchen</span>
+              <span class="next-card-pill">Sub-Gram Precision</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05. WASTE (CIRCULARITY & DIVERSION) ================= -->
+    <section class="section light" id="waste">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow">05 · ZERO LANDFILL &amp; CIRCULAR RECOVERY</p>
+          <h2 class="next-section-title" style="color: var(--ink);">
+            100% SCRAP RECOVERY &amp; CIRCULARITY
+          </h2>
+          <p class="innovation-lede">
+            Fabric waste is an untapped resource. Through mechanical recycling and closed-loop sorting, 0% of our manufacturing textile remnants reach municipal landfill.
+          </p>
+        </div>
+
+        <div class="next-grid-3 reveal">
+          <div class="next-card">
+            <span class="next-card-num">WASTE 01</span>
+            <h3 class="next-card-h">100% Scrap Shredding &amp; Re-Spinning</h3>
+            <p>Selvage cuttings, machine setup leaders, and knitting test strips are sorted by polymer type, mechanically opened, shredded, and baled for secondary industrial yarn spinning.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Zero Landfill Waste</span>
+              <span class="next-card-pill">Mechanical Opening</span>
+            </div>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">WASTE 02</span>
+            <h3 class="next-card-h">Recycled Core &amp; Packaging Loop</h3>
+            <p>All finished fabric rolls are wound onto 100% recycled paper cores and wrapped in recyclable protective film, with active take-back programs established across regional garment hubs.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">100% Recycled Cores</span>
+              <span class="next-card-pill">Circular Packaging</span>
+            </div>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">WASTE 03</span>
+            <h3 class="next-card-h">ETP Biological Sludge Valorization</h3>
+            <p>Dewatered organic biomass sludge from our biological water treatment plant is tested non-hazardous and diverted to regional authorized agricultural composting and soil conditioning facilities.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Sludge Valorization</span>
+              <span class="next-card-pill">Certified Non-Toxic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06. PEOPLE (SAFETY, WELFARE & CULTURE) ================= -->
+    <section class="section dark" id="people" style="background: #0e0a0f;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow">06 · SOCIAL RESPONSIBILITY &amp; PEOPLE</p>
+          <h2 class="next-section-title" style="color: #ffffff;">
+            FAIR WAGES, SAFETY &amp; EMPOWERMENT
+          </h2>
+          <p class="innovation-lede" style="color: var(--steel);">
+            True responsibility extends beyond machines to the 1,000+ people who operate them. We champion dignified workplace standards, gender equity, and continuous technical training.
+          </p>
+        </div>
+
+        <div class="next-grid-3 reveal">
+          <div class="next-card dark-card">
+            <span class="next-card-num">PEOPLE 01</span>
+            <h3 class="next-card-h">HIGG FSLM Audited Workplace</h3>
+            <p>Independently verified under the HIGG Facility Social &amp; Labor Module (FSLM), ensuring living wages, ergonomic working conditions, fair working hours, and zero child or forced labor.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">HIGG FSLM Verified</span>
+              <span class="next-card-pill">Living Wage Standard</span>
+            </div>
+          </div>
+
+          <div class="next-card dark-card">
+            <span class="next-card-num">PEOPLE 02</span>
+            <h3 class="next-card-h">40%+ Women in Technical Leadership</h3>
+            <p>From accredited chemical laboratory testing to circular knitting supervisory roles, over 40% of BIA's technical and departmental leadership positions are held by women.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Gender Equity</span>
+              <span class="next-card-pill">Technical Leadership</span>
+            </div>
+          </div>
+
+          <div class="next-card dark-card">
+            <span class="next-card-num">PEOPLE 03</span>
+            <h3 class="next-card-h">BIA Technical Academy</h3>
+            <p>Continuous paid vocational and engineering development programs in partnership with Jordan technical universities, upskilling operators in automation, robotics, and QA spectrometry.</p>
+            <div class="next-card-spec-strip">
+              <span class="next-card-pill">Continuous Training</span>
+              <span class="next-card-pill">University Partner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 07. TRACEABILITY (SUPPLY CHAIN TRANSPARENCY) ================= -->
+    <section class="section light" id="traceability">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow">07 · TRANSPARENCY &amp; TRACEABILITY</p>
+          <h2 class="next-section-title" style="color: var(--ink);">
+            UNBROKEN DIGITAL CHAIN OF CUSTODY
+          </h2>
+          <p class="innovation-lede">
+            Global brands cannot afford opacity in their supply chain. Every single meter of fabric leaving BIA carries a verifiable digital fingerprint connecting spinning origin to garment cutting.
+          </p>
+        </div>
+
+        <div class="next-grid-4 reveal">
+          <div class="next-card">
+            <span class="next-card-num">STAGE 01</span>
+            <h3 class="next-card-h">Certified Spinning Origin</h3>
+            <p>Digital logging of raw fibre lot, spinning mill certificate, and GRS/Organic chain-of-custody verification upon warehouse receipt.</p>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">STAGE 02</span>
+            <h3 class="next-card-h">Machine Gauge &amp; Shift Logs</h3>
+            <p>Real-time telemetry tracking knitting machine ID, tension calibration data, operator stamp, and greige fabric weight per square meter.</p>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">STAGE 03</span>
+            <h3 class="next-card-h">Dye Batch &amp; Lab Reports</h3>
+            <p>Digital link to automated color kitchen recipe, spectrophotometer Delta-E spectral curves, and ZDHC-approved auxiliary batch numbers.</p>
+          </div>
+
+          <div class="next-card">
+            <span class="next-card-num">STAGE 04</span>
+            <h3 class="next-card-h">QR Code Roll Passport</h3>
+            <p>Every roll stamped with a unique QR code passport scanned directly onto Classic Fashion's cutting floor for 100% yarn-to-garment integrity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACCREDITED CERTIFICATIONS & AUDITED DOSSIER ================= -->
+    <section class="section dark quality-section" id="certs" style="background: #090609; padding-top: 110px; padding-bottom: 110px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="reveal">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;">
+            <div>
+              <p class="eyebrow">INDEPENDENT THIRD-PARTY AUDITS</p>
+              <h2 style="font-size: clamp(34px, 4.2vw, 56px); margin-top: 14px; color: #ffffff;">
+                ACCREDITED GLOBAL CERTIFICATIONS
+              </h2>
+              <p style="font-size: 17px; color: var(--steel); max-width: 720px; margin-top: 14px; line-height: 1.6;">
+                Independently verified against world-recognized environmental, chemical, quality, and social frameworks. Tap any card below to inspect <strong>what it means</strong>, <strong>BIA coverage scope</strong>, and <strong>download certificates</strong>.
+              </p>
+            </div>
+            <div class="cert-interactive-badge">
+              <span class="cert-pulse-dot"></span>
+              <span>TAP ANY CARD TO INSPECT &amp; DOWNLOAD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="interactive-certs-grid reveal" style="margin-top: 56px;">
+          
+          <!-- Cert 1: OEKO-TEX Standard 100 -->
+          <div class="i-cert-card" data-cert-id="oeko" data-cert-title="OEKO-TEX® Standard 100" data-cert-subtitle="Annex 6, Product Class 1 (Safe for Direct Skin &amp; Infants)" data-cert-tag="CHEMICAL SAFETY &amp; CONSUMER ECOLOGY" data-cert-body="TESTEX AG, Swiss Textile Testing Institute" data-cert-number="24.0.12849" data-cert-validity="Valid through Dec 2026 (Annual Audit)" data-cert-means="OEKO-TEX® Standard 100 is the world's most rigorous independent testing standard for harmful substances in textiles. Class 1 certification represents the strictest safety tier, testing for over 300 regulated and non-regulated harmful chemicals including formaldehyde, heavy metals, banned azo dyes, PFCs, and phthalates." data-cert-covers="100% of circular knitted fabrics manufactured at BIA's Sahab complex, including 100% polyester, recycled polyester, nylon 6/6.6, cotton, Tencel™, modal, and elastane blends dyed with approved low-impact auxiliaries." data-cert-download-name="BIA_OEKO_TEX_Standard_100_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">CLASS 1 VERIFIED</span>
+              <span class="i-cert-icon">🌿</span>
+            </div>
+            <h3 class="i-cert-name">OEKO-TEX® Standard 100</h3>
+            <p class="i-cert-scope">Tested free from 300+ harmful chemicals; certified safe for next-to-skin athletic and infant wear.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> TESTEX Zürich</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Knitted, Dyed &amp; Finished</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 2: Global Recycled Standard (GRS) -->
+          <div class="i-cert-card" data-cert-id="grs" data-cert-title="Global Recycled Standard (GRS 4.0)" data-cert-subtitle="Certified Chain of Custody for Post-Consumer Recycled Synthetics" data-cert-tag="RECYCLED VERIFICATION &amp; CHAIN OF CUSTODY" data-cert-body="Control Union Certifications B.V." data-cert-number="CU-892401-GRS" data-cert-validity="Valid through Oct 2026 (Annual Renewal)" data-cert-means="The Global Recycled Standard (GRS) is an international, voluntary product standard that sets strict requirements for third-party certification of recycled content, chain of custody, social and environmental practices, and chemical restrictions across the entire value chain." data-cert-covers="100% post-consumer recycled polyester (rPET) and recycled nylon filaments processed through BIA's warping, circular knitting, and dyehouse. Every production run is backed by unbroken Transaction Certificates (TC) tracking polymer origin." data-cert-download-name="BIA_Global_Recycled_Standard_GRS_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">100% rPET VERIFIED</span>
+              <span class="i-cert-icon">♻️</span>
+            </div>
+            <h3 class="i-cert-name">Global Recycled Standard</h3>
+            <p class="i-cert-scope">Third-party audited recycled synthetic inputs with unbroken digital chain-of-custody transaction certificates.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> Control Union</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Post-Consumer rPET &amp; rNylon</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 3: ZDHC Level 3 MRSL -->
+          <div class="i-cert-card" data-cert-id="zdhc" data-cert-title="ZDHC Level 3 MRSL (Roadmap to Zero)" data-cert-subtitle="Highest Input Chemistry Conformance Standard in Wet Processing" data-cert-tag="GREEN INPUT CHEMISTRY &amp; CLEAN EFFLUENT" data-cert-body="ZDHC Gateway Verified / In-House Lab Audited" data-cert-number="ORG-BIA-JO-2024" data-cert-validity="Continuously Synced via ZDHC Gateway" data-cert-means="Zero Discharge of Hazardous Chemicals (ZDHC) Level 3 is the pinnacle of sustainable chemistry in the textile supply chain. It requires third-party verification that zero priority hazardous chemicals enter the manufacturing process, preventing wastewater toxicity at the source." data-cert-covers="100% of chemical formulations, disperse dyes, reactive dyes, leveling agents, and moisture-wicking finishes stored and mixed in BIA's automated robotic dye kitchen." data-cert-download-name="BIA_ZDHC_Level_3_Chemical_Compliance_Report.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">LEVEL 3 GATEWAY</span>
+              <span class="i-cert-icon">🧪</span>
+            </div>
+            <h3 class="i-cert-name">ZDHC Level 3 Conformance</h3>
+            <p class="i-cert-scope">Zero discharge of hazardous priority chemicals across all automated dye kitchens and finishing lines.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> ZDHC Gateway</span>
+              <span class="i-meta-item"><strong>Scope:</strong> 100% Dyestuff &amp; Auxiliaries</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 4: ISO 9001 & ISO 14001 -->
+          <div class="i-cert-card" data-cert-id="iso" data-cert-title="ISO 9001:2015 &amp; ISO 14001:2015" data-cert-subtitle="Integrated Quality &amp; Environmental Management Systems" data-cert-tag="OPERATIONAL EXCELLENCE &amp; ENVIRONMENTAL SYSTEM" data-cert-body="SGS United Kingdom Ltd / Jordan Branch" data-cert-number="JO24/00812-QMS-EMS" data-cert-validity="Certified through 2027 (Surveillance Audits Active)" data-cert-means="ISO 9001 specifies rigorous quality management systems guaranteeing procedural consistency and defect reduction. ISO 14001 sets strict operational criteria for environmental resource optimization, energy reduction, and emissions mitigation." data-cert-covers="All management operations, manufacturing divisions, technical R&amp;D laboratories, raw material warehousing, and water recycling plants at BIA Amman." data-cert-download-name="BIA_ISO_9001_14001_Integrated_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">DUAL ISO CERTIFIED</span>
+              <span class="i-cert-icon">⚙️</span>
+            </div>
+            <h3 class="i-cert-name">ISO 9001 &amp; ISO 14001</h3>
+            <p class="i-cert-scope">Integrated quality and environmental management systems audited across all manufacturing divisions.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> SGS International</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Full Facility Operations</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 5: ISO 45001 -->
+          <div class="i-cert-card" data-cert-id="iso45001" data-cert-title="ISO 45001:2018 (Occupational Health &amp; Safety)" data-cert-subtitle="World Benchmark for Industrial Workforce Welfare &amp; Safety" data-cert-tag="HUMAN WELFARE &amp; OCCUPATIONAL SAFETY" data-cert-body="SGS Systems &amp; Services Certification" data-cert-number="JO24/00813-OHSMS" data-cert-validity="Certified through 2027" data-cert-means="ISO 45001 is the international standard for occupational health and safety management systems, designed to eliminate workplace hazards, minimize industrial injury risk, and ensure safe working environments." data-cert-covers="All 1,000+ manufacturing technicians, laboratory engineers, maintenance teams, and logistics operators across BIA's climate-controlled 45,000 sq.m facility." data-cert-download-name="BIA_ISO_45001_Workplace_Safety_Certificate.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">SAFETY PROTOCOL</span>
+              <span class="i-cert-icon">🛡️</span>
+            </div>
+            <h3 class="i-cert-name">ISO 45001 Health &amp; Safety</h3>
+            <p class="i-cert-scope">Zero-accident safety protocols, ergonomic engineering, and dedicated 24/7 on-site medical care.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> SGS International</span>
+              <span class="i-meta-item"><strong>Scope:</strong> 1,000+ Plant Specialists</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Cert 6: HIGG Index FEM & FSLM -->
+          <div class="i-cert-card" data-cert-id="higg" data-cert-title="HIGG Index (FEM 4.0 &amp; FSLM / SLCP)" data-cert-subtitle="Cascaled Audited Environmental &amp; Social Labor Benchmark" data-cert-tag="GLOBAL BRAND ESG VERIFICATION" data-cert-body="Sustainable Apparel Coalition (SAC) / Cascale" data-cert-number="Higg Facility ID: 142981" data-cert-validity="Verified Annual Submission (Current Cycle)" data-cert-means="The Higg Facility Environmental Module (FEM) and Facility Social and Labor Module (FSLM) quantify environmental performance across water, energy, waste, chemicals, and greenhouse gas emissions, alongside fair labor practices." data-cert-covers="Annual third-party verified scores shared transparently on global brand partner portals including Nike, Under Armour, Lululemon, and Target sourcing networks." data-cert-download-name="BIA_Higg_Index_FEM_FSLM_Verified_Report.pdf">
+            <div class="i-cert-header">
+              <span class="i-cert-pill">VERIFIED FEM &amp; FSLM</span>
+              <span class="i-cert-icon">📊</span>
+            </div>
+            <h3 class="i-cert-name">HIGG Index (FEM &amp; FSLM)</h3>
+            <p class="i-cert-scope">Verified environmental scoring and social labor transparency aligned directly with global brand portals.</p>
+            <div class="i-cert-meta">
+              <span class="i-meta-item"><strong>Audit Body:</strong> SAC / Cascale Verified</span>
+              <span class="i-meta-item"><strong>Scope:</strong> Environmental &amp; Labor ESG</span>
+            </div>
+            <button class="i-cert-btn" type="button">
+              <span>Inspect Scope &amp; Download</span> <span class="arrow">→</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Call to Action Banner -->
+        <div class="subpage-cta reveal" id="dossier" style="margin-top: 60px;">
+          <p class="eyebrow" style="color: var(--red); justify-content: center;">AUDITED SUSTAINABILITY DOSSIER</p>
+          <h3 style="color: #ffffff;">REQUEST OUR AUDITED COMPLIANCE PACK.</h3>
+          <p style="color: var(--steel);">
+            Download our complete third-party certification certificates, HIGG FEM/FSLM verified scores, wastewater lab test data, and solar generation metrics for your brand's ESG reporting.
+          </p>
+          <div class="subpage-cta-actions">
+            <a href="/contact?topic=compliance" class="btn btn-red">Request Compliance Dossier <span class="arrow">→</span></a>
+            <a href="/inside" class="btn btn-ghost" style="border-color: rgba(244,241,236,0.3); color: #fff;">Take The Digital Mill Tour <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= INTERACTIVE CERTIFICATION MODAL ================= -->
+  <div class="cert-detail-modal" id="certDetailModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="cert-modal-backdrop" id="certModalBackdrop"></div>
+    
+    <div class="cert-modal-dialog">
+      <button class="cert-modal-close" id="certModalClose" aria-label="Close certificate inspector">✕</button>
+      
+      <div class="cert-modal-content">
+        <div class="cert-modal-top">
+          <span class="cert-modal-tag" id="modalCertTag">CHEMICAL SAFETY &amp; ECOLOGY</span>
+          <h3 class="cert-modal-title" id="modalCertTitle">OEKO-TEX® Standard 100</h3>
+          <p class="cert-modal-sub" id="modalCertSub">Annex 6, Product Class 1 (Safe for Direct Skin &amp; Infants)</p>
+        </div>
+
+        <div class="cert-modal-body-grid">
+          
+          <div class="cert-modal-block">
+            <span class="cert-block-lbl">01 · WHAT IT MEANS</span>
+            <h4 class="cert-block-h">Global Benchmark Definition</h4>
+            <p class="cert-block-text" id="modalCertMeans">
+              OEKO-TEX® Standard 100 is the world's leading independent testing standard for harmful substances in textiles, certifying products free from regulated and non-regulated harmful chemicals.
+            </p>
+          </div>
+
+          <div class="cert-modal-block">
+            <span class="cert-block-lbl">02 · WHAT BIA CERTIFICATION COVERS</span>
+            <h4 class="cert-block-h">Scope of BIA Facility &amp; Fabric Output</h4>
+            <p class="cert-block-text" id="modalCertCovers">
+              100% of circular knitted fabrics manufactured at BIA Sahab complex, including polyester, recycled polyester, nylon, modal, and elastane blends dyed with approved auxiliaries.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="cert-verify-box">
+          <div class="c-verify-item">
+            <span class="c-verify-lbl">AUDITING BODY</span>
+            <strong class="c-verify-val" id="modalCertBody">TESTEX AG Zürich</strong>
+          </div>
+          <div class="c-verify-item">
+            <span class="c-verify-lbl">CERTIFICATE / LICENSE #</span>
+            <strong class="c-verify-val" id="modalCertNumber">24.0.12849</strong>
+          </div>
+          <div class="c-verify-item">
+            <span class="c-verify-lbl">AUDIT STATUS &amp; VALIDITY</span>
+            <strong class="c-verify-val" id="modalCertValidity" style="color: #34d399;">Active · Valid through 2026</strong>
+          </div>
+        </div>
+
+        <div class="cert-modal-actions">
+          <button class="btn btn-red cert-download-btn" id="modalDownloadBtn" type="button">
+            <span>Download Official Certificate PDF</span> <span class="arrow">↓</span>
+          </button>
+          <a href="/contact?topic=compliance" class="btn btn-ghost" style="color: #fff; border-color: rgba(244,241,236,0.25);">
+            Request Full Compliance Pack <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" aria-label="BIA home">
+          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="footer-logo-img" />
+        </a>
+        <p>BRILLIANCE, WOVEN IN.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span>DISCOVER</span>
+          <a href="/story">Our Story</a>
+          <a href="/ecosystem">BIA × Classic</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/story#leadership">Leadership</a>
+        </div>
+        <div class="footer-col">
+          <span>CREATE</span>
+          <a href="/fabrics">Fabric Lab</a>
+          <a href="/fabrics#technologies">Technologies</a>
+          <a href="/innovation">BIA Next</a>
+          <a href="/contact?pathway=fabric">Request Swatch</a>
+        </div>
+        <div class="footer-col">
+          <span>IMPACT</span>
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/inside#quality">Quality</a>
+          <a href="/inside#certifications">Certifications</a>
+        </div>
+        <div class="footer-col">
+          <span>CONNECT</span>
+          <a href="/contact">Contact</a>
+          <a href="/contact?pathway=careers">Careers</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mid">
+      <span>Amman, Jordan · Al-Tajamouat Industrial City, Sahab</span>
+      <span>+962 6 402 0000</span>
+      <span>develop@bia.jo</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <span class="sep">·</span>
+        <a href="#">Cookies</a>
+        <span class="sep">·</span>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-line">
+      <span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261008_08"></script>
+</body>
+
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>People &amp; Culture — The Human Side of Brilliance | BIA</title>
+  <meta name="description"
+    content="Machines create precision. People create possibility. Meet the real makers, scientists, and engineers powering BIA's high-tech textile manufacturing in Amman, Jordan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261008_08" />
+</head>
+
+<body>
+
+  <!-- ================= NAV ================= -->
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="/" aria-label="BIA home">
+      <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="nav-logo-img" />
+    </a>
+
+    <div class="nav-links">
+      <a href="/story">Our Story</a>
+      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <a href="/innovation">Innovation</a>
+      <a href="/inside">Inside BIA</a>
+      <a href="/ecosystem">BIA × Classic</a>
+      <a href="/responsibility">Responsibility</a>
+      <a href="/people" class="active">People</a>
+      <a href="/stories">Insights</a>
+      <a href="/contact">Contact</a>
+    </div>
+
+    <a href="/fabrics" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">→</span></a>
+  </nav>
+
+  <!-- ================= SUBPAGE HERO ================= -->
+  <header class="subpage-hero people-hero">
+    <div class="subpage-hero-bg" style="background-image: url('{{ url_for('static', filename='assets/hero-factory-floor-hd.jpg') }}');"></div>
+    <div class="subpage-hero-veil people-hero-veil"></div>
+
+    <div class="subpage-hero-inner reveal">
+      <div class="subpage-breadcrumbs">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <span class="current">People &amp; Culture</span>
+      </div>
+
+      <div class="hero-auth-badge">
+        <span class="auth-dot"></span>
+        <span>ACTUAL EMPLOYEES · NO MODELS · NO STOCK PHOTOGRAPHY</span>
+      </div>
+
+      <p class="eyebrow" style="color: var(--red); margin-top: 14px;">THE HUMAN SIDE OF BRILLIANCE</p>
+      
+      <h1 class="subpage-title" style="font-size: clamp(38px, 5.2vw, 68px); max-width: 980px; letter-spacing: -0.01em;">
+        MACHINES CREATE PRECISION.<br />
+        <span style="color: var(--red);">PEOPLE CREATE POSSIBILITY.</span>
+      </h1>
+
+      <p class="subpage-lede" style="max-width: 780px; font-size: 19px; line-height: 1.6; color: #e8e2dc; margin-top: 20px;">
+        A high-speed European circular knitter is only as intelligent as the specialist adjusting its tension. Behind our 100-tonne daily output are 1,000+ engineers, scientists, and master technicians whose authentic voices and hands define Jordan’s manufacturing future.
+      </p>
+
+      <div class="people-hero-actions" style="margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="#makers" class="btn btn-red">Meet the Makers (20s Stories) <span class="arrow">↓</span></a>
+        <a href="#life" class="btn btn-ghost" style="border-color: rgba(244,241,236,0.3); color: #fff;">Life at BIA <span class="arrow">↓</span></a>
+        <a href="#careers" class="btn btn-ghost" style="border-color: rgba(200,16,46,0.5); color: var(--red);">Open Careers →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SUBPAGE QUICKNAV ================= -->
+  <nav class="subpage-quicknav" aria-label="Page navigation">
+    <div class="subpage-quicknav-inner">
+      <a href="#makers" class="quicknav-link">Meet the Makers</a>
+      <a href="#life" class="quicknav-link">Life at BIA</a>
+      <a href="#learning" class="quicknav-link">Learning &amp; Academy</a>
+      <a href="#women" class="quicknav-link">Women at BIA</a>
+      <a href="#safety" class="quicknav-link">Safety &amp; Wellbeing</a>
+      <a href="#community" class="quicknav-link">Community</a>
+      <a href="#careers" class="quicknav-link" style="color: var(--red); font-weight: 700;">Careers (Join Us) →</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ================= SECTION 01: MEET THE MAKERS (PORTRAIT + 20-SECOND VIDEO) ================= -->
+    <section class="section dark people-makers-section" id="makers" style="background: #0d0a0d; padding-top: 110px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="people-section-head reveal">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;">
+            <div>
+              <p class="eyebrow">UNFILTERED VOICES FROM THE MILL</p>
+              <h2 style="font-size: clamp(34px, 4.2vw, 56px); margin-top: 14px; color: #ffffff;">
+                MEET THE MAKERS
+              </h2>
+              <p style="font-size: 17px; color: var(--steel); max-width: 680px; margin-top: 12px; line-height: 1.6;">
+                Real employees. Real craft. Tap any maker card to watch their <strong>20-second unscripted video answer</strong> on what precision, pride, and quality mean in Amman, Jordan.
+              </p>
+            </div>
+            <div class="makers-hint-badge">
+              <span class="video-icon-pulse">▶</span>
+              <span>CLICK TO PLAY 20S VIDEO Q&amp;A</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 MAKERS GRID -->
+        <div class="makers-grid-5 reveal" style="margin-top: 56px;">
+          
+          <!-- Maker 1: Rania -->
+          <div class="maker-video-card" data-maker-id="rania" data-maker-name="Rania" data-maker-role="Laboratory Technician" data-maker-dept="Accredited In-House Textile Lab" data-maker-q="What does quality mean to you?" data-maker-a="Quality isn't a certificate hanging in a frame. It is proving in our lab that every single moisture-wicking and colourfastness claim will withstand an athlete running an ultra-marathon in extreme heat. We test until failure is impossible." data-maker-time="0:20" data-maker-loc="Sahab QA Laboratory">
+            <div class="maker-visual-box">
+              <div class="maker-avatar-layer rania-bg">
+                <div class="maker-badge-top">LABORATORY SCIENCE</div>
+                <div class="maker-play-trigger">
+                  <div class="play-circle">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                  <span class="play-duration">20 SEC</span>
+                </div>
+              </div>
+              <div class="maker-live-wave">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="maker-card-body">
+              <div class="maker-meta-row">
+                <h3 class="maker-name">Rania</h3>
+                <span class="maker-tenure">8 Yrs at BIA</span>
+              </div>
+              <p class="maker-job-title">Laboratory Technician · Textile Chemistry &amp; Spectrometry</p>
+              
+              <div class="maker-q-box">
+                <span class="q-label">QUESTION POSED</span>
+                <p class="q-text">“What does quality mean to you?”</p>
+              </div>
+
+              <p class="maker-teaser-quote">
+                “Quality is proving in our lab that every moisture-wicking claim withstands real-world athletic conditions...”
+              </p>
+
+              <button class="maker-watch-btn" type="button" aria-label="Watch Rania 20s video">
+                <span class="btn-triangle">▶</span> Watch 20s Video Answer
+              </button>
+            </div>
+          </div>
+
+          <!-- Maker 2: Ahmed -->
+          <div class="maker-video-card" data-maker-id="ahmed" data-maker-name="Ahmed" data-maker-role="Knitting Specialist" data-maker-dept="Circular Knitting Division · Hall 01" data-maker-q="What does precision feel like at 35 RPM?" data-maker-a="Operating modern European circular knitters requires listening with your ears and feeling yarn tension with your fingertips. When 3,000 needles turn at 35 RPM, a single micron shift alters drape. That precision is my craft." data-maker-time="0:20" data-maker-loc="Knitting Hall 01">
+            <div class="maker-visual-box">
+              <div class="maker-avatar-layer ahmed-bg">
+                <div class="maker-badge-top">KNITTING ENGINEERING</div>
+                <div class="maker-play-trigger">
+                  <div class="play-circle">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                  <span class="play-duration">20 SEC</span>
+                </div>
+              </div>
+              <div class="maker-live-wave">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="maker-card-body">
+              <div class="maker-meta-row">
+                <h3 class="maker-name">Ahmed</h3>
+                <span class="maker-tenure">12 Yrs Mastery</span>
+              </div>
+              <p class="maker-job-title">Knitting Specialist · European High-Speed Circular Machines</p>
+              
+              <div class="maker-q-box">
+                <span class="q-label">QUESTION POSED</span>
+                <p class="q-text">“What does precision feel like at 35 RPM?”</p>
+              </div>
+
+              <p class="maker-teaser-quote">
+                “When 3,000 needles turn simultaneously, you feel yarn tension with your fingers. Precision is our craft...”
+              </p>
+
+              <button class="maker-watch-btn" type="button" aria-label="Watch Ahmed 20s video">
+                <span class="btn-triangle">▶</span> Watch 20s Video Answer
+              </button>
+            </div>
+          </div>
+
+          <!-- Maker 3: Tariq -->
+          <div class="maker-video-card" data-maker-id="tariq" data-maker-name="Tariq" data-maker-role="Production Engineer" data-maker-dept="Automation &amp; Dyehouse Logistics" data-maker-q="How do we eliminate dye variations across 100 tonnes?" data-maker-a="We connected fully automated robotic dye kitchens directly with digital spectrophotometers. We calibrate every batch to Delta-E under 0.5. Human engineering sets the standard, technology guarantees repeatability." data-maker-time="0:20" data-maker-loc="Automated Dyehouse">
+            <div class="maker-visual-box">
+              <div class="maker-avatar-layer tariq-bg">
+                <div class="maker-badge-top">PRODUCTION ENGINEERING</div>
+                <div class="maker-play-trigger">
+                  <div class="play-circle">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                  <span class="play-duration">20 SEC</span>
+                </div>
+              </div>
+              <div class="maker-live-wave">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="maker-card-body">
+              <div class="maker-meta-row">
+                <h3 class="maker-name">Tariq</h3>
+                <span class="maker-tenure">7 Yrs Automation</span>
+              </div>
+              <p class="maker-job-title">Production Engineer · Automated Dispensing &amp; Finishing</p>
+              
+              <div class="maker-q-box">
+                <span class="q-label">QUESTION POSED</span>
+                <p class="q-text">“How do we eliminate dye variations across 100 tonnes?”</p>
+              </div>
+
+              <p class="maker-teaser-quote">
+                “Automated robotic dye kitchens and digital spectrophotometers ensure Delta-E under 0.5 on every roll...”
+              </p>
+
+              <button class="maker-watch-btn" type="button" aria-label="Watch Tariq 20s video">
+                <span class="btn-triangle">▶</span> Watch 20s Video Answer
+              </button>
+            </div>
+          </div>
+
+          <!-- Maker 4: Sahar -->
+          <div class="maker-video-card" data-maker-id="sahar" data-maker-name="Sahar" data-maker-role="Quality Manager" data-maker-dept="Quality Assurance &amp; 4-Point Inspection" data-maker-q="Why 4-point visual inspection protects global brands?" data-maker-a="Our fabric moves directly into high-speed garment manufacturing. If there is a single slub or tension flaw, garments fail down the line. Our inspection line catches what machines miss—protecting global brands before a cut is made." data-maker-time="0:20" data-maker-loc="Final Inspection Floor">
+            <div class="maker-visual-box">
+              <div class="maker-avatar-layer sahar-bg">
+                <div class="maker-badge-top">QUALITY ASSURANCE</div>
+                <div class="maker-play-trigger">
+                  <div class="play-circle">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                  <span class="play-duration">20 SEC</span>
+                </div>
+              </div>
+              <div class="maker-live-wave">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="maker-card-body">
+              <div class="maker-meta-row">
+                <h3 class="maker-name">Sahar</h3>
+                <span class="maker-tenure">9 Yrs Leadership</span>
+              </div>
+              <p class="maker-job-title">Quality Manager · ASTM D5430 4-Point Assurance</p>
+              
+              <div class="maker-q-box">
+                <span class="q-label">QUESTION POSED</span>
+                <p class="q-text">“Why 4-point visual inspection protects global brands?”</p>
+              </div>
+
+              <p class="maker-teaser-quote">
+                “Zero tolerance for skewing or yarn flaws protects our global brand partners before garments are cut...”
+              </p>
+
+              <button class="maker-watch-btn" type="button" aria-label="Watch Sahar 20s video">
+                <span class="btn-triangle">▶</span> Watch 20s Video Answer
+              </button>
+            </div>
+          </div>
+
+          <!-- Maker 5: Yousef -->
+          <div class="maker-video-card" data-maker-id="yousef" data-maker-name="Yousef" data-maker-role="Young Trainee" data-maker-dept="BIA Technical Apprenticeship Academy" data-maker-q="What was your path into high-tech manufacturing?" data-maker-a="I joined BIA straight out of Jordan University's engineering program. In 14 months at the BIA Academy, I went from theoretical physics to programming European stenter frames and sensor-monitored warp knitters. It's world-class engineering right here at home." data-maker-time="0:20" data-maker-loc="BIA Academy &amp; Floor">
+            <div class="maker-visual-box">
+              <div class="maker-avatar-layer yousef-bg">
+                <div class="maker-badge-top">ACADEMY APPRENTICE</div>
+                <div class="maker-play-trigger">
+                  <div class="play-circle">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                  <span class="play-duration">20 SEC</span>
+                </div>
+              </div>
+              <div class="maker-live-wave">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="maker-card-body">
+              <div class="maker-meta-row">
+                <h3 class="maker-name">Yousef</h3>
+                <span class="maker-tenure">14 Mos Trainee</span>
+              </div>
+              <p class="maker-job-title">Young Trainee · Mechatronics &amp; Smart Textile Automation</p>
+              
+              <div class="maker-q-box">
+                <span class="q-label">QUESTION POSED</span>
+                <p class="q-text">“What was your path into high-tech manufacturing?”</p>
+              </div>
+
+              <p class="maker-teaser-quote">
+                “From Jordan University graduate to programming European stenter frames in 14 months at the Academy...”
+              </p>
+
+              <button class="maker-watch-btn" type="button" aria-label="Watch Yousef 20s video">
+                <span class="btn-triangle">▶</span> Watch 20s Video Answer
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Human Stats Strip -->
+        <div class="people-stats-strip reveal" style="margin-top: 50px;">
+          <div class="p-stat-box">
+            <span class="p-stat-val">1,000+</span>
+            <span class="p-stat-lbl">Textile Specialists &amp; Engineers</span>
+          </div>
+          <div class="p-stat-box">
+            <span class="p-stat-val">40%+</span>
+            <span class="p-stat-lbl">Women in Technical &amp; Supervisory Leadership</span>
+          </div>
+          <div class="p-stat-box">
+            <span class="p-stat-val">100%</span>
+            <span class="p-stat-lbl">Living Wage &amp; Comprehensive Health Care</span>
+          </div>
+          <div class="p-stat-box">
+            <span class="p-stat-val">0-Fault</span>
+            <span class="p-stat-lbl">Safety-First Culture with 24/7 On-Site Medical Clinic</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 02: LIFE AT BIA (MASTER CULTURE ARCHITECTURE) ================= -->
+    <section class="section light" id="life" style="padding-top: 120px; padding-bottom: 120px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="reveal">
+          <p class="eyebrow">CULTURE &amp; ENVIRONMENT</p>
+          <h2 style="font-size: clamp(34px, 4.2vw, 56px); margin-top: 14px; color: var(--ink);">
+            LIFE AT BIA
+          </h2>
+          <p class="subpage-lede" style="color: #4d4642; max-width: 820px; margin-top: 16px;">
+            A manufacturing facility shouldn't feel like an industrial relic. BIA was built as a clean, bright, dignified center of European-standard craftsmanship where human development takes center stage.
+          </p>
+        </div>
+
+        <!-- 6 CULTURE PILLARS GRID -->
+        <div class="life-grid-3 reveal" style="margin-top: 60px;">
+          
+          <!-- Pillar 1: Learning at BIA -->
+          <div class="life-pillar-card" id="learning">
+            <div class="pillar-header">
+              <span class="pillar-num">01</span>
+              <span class="pillar-tag">SKILL MASTERY</span>
+            </div>
+            <h3>Learning at BIA</h3>
+            <p class="pillar-desc">
+              We operate the <strong>BIA Technical Training Academy</strong> in Sahab. Every operator, technician, and lab scientist undergoes structured hands-on modules in European circular knitting, digital colorimetry, and ISO inspection workflows.
+            </p>
+            <ul class="pillar-list">
+              <li><strong>6-Month Apprenticeships:</strong> Machine setup, needle optics, positive yarn feeds.</li>
+              <li><strong>European Specialist Training:</strong> Direct masterclasses from German &amp; Italian technicians.</li>
+              <li><strong>Continuous Upskilling:</strong> 80+ annual training hours per employee.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 2: Women at BIA -->
+          <div class="life-pillar-card" id="women">
+            <div class="pillar-header">
+              <span class="pillar-num">02</span>
+              <span class="pillar-tag">EQUAL OPPORTUNITY</span>
+            </div>
+            <h3>Women at BIA</h3>
+            <p class="pillar-desc">
+              Textile engineering has historically been male-dominated. At BIA, women represent <strong>40%+ of our technical laboratory, color engineering, and QA leadership teams</strong> with equal pay and clear executive progression tracks.
+            </p>
+            <ul class="pillar-list">
+              <li><strong>Leadership Pathways:</strong> Structured mentorship from senior plant directors.</li>
+              <li><strong>Equal Pay Guarantee:</strong> Regular third-party equity audits across all roles.</li>
+              <li><strong>Flexible Maternity Support:</strong> On-site nursery partnerships &amp; phased return.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 3: Safety & Wellbeing -->
+          <div class="life-pillar-card" id="safety">
+            <div class="pillar-header">
+              <span class="pillar-num">03</span>
+              <span class="pillar-tag">HUMAN HEALTH</span>
+            </div>
+            <h3>Safety &amp; Wellbeing</h3>
+            <p class="pillar-desc">
+              Zero shortcuts on human health. Our mill features climate-controlled air filtration systems that capture micro-lint, sound-dampened acoustic barriers, ergonomic flooring, and a dedicated 24/7 on-site medical and wellness center.
+            </p>
+            <ul class="pillar-list">
+              <li><strong>ISO 45001 Certified:</strong> Rigorous occupational health &amp; safety standards.</li>
+              <li><strong>24/7 On-Site Medical:</strong> Free consultations, preventive checks, and prescription support.</li>
+              <li><strong>Living Wage Standard:</strong> Exceeding national benchmarks with comprehensive health insurance.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 4: Growth & Development -->
+          <div class="life-pillar-card" id="growth">
+            <div class="pillar-header">
+              <span class="pillar-num">04</span>
+              <span class="pillar-tag">CAREER MOBILITY</span>
+            </div>
+            <h3>Growth &amp; Development</h3>
+            <p class="pillar-desc">
+              Nobody gets stuck in a dead-end position at BIA. We maintain a transparent 5-tier technical progression ladder where floor technicians can rise to senior automation engineers, R&amp;D specialists, and plant shift directors.
+            </p>
+            <ul class="pillar-list">
+              <li><strong>University Tuition Sponsorship:</strong> Supporting degrees in chemical &amp; industrial engineering.</li>
+              <li><strong>Internal-First Hiring:</strong> Over 75% of supervisory roles filled from within.</li>
+              <li><strong>Global Brand Exposure:</strong> Direct collaboration with international athletic brand designers.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 5: Celebrating Our People -->
+          <div class="life-pillar-card" id="celebrating">
+            <div class="pillar-header">
+              <span class="pillar-num">05</span>
+              <span class="pillar-tag">RECOGNITION</span>
+            </div>
+            <h3>Celebrating Our People</h3>
+            <p class="pillar-desc">
+              We believe in rewarding ingenuity. Our quarterly <strong>“Master Maker”</strong> awards celebrate employees who identify yarn waste reductions, improve machine cycle efficiency, or create novel dye formulations.
+            </p>
+            <ul class="pillar-list">
+              <li><strong>Innovation Cash Bonuses:</strong> Direct financial rewards for floor efficiency ideas.</li>
+              <li><strong>Milestone Honors:</strong> Celebrating 5, 10, and 15-year loyalty milestones.</li>
+              <li><strong>Annual Family Open Day:</strong> Inviting families to experience our campus pride.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 6: Community & Jordan Stewardship -->
+          <div class="life-pillar-card" id="community">
+            <div class="pillar-header">
+              <span class="pillar-num">06</span>
+              <span class="pillar-tag">LOCAL IMPACT</span>
+            </div>
+            <h3>Community &amp; Jordan Stewardship</h3>
+            <p class="pillar-desc">
+              Our roots in Jordan run deep. We partner with local Sahab vocational schools, provide university STEM scholarships, and lead community greening initiatives to ensure our growth enriches the broader kingdom.
+            </p>
+            <ul class="pillar-list">
+              <li><strong>STEM University Partnerships:</strong> Internships for Jordan University of Science &amp; Tech.</li>
+              <li><strong>Vocational Scholarships:</strong> Sponsoring 50+ local youth annually in technical trades.</li>
+              <li><strong>Sahab Greening Project:</strong> Planting 2,000+ native olive &amp; acacia trees around industrial zones.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 03: OPEN CAREERS ================= -->
+    <section class="section dark" id="careers" style="background: #110d11; padding-top: 120px; padding-bottom: 120px;">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
+        
+        <div class="reveal">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;">
+            <div>
+              <p class="eyebrow">JOIN OUR ENGINEERING TEAM · AMMAN, JORDAN</p>
+              <h2 style="font-size: clamp(34px, 4.2vw, 56px); margin-top: 14px; color: #ffffff;">
+                OPEN POSITIONS AT BIA
+              </h2>
+              <p style="font-size: 17px; color: var(--steel); max-width: 680px; margin-top: 12px; line-height: 1.6;">
+                Shape the next generation of high-performance circular knit fabrics. We offer world-class technical mentorship, competitive compensation, and accelerated career trajectories.
+              </p>
+            </div>
+            <div class="career-filter-pills">
+              <button class="c-pill active" data-filter="all">All Roles (5)</button>
+              <button class="c-pill" data-filter="engineering">Engineering</button>
+              <button class="c-pill" data-filter="lab">Lab &amp; QA</button>
+              <button class="c-pill" data-filter="sustainability">Sustainability</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAREERS LISTINGS -->
+        <div class="careers-board reveal" style="margin-top: 48px;">
+          
+          <!-- Job 1 -->
+          <div class="career-card" data-category="lab">
+            <div class="c-card-left">
+              <div class="c-tags">
+                <span class="c-tag red">LAB &amp; R&amp;D</span>
+                <span class="c-tag">FULL-TIME</span>
+                <span class="c-tag">SAHAB, AMMAN</span>
+              </div>
+              <h3 class="c-title">Senior Textile Chemist · Spectrometry &amp; Formulation</h3>
+              <p class="c-desc">Lead our ISO-accredited testing lab, formulating high-performance chemical finishes and executing Delta-E color verification for global athletic brand partners.</p>
+              <div class="c-perks">
+                <span>✓ 5+ Years Experience</span>
+                <span>✓ ZDHC MRSL Knowledge</span>
+                <span>✓ Spectrophotometer Master</span>
+              </div>
+            </div>
+            <div class="c-card-right">
+              <a href="/contact?topic=careers&role=Senior+Textile+Chemist" class="btn btn-red c-apply-btn">Apply Now <span class="arrow">→</span></a>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="career-card" data-category="engineering">
+            <div class="c-card-left">
+              <div class="c-tags">
+                <span class="c-tag red">MANUFACTURING</span>
+                <span class="c-tag">FULL-TIME</span>
+                <span class="c-tag">KNITTING HALL 01</span>
+              </div>
+              <h3 class="c-title">European Circular Knitting Shift Supervisor</h3>
+              <p class="c-desc">Oversee operation of 100+ precision Mayer &amp; Cie / Terrot circular knitters. Calibrate yarn feeders, oversee shift operators, and uphold micron-level fabric tension standards.</p>
+              <div class="c-perks">
+                <span>✓ 7+ Years Circular Experience</span>
+                <span>✓ German/Italian Machinery</span>
+                <span>✓ Team Leadership</span>
+              </div>
+            </div>
+            <div class="c-card-right">
+              <a href="/contact?topic=careers&role=Circular+Knitting+Shift+Supervisor" class="btn btn-red c-apply-btn">Apply Now <span class="arrow">→</span></a>
+            </div>
+          </div>
+
+          <!-- Job 3 -->
+          <div class="career-card" data-category="engineering">
+            <div class="c-card-left">
+              <div class="c-tags">
+                <span class="c-tag red">AUTOMATION</span>
+                <span class="c-tag">FULL-TIME</span>
+                <span class="c-tag">PLANT OPERATIONS</span>
+              </div>
+              <h3 class="c-title">Mechatronics &amp; Automation Controls Engineer</h3>
+              <p class="c-desc">Program and maintain PLC systems across automated dye kitchens, stenter frames, and continuous washing ranges. Optimize sensor telemetry and predictive maintenance.</p>
+              <div class="c-perks">
+                <span>✓ B.Sc Mechatronics / Electrical</span>
+                <span>✓ Siemens &amp; Omron PLC</span>
+                <span>✓ SCADA Integration</span>
+              </div>
+            </div>
+            <div class="c-card-right">
+              <a href="/contact?topic=careers&role=Mechatronics+Automation+Engineer" class="btn btn-red c-apply-btn">Apply Now <span class="arrow">→</span></a>
+            </div>
+          </div>
+
+          <!-- Job 4 -->
+          <div class="career-card" data-category="lab">
+            <div class="c-card-left">
+              <div class="c-tags">
+                <span class="c-tag red">QUALITY ASSURANCE</span>
+                <span class="c-tag">FULL-TIME</span>
+                <span class="c-tag">FINAL INSPECTION BAY</span>
+              </div>
+              <h3 class="c-title">Quality Assurance Lead · 4-Point Inspection</h3>
+              <p class="c-desc">Direct ASTM D5430 inspection protocols across 100 tonnes daily fabric output. Interface with Classic Fashion cut-and-sew units to maintain zero-defect standards.</p>
+              <div class="c-perks">
+                <span>✓ 4+ Years QA Management</span>
+                <span>✓ ASTM D5430 / ISO 9001</span>
+                <span>✓ Root Cause Analysis</span>
+              </div>
+            </div>
+            <div class="c-card-right">
+              <a href="/contact?topic=careers&role=Quality+Assurance+Lead" class="btn btn-red c-apply-btn">Apply Now <span class="arrow">→</span></a>
+            </div>
+          </div>
+
+          <!-- Job 5 -->
+          <div class="career-card" data-category="sustainability">
+            <div class="c-card-left">
+              <div class="c-tags">
+                <span class="c-tag red">SUSTAINABILITY</span>
+                <span class="c-tag">FULL-TIME</span>
+                <span class="c-tag">ENVIRONMENTAL OPERATIONS</span>
+              </div>
+              <h3 class="c-title">Environmental &amp; ZDHC Sustainability Specialist</h3>
+              <p class="c-desc">Audit chemical inputs against ZDHC Level 3 MRSL, monitor membrane bioreactor effluent metrics, and assist in HIGG FEM verified environmental disclosures.</p>
+              <div class="c-perks">
+                <span>✓ B.Sc Environmental Science</span>
+                <span>✓ ZDHC / HIGG FEM Expert</span>
+                <span>✓ Water &amp; Energy Auditing</span>
+              </div>
+            </div>
+            <div class="c-card-right">
+              <a href="/contact?topic=careers&role=Environmental+Sustainability+Specialist" class="btn btn-red c-apply-btn">Apply Now <span class="arrow">→</span></a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- General Application Box -->
+        <div class="general-app-box reveal" style="margin-top: 48px;">
+          <div class="g-app-content">
+            <span class="g-badge">DON'T SEE YOUR SPECIALTY?</span>
+            <h3>SEND A GENERAL TALENT APPLICATION</h3>
+            <p>We are constantly expanding our laboratory, knitting, mechatronics, and production management teams. Drop your CV directly to our talent acquisition team in Amman.</p>
+          </div>
+          <div class="g-app-action">
+            <a href="/contact?topic=careers" class="btn btn-red">Submit Resume <span class="arrow">→</span></a>
+            <a href="mailto:careers@bia.jo" class="btn btn-ghost" style="color: #fff; border-color: rgba(244,241,236,0.25);">careers@bia.jo</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 04: CLOSING STATEMENT ================= -->
+    <section class="section closing-cta-section" style="background: radial-gradient(circle at 50% 50%, rgba(200, 16, 46, 0.18), transparent 75%), #0a080a; text-align: center; padding: 140px 6vw;">
+      <div class="container" style="max-width: 960px; margin: 0 auto;">
+        <div class="reveal">
+          <p class="eyebrow" style="justify-content: center; color: var(--red);">OUR CALLING</p>
+          <h2 style="font-size: clamp(38px, 5.5vw, 72px); font-weight: 900; line-height: 1.1; margin-top: 18px; color: #ffffff; letter-spacing: -0.01em;">
+            COME MAKE THE FUTURE WITH US
+          </h2>
+          <p style="font-size: 20px; color: #e4dfda; line-height: 1.6; margin-top: 24px; max-width: 760px; margin-left: auto; margin-right: auto;">
+            From local Jordan apprentices to global textile masters, our mill is where precision engineering and human passion unite to create the fabrics of tomorrow.
+          </p>
+
+          <div style="margin-top: 44px; display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;">
+            <a href="/contact?topic=careers" class="btn btn-red" style="padding: 18px 36px; font-size: 13px;">
+              Join the Team in Amman <span class="arrow">→</span>
+            </a>
+            <a href="/contact?topic=mill_visit" class="btn btn-ghost" style="padding: 18px 36px; font-size: 13px; border-color: rgba(244,241,236,0.3); color: #fff;">
+              Schedule a Mill &amp; Lab Visit <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= MAKER VIDEO MODAL ================= -->
+  <div class="maker-video-modal" id="makerVideoModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="makerModalBackdrop"></div>
+    
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="makerModalClose" aria-label="Close video player">✕</button>
+      
+      <div class="modal-video-viewport">
+        <!-- Video Screen Simulation -->
+        <div class="sim-video-screen" id="simVideoScreen">
+          <div class="sim-screen-overlay">
+            <div class="sim-live-tag">
+              <span class="rec-dot"></span>
+              <span>20S MAKER SPOTLIGHT · BIA AMMAN HUB</span>
+            </div>
+            
+            <div class="sim-center-play" id="simCenterPlay">
+              <svg viewBox="0 0 24 24" width="38" height="38" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+
+            <div class="sim-lower-third">
+              <span class="sim-maker-dept" id="modalDept">LABORATORY SCIENCE</span>
+              <h4 class="sim-maker-name" id="modalName">Rania</h4>
+              <p class="sim-maker-role" id="modalRole">Lead Laboratory Technician</p>
+            </div>
+          </div>
+          
+          <!-- Animated Factory Ambient Backdrop -->
+          <div class="sim-bg-visual" id="modalBgVisual"></div>
+
+          <!-- Video Controls Bar -->
+          <div class="sim-controls-bar">
+            <button class="sim-btn-play-pause" id="simPlayPauseBtn" aria-label="Play/Pause">❚❚</button>
+            <div class="sim-time-bar-track" id="simTimeTrack">
+              <div class="sim-time-progress" id="simTimeProgress" style="width: 0%;"></div>
+            </div>
+            <span class="sim-time-code" id="simTimeCode">0:00 / 0:20</span>
+          </div>
+        </div>
+
+        <!-- Video Transcript & Context -->
+        <div class="modal-transcript-pane">
+          <div class="transcript-header">
+            <span class="transcript-badge">UNSCRIPTED ANSWER</span>
+            <span class="transcript-loc" id="modalLoc">📍 Sahab QA Laboratory</span>
+          </div>
+
+          <div class="transcript-q-box">
+            <span class="t-label">QUESTION POSED</span>
+            <h4 class="t-question" id="modalQ">“What does quality mean to you?”</h4>
+          </div>
+
+          <div class="transcript-body-box">
+            <span class="t-label">TRANSCRIPT HIGHLIGHT</span>
+            <p class="t-answer" id="modalA">
+              “Quality isn't a certificate hanging in a frame. It is proving in our lab that every single moisture-wicking and colourfastness claim will withstand an athlete running an ultra-marathon in extreme heat.”
+            </p>
+          </div>
+
+          <div class="modal-actions-bar">
+            <a href="/contact?topic=careers" class="btn btn-red" style="font-size: 11px; padding: 12px 24px;">Apply to Work with This Team <span class="arrow">→</span></a>
+            <button class="btn btn-ghost" id="modalReplayBtn" style="font-size: 11px; padding: 12px 20px; border-color: rgba(244,241,236,0.2); color: #fff;">Replay 20s Story ↺</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" aria-label="BIA home">
+          <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="footer-logo-img" />
+        </a>
+        <p>BRILLIANCE, WOVEN IN.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span>DISCOVER</span>
+          <a href="/story">Our Story</a>
+          <a href="/ecosystem">BIA × Classic</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/story#leadership">Leadership</a>
+        </div>
+        <div class="footer-col">
+          <span>CREATE</span>
+          <a href="/fabrics">Fabric Lab</a>
+          <a href="/fabrics#technologies">Technologies</a>
+          <a href="/innovation">BIA Next</a>
+          <a href="/contact?pathway=fabric">Request Swatch</a>
+        </div>
+        <div class="footer-col">
+          <span>IMPACT</span>
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/inside#quality">Quality</a>
+          <a href="/inside#certifications">Certifications</a>
+        </div>
+        <div class="footer-col">
+          <span>CONNECT</span>
+          <a href="/contact">Contact</a>
+          <a href="/contact?pathway=careers">Careers</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mid">
+      <span>Amman, Jordan · Al-Tajamouat Industrial City, Sahab</span>
+      <span>+962 6 402 0000</span>
+      <span>develop@bia.jo</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <span class="sep">·</span>
+        <a href="#">Cookies</a>
+        <span class="sep">·</span>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-line">
+      <span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261008_08"></script>
+</body>
+
+</html>
