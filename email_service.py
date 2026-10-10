@@ -2,6 +2,7 @@
 BIA — Brilliance in Apparel · Email Notification Service
 Handles asynchronous email dispatch for fabric briefs, enquiries, and swatch requests.
 """
+import html
 import logging
 import os
 import smtplib
@@ -33,22 +34,32 @@ TOPIC_LABELS = {
 }
 
 
+def _clean_header(val: str) -> str:
+    """Strip carriage returns and newlines to prevent SMTP Header Injection."""
+    if not val:
+        return ""
+    return str(val).replace("\r", " ").replace("\n", " ").strip()
+
+
 def send_email_async(to_email: str, subject: str, body_text: str, body_html: str = ""):
     """Send an email asynchronously in a background thread to prevent latency on requests."""
+    clean_to = _clean_header(to_email)
+    clean_subject = _clean_header(subject)
+
     def _worker():
         if not SMTP_SERVER:
             logger.info(
                 "[EMAIL LOG (DEV/OFFLINE)] To: %s | Subject: %s\n%s",
-                to_email,
-                subject,
+                clean_to,
+                clean_subject,
                 body_text,
             )
             return
         try:
             msg = MIMEMultipart("alternative")
-            msg["Subject"] = subject
-            msg["From"] = BIA_FROM_EMAIL
-            msg["To"] = to_email
+            msg["Subject"] = clean_subject
+            msg["From"] = _clean_header(BIA_FROM_EMAIL)
+            msg["To"] = clean_to
 
             part1 = MIMEText(body_text, "plain", "utf-8")
             msg.attach(part1)
@@ -61,10 +72,10 @@ def send_email_async(to_email: str, subject: str, body_text: str, body_html: str
                     server.starttls()
                 if SMTP_USER and SMTP_PASSWORD:
                     server.login(SMTP_USER, SMTP_PASSWORD)
-                server.sendmail(BIA_FROM_EMAIL, [to_email], msg.as_string())
-            logger.info("[EMAIL SENT] Successfully sent email to %s | Subject: %s", to_email, subject)
+                server.sendmail(BIA_FROM_EMAIL, [clean_to], msg.as_string())
+            logger.info("[EMAIL SENT] Successfully sent email to %s | Subject: %s", clean_to, clean_subject)
         except Exception as err:
-            logger.error("[EMAIL ERROR] Failed to send email to %s: %s", to_email, err)
+            logger.error("[EMAIL ERROR] Failed to send email to %s: %s", clean_to, err)
 
     threading.Thread(target=_worker, daemon=True).start()
 
@@ -74,21 +85,32 @@ def send_enquiry_confirmation(ref: str, topic: str, name: str, email: str, compa
     Formats and dispatches confirmation email for enquiries & custom fabric development.
     Dispatches to both the client and the internal BIA engineering inbox.
     """
+    clean_ref = _clean_header(ref)
+    clean_name = _clean_header(name)
+    clean_company = _clean_header(company) if company else ""
     topic_title = TOPIC_LABELS.get(topic, "Fabric & Mill Inquiry")
-    subject = f"Enquiry Received [{ref}] — BIA Textile Mill Jordan"
+    subject = f"Enquiry Received [{clean_ref}] — BIA Textile Mill Jordan"
 
-    text_content = f"""Dear {name},
+    # HTML-escaped variants to protect against email client HTML injection / XSS
+    esc_name = html.escape(clean_name)
+    esc_company = html.escape(clean_company)
+    esc_topic = html.escape(topic_title)
+    esc_ref = html.escape(clean_ref)
+    esc_email = html.escape(_clean_header(email))
+    esc_msg = html.escape(str(message or "General inquiry submitted."))
+
+    text_content = f"""Dear {clean_name},
 
 Thank you for contacting BIA (Brilliance in Apparel).
 
-We have received your enquiry regarding {topic_title}. Your reference number is: {ref}.
+We have received your enquiry regarding {topic_title}. Your reference number is: {clean_ref}.
 
 Enquiry Summary:
 ----------------
-Reference: {ref}
+Reference: {clean_ref}
 Enquiry Type: {topic_title}
-Name: {name}
-Company: {company or 'N/A'}
+Name: {clean_name}
+Company: {clean_company or 'N/A'}
 Email: {email}
 
 Details:
@@ -130,22 +152,22 @@ https://bia.jo
   <div class="container">
     <div class="logo">BIA</div>
     <h2>Enquiry Confirmation</h2>
-    <p>Dear <strong>{name}</strong>,</p>
+    <p>Dear <strong>{esc_name}</strong>,</p>
     <p>Thank you for reaching out to BIA. Your request has been logged and assigned to our fabric engineering division.</p>
     
     <div class="ref-box">
       <span class="ref-label">Reference Number</span>
-      <span class="ref-val">{ref}</span>
+      <span class="ref-val">{esc_ref}</span>
     </div>
 
     <table class="details-table">
-      <tr><td class="label">Enquiry Type:</td><td class="val">{topic_title}</td></tr>
-      <tr><td class="label">Company:</td><td class="val">{company or '—'}</td></tr>
-      <tr><td class="label">Email:</td><td class="val">{email}</td></tr>
+      <tr><td class="label">Enquiry Type:</td><td class="val">{esc_topic}</td></tr>
+      <tr><td class="label">Company:</td><td class="val">{esc_company or '—'}</td></tr>
+      <tr><td class="label">Email:</td><td class="val">{esc_email}</td></tr>
     </table>
 
     <p style="margin-bottom: 8px; font-weight: 600; color: #f4f1ec;">Submitted Specifications / Message:</p>
-    <div class="msg-block">{message or 'General inquiry submitted.'}</div>
+    <div class="msg-block">{esc_msg}</div>
 
     <p style="margin-top: 24px;">Our engineering team will review your specifications and get in touch within 24–48 hours.</p>
 
@@ -164,5 +186,6 @@ https://bia.jo
 
     # Dispatch copy to internal team
     if BIA_ADMIN_EMAIL and BIA_ADMIN_EMAIL != email:
-        admin_subject = f"[NEW INQUIRY] {topic_title} from {name} ({company or 'No Company'}) [{ref}]"
+        admin_subject = f"[NEW INQUIRY] {topic_title} from {clean_name} ({clean_company or 'No Company'}) [{clean_ref}]"
         send_email_async(BIA_ADMIN_EMAIL, admin_subject, text_content, html_content)
+

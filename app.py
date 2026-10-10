@@ -19,6 +19,10 @@ import uuid
 from datetime import datetime, timezone
 
 import sys
+import threading
+import time
+from collections import defaultdict
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
@@ -39,6 +43,66 @@ except ImportError:
         pass
 
 app = Flask(__name__)
+# 2MB max payload to mitigate memory exhaustion DoS
+app.config["MAX_CONTENT_LENGTH"] = 2 * 1024 * 1024
+
+# ---------------------------------------------------------------------------
+# In-Memory Rate Limiter (Thread-safe sliding window)
+# ---------------------------------------------------------------------------
+_RATE_LIMIT_STORE = defaultdict(list)
+_RATE_LIMIT_LOCK = threading.Lock()
+
+
+def is_rate_limited(ip: str, limit: int = 15, window_seconds: int = 60) -> bool:
+    """Thread-safe sliding window rate limiter per client IP."""
+    now = time.time()
+    with _RATE_LIMIT_LOCK:
+        timestamps = _RATE_LIMIT_STORE[ip]
+        valid = [t for t in timestamps if now - t < window_seconds]
+        if len(valid) >= limit:
+            _RATE_LIMIT_STORE[ip] = valid
+            return True
+        valid.append(now)
+        _RATE_LIMIT_STORE[ip] = valid
+        return False
+
+
+def get_client_ip() -> str:
+    """Safely extract remote IP handling proxy headers."""
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.remote_addr or "127.0.0.1"
+
+
+# ---------------------------------------------------------------------------
+# Security Headers Middleware
+# ---------------------------------------------------------------------------
+@app.after_request
+def apply_security_headers(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' https://fonts.gstatic.com data:; "
+        "img-src 'self' data: https: blob:; "
+        "connect-src 'self'; "
+        "frame-ancestors 'self';"
+    )
+    if request.is_secure or request.headers.get("X-Forwarded-Proto") == "https":
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    return response
+
+
+@app.errorhandler(413)
+def request_entity_too_large(error):
+    return jsonify({"error": "Payload exceeds maximum allowed size (2MB)."}), 413
+
 
 # ---------------------------------------------------------------------------
 # Configuration (environment variables)
@@ -198,15 +262,20 @@ def health():
             conn.execute("SELECT 1")
         return jsonify({"status": "ok", "db": "connected"})
     except Exception as exc:  # noqa: BLE001
-        return jsonify({"status": "degraded", "db": str(exc)[:200]}), 503
+        app.logger.warning("DB connectivity check degraded: %s", exc)
+        return jsonify({"status": "degraded", "db": "unavailable"}), 503
 
 
 @app.post("/api/fabric-brief")
 def fabric_brief():
+    ip = get_client_ip()
+    if is_rate_limited(ip, limit=20, window_seconds=60):
+        return jsonify({"error": "Too many requests. Please wait a moment."}), 429
+
     data = request.get_json(silent=True) or {}
-    feel = data.get("feel")
-    perf = data.get("performance")
-    appl = data.get("application")
+    feel = str(data.get("feel") or "").strip()
+    perf = str(data.get("performance") or "").strip()
+    appl = str(data.get("application") or "").strip()
 
     if feel not in ALLOWED_FEEL or perf not in ALLOWED_PERF or appl not in ALLOWED_APP:
         return jsonify({"error": "Invalid brief selection."}), 400
@@ -227,17 +296,21 @@ def fabric_brief():
 
 @app.post("/api/enquiry")
 def enquiry():
+    ip = get_client_ip()
+    if is_rate_limited(ip, limit=10, window_seconds=60):
+        return jsonify({"error": "Too many requests. Please wait a moment."}), 429
+
     data = request.get_json(silent=True) or {}
-    topic   = data.get("topic", "general")
-    name    = (data.get("name") or "").strip()
-    email   = (data.get("email") or "").strip()
-    company = (data.get("company") or "").strip() or None
-    message = (data.get("message") or "").strip() or None
+    topic   = str(data.get("topic") or "general").strip()
+    name    = str(data.get("name") or "").strip()[:120]
+    email   = str(data.get("email") or "").strip()[:200]
+    company = str(data.get("company") or "").strip()[:160] or None
+    message = str(data.get("message") or "").strip()[:3000] or None
 
     if topic not in ALLOWED_TOPIC:
         return jsonify({"error": "Invalid topic."}), 400
-    if not name:
-        return jsonify({"error": "Name is required."}), 400
+    if not name or len(name) < 2:
+        return jsonify({"error": "A valid name is required."}), 400
     if not EMAIL_RE.match(email):
         return jsonify({"error": "A valid email is required."}), 400
 
@@ -267,26 +340,34 @@ def enquiry():
 
 @app.post("/api/fabric-challenge")
 def fabric_challenge():
-    data = request.get_json(silent=True) or {}
-    name = (data.get("name") or "").strip()
-    email = (data.get("email") or "").strip()
-    company = (data.get("company") or "").strip() or None
-    application = data.get("application") or "High-Performance Sportswear"
-    performance = data.get("performance") or []
-    composition = data.get("composition") or "Engineering Recommendation"
-    gsm = data.get("gsm") or "Custom Spec"
-    target_price = data.get("target_price") or "FOB Benchmark"
-    volume = data.get("volume") or "Production Program"
-    timeline = data.get("timeline") or "Upcoming Season"
-    notes = data.get("notes") or ""
+    ip = get_client_ip()
+    if is_rate_limited(ip, limit=10, window_seconds=60):
+        return jsonify({"error": "Too many requests. Please wait a moment."}), 429
 
-    if not name:
-        return jsonify({"error": "Name is required."}), 400
+    data = request.get_json(silent=True) or {}
+    name = str(data.get("name") or "").strip()[:120]
+    email = str(data.get("email") or "").strip()[:200]
+    company = str(data.get("company") or "").strip()[:160] or None
+    application = str(data.get("application") or "High-Performance Sportswear")[:100]
+    raw_perf = data.get("performance") or []
+    if isinstance(raw_perf, list):
+        performance = [str(p)[:40] for p in raw_perf[:10]]
+    else:
+        performance = [str(raw_perf)[:40]]
+    composition = str(data.get("composition") or "Engineering Recommendation")[:100]
+    gsm = str(data.get("gsm") or "Custom Spec")[:50]
+    target_price = str(data.get("target_price") or "FOB Benchmark")[:50]
+    volume = str(data.get("volume") or "Production Program")[:50]
+    timeline = str(data.get("timeline") or "Upcoming Season")[:50]
+    notes = str(data.get("notes") or "").strip()[:2000]
+
+    if not name or len(name) < 2:
+        return jsonify({"error": "A valid contact name is required."}), 400
     if not EMAIL_RE.match(email):
         return jsonify({"error": "A valid work email is required."}), 400
 
     ref = new_reference("BIA-NXT")
-    perf_str = ", ".join(performance) if isinstance(performance, list) else str(performance)
+    perf_str = ", ".join(performance)
     formatted_msg = (
         f"[BIA NEXT CHALLENGE]\n"
         f"• Application: {application}\n"
