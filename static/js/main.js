@@ -438,6 +438,32 @@
   var currentFilter = 'all';
   var currentSearch = '';
 
+  /* ---------------- 4. BIA FABRIC LAB / MATERIAL DISCOVERY ---------------- */
+  var dimTabs = document.querySelectorAll('.dim-tab');
+  var dimGroups = document.querySelectorAll('.dim-pills-group');
+  var allFilterPills = document.querySelectorAll('.mat-filter-pill');
+
+  // Dimension Tabs Switcher
+  dimTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var dim = tab.getAttribute('data-dim');
+      dimTabs.forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+
+      dimGroups.forEach(function (group) { group.classList.remove('active'); });
+      var targetGroup = document.getElementById('dimGroup' + dim.charAt(0).toUpperCase() + dim.slice(1));
+      if (targetGroup) {
+        targetGroup.classList.add('active');
+        // If no pill in target group is 'on', activate 'all'
+        var onPill = targetGroup.querySelector('.mat-filter-pill.on');
+        if (!onPill) {
+          var allPill = targetGroup.querySelector('[data-filter="all"]');
+          if (allPill) allPill.classList.add('on');
+        }
+      }
+    });
+  });
+
   function filterMaterials() {
     var visibleCount = 0;
     var searchLower = currentSearch.toLowerCase().trim();
@@ -447,9 +473,10 @@
       var name = (card.getAttribute('data-name') || '').toLowerCase();
       var code = (card.getAttribute('data-code') || '').toLowerCase();
       var cat = (card.getAttribute('data-cat') || '').toLowerCase();
+      var comp = (card.getAttribute('data-comp') || '').toLowerCase();
 
       var matchesFilter = (currentFilter === 'all') || tags.indexOf(currentFilter) !== -1;
-      var matchesSearch = !searchLower || (name.indexOf(searchLower) !== -1 || code.indexOf(searchLower) !== -1 || cat.indexOf(searchLower) !== -1);
+      var matchesSearch = !searchLower || (name.indexOf(searchLower) !== -1 || code.indexOf(searchLower) !== -1 || cat.indexOf(searchLower) !== -1 || comp.indexOf(searchLower) !== -1);
 
       if (matchesFilter && matchesSearch) {
         card.style.display = '';
@@ -464,9 +491,14 @@
     }
   }
 
-  matFilterPills.forEach(function (pill) {
+  allFilterPills.forEach(function (pill) {
     pill.addEventListener('click', function () {
-      matFilterPills.forEach(function (p) { p.classList.remove('on'); });
+      var parentGroup = pill.closest('.dim-pills-group');
+      if (parentGroup) {
+        parentGroup.querySelectorAll('.mat-filter-pill').forEach(function (p) { p.classList.remove('on'); });
+      } else {
+        allFilterPills.forEach(function (p) { p.classList.remove('on'); });
+      }
       pill.classList.add('on');
       currentFilter = pill.getAttribute('data-filter') || 'all';
       filterMaterials();
@@ -480,17 +512,19 @@
     });
   }
 
-  // Modal logic
+  // Enhanced Fabric Product Modal logic
   var matModal = document.getElementById('matModal');
   var matModalBackdrop = document.getElementById('matModalBackdrop');
   var matModalClose = document.getElementById('matModalClose');
-  var matModalCloseBtn = document.getElementById('matModalCloseBtn');
   var matModalImg = document.getElementById('matModalImg');
   var matModalCode = document.getElementById('matModalCode');
   var matModalCat = document.getElementById('matModalCat');
   var matModalTitle = document.getElementById('matModalTitle');
   var matModalComp = document.getElementById('matModalComp');
   var matModalGsm = document.getElementById('matModalGsm');
+  var matModalGauge = document.getElementById('matModalGauge');
+  var matModalWidth = document.getElementById('matModalWidth');
+  var matModalPerf = document.getElementById('matModalPerf');
   var matModalTags = document.getElementById('matModalTags');
 
   function openMatModal(card) {
@@ -500,17 +534,31 @@
     var cat = card.getAttribute('data-cat');
     var comp = card.getAttribute('data-comp');
     var gsm = card.getAttribute('data-gsm');
+    var width = card.getAttribute('data-width') || '152 cm (60")';
+    var gauge = card.getAttribute('data-gauge') || '32 Gauge Circular Knit';
+    var perf = card.getAttribute('data-perf') || 'Performance Engineered';
     var img = card.getAttribute('data-img');
-    var tags = (card.getAttribute('data-tags') || '').split(' ').map(function (t) {
-      return t.charAt(0).toUpperCase() + t.slice(1);
-    }).join(' · ');
+    var tagList = (card.getAttribute('data-tags') || '').split(' ').filter(Boolean);
 
     if (matModalTitle) matModalTitle.textContent = name;
     if (matModalCode) matModalCode.textContent = code;
     if (matModalCat) matModalCat.textContent = cat;
     if (matModalComp) matModalComp.textContent = comp;
     if (matModalGsm) matModalGsm.textContent = gsm;
-    if (matModalTags) matModalTags.textContent = tags;
+    if (matModalWidth) matModalWidth.textContent = width;
+    if (matModalGauge) matModalGauge.textContent = gauge;
+    if (matModalPerf) matModalPerf.textContent = perf;
+    
+    if (matModalTags) {
+      matModalTags.innerHTML = '';
+      tagList.forEach(function (t) {
+        var span = document.createElement('span');
+        span.className = 'f-tag-pill';
+        span.textContent = t.charAt(0).toUpperCase() + t.slice(1).replace('-', ' ');
+        matModalTags.appendChild(span);
+      });
+    }
+
     if (matModalImg) {
       matModalImg.src = img;
       matModalImg.alt = code + ' ' + name;
@@ -529,13 +577,12 @@
   }
 
   matCards.forEach(function (card) {
-    card.addEventListener('click', function (e) {
+    card.addEventListener('click', function () {
       openMatModal(card);
     });
   });
 
   if (matModalClose) matModalClose.addEventListener('click', closeMatModal);
-  if (matModalCloseBtn) matModalCloseBtn.addEventListener('click', closeMatModal);
   if (matModalBackdrop) matModalBackdrop.addEventListener('click', closeMatModal);
   
   var matModalDevelopBtn = document.getElementById('matModalDevelopBtn');
@@ -546,19 +593,59 @@
       var cat = matModalCat ? matModalCat.textContent : '';
       var comp = matModalComp ? matModalComp.textContent : '';
       var gsm = matModalGsm ? matModalGsm.textContent : '';
-      var tags = matModalTags ? matModalTags.textContent : '';
+      var width = matModalWidth ? matModalWidth.textContent : '';
+      var gauge = matModalGauge ? matModalGauge.textContent : '';
 
-      var modalMsg = "Fabric Development & Swatch Request for " + name + " (" + code + "):\n" +
-        "• Category: " + cat + "\n" +
+      var modalMsg = "SWATCH REQUEST & FABRIC DEVELOPMENT FOR: " + name + " (" + code + ")\n\n" +
+        "• Material Category: " + cat + "\n" +
         "• Target Composition: " + comp + "\n" +
-        "• Weight / GSM: " + gsm + "\n" +
-        "• Performance Attributes: " + tags + "\n\n" +
-        "Please provide physical swatches and bulk engineering options for this material.";
+        "• Target Weight: " + gsm + "\n" +
+        "• Cuttable Width: " + width + "\n" +
+        "• Construction/Gauge: " + gauge + "\n\n" +
+        "Please courier physical sample swatches & yarn lab dips to our design office.";
 
       closeMatModal();
-      fillContactAndScroll('fabric', modalMsg);
+      fillContactAndScroll('development', modalMsg);
     });
   }
+
+  // Download Fabric Technical Spec Sheet
+  window.downloadFabricSpec = function () {
+    var name = matModalTitle ? matModalTitle.textContent : 'BIA Fabric';
+    var code = matModalCode ? matModalCode.textContent : 'DEV-01';
+    var comp = matModalComp ? matModalComp.textContent : '';
+    var gsm = matModalGsm ? matModalGsm.textContent : '';
+    var width = matModalWidth ? matModalWidth.textContent : '';
+    var gauge = matModalGauge ? matModalGauge.textContent : '';
+    var perf = matModalPerf ? matModalPerf.textContent : '';
+
+    var specDoc = "<!DOCTYPE html><html><head><title>BIA Technical Data Sheet - " + code + "</title>" +
+      "<style>body{font-family:Helvetica,Arial,sans-serif;padding:40px;color:#131014;line-height:1.6;}" +
+      ".header{border-bottom:3px solid #c8102e;padding-bottom:20px;margin-bottom:30px;display:flex;justify-content:space-between;align-items:center;}" +
+      "h1{color:#c8102e;margin:0;font-size:24px;}h2{margin:5px 0 0;font-size:18px;color:#131014;}" +
+      "table{width:100%;border-collapse:collapse;margin:24px 0;}th,td{padding:12px 16px;border:1px solid #ddd;text-align:left;}" +
+      "th{background:#f4f1ec;font-weight:bold;width:35%;}.footer{margin-top:40px;font-size:12px;color:#777;border-top:1px solid #ddd;padding-top:15px;}</style></head>" +
+      "<body><div class='header'><div><h1>BIA — BRILLIANCE IN APPAREL</h1><h2>TECHNICAL DATA SHEET</h2></div><div><strong>" + code + "</strong></div></div>" +
+      "<h3>" + name + "</h3>" +
+      "<table>" +
+      "<tr><th>Item Code</th><td>" + code + "</td></tr>" +
+      "<tr><th>Composition</th><td>" + comp + "</td></tr>" +
+      "<tr><th>Weight / GSM</th><td>" + gsm + "</td></tr>" +
+      "<tr><th>Cuttable Width</th><td>" + width + "</td></tr>" +
+      "<tr><th>Knit Construction & Gauge</th><td>" + gauge + "</td></tr>" +
+      "<tr><th>Performance Characteristics</th><td>" + perf + "</td></tr>" +
+      "<tr><th>Audited Certifications</th><td>OEKO-TEX Standard 100 Class 1, GRS 4.0, ZDHC Level 3</td></tr>" +
+      "<tr><th>Duty Tariff Advantage</th><td>0% US Import Tariff under Jordan-US Free Trade Agreement</td></tr>" +
+      "</table>" +
+      "<div class='footer'>BIA Fabric Engineering Division · Al-Tajamouat Industrial City, Amman, Jordan · develop@bia.jo</div>" +
+      "<script>window.print();<\/script></body></html>";
+
+    var printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(specDoc);
+      printWindow.document.close();
+    }
+  };
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && matModal && matModal.classList.contains('is-open')) {
@@ -566,33 +653,132 @@
     }
   });
 
-  /* ---------------- 7. CONTACT ENQUIRY FORM ---------------- */
-  var contactForm = document.getElementById('contactForm');
-  var contactSuccess = document.getElementById('contactSuccess');
-  var contactRefCode = document.getElementById('contactRefCode');
-  var contactSubmitBtn = document.getElementById('contactSubmitBtn');
-  var contactResetBtn = document.getElementById('contactResetBtn');
+  /* ---------------- 7. DYNAMIC 6-PATHWAY CONTACT & ENQUIRY SYSTEM ---------------- */
+  var pathwayCards = document.querySelectorAll('.pathway-card');
+  var pathwayPanels = document.querySelectorAll('.pathway-form-panel');
+  var currentFormTag = document.getElementById('currentFormTag');
+  var currentFormTitle = document.getElementById('currentFormTitle');
+  var currentPathwayName = document.getElementById('currentPathwayName');
+  var submitBtnLabel = document.getElementById('submitBtnLabel');
   var enquiryTopicInput = document.getElementById('enquiryTopic');
-  var topicChips = document.querySelectorAll('.topic-chip');
+  var contactForm = document.getElementById('contactForm');
+  var contactSubmitBtn = document.getElementById('contactSubmitBtn');
 
-  topicChips.forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      topicChips.forEach(function (c) { c.classList.remove('on'); });
-      chip.classList.add('on');
-      var topic = chip.getAttribute('data-topic');
-      if (enquiryTopicInput) enquiryTopicInput.value = topic;
+  var pathwayConfig = {
+    fabric: {
+      tag: 'PATHWAY 01 · SWATCH & DISCOVERY',
+      title: 'Request Fabric Swatches & Lab Hangers',
+      name: 'I need a fabric',
+      btn: 'Request Fabric Swatches',
+      refPrefix: 'BIA-FAB'
+    },
+    development: {
+      tag: 'PATHWAY 02 · CUSTOM ENGINEERING',
+      title: 'Submit Technical Development Brief',
+      name: 'I have a development brief',
+      btn: 'Submit Technical Brief',
+      refPrefix: 'BIA-DEV'
+    },
+    capacity: {
+      tag: 'PATHWAY 03 · SCALE & PRODUCTION TONNAGE',
+      title: 'Reserve Mill Production Capacity',
+      name: 'I need production capacity',
+      btn: 'Request Capacity Allocation',
+      refPrefix: 'BIA-CAP'
+    },
+    mill_visit: {
+      tag: 'PATHWAY 04 · AMMAN MILL DELEGATION TOUR',
+      title: 'Schedule a Guided Factory Tour in Amman',
+      name: 'I want to visit BIA',
+      btn: 'Book Mill Tour Delegation',
+      refPrefix: 'BIA-VIS'
+    },
+    supplier: {
+      tag: 'PATHWAY 05 · SUPPLY CHAIN PARTNERSHIP',
+      title: 'Submit Raw Material / Supplier Profile',
+      name: 'I want to become a supplier',
+      btn: 'Submit Supplier Profile',
+      refPrefix: 'BIA-SUP'
+    },
+    careers: {
+      tag: 'PATHWAY 06 · CAREERS & CULTURE',
+      title: 'Apply to Join the BIA Textiles Team',
+      name: 'I\'m looking for a career',
+      btn: 'Submit Career Application',
+      refPrefix: 'BIA-CAR'
+    }
+  };
+
+  function selectPathway(pathwayKey, scroll) {
+    if (!pathwayConfig[pathwayKey]) pathwayKey = 'fabric';
+    var conf = pathwayConfig[pathwayKey];
+
+    // Highlight active card
+    pathwayCards.forEach(function (card) {
+      card.classList.toggle('active', card.getAttribute('data-pathway') === pathwayKey);
+    });
+
+    // Show matching form panel
+    pathwayPanels.forEach(function (panel) {
+      panel.classList.toggle('active', panel.id === 'panel-' + pathwayKey);
+    });
+
+    // Update labels and tags
+    if (currentFormTag) currentFormTag.textContent = conf.tag;
+    if (currentFormTitle) currentFormTitle.textContent = conf.title;
+    if (currentPathwayName) currentPathwayName.textContent = conf.name;
+    if (submitBtnLabel) submitBtnLabel.textContent = conf.btn;
+    if (enquiryTopicInput) enquiryTopicInput.value = pathwayKey;
+
+    if (scroll) {
+      var container = document.getElementById('contactFormContainer');
+      if (container) {
+        var y = container.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+  }
+  window.selectPathway = selectPathway;
+
+  pathwayCards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      var p = card.getAttribute('data-pathway');
+      selectPathway(p, false);
     });
   });
 
+  // Multi-chip selector toggles
+  document.querySelectorAll('.multi-chips').forEach(function (wrap) {
+    wrap.querySelectorAll('.f-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chip.classList.toggle('active');
+      });
+    });
+  });
+
+  // Parse URL query parameter (e.g. ?pathway=mill_visit or ?topic=development)
+  var urlParams = new URLSearchParams(window.location.search);
+  var initialPath = urlParams.get('pathway') || urlParams.get('topic') || urlParams.get('path');
+  if (initialPath && pathwayConfig[initialPath]) {
+    selectPathway(initialPath, false);
+  }
+
+  // Success Modal
   var enquiryModal = document.getElementById('enquirySuccessModal');
   var enquiryModalBackdrop = document.getElementById('enquiryModalBackdrop');
   var enquiryModalClose = document.getElementById('enquiryModalClose');
   var enquiryModalDoneBtn = document.getElementById('enquiryModalDoneBtn');
   var enquiryModalRef = document.getElementById('enquiryModalRef');
+  var enquirySuccessTitle = document.getElementById('enquirySuccessTitle');
+  var enquirySuccessDesc = document.getElementById('enquirySuccessDesc');
 
-  function openEnquiryModal(ref) {
+  function openEnquiryModal(ref, pathway) {
     if (!enquiryModal) return;
+    var conf = pathwayConfig[pathway] || pathwayConfig.fabric;
     if (enquiryModalRef) enquiryModalRef.textContent = ref;
+    if (enquirySuccessTitle) enquirySuccessTitle.textContent = conf.name + ' — Transmitted';
+    if (enquirySuccessDesc) enquirySuccessDesc.textContent = 'Thank you for reaching out. Your ' + conf.name.toLowerCase() + ' submission has been logged and assigned to our textile specialists in Amman, Jordan.';
+
     enquiryModal.classList.add('is-open');
     enquiryModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -615,9 +801,13 @@
     }
   });
 
+  // Handle Form Submission
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      var activePathway = enquiryTopicInput ? enquiryTopicInput.value : 'fabric';
+      var conf = pathwayConfig[activePathway] || pathwayConfig.fabric;
+
       var nameInput = document.getElementById('contactName');
       var emailInput = document.getElementById('contactEmail');
       var companyInput = document.getElementById('contactCompany');
@@ -628,85 +818,139 @@
       var email = emailInput ? emailInput.value.trim() : '';
       var company = companyInput ? companyInput.value.trim() : '';
       var phone = phoneInput ? phoneInput.value.trim() : '';
-      var message = messageInput ? messageInput.value.trim() : '';
-      var topic = enquiryTopicInput ? enquiryTopicInput.value : 'fabric';
+      var userMsg = messageInput ? messageInput.value.trim() : '';
 
       if (!name) {
         if (nameInput) nameInput.focus();
+        alert('Please provide your full name.');
         return;
       }
       if (!email || email.indexOf('@') === -1) {
         if (emailInput) emailInput.focus();
+        alert('Please provide a valid work email.');
         return;
       }
 
-      var fullMessage = message;
-      if (phone) {
-        fullMessage = (fullMessage ? fullMessage + '\n\n' : '') + '[Phone/WhatsApp: ' + phone + ']';
+      // Collect pathway-specific parameters
+      var lines = ['[' + conf.tag + ']'];
+      
+      if (activePathway === 'fabric') {
+        var constr = [];
+        document.querySelectorAll('#panel-fabric [data-target="fabric_construction"] .f-chip.active').forEach(function (c) { constr.push(c.getAttribute('data-val')); });
+        var gsms = [];
+        document.querySelectorAll('#panel-fabric [data-target="fabric_gsm"] .f-chip.active').forEach(function (c) { gsms.push(c.getAttribute('data-val')); });
+        var pkgs = [];
+        document.querySelectorAll('#panel-fabric [data-target="fabric_package"] .f-chip.active').forEach(function (c) { pkgs.push(c.getAttribute('data-val')); });
+        var addr = document.getElementById('swatchAddress') ? document.getElementById('swatchAddress').value.trim() : '';
+
+        if (constr.length) lines.push('• Target Constructions: ' + constr.join(', '));
+        if (gsms.length) lines.push('• Target Weight: ' + gsms.join(', '));
+        if (pkgs.length) lines.push('• Package Type: ' + pkgs.join(', '));
+        if (addr) lines.push('• Courier Dispatch Address: ' + addr);
+      } else if (activePathway === 'development') {
+        var app = document.getElementById('devApplication') ? document.getElementById('devApplication').value : '';
+        var season = document.getElementById('devSeason') ? document.getElementById('devSeason').value : '';
+        var benchs = [];
+        document.querySelectorAll('#panel-development [data-target="dev_benchmarks"] .f-chip.active').forEach(function (c) { benchs.push(c.getAttribute('data-val')); });
+        var specs = document.getElementById('devSpecs') ? document.getElementById('devSpecs').value.trim() : '';
+
+        if (app) lines.push('• Garment Application: ' + app);
+        if (season) lines.push('• Target Season: ' + season);
+        if (benchs.length) lines.push('• Benchmarks & Standards: ' + benchs.join(', '));
+        if (specs) lines.push('• Fiber & Technical Specs:\n  ' + specs);
+      } else if (activePathway === 'capacity') {
+        var vol = document.getElementById('capVolume') ? document.getElementById('capVolume').value : '';
+        var model = document.getElementById('capModel') ? document.getElementById('capModel').value : '';
+        var mkts = [];
+        document.querySelectorAll('#panel-capacity [data-target="cap_markets"] .f-chip.active').forEach(function (c) { mkts.push(c.getAttribute('data-val')); });
+        var timeline = document.getElementById('capTimeline') ? document.getElementById('capTimeline').value.trim() : '';
+
+        if (vol) lines.push('• Monthly Volume: ' + vol);
+        if (model) lines.push('• Integration Model: ' + model);
+        if (mkts.length) lines.push('• Target Export Markets: ' + mkts.join(', '));
+        if (timeline) lines.push('• Ramp-Up Window / Terms: ' + timeline);
+      } else if (activePathway === 'mill_visit') {
+        var vDates = document.getElementById('visitDates') ? document.getElementById('visitDates').value.trim() : '';
+        var vDel = document.getElementById('visitDelegation') ? document.getElementById('visitDelegation').value : '';
+        var focus = [];
+        document.querySelectorAll('#panel-mill_visit [data-target="visit_focus"] .f-chip.active').forEach(function (c) { focus.push(c.getAttribute('data-val')); });
+        var assist = [];
+        document.querySelectorAll('#panel-mill_visit [data-target="visit_assistance"] .f-chip.active').forEach(function (c) { assist.push(c.getAttribute('data-val')); });
+
+        if (vDates) lines.push('• Preferred Visit Dates: ' + vDates);
+        if (vDel) lines.push('• Delegation Size: ' + vDel);
+        if (focus.length) lines.push('• Facility Focus: ' + focus.join(', '));
+        if (assist.length) lines.push('• Logistics Support: ' + assist.join(', '));
+      } else if (activePathway === 'supplier') {
+        var sCat = document.getElementById('supCategory') ? document.getElementById('supCategory').value : '';
+        var sOrig = document.getElementById('supOrigin') ? document.getElementById('supOrigin').value.trim() : '';
+        var certs = [];
+        document.querySelectorAll('#panel-supplier [data-target="sup_certs"] .f-chip.active').forEach(function (c) { certs.push(c.getAttribute('data-val')); });
+        var innov = document.getElementById('supInnovation') ? document.getElementById('supInnovation').value.trim() : '';
+
+        if (sCat) lines.push('• Supply Category: ' + sCat);
+        if (sOrig) lines.push('• Origin: ' + sOrig);
+        if (certs.length) lines.push('• Compliance Certs: ' + certs.join(', '));
+        if (innov) lines.push('• Product Proposition:\n  ' + innov);
+      } else if (activePathway === 'careers') {
+        var cDept = document.getElementById('carDepartment') ? document.getElementById('carDepartment').value : '';
+        var cExp = document.getElementById('carExperience') ? document.getElementById('carExperience').value : '';
+        var cLink = document.getElementById('carLinkedin') ? document.getElementById('carLinkedin').value.trim() : '';
+        var cReloc = document.getElementById('carRelocation') ? document.getElementById('carRelocation').value : '';
+        var cSumm = document.getElementById('carSummary') ? document.getElementById('carSummary').value.trim() : '';
+
+        if (cDept) lines.push('• Desired Department: ' + cDept);
+        if (cExp) lines.push('• Experience: ' + cExp);
+        if (cLink) lines.push('• LinkedIn/Portfolio: ' + cLink);
+        if (cReloc) lines.push('• Relocation: ' + cReloc);
+        if (cSumm) lines.push('• Summary:\n  ' + cSumm);
       }
+
+      if (phone) lines.push('• Phone/WhatsApp: ' + phone);
+      if (userMsg) lines.push('• Additional Notes:\n  ' + userMsg);
+
+      var fullMessage = lines.join('\n');
 
       if (contactSubmitBtn) {
         contactSubmitBtn.disabled = true;
-        contactSubmitBtn.querySelector('span').textContent = 'Sending...';
+        if (submitBtnLabel) submitBtnLabel.textContent = 'Transmitting...';
       }
+
+      var generatedRef = (conf.refPrefix || 'BIA-REQ') + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
 
       fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          topic: topic,
+          topic: activePathway,
           name: name,
           email: email,
           company: company || null,
-          message: fullMessage || null
+          message: fullMessage
         })
       })
-        .then(function (r) {
-          return r.json().then(function (data) {
-            return { ok: r.ok, body: data };
-          });
-        })
-        .then(function (res) {
-          var ref = (res.ok && res.body.reference) ? res.body.reference : ('ENQ-' + Math.random().toString(36).substring(2, 8).toUpperCase());
-          if (contactRefCode) contactRefCode.textContent = ref;
-          
-          // Open Success Popup Modal
-          openEnquiryModal(ref);
-
-          // Reset form fields for next use
-          contactForm.reset();
-          topicChips.forEach(function (c, idx) {
-            c.classList.toggle('on', idx === 0);
-          });
-          if (enquiryTopicInput) enquiryTopicInput.value = 'fabric';
-        })
-        .catch(function () {
-          var fallbackRef = 'ENQ-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-          if (contactRefCode) contactRefCode.textContent = fallbackRef;
-          
-          // Open Success Popup Modal
-          openEnquiryModal(fallbackRef);
-
-          contactForm.reset();
-        })
-        .finally(function () {
-          if (contactSubmitBtn) {
-            contactSubmitBtn.disabled = false;
-            contactSubmitBtn.querySelector('span').textContent = 'Send Enquiry';
-          }
+      .then(function (r) {
+        return r.json().then(function (data) {
+          return { ok: r.ok, body: data };
         });
-    });
-  }
-
-  if (contactResetBtn && contactForm && contactSuccess) {
-    contactResetBtn.addEventListener('click', function () {
-      contactForm.reset();
-      topicChips.forEach(function (c, idx) {
-        c.classList.toggle('on', idx === 0);
+      })
+      .then(function (res) {
+        var ref = (res.ok && res.body.reference) ? res.body.reference : generatedRef;
+        openEnquiryModal(ref, activePathway);
+        contactForm.reset();
+        selectPathway(activePathway, false);
+      })
+      .catch(function () {
+        openEnquiryModal(generatedRef, activePathway);
+        contactForm.reset();
+        selectPathway(activePathway, false);
+      })
+      .finally(function () {
+        if (contactSubmitBtn) {
+          contactSubmitBtn.disabled = false;
+          if (submitBtnLabel) submitBtnLabel.textContent = conf.btn;
+        }
       });
-      if (enquiryTopicInput) enquiryTopicInput.value = 'fabric';
-      contactSuccess.hidden = true;
-      contactForm.hidden = false;
     });
   }
 
@@ -768,46 +1012,120 @@
   /* ---------------- 9. FABRIC STORIES ARTICLE READER MODAL ---------------- */
   var STORY_ARTICLES = {
     'quick-dry': {
-      tag: 'TECHNOLOGY · PERFORMANCE FABRICS',
-      title: 'What actually makes a fabric quick-dry?',
-      readTime: '4 MIN READ',
-      img: '/static/assets/stage-knit.png',
-      body: '<p class="article-lead">Contrary to common belief, quick-dry fabrics don\'t simply repel water. True quick-dry performance is a triumph of micro-engineered capillary physics and filament geometry.</p>' +
+      tag: 'MATERIAL SCIENCE · FLUID DYNAMICS',
+      title: 'What Actually Makes a Fabric Quick-Dry?',
+      readTime: '5 MIN READ',
+      img: '/static/assets/fabric_product_01.jpg',
+      body: '<p class="article-lead">Contrary to common belief, quick-dry performance is not achieved by applying a chemical coating. Topical finishes wash out after 10 to 15 home launderings. True, permanent quick-dry performance is a triumph of polymer physics and cross-sectional micro-capillary engineering.</p>' +
             '<h4>1. Capillary Action & Micro-Groove Geometry</h4>' +
-            '<p>Traditional round polyester filaments hold moisture in bulk pockets between fibers. At BIA, our quick-dry textiles utilize modified cross-sectional yarn geometries with multi-channel micro-grooves. These micro-channels draw liquid sweat along the filament surface via capillary action, spreading moisture across a 300% wider evaporation zone in milliseconds.</p>' +
-            '<div class="article-quote">"Quick-dry is not just about final drying time — it is about how fast moisture is pulled away from the skin before the wearer even senses dampness."</div>' +
-            '<h4>2. Dual-Face Moisture Gradient</h4>' +
-            '<p>Our engineered dual-knit structures combine hydrophobic filament yarns on the skin-contact side with hydrophilic outer yarns. This creates an irreversible one-way moisture gradient: sweat is pulled outwards in under 1.2 seconds and locked on the exterior face where ambient airflow completes evaporation.</p>' +
-            '<h4>3. Lab Verification & International Standards</h4>' +
-            '<p>Every batch produced at BIA is verified in our in-house accredited testing laboratory against AATCC 197 (Vertical Wicking Rate) and AATCC 79 (Absorbency). Our high-performance running and training fabrics consistently exceed 120mm wicking in 10 minutes — surpassing tier-1 athletic sportswear benchmarks.</p>'
+            '<p>Standard synthetic filaments are extruded in smooth cylindrical cross-sections. When liquid sweat hits them, it gathers in bulky droplet reservoirs between yarns. At BIA, our quick-dry filaments are engineered with cloverleaf, trilobal, and multi-channel cross-sections. These longitudinal micro-grooves generate rapid capillary pressure, pulling sweat along the filament axis and spreading it across a 300% wider surface area in under 1.2 seconds.</p>' +
+            '<div class="article-quote">“Quick-dry is not just how fast water evaporates from a clothesline; it is the velocity at which moisture is transported away from human skin before sensory discomfort begins.”</div>' +
+            '<h4>2. Dual-Face Differential Hydrophilic Gradients</h4>' +
+            '<p>We engineer dual-face circular knits with hydrophobic micro-polyester filaments on the inner skin face and hydrophilic micro-filaments on the outer face. This creates a directional moisture gradient: sweat cannot flow backward toward the body, locking the skin-contact face completely dry while ambient air drives rapid outer evaporation.</p>' +
+            '<h4>3. AATCC 197 & AATCC 195 Empirical Validation</h4>' +
+            '<p>Every lot is tested in our in-house accredited laboratory using AATCC 197 (Vertical Wicking Rate) and AATCC 195 (Liquid Moisture Management Tester). Our high-performance running knits exceed 150mm vertical wicking in 10 minutes with a Grade 5 One-Way Transport Index.</p>'
+    },
+    'stretch-recovery': {
+      tag: 'KNIT ENGINEERING · ELASTICITY & HYSTERESIS',
+      title: 'The Science Behind Stretch & Recovery',
+      readTime: '5 MIN READ',
+      img: '/static/assets/fabric_product_03.jpg',
+      body: '<p class="article-lead">In activewear sourcing, brands often assume that higher elastane percentage automatically means better performance. In reality, improper elastane management leads to bagging, high hysteresis power loss, and premature garment sagging.</p>' +
+            '<h4>1. Understanding Hysteresis & Power Loss</h4>' +
+            '<p>Hysteresis represents the energy lost when an elastic material stretches and returns to rest. Low-quality stretch fabrics exhibit high hysteresis: the fabric stretches easily but returns sluggishly, creating knee bagging and loose waistbands after a workout. BIA engineers elastane core-spinning and plating tension to keep hysteresis below 8%, ensuring instantaneous snap-back.</p>' +
+            '<div class="article-quote">“Elastane provides elongation, but knitting loop geometry and heat-setting dwell time dictate true athletic recovery.”</div>' +
+            '<h4>2. Mechanical Mono-Material Stretch (Zero Elastane)</h4>' +
+            '<p>Through BIA Next R&D, we engineered 100% polyester mechanical stretch fabrics. By utilizing bicomponent polymers with helical molecular spring crimps, we achieve up to 35% 4-way stretch without a single strand of elastane. This allows garments to be 100% circular and recyclable back into filament yarn at end of life.</p>' +
+            '<h4>3. ASTM D2594 Athletic Stretch Standards</h4>' +
+            '<p>Our performance tights and training jerseys are tested under ASTM D2594 (Knitted Fabric Stretch & Recovery) with static 15-pound tension cycles, certifying recovery rates above 97.5% after repeated 60-minute stress holds.</p>'
     },
     'colour-lab': {
-      tag: 'INSIDE BIA · SPECTROPHOTOMETRY & CHEMISTRY',
-      title: 'Inside the BIA colour lab',
-      readTime: '5 MIN READ',
-      img: '/static/assets/ecosystem-wall-03-tech-lab.png',
-      body: '<p class="article-lead">Colour in technical textiles is both a fine art and an exact science. Inside BIA\'s climate-controlled laboratory, every hue is formulated with digital reflectance precision.</p>' +
-            '<h4>1. Spectral Tolerances Below ΔE 0.5</h4>' +
-            '<p>Using advanced Datacolor spectrophotometers, our dye chemists calculate spectral reflectance across the full visible wavelength (360nm – 700nm). We maintain strict commercial tolerances under ΔE &lt; 0.5 across multiple standard illuminants (D65 Daylight, CWF Cool White Fluorescent, and TL84 Store Lighting), eliminating metamerism.</p>' +
-            '<div class="article-quote">"A shade must look identical under outdoor daylight, gym fluorescent lighting, and retail spotlights. We engineer recipes to ensure zero metameric shift."</div>' +
-            '<h4>2. Robotic Micro-Dispensing & Low-Liquor Formulations</h4>' +
-            '<p>Automated robotic pipetting systems dispense dye formulations with sub-milligram precision. Coupled with our low-liquor dyeing technology (operating at a 1:4.5 liquor ratio), we drastically reduce water and thermal energy consumption while achieving deep, uniform color saturation.</p>' +
-            '<h4>3. Accelerated Performance Testing</h4>' +
-            '<p>Lab-dipped samples undergo accelerated wash fastness (ISO 105-C06), perspiration testing (ISO 105-E04), and xenon arc light fastness testing before recipe approval for 1,000+ kg industrial dye lots.</p>'
+      tag: 'COLOR CHEMISTRY · SPECTROMETRY & ACCREDITATION',
+      title: 'Inside the BIA Colour Lab: Zero Shade Variation',
+      readTime: '4 MIN READ',
+      img: '/static/assets/hero-option-lab.png',
+      body: '<p class="article-lead">Color in high-performance synthetic textiles is not an aesthetic afterthought—it is a precise chemical and optical discipline. Inside BIA’s climate-controlled colorimetry lab, shade consistency is maintained to microscopic tolerances.</p>' +
+            '<h4>1. Spectral Tolerances Below ΔE < 0.5</h4>' +
+            '<p>Using Datacolor 1000 computerized spectrophotometers, our dye chemists measure reflectance curves from 360nm to 700nm. We hold bulk production to strict tolerances of Delta-E (CMC 2:1) &lt; 0.5 across D65 Daylight, TL84 Store Lighting, CWF Fluorescent, and Illuminant A.</p>' +
+            '<div class="article-quote">“A navy blue must match flawlessly under gym fluorescents, stadium floodlights, and direct midday sunshine. We eliminate metameric flare before dye vats are loaded.”</div>' +
+            '<h4>2. Automated Robotic Dye Kitchens</h4>' +
+            '<p>Human dispensing errors are eliminated through our computerized dye kitchens. Liquid dyestuff recipes are auto-pipetted to ±0.01g precision and transferred via closed-loop stainless conduits directly to our 28 low-liquor jet vessels.</p>' +
+            '<h4>3. ZDHC Level 3 Input Verification</h4>' +
+            '<p>Every color formulation is checked against ZDHC MRSL Level 3 restrictions, guaranteeing that vivid neon athletic shades and deep blacks are achieve without hazardous heavy metals or banned aromatic amines.</p>'
     },
     'gsm-story': {
-      tag: 'INNOVATION · TEXTILE ENGINEERING',
-      title: 'Why GSM doesn\'t tell the whole fabric story',
-      readTime: '3 MIN READ',
-      img: '/static/assets/stage-fabric.png',
-      body: '<p class="article-lead">Grams per Square Meter (GSM) is the most common textile metric, but relying on GSM alone is like judging a smartphone purely by its weight.</p>' +
-            '<h4>1. Weight vs. Structural Gauge Density</h4>' +
-            '<p>Two fabrics can weigh exactly 180 GSM yet perform completely differently. A 180 GSM single jersey knitted on a 20-gauge machine will feel loose, prone to snagging, and lack structural recovery. Knitted on a 28 or 32-gauge high-precision circular machine, that same 180 GSM becomes an ultra-fine, squat-proof, compressive second-skin fabric.</p>' +
-            '<div class="article-quote">"Fabric performance is governed by yarn geometry, machine gauge density, and filament multiplicity — GSM is merely the weight on a scale."</div>' +
+      tag: 'MATERIAL SCIENCE · FABRIC ARCHITECTURE',
+      title: 'Why GSM Doesn\'t Tell the Whole Fabric Story',
+      readTime: '4 MIN READ',
+      img: '/static/assets/fabric_product_04.jpg',
+      body: '<p class="article-lead">Grams per Square Meter (GSM) is the universal metric in fabric sourcing, yet relying solely on GSM is like evaluating a car purely by its curb weight. Two 180 GSM jerseys can look identical on paper but feel and perform like completely different animals.</p>' +
+            '<h4>1. Gauge Density vs. Yarn Bulk</h4>' +
+            '<p>A 180 GSM single jersey knitted on a coarse 20-gauge machine uses heavy, low-twist yarns in loose loops. It feels spongy, catches wind, snags easily, and loses shape after 5 washes. Knitted on a 32-gauge ultra-fine European circular frame, that exact same 180 GSM is transformed into a dense, squat-proof, wind-resistant, silky second skin.</p>' +
+            '<div class="article-quote">“Performance is governed by filament multiplicity, machine gauge, and thermal stenter stabilization—GSM is simply the number on the scale.”</div>' +
             '<h4>2. Filament Multiplicity & Micro-Denier Fibers</h4>' +
-            '<p>By utilizing micro-denier yarns with 72 or 144 filaments per yarn strand, BIA engineers ultra-lightweight 130 GSM fabrics that deliver greater opacity, wind resistance, and UPF sun protection than traditional 220 GSM fabrics.</p>' +
-            '<h4>3. Engineering for the End Garment</h4>' +
-            '<p>When developing custom textiles with global apparel partners, our engineering team looks past raw weight to analyze modulus of elasticity, elongation recovery, breathability, and drape for optimal athletic performance.</p>'
+            '<p>By employing micro-denier yarns (e.g., 75D/144F—where 144 individual filaments form a single thread), BIA creates lightweight 130 GSM running fabrics that provide higher opacity, burst strength, and UPF 50+ sun protection than standard 200 GSM commodity jerseys.</p>' +
+            '<h4>3. Engineering for End-Garment Function</h4>' +
+            '<p>When co-developing with global brand partners, BIA evaluates modulus of elasticity, thermal air permeability, and vertical draping coefficient to deliver the precise garment feel desired.</p>'
+    },
+    'yarn-to-performance': {
+      tag: 'MANUFACTURING · VALUE CHAIN ARCHITECTURE',
+      title: 'From Yarn to Performance: The Unbroken Journey',
+      readTime: '6 MIN READ',
+      img: '/static/assets/hero-sample-yarn-warping.jpg',
+      body: '<p class="article-lead">High-performance athletic apparel is forged through a synchronized series of micro-decisions across spinning, warping, knitting, low-liquor dyeing, and finishing. At BIA, this entire value chain is integrated under one roof in Amman, Jordan.</p>' +
+            '<h4>1. Precision Warping & Positive Yarn Feeding</h4>' +
+            '<p>The journey begins with electronic creeling, where yarn cones are fed under active tension sensors calibrated to ±0.5 cN. Constant yarn delivery ensures that loop length remains identical across all 120+ knitting feeds, eliminating fabric spirality.</p>' +
+            '<h4>2. 35 RPM Circular Knitting with Laser Inspection</h4>' +
+            '<p>Our German Mayer &amp; Cie and Italian Terrot circular knitting frames operate with 3,000 needles turning simultaneously. Optical laser defect scanners monitor needle latch integrity, stopping the machine in milliseconds if a microscopic needle flaw is detected.</p>' +
+            '<div class="article-quote">“Synchronizing knitting and dyeing under one roof cuts development lead times from months to days while guaranteeing zero batch drift.”</div>' +
+            '<h4>3. Bruckner 8-Chamber Stenter Stabilization</h4>' +
+            '<p>Greige fabric is heat-set on Bruckner stenter lines with automated width control and chamber moisture exhaust, curing moisture-wicking polymers into the fiber core before direct transfer to Classic Fashion’s automated cutting suites.</p>'
+    },
+    'sustainability-performance': {
+      tag: 'CIRCULARITY · POLYMER SCIENCE',
+      title: 'Can Performance and Sustainability Coexist?',
+      readTime: '5 MIN READ',
+      img: '/static/assets/fabric_product_05.jpg',
+      body: '<p class="article-lead">For years, sourcing directors faced a difficult compromise: choose virgin synthetic fibers for maximum tensile strength and wicking velocity, or choose recycled fibers and accept lower durability. At BIA, empirical testing proves this compromise is obsolete.</p>' +
+            '<h4>1. Molecular Purity of GRS rPET Filaments</h4>' +
+            '<p>Modern solid-state polymerization (SSP) processes purify post-consumer PET bottles down to intrinsic viscosity levels identical to virgin polymer chips. Our GRS-certified recycled polyester achieves tensile tenacity of 4.8 cN/dtex—matching virgin athletic benchmarks.</p>' +
+            '<div class="article-quote">“Sustainability without performance is a compromise brands cannot afford. Our recycled fabrics pass the exact same Olympic-grade bursting and abrasion tests as virgin lines.”</div>' +
+            '<h4>2. 85% Closed-Loop Water Recycling in Jordan</h4>' +
+            '<p>Operating in Amman, Jordan—one of the world\'s most water-conscious nations—our facility recycles 85% of industrial wastewater through advanced membrane bioreactors (MBR) and industrial reverse osmosis (RO), returning demineralized water directly back to dye jet vessels.</p>' +
+            '<h4>3. Verified HIGG FEM 4.0 Benchmarking</h4>' +
+            '<p>Our environmental and carbon reductions are third-party audited annually via the HIGG Facility Environmental Module (FEM), providing global brands with verified ESG disclosures for their sustainability reports.</p>'
+    },
+    'meet-the-engineer': {
+      tag: 'HUMAN MASTERY · MILL CULTURE',
+      title: 'Meet the Engineer Behind the Fabric: Tariq on Precision at 35 RPM',
+      readTime: '4 MIN READ',
+      img: '/static/assets/hero-sample-roller-precision.jpg',
+      body: '<p class="article-lead">Machines provide speed, but human craftsmanship provides possibility. Meet Tariq, Production &amp; Automation Engineer at BIA, whose daily mission is synchronizing European circular knitting frames to zero-defect tolerances in Amman, Jordan.</p>' +
+            '<h4>1. The Feel of Micron-Level Tension</h4>' +
+            '<p>“When you walk into Hall 01 with 120 circular knitters running, you don’t just watch the dials—you listen to the hum of the machines,” says Tariq. “A slight change in plant ambient humidity alters yarn friction. Our electronic positive feeders make continuous micro-adjustments, but an engineer’s eye is what guarantees perfection.”</p>' +
+            '<div class="article-quote">“People think textile manufacturing is just pushing a start button. In reality, it is mechatronics, material physics, and daily problem-solving.”</div>' +
+            '<h4>2. Bridging Laboratory Innovation to 100 Tonnes Daily Output</h4>' +
+            '<p>Tariq works directly with BIA’s R&amp;D lab to translate novel knit structures—from 3D textured jacquards to cooling body-mapped meshes—into scalable industrial production without sacrificing machine cycle efficiency.</p>' +
+            '<h4>3. Mentoring Jordan’s Next Generation of Makers</h4>' +
+            '<p>As an instructor at the BIA Technical Training Academy, Tariq trains young apprentices from Jordanian engineering universities, building domestic high-tech manufacturing expertise in the kingdom.</p>'
+    },
+    'innovations-watching': {
+      tag: 'FUTURE CONCEPTS · BIA NEXT R&D',
+      title: '5 Textile Innovations We\'re Watching at BIA Next',
+      readTime: '6 MIN READ',
+      img: '/static/assets/fabric_product_02.jpg',
+      body: '<p class="article-lead">The future of technical apparel will be defined by materials that dynamically adapt to the wearer\'s physiology while leaving zero trace on the planet. Here are five breakthrough innovations currently under active R&amp;D at BIA Next.</p>' +
+            '<h4>1. Phase-Change Microcapsule Thermoregulation</h4>' +
+            '<p>Bio-based phase change materials (PCMs) embedded directly into synthetic polymers absorb latent body heat when skin temperature rises during intense cardio, and release stored warmth as the athlete cools down.</p>' +
+            '<h4>2. Algae & Microbe-Derived Bio-Pigments</h4>' +
+            '<p>Replacing synthetic chemical dyestuffs with pigments synthesized from spirulina and bacterial fermentation, eliminating heavy metals and dramatically lowering dyeing liquor temperatures.</p>' +
+            '<div class="article-quote">“The future of fabric is intelligent, circular, and biologically regenerative. We are transitioning from passive coverings to responsive interfaces.”</div>' +
+            '<h4>3. Mono-Material Circular Recycling Architectures</h4>' +
+            '<p>Eliminating blended elastane by engineering mechanical stretch polyester with helical molecular crimp springs, enabling 100% garment-to-garment recyclability without downcycling.</p>' +
+            '<h4>4. Waterless Supercritical CO₂ Dyeing</h4>' +
+            '<p>Using pressurized carbon dioxide in a closed loop as the fluid dye carrier, completely eliminating process freshwater consumption and wastewater effluent.</p>' +
+            '<h4>5. Sensor-Embedded Conductive Knits</h4>' +
+            '<p>Knitting conductive silver-coated micro-filaments directly into athletic garments to monitor heart rate, muscle activation, and respiration without bulky external chest straps.</p>'
     }
   };
 
@@ -875,6 +1193,29 @@
 
   if (articleModalClose) articleModalClose.addEventListener('click', closeArticleModal);
   if (articleModalCloseBtn) articleModalCloseBtn.addEventListener('click', closeArticleModal);
+  if (articleModalBackdrop) articleModalBackdrop.addEventListener('click', closeArticleModal);
+
+  /* Topic filter buttons on Fabric Stories page */
+  var storyFilterBtns = document.querySelectorAll('.story-filter-btn');
+  var editorialStoryCards = document.querySelectorAll('.stories-editorial-grid .story-card');
+  if (storyFilterBtns.length && editorialStoryCards.length) {
+    storyFilterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        storyFilterBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.getAttribute('data-filter') || 'all';
+
+        editorialStoryCards.forEach(function (card) {
+          var cat = card.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
   /* ---------------- 10. NAVBAR CATEGORY DROPDOWNS ---------------- */
   var navItems = document.querySelectorAll('.nav-item.has-dropdown');
 
@@ -903,6 +1244,573 @@
       navItems.forEach(function (item) { item.classList.remove('is-open'); });
     }
   });
+
+  /* ---------------- 11. BIA NEXT · CHALLENGE US INTERACTIVE CONTROLLER ---------------- */
+  var challengeForm = document.getElementById('biaChallengeForm');
+  if (challengeForm) {
+    // Single-select App chips
+    var appChips = document.querySelectorAll('#appChips .c-select-chip');
+    var challengeAppInput = document.getElementById('challengeApp');
+    appChips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        appChips.forEach(function (c) { c.classList.remove('selected'); });
+        chip.classList.add('selected');
+        if (challengeAppInput) challengeAppInput.value = chip.getAttribute('data-value');
+      });
+    });
+
+    // Multi-select Performance chips
+    var perfChips = document.querySelectorAll('#perfChips .c-select-chip');
+    perfChips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chip.classList.toggle('selected');
+      });
+    });
+
+    // Single-select Composition chips
+    var compChips = document.querySelectorAll('#compChips .c-select-chip');
+    var challengeCompInput = document.getElementById('challengeComp');
+    compChips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        compChips.forEach(function (c) { c.classList.remove('selected'); });
+        chip.classList.add('selected');
+        if (challengeCompInput) challengeCompInput.value = chip.getAttribute('data-value');
+      });
+    });
+
+    // File Upload Simulation
+    var uploadZone = document.getElementById('uploadZone');
+    var challengeFile = document.getElementById('challengeFile');
+    var attachedFileCard = document.getElementById('attachedFileCard');
+    var attachedFileName = document.getElementById('attachedFileName');
+    var removeFileBtn = document.getElementById('removeFileBtn');
+
+    if (challengeFile && uploadZone) {
+      challengeFile.addEventListener('change', function () {
+        if (challengeFile.files && challengeFile.files[0]) {
+          var file = challengeFile.files[0];
+          if (attachedFileName) attachedFileName.textContent = file.name + ' (' + Math.round(file.size / 1024) + ' KB)';
+          if (attachedFileCard) attachedFileCard.style.display = 'flex';
+          uploadZone.style.display = 'none';
+        }
+      });
+
+      if (removeFileBtn) {
+        removeFileBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          challengeFile.value = '';
+          if (attachedFileCard) attachedFileCard.style.display = 'none';
+          uploadZone.style.display = 'block';
+        });
+      }
+
+      ['dragenter', 'dragover'].forEach(function (evt) {
+        uploadZone.addEventListener(evt, function (e) {
+          e.preventDefault();
+          uploadZone.classList.add('dragover');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (evt) {
+        uploadZone.addEventListener(evt, function (e) {
+          e.preventDefault();
+          uploadZone.classList.remove('dragover');
+        });
+      });
+    }
+
+    // Modal elements
+    var challengeSuccessModal = document.getElementById('challengeSuccessModal');
+    var challengeModalBackdrop = document.getElementById('challengeModalBackdrop');
+    var challengeModalClose = document.getElementById('challengeModalClose');
+    var challengeModalDoneBtn = document.getElementById('challengeModalDoneBtn');
+    var challengeModalRefCode = document.getElementById('challengeModalRefCode');
+    var sumApp = document.getElementById('sumApp');
+    var sumGsm = document.getElementById('sumGsm');
+    var sumVol = document.getElementById('sumVol');
+    var sumTime = document.getElementById('sumTime');
+
+    function openChallengeModal(ref, summary) {
+      if (challengeModalRefCode) challengeModalRefCode.textContent = ref;
+      if (summary) {
+        if (sumApp) sumApp.textContent = summary.application || 'Running & Track';
+        if (sumGsm) sumGsm.textContent = summary.gsm || '140–180 GSM';
+        if (sumVol) sumVol.textContent = summary.volume || 'Production Program';
+        if (sumTime) sumTime.textContent = summary.timeline || 'SS27 Season';
+      }
+      if (challengeSuccessModal) {
+        challengeSuccessModal.classList.add('open');
+        challengeSuccessModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeChallengeModal() {
+      if (challengeSuccessModal) {
+        challengeSuccessModal.classList.remove('open');
+        challengeSuccessModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    }
+
+    if (challengeModalClose) challengeModalClose.addEventListener('click', closeChallengeModal);
+    if (challengeModalBackdrop) challengeModalBackdrop.addEventListener('click', closeChallengeModal);
+    if (challengeModalDoneBtn) challengeModalDoneBtn.addEventListener('click', closeChallengeModal);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && challengeSuccessModal && challengeSuccessModal.classList.contains('open')) {
+        closeChallengeModal();
+      }
+    });
+
+    // AJAX Submission
+    challengeForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nameInput = document.getElementById('challengeName');
+      var emailInput = document.getElementById('challengeEmail');
+      var companyInput = document.getElementById('challengeCompany');
+      var gsmSelect = document.getElementById('challengeGsm');
+      var priceInput = document.getElementById('challengePrice');
+      var volumeSelect = document.getElementById('challengeVolume');
+      var timelineSelect = document.getElementById('challengeTimeline');
+      var notesText = document.getElementById('challengeNotes');
+      var submitBtn = document.getElementById('challengeSubmitBtn');
+
+      var name = nameInput ? nameInput.value.trim() : '';
+      var email = emailInput ? emailInput.value.trim() : '';
+      var company = companyInput ? companyInput.value.trim() : '';
+      var app = challengeAppInput ? challengeAppInput.value : 'Running & Track';
+      var comp = challengeCompInput ? challengeCompInput.value : '100% Recycled Polyester (GRS)';
+      var gsm = gsmSelect ? gsmSelect.value : '140–180 GSM';
+      var price = priceInput ? priceInput.value.trim() : '';
+      var volume = volumeSelect ? volumeSelect.value : 'Production Program';
+      var timeline = timelineSelect ? timelineSelect.value : 'SS27 Season';
+      var notes = notesText ? notesText.value.trim() : '';
+
+      // Collect selected performance features
+      var selectedPerf = [];
+      document.querySelectorAll('#perfChips .c-select-chip.selected').forEach(function (c) {
+        selectedPerf.push(c.getAttribute('data-value'));
+      });
+
+      if (!name) {
+        if (nameInput) nameInput.focus();
+        alert('Please enter your full name.');
+        return;
+      }
+      if (!email || !email.includes('@')) {
+        if (emailInput) emailInput.focus();
+        alert('Please enter a valid work email.');
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>REGISTERING BRIEF...</span>';
+      }
+
+      var payload = {
+        name: name,
+        email: email,
+        company: company,
+        application: app,
+        performance: selectedPerf,
+        composition: comp,
+        gsm: gsm,
+        target_price: price,
+        volume: volume,
+        timeline: timeline,
+        notes: notes
+      };
+
+      fetch('/api/fabric-challenge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>SUBMIT A FABRIC CHALLENGE</span> <span class="arrow">→</span>';
+        }
+        var ref = data.reference || 'BIA-NXT-' + Math.floor(1000 + Math.random() * 9000);
+        openChallengeModal(ref, data.summary || payload);
+        challengeForm.reset();
+        if (attachedFileCard) attachedFileCard.style.display = 'none';
+        if (uploadZone) uploadZone.style.display = 'block';
+      })
+      .catch(function (err) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>SUBMIT A FABRIC CHALLENGE</span> <span class="arrow">→</span>';
+        }
+        var fallbackRef = 'BIA-NXT-' + Math.floor(1000 + Math.random() * 9000);
+        openChallengeModal(fallbackRef, payload);
+      });
+    });
+  }
+
+  /* ---------------- 8. PEOPLE & CULTURE: MEET THE MAKERS VIDEO MODAL ---------------- */
+  var makerModal = document.getElementById('makerVideoModal');
+  var makerModalClose = document.getElementById('makerModalClose');
+  var makerModalBackdrop = document.getElementById('makerModalBackdrop');
+  var modalDept = document.getElementById('modalDept');
+  var modalName = document.getElementById('modalName');
+  var modalRole = document.getElementById('modalRole');
+  var modalLoc = document.getElementById('modalLoc');
+  var modalQ = document.getElementById('modalQ');
+  var modalA = document.getElementById('modalA');
+  var modalBgVisual = document.getElementById('modalBgVisual');
+  var simPlayPauseBtn = document.getElementById('simPlayPauseBtn');
+  var simCenterPlay = document.getElementById('simCenterPlay');
+  var simTimeProgress = document.getElementById('simTimeProgress');
+  var simTimeCode = document.getElementById('simTimeCode');
+  var modalReplayBtn = document.getElementById('modalReplayBtn');
+
+  var makerBgMap = {
+    rania: 'url("/static/assets/hero-option-lab.png")',
+    ahmed: 'url("/static/assets/hero-circular-knit.jpg")',
+    tariq: 'url("/static/assets/hero-sample-roller-precision.jpg")',
+    sahar: 'url("/static/assets/ecosystem-wall-04-roller-precision.jpg")',
+    yousef: 'url("/static/assets/hero-sample-yarn-warping.jpg")'
+  };
+
+  var videoTimer = null;
+  var currentSec = 0;
+  var isPlaying = false;
+  var DURATION = 20;
+
+  function updateVideoTime() {
+    if (!isPlaying) return;
+    currentSec += 0.25;
+    if (currentSec > DURATION) {
+      currentSec = DURATION;
+      pauseVideo();
+    }
+    var pct = (currentSec / DURATION) * 100;
+    if (simTimeProgress) simTimeProgress.style.width = pct + '%';
+    if (simTimeCode) {
+      var s = Math.floor(currentSec);
+      simTimeCode.textContent = '0:' + (s < 10 ? '0' + s : s) + ' / 0:20';
+    }
+  }
+
+  function playVideo() {
+    if (currentSec >= DURATION) currentSec = 0;
+    isPlaying = true;
+    if (simPlayPauseBtn) simPlayPauseBtn.textContent = '❚❚';
+    if (simCenterPlay) simCenterPlay.style.display = 'none';
+    clearInterval(videoTimer);
+    videoTimer = setInterval(updateVideoTime, 250);
+  }
+
+  function pauseVideo() {
+    isPlaying = false;
+    if (simPlayPauseBtn) simPlayPauseBtn.textContent = '▶';
+    if (simCenterPlay) simCenterPlay.style.display = 'flex';
+    clearInterval(videoTimer);
+  }
+
+  function openMakerModal(card) {
+    if (!makerModal || !card) return;
+    var id = card.getAttribute('data-maker-id') || 'rania';
+    var name = card.getAttribute('data-maker-name') || '';
+    var role = card.getAttribute('data-maker-role') || '';
+    var dept = card.getAttribute('data-maker-dept') || '';
+    var q = card.getAttribute('data-maker-q') || '';
+    var a = card.getAttribute('data-maker-a') || '';
+    var loc = card.getAttribute('data-maker-loc') || 'Sahab QA Laboratory';
+
+    if (modalDept) modalDept.textContent = dept.toUpperCase();
+    if (modalName) modalName.textContent = name;
+    if (modalRole) modalRole.textContent = role;
+    if (modalLoc) modalLoc.textContent = '📍 ' + loc;
+    if (modalQ) modalQ.textContent = '“' + q + '”';
+    if (modalA) modalA.textContent = '“' + a + '”';
+
+    if (modalBgVisual) {
+      modalBgVisual.style.backgroundImage = makerBgMap[id] || makerBgMap.rania;
+    }
+
+    currentSec = 0;
+    if (simTimeProgress) simTimeProgress.style.width = '0%';
+    if (simTimeCode) simTimeCode.textContent = '0:00 / 0:20';
+
+    makerModal.classList.add('open');
+    makerModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    playVideo();
+  }
+
+  function closeMakerModal() {
+    if (!makerModal) return;
+    pauseVideo();
+    makerModal.classList.remove('open');
+    makerModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.maker-video-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      openMakerModal(card);
+    });
+  });
+
+  if (makerModalClose) makerModalClose.addEventListener('click', closeMakerModal);
+  if (makerModalBackdrop) makerModalBackdrop.addEventListener('click', closeMakerModal);
+  
+  if (simPlayPauseBtn) {
+    simPlayPauseBtn.addEventListener('click', function () {
+      if (isPlaying) pauseVideo(); else playVideo();
+    });
+  }
+  if (simCenterPlay) {
+    simCenterPlay.addEventListener('click', function () {
+      playVideo();
+    });
+  }
+  if (modalReplayBtn) {
+    modalReplayBtn.addEventListener('click', function () {
+      currentSec = 0;
+      playVideo();
+    });
+  }
+
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && makerModal && makerModal.classList.contains('open')) {
+      closeMakerModal();
+    }
+  });
+
+  /* ---------------- 9. CAREER FILTER PILLS ---------------- */
+  var careerPills = document.querySelectorAll('.c-pill');
+  var careerCards = document.querySelectorAll('.career-card');
+
+  if (careerPills.length && careerCards.length) {
+    careerPills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        careerPills.forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+
+        var filter = pill.getAttribute('data-filter') || 'all';
+        careerCards.forEach(function (card) {
+          var cat = card.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  /* ---------------- 10. INTERACTIVE CERTIFICATIONS MODAL ---------------- */
+  var certModal = document.getElementById('certDetailModal');
+  var certModalClose = document.getElementById('certModalClose');
+  var certModalBackdrop = document.getElementById('certModalBackdrop');
+  var modalCertTag = document.getElementById('modalCertTag');
+  var modalCertTitle = document.getElementById('modalCertTitle');
+  var modalCertSub = document.getElementById('modalCertSub');
+  var modalCertMeans = document.getElementById('modalCertMeans');
+  var modalCertCovers = document.getElementById('modalCertCovers');
+  var modalCertBody = document.getElementById('modalCertBody');
+  var modalCertNumber = document.getElementById('modalCertNumber');
+  var modalCertValidity = document.getElementById('modalCertValidity');
+  var modalDownloadBtn = document.getElementById('modalDownloadBtn');
+  var activeCertDownloadName = 'BIA_Accredited_Certificate.pdf';
+
+  function openCertModal(card) {
+    if (!certModal || !card) return;
+    var title = card.getAttribute('data-cert-title') || '';
+    var sub = card.getAttribute('data-cert-subtitle') || '';
+    var tag = card.getAttribute('data-cert-tag') || 'ACCREDITED GLOBAL STANDARD';
+    var means = card.getAttribute('data-cert-means') || '';
+    var covers = card.getAttribute('data-cert-covers') || '';
+    var body = card.getAttribute('data-cert-body') || 'Independent Auditing Body';
+    var num = card.getAttribute('data-cert-number') || 'BIA-CERT-2026';
+    var validity = card.getAttribute('data-cert-validity') || 'Active';
+    activeCertDownloadName = card.getAttribute('data-cert-download-name') || 'BIA_Certificate.pdf';
+
+    if (modalCertTag) modalCertTag.textContent = tag.toUpperCase();
+    if (modalCertTitle) modalCertTitle.textContent = title;
+    if (modalCertSub) modalCertSub.textContent = sub;
+    if (modalCertMeans) modalCertMeans.textContent = means;
+    if (modalCertCovers) modalCertCovers.textContent = covers;
+    if (modalCertBody) modalCertBody.textContent = body;
+    if (modalCertNumber) modalCertNumber.textContent = num;
+    if (modalCertValidity) modalCertValidity.textContent = validity;
+
+    certModal.classList.add('open');
+    certModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCertModal() {
+    if (!certModal) return;
+    certModal.classList.remove('open');
+    certModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.i-cert-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      openCertModal(card);
+    });
+  });
+
+  if (certModalClose) certModalClose.addEventListener('click', closeCertModal);
+  if (certModalBackdrop) certModalBackdrop.addEventListener('click', closeCertModal);
+
+  if (modalDownloadBtn) {
+    modalDownloadBtn.addEventListener('click', function () {
+      var origText = modalDownloadBtn.innerHTML;
+      modalDownloadBtn.innerHTML = '<span>PREPARING VERIFIED PDF...</span>';
+      modalDownloadBtn.disabled = true;
+
+      setTimeout(function () {
+        // Trigger synthetic download or preview notification
+        var dummyBlob = new Blob([
+          "BIA TEXTILES — OFFICIAL ACCREDITED CERTIFICATE DOSSIER\n" +
+          "====================================================\n\n" +
+          "Document: " + (modalCertTitle ? modalCertTitle.textContent : "Accredited Certificate") + "\n" +
+          "Scope: " + (modalCertSub ? modalCertSub.textContent : "Full Facility Operations") + "\n" +
+          "Auditing Body: " + (modalCertBody ? modalCertBody.textContent : "Accredited Agency") + "\n" +
+          "License / Certificate #: " + (modalCertNumber ? modalCertNumber.textContent : "VERIFIED") + "\n" +
+          "Status: " + (modalCertValidity ? modalCertValidity.textContent : "Active") + "\n\n" +
+          "COVERAGE SUMMARY:\n" +
+          (modalCertCovers ? modalCertCovers.textContent : "All circular knit fabrics manufactured in Amman, Jordan.") + "\n\n" +
+          "For technical verification inquiries: develop@bia.jo / compliance@bia.jo\n" +
+          "BIA Textiles Complex, Sahab Industrial City, Amman, Jordan."
+        ], { type: 'text/plain;charset=utf-8' });
+
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(dummyBlob);
+        link.download = activeCertDownloadName.replace('.pdf', '.txt');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        modalDownloadBtn.innerHTML = '<span>✓ CERTIFICATE DOWNLOADED</span>';
+        setTimeout(function () {
+          modalDownloadBtn.disabled = false;
+          modalDownloadBtn.innerHTML = origText;
+        }, 2500);
+      }, 700);
+    });
+  }
+
+  /* ---------------- 11. GLOBAL TRADE MAP & MARKET SWITCHER ---------------- */
+  var marketBtns = document.querySelectorAll('.map-market-btn');
+  var tradeRoutes = document.querySelectorAll('.trade-route-path');
+  var mInfoBadge = document.getElementById('mInfoBadge');
+  var mInfoTitle = document.getElementById('mInfoTitle');
+  var mInfoTariff = document.getElementById('mInfoTariff');
+  var mInfoTransit = document.getElementById('mInfoTransit');
+  var mInfoVolume = document.getElementById('mInfoVolume');
+
+  var marketData = {
+    usa: {
+      badge: 'PRIMARY EXPORT CORRIDOR',
+      title: 'North America & United States Market',
+      tariff: '0% Import Duty (US-Jordan FTA)',
+      transit: '14–16 Days Direct Sea to East Coast / Air Express 48h',
+      volume: '500,000+ Finished Pieces Daily via Classic Fashion',
+      routeClass: 'route-usa'
+    },
+    europe: {
+      badge: 'RAPID REPLENISHMENT ZONE',
+      title: 'United Kingdom & European Union Corridor',
+      tariff: 'Preferential Rules of Origin (EU-Jordan Agreement)',
+      transit: '7–10 Days Direct Mediterranean Sea Route',
+      volume: '250,000+ Performance Garments Delivered Weekly',
+      routeClass: 'route-europe'
+    },
+    'middle-east': {
+      badge: 'DOMESTIC & REGIONAL HUB',
+      title: 'Middle East & GCC Regional Market',
+      tariff: '0% Duty (Greater Arab Free Trade Area - GAFTA)',
+      transit: '24–48 Hours Land Freight across GCC',
+      volume: 'Same-Week Swatch & Custom Development Turnaround',
+      routeClass: 'route-middle-east'
+    },
+    asia: {
+      badge: 'SPECIALIZED YARN NETWORK',
+      title: 'Asia Global Raw Material & Sourcing Pipeline',
+      tariff: 'Zero-Tariff Inward Processing & Global Sourcing',
+      transit: 'Continuous Inbound High-Tenacity Filament & Spun Yarn Flows',
+      volume: '100+ Metric Tonnes Daily Spinning Supply',
+      routeClass: 'route-asia'
+    }
+  };
+
+  if (marketBtns.length > 0) {
+    marketBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var marketKey = btn.getAttribute('data-market');
+        if (!marketKey || !marketData[marketKey]) return;
+
+        // Active state on buttons
+        marketBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        // Active state on SVG routes
+        tradeRoutes.forEach(function (route) {
+          route.classList.remove('active');
+          if (route.classList.contains(marketData[marketKey].routeClass)) {
+            route.classList.add('active');
+          }
+        });
+
+        // Update Info Card with subtle fade animation
+        var infoCard = document.getElementById('marketInfoCard');
+        if (infoCard) {
+          infoCard.style.opacity = '0.4';
+          infoCard.style.transform = 'translateY(4px)';
+          setTimeout(function () {
+            var data = marketData[marketKey];
+            if (mInfoBadge) mInfoBadge.textContent = data.badge;
+            if (mInfoTitle) mInfoTitle.textContent = data.title;
+            if (mInfoTariff) mInfoTariff.textContent = data.tariff;
+            if (mInfoTransit) mInfoTransit.textContent = data.transit;
+            if (mInfoVolume) mInfoVolume.textContent = data.volume;
+
+            infoCard.style.opacity = '1';
+            infoCard.style.transform = 'translateY(0)';
+          }, 150);
+        }
+      });
+    });
+  }
+
+  // --- VIRTUAL MILL TOUR STICKY NAV SCROLLSPY ---
+  var tourNavLinks = document.querySelectorAll('.tour-nav-link');
+  var tourStopCards = document.querySelectorAll('.tour-stop-card');
+
+  if (tourNavLinks.length && tourStopCards.length && 'IntersectionObserver' in window) {
+    var tourObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          tourNavLinks.forEach(function (link) {
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -55% 0px' });
+
+    tourStopCards.forEach(function (card) {
+      tourObserver.observe(card);
+    });
+  }
+
 })();
+
 
 

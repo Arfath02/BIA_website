@@ -63,6 +63,8 @@ def get_conn():
 
 def init_db():
     """Create tables if they don't exist (idempotent)."""
+    if not PYODBC_AVAILABLE or os.getenv("BIA_ENABLE_DB") != "1":
+        return
     ddl = """
     IF OBJECT_ID('dbo.fabric_briefs', 'U') IS NULL
     CREATE TABLE dbo.fabric_briefs (
@@ -88,9 +90,12 @@ def init_db():
         created_at    DATETIME2     NOT NULL DEFAULT SYSUTCDATETIME()
     );
     """
-    with get_conn() as conn:
-        conn.execute(ddl)
-        conn.commit()
+    try:
+        with get_conn() as conn:
+            conn.execute(ddl)
+            conn.commit()
+    except Exception as exc:  # noqa: BLE001
+        app.logger.warning("DB init skipped: %s", exc)
 
 
 def new_reference(prefix: str) -> str:
@@ -98,11 +103,78 @@ def new_reference(prefix: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Routes
+# Multi-Page Routes
 # ---------------------------------------------------------------------------
 @app.get("/")
 def index():
     return render_template("index.html")
+
+
+@app.get("/story")
+@app.get("/our-story")
+def story():
+    return render_template("story.html")
+
+
+@app.get("/fabrics")
+@app.get("/fabric-technologies")
+@app.get("/material-library")
+def fabrics():
+    return render_template("fabrics.html")
+
+
+@app.get("/innovation")
+@app.get("/bia-next")
+def innovation():
+    return render_template("innovation.html")
+
+
+@app.get("/inside")
+@app.get("/inside-bia")
+@app.get("/scale")
+@app.get("/capacity")
+@app.get("/quality")
+@app.get("/certifications")
+def inside():
+    return render_template("inside.html")
+
+
+@app.get("/ecosystem")
+@app.get("/bia-classic")
+def ecosystem():
+    return render_template("ecosystem.html")
+
+
+@app.get("/partners")
+@app.get("/global-reach")
+@app.get("/markets")
+def partners():
+    return render_template("index.html")
+
+
+@app.get("/responsibility")
+@app.get("/sustainability")
+def responsibility():
+    return render_template("responsibility.html")
+
+
+@app.get("/people")
+@app.get("/culture")
+def people():
+    return render_template("people.html")
+
+
+@app.get("/stories")
+@app.get("/insights")
+@app.get("/fabric-stories")
+def stories():
+    return render_template("stories.html")
+
+
+@app.get("/contact")
+@app.get("/develop")
+def contact():
+    return render_template("contact.html")
 
 
 @app.get("/mock")
@@ -184,9 +256,78 @@ def enquiry():
     return jsonify({"reference": ref, "status": "success", "email_dispatched": True}), 201
 
 
+@app.post("/api/fabric-challenge")
+def fabric_challenge():
+    data = request.get_json(silent=True) or {}
+    name = (data.get("name") or "").strip()
+    email = (data.get("email") or "").strip()
+    company = (data.get("company") or "").strip() or None
+    application = data.get("application") or "High-Performance Sportswear"
+    performance = data.get("performance") or []
+    composition = data.get("composition") or "Engineering Recommendation"
+    gsm = data.get("gsm") or "Custom Spec"
+    target_price = data.get("target_price") or "FOB Benchmark"
+    volume = data.get("volume") or "Production Program"
+    timeline = data.get("timeline") or "Upcoming Season"
+    notes = data.get("notes") or ""
+
+    if not name:
+        return jsonify({"error": "Name is required."}), 400
+    if not EMAIL_RE.match(email):
+        return jsonify({"error": "A valid work email is required."}), 400
+
+    ref = new_reference("BIA-NXT")
+    perf_str = ", ".join(performance) if isinstance(performance, list) else str(performance)
+    formatted_msg = (
+        f"[BIA NEXT CHALLENGE]\n"
+        f"• Application: {application}\n"
+        f"• Desired Performance: {perf_str}\n"
+        f"• Target Composition: {composition}\n"
+        f"• Target Weight: {gsm}\n"
+        f"• Target Price: {target_price}\n"
+        f"• Order Volume: {volume}\n"
+        f"• Development Timeline: {timeline}\n"
+        f"• Additional Requirements: {notes}"
+    )
+    try:
+        with get_conn() as conn:
+            conn.execute(
+                "INSERT INTO dbo.enquiries (reference, topic, name, email, company, message) VALUES (?, ?, ?, ?, ?, ?)",
+                (ref, "development", name, email, company, formatted_msg),
+            )
+            conn.commit()
+    except Exception as exc:  # noqa: BLE001
+        app.logger.warning("DB insert failed (offline?): %s", exc)
+
+    send_enquiry_confirmation(
+        ref=ref,
+        topic="development",
+        name=name,
+        email=email,
+        company=company,
+        message=formatted_msg,
+    )
+
+    return jsonify({
+        "reference": ref,
+        "status": "success",
+        "received_at": datetime.now(timezone.utc).isoformat(),
+        "summary": {
+            "application": application,
+            "performance": performance,
+            "composition": composition,
+            "gsm": gsm,
+            "target_price": target_price,
+            "volume": volume,
+            "timeline": timeline,
+            "company": company or "Confidential Brand"
+        }
+    }), 201
+
+
 if __name__ == "__main__":
     try:
         init_db()
     except Exception as exc:  # noqa: BLE001
         app.logger.warning("DB init skipped (offline?): %s", exc)
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5010")), debug=os.getenv("FLASK_DEBUG") == "1")
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5000")), debug=os.getenv("FLASK_DEBUG") == "1")

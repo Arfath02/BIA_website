@@ -12,137 +12,30 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261008_03" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261008_tight" />
 </head>
 
 <body>
 
   <!-- ================= NAV ================= -->
   <nav class="nav" id="mainNav">
-    <a class="nav-logo" href="#top" aria-label="BIA home">
+    <a class="nav-logo" href="/" aria-label="BIA home">
       <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles" class="nav-logo-img" />
     </a>
 
     <div class="nav-links">
-      <!-- DISCOVER Category Dropdown -->
-      <div class="nav-item has-dropdown">
-        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
-          <span>DISCOVER</span>
-          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dropdown">
-          <div class="dropdown-tag">DISCOVER BIA</div>
-          <div class="dropdown-grid">
-            <a href="#story" class="dropdown-item">
-              <strong class="dropdown-title">Our Story</strong>
-              <span class="dropdown-desc">The vision & leadership of Jordan's textile hub</span>
-            </a>
-            <a href="#ecosystem" class="dropdown-item">
-              <strong class="dropdown-title">BIA × Classic</strong>
-              <span class="dropdown-desc">Integrated ecosystem from fabric to fashion</span>
-            </a>
-            <a href="#inside" class="dropdown-item">
-              <strong class="dropdown-title">Inside BIA</strong>
-              <span class="dropdown-desc">7-stop mill tour from yarn to finished roll</span>
-            </a>
-            <a href="#leadership" class="dropdown-item">
-              <strong class="dropdown-title">Leadership &amp; Founder</strong>
-              <span class="dropdown-desc">Industrial capability, vision &amp; governance</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CREATE Category Dropdown -->
-      <div class="nav-item has-dropdown">
-        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
-          <span>CREATE</span>
-          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dropdown">
-          <div class="dropdown-tag">FABRIC CREATION</div>
-          <div class="dropdown-grid">
-            <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('library');}" class="dropdown-item">
-              <strong class="dropdown-title">Fabric Lab</strong>
-              <span class="dropdown-desc">Explore technical knit & stretch catalogue</span>
-            </a>
-            <a href="#innovation" class="dropdown-item">
-              <strong class="dropdown-title">BIA Next / Innovation</strong>
-              <span class="dropdown-desc">Next-gen polymers & Challenge Us incubator</span>
-            </a>
-            <a href="#thread" class="dropdown-item">
-              <strong class="dropdown-title">Follow The Red Thread</strong>
-              <span class="dropdown-desc">8 stages of precision fabric engineering</span>
-            </a>
-            <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}" class="dropdown-item">
-              <strong class="dropdown-title">Request Swatch</strong>
-              <span class="dropdown-desc">Custom sample packs & development briefs</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- IMPACT Category Dropdown -->
-      <div class="nav-item has-dropdown">
-        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
-          <span>IMPACT</span>
-          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dropdown">
-          <div class="dropdown-tag">OUR IMPACT</div>
-          <div class="dropdown-grid">
-            <a href="#responsibility" class="dropdown-item">
-              <strong class="dropdown-title">Responsibility</strong>
-              <span class="dropdown-desc">85% water recycled & ZDHC Level 3 green chemistry</span>
-            </a>
-            <a href="#people" class="dropdown-item">
-              <strong class="dropdown-title">People & Culture</strong>
-              <span class="dropdown-desc">Meet the makers & technical leadership</span>
-            </a>
-            <a href="#quality" class="dropdown-item">
-              <strong class="dropdown-title">Quality & Certifications</strong>
-              <span class="dropdown-desc">OEKO-TEX, GRS & Jordan US-FTA duty-free export</span>
-            </a>
-            <a href="#insights" class="dropdown-item">
-              <strong class="dropdown-title">Insights & Stories</strong>
-              <span class="dropdown-desc">Textile science, research & innovation</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CONNECT Category Dropdown -->
-      <div class="nav-item has-dropdown">
-        <button type="button" class="nav-link-btn" aria-haspopup="true" aria-expanded="false">
-          <span>CONNECT</span>
-          <svg class="nav-arrow" viewBox="0 0 10 6" width="9" height="6"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dropdown">
-          <div class="dropdown-tag">CONNECT WITH BIA</div>
-          <div class="dropdown-grid">
-            <a href="#contact" class="dropdown-item">
-              <strong class="dropdown-title">Contact</strong>
-              <span class="dropdown-desc">Engineering briefs & dedicated account team</span>
-            </a>
-            <a href="#contact" class="dropdown-item">
-              <strong class="dropdown-title">Book Mill Visit</strong>
-              <span class="dropdown-desc">Facility tour in Sahab Industrial City, Amman</span>
-            </a>
-            <a href="#contact" class="dropdown-item">
-              <strong class="dropdown-title">Careers</strong>
-              <span class="dropdown-desc">Join our manufacturing & technical divisions</span>
-            </a>
-            <a href="mailto:develop@bia.jo" class="dropdown-item">
-              <strong class="dropdown-title">develop@bia.jo</strong>
-              <span class="dropdown-desc">Direct mill line: +962 6 402 0000</span>
-            </a>
-          </div>
-        </div>
-      </div>
+      <a href="/story">Our Story</a>
+      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <a href="/innovation">Innovation</a>
+      <a href="/inside">Inside BIA</a>
+      <a href="/ecosystem">BIA × Classic</a>
+      <a href="/responsibility">Responsibility</a>
+      <a href="/people">People</a>
+      <a href="/stories">Insights</a>
+      <a href="/contact">Contact</a>
     </div>
 
-    <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}"
-      class="btn btn-red nav-cta">Develop with BIA <span class="arrow">→</span></a>
+    <a href="/fabrics" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">→</span></a>
   </nav>
 
   <main id="top">
@@ -163,15 +56,10 @@
           <h1>BRILLIANCE,<br />WOVEN IN.</h1>
           <p class="hero-sub">From yarn to innovation.<br />From fabric to fashion.<br />From Jordan to the world.</p>
           <div class="hero-ctas">
-            <a href="#fabrics" class="btn btn-red">Explore BIA <span class="arrow">→</span></a>
-            <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker');}" class="btn btn-ghost">Develop with us <span class="arrow">→</span></a>
+            <a href="/story" class="btn btn-red">Explore BIA <span class="arrow">→</span></a>
+            <a href="/fabrics" class="btn btn-ghost">Develop with us <span class="arrow">→</span></a>
           </div>
         </div>
-      </div>
-
-      <div class="hero-foot">
-        <span>SOUND&nbsp;&nbsp;OFF</span>
-        <span class="hero-scroll">SCROLL<span class="scroll-line"></span></span>
       </div>
     </header>
 
@@ -201,14 +89,14 @@
           <p>BIA is a world-class fabric manufacturing facility creating high-performance fabrics for global apparel
             brands. With innovation, scale and responsibility at our core, we turn possibilities into material reality —
             from Jordan to the world.</p>
-          <a href="#storyModal" class="btn btn-ghost-dark open-story-trigger" id="openStoryBtn">Our story <span class="arrow">→</span></a>
+          <a href="/story" class="btn btn-ghost-dark">Our story <span class="arrow">→</span></a>
         </div>
       </div>
     </section>
 
     <!-- ================= BRAND FILM SHOWCASE ================= -->
     <section class="section dark film-showcase" id="film">
-      <!-- Section Header: Balanced 2-Column Grid (Matching 'WHAT IS BIA?' pattern) -->
+      <!-- Section Header: Balanced 2-Column Grid -->
       <div class="film-header-grid reveal">
         <div class="film-header-left">
           <p class="eyebrow">BRAND FILM · 30 SECONDS</p>
@@ -352,290 +240,14 @@
 
           <div class="film-actions">
             <a href="#thread" class="btn btn-red">Follow the Red Thread <span class="arrow">→</span></a>
-            <a href="#develop" class="btn btn-ghost">Develop Fabric <span class="arrow">→</span></a>
+            <a href="/fabrics" class="btn btn-ghost">Develop Fabric <span class="arrow">→</span></a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= MATERIAL LIBRARY (EXPLORE THE MATERIAL LIBRARY & MAKER) ================= -->
-    <section class="section light material-library" id="fabrics">
-      <span id="develop" class="anchor-offset" aria-hidden="true"></span>
-      <div class="mat-container">
-        <!-- Top Navigation Tabs -->
-        <div class="mat-tabs-header reveal">
-          <div class="mat-tabs">
-            <button type="button" class="mat-tab active" id="tabLibraryBtn" data-tab="library"
-              onclick="switchMatTab('library')">
-              Explore the material library
-            </button>
-            <button type="button" class="mat-tab" id="tabMakerBtn" data-tab="maker" onclick="switchMatTab('maker')">
-              Make your fabric <!--<span class="tab-arrow">↗</span> -->
-            </button>
-          </div>
-        </div>
-
-        <!-- Panel 1: Material Library Catalogue -->
-        <div class="mat-panel active" id="matPanelLibrary">
-          <!-- Filter Bar & Search -->
-          <div class="mat-controls-row reveal">
-            <div class="mat-filters" id="matFilters">
-              <button type="button" class="mat-filter-pill on" data-filter="all">All fabrics</button>
-              <button type="button" class="mat-filter-pill" data-filter="cool">Cool</button>
-              <button type="button" class="mat-filter-pill" data-filter="wick">Wick</button>
-              <button type="button" class="mat-filter-pill" data-filter="stretch">Stretch</button>
-              <button type="button" class="mat-filter-pill" data-filter="protect">Protect</button>
-              <button type="button" class="mat-filter-pill" data-filter="insulate">Insulate</button>
-            </div>
-
-            <div class="mat-search-box">
-              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16">
-                <circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" />
-              </svg>
-              <input type="text" id="matSearchInput" placeholder="Find a material..." aria-label="Find a material" />
-            </div>
-          </div>
-
-          <div class="mat-meta-bar reveal">
-            <span class="mat-meta-tag">DEVELOPMENT DIRECTIONS · EXAMPLE CATALOGUE</span>
-            <span class="mat-meta-count" id="matCountDisplay">6 materials</span>
-          </div>
-
-          <!-- 6 Fabric Cards Grid -->
-          <div class="mat-grid" id="matGrid">
-            <!-- Card 1: Performance jersey -->
-            <div class="mat-card reveal" data-tags="wick cool" data-name="Performance jersey" data-code="DEV-01"
-              data-cat="Jersey / Running" data-comp="88% Polyester, 12% Spandex" data-gsm="180 GSM"
-              data-img="{{ url_for('static', filename='assets/fabric_product_01.jpg') }}">
-              <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_product_01.jpg') }}" alt="Performance jersey"
-                  loading="lazy" />
-              </div>
-              <div class="mat-card-body">
-                <span class="mat-card-cat">Jersey / Running</span>
-                <div class="mat-card-title-row">
-                  <h3 class="mat-card-title">Performance jersey</h3>
-                  <button class="mat-card-plus" type="button" aria-label="Quick specs">+</button>
-                </div>
-                <div class="mat-card-tags">
-                  <span>Wick</span>
-                  <span class="tag-sep">|</span>
-                  <span>Cool</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 2: Stretch interlock -->
-            <div class="mat-card reveal" data-tags="stretch" data-name="Stretch interlock" data-code="DEV-02"
-              data-cat="Interlock / Training" data-comp="78% Nylon, 22% Spandex" data-gsm="240 GSM"
-              data-img="{{ url_for('static', filename='assets/fabric_product_02.jpg') }}">
-              <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_product_02.jpg') }}" alt="Stretch interlock"
-                  loading="lazy" />
-              </div>
-              <div class="mat-card-body">
-                <span class="mat-card-cat">Interlock / Training</span>
-                <div class="mat-card-title-row">
-                  <h3 class="mat-card-title">Stretch interlock</h3>
-                  <button class="mat-card-plus" type="button" aria-label="Quick specs">+</button>
-                </div>
-                <div class="mat-card-tags">
-                  <span>Stretch</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3: Everyday soft touch -->
-            <div class="mat-card reveal" data-tags="cool" data-name="Everyday soft touch" data-code="DEV-03"
-              data-cat="Jersey / Lifestyle" data-comp="95% MicroModal, 5% Elastane" data-gsm="160 GSM"
-              data-img="{{ url_for('static', filename='assets/fabric_product_03.jpg') }}">
-              <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_product_03.jpg') }}" alt="Everyday soft touch"
-                  loading="lazy" />
-              </div>
-              <div class="mat-card-body">
-                <span class="mat-card-cat">Jersey / Lifestyle</span>
-                <div class="mat-card-title-row">
-                  <h3 class="mat-card-title">Everyday soft touch</h3>
-                  <button class="mat-card-plus" type="button" aria-label="Quick specs">+</button>
-                </div>
-                <div class="mat-card-tags">
-                  <span>Cool</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4: Engineered mesh -->
-            <div class="mat-card reveal" data-tags="cool wick" data-name="Engineered mesh" data-code="DEV-04"
-              data-cat="Mesh / Running" data-comp="100% Recycled Polyester" data-gsm="135 GSM"
-              data-img="{{ url_for('static', filename='assets/fabric_product_04.jpg') }}">
-              <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_product_04.jpg') }}" alt="Engineered mesh"
-                  loading="lazy" />
-              </div>
-              <div class="mat-card-body">
-                <span class="mat-card-cat">Mesh / Running</span>
-                <div class="mat-card-title-row">
-                  <h3 class="mat-card-title">Engineered mesh</h3>
-                  <button class="mat-card-plus" type="button" aria-label="Quick specs">+</button>
-                </div>
-                <div class="mat-card-tags">
-                  <span>Cool</span>
-                  <span class="tag-sep">|</span>
-                  <span>Wick</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 5: Protective double knit -->
-            <div class="mat-card reveal" data-tags="protect stretch" data-name="Protective double knit"
-              data-code="DEV-05" data-cat="Interlock / Outdoor" data-comp="65% Polyamide, 35% Elastane"
-              data-gsm="290 GSM" data-img="{{ url_for('static', filename='assets/fabric_product_05.jpg') }}">
-              <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_product_05.jpg') }}" alt="Protective double knit"
-                  loading="lazy" />
-              </div>
-              <div class="mat-card-body">
-                <span class="mat-card-cat">Interlock / Outdoor</span>
-                <div class="mat-card-title-row">
-                  <h3 class="mat-card-title">Protective double knit</h3>
-                  <button class="mat-card-plus" type="button" aria-label="Quick specs">+</button>
-                </div>
-                <div class="mat-card-tags">
-                  <span>Protect</span>
-                  <span class="tag-sep">|</span>
-                  <span>Stretch</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 6: Comfort fleece -->
-            <div class="mat-card reveal" data-tags="insulate" data-name="Comfort fleece" data-code="DEV-06"
-              data-cat="Fleece / Lifestyle" data-comp="80% Organic Cotton, 20% Recycled Poly" data-gsm="320 GSM"
-              data-img="{{ url_for('static', filename='assets/fabric_product_06.jpg') }}">
-              <div class="mat-card-media">
-                <img src="{{ url_for('static', filename='assets/fabric_product_06.jpg') }}" alt="Comfort fleece"
-                  loading="lazy" />
-              </div>
-              <div class="mat-card-body">
-                <span class="mat-card-cat">Fleece / Lifestyle</span>
-                <div class="mat-card-title-row">
-                  <h3 class="mat-card-title">Comfort fleece</h3>
-                  <button class="mat-card-plus" type="button" aria-label="Quick specs">+</button>
-                </div>
-                <div class="mat-card-tags">
-                  <span>Insulate</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Meta & Action -->
-          <div class="mat-bottom-bar reveal">
-            <p class="mat-disclaimer">
-              These examples demonstrate the discovery experience. Specifications and availability will be confirmed by
-              BIA.
-            </p>
-            <button type="button" class="mat-custom-cta" id="matSwitchToMakerBtn">
-              Have something else in mind? <span class="arrow">→</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Panel 2: Make Your Fabric Interactive Builder -->
-        <div class="mat-panel" id="matPanelMaker">
-          <div class="mat-maker-head">
-            <p class="eyebrow">MAKE YOUR FABRIC</p>
-            <h2>TELL US WHAT YOU NEED.<br />LET BIA ENGINEER IT.</h2>
-          </div>
-
-          <div class="maker-grid">
-            <div>
-              <div class="maker-group" data-group="feel">
-                <span class="maker-label">I WANT IT TO FEEL:</span>
-                <div class="maker-chips">
-                  <button type="button" class="chip" data-value="Soft">Soft</button>
-                  <button type="button" class="chip" data-value="Structured">Structured</button>
-                  <button type="button" class="chip" data-value="Lightweight">Lightweight</button>
-                </div>
-              </div>
-              <div class="maker-group" data-group="does">
-                <span class="maker-label">I WANT IT TO:</span>
-                <div class="maker-chips">
-                  <button type="button" class="chip" data-value="Cool">Cool</button>
-                  <button type="button" class="chip" data-value="Wick">Wick</button>
-                  <button type="button" class="chip" data-value="Stretch">Stretch</button>
-                  <button type="button" class="chip" data-value="Protect">Protect</button>
-                  <button type="button" class="chip" data-value="Insulate">Insulate</button>
-                </div>
-              </div>
-              <div class="maker-group" data-group="use">
-                <span class="maker-label">I WANT IT FOR:</span>
-                <div class="maker-chips">
-                  <button type="button" class="chip" data-value="Running">Running</button>
-                  <button type="button" class="chip" data-value="Training">Training</button>
-                  <button type="button" class="chip" data-value="Lifestyle">Lifestyle</button>
-                  <button type="button" class="chip" data-value="Outdoor">Outdoor</button>
-                  <button type="button" class="chip" data-value="Workwear">Workwear</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="maker-brief" id="briefCard">
-              <span class="maker-brief-tag">DEVELOPMENT BRIEF</span>
-              <div class="brief-draft" id="briefDraft">
-                <p class="brief-line">A <em id="briefFeel">——</em> fabric that <em id="briefDoes">——</em>, engineered
-                  for <em id="briefUse">——</em>.</p>
-                <div class="brief-meta"><span>GSM — to spec</span><span>Composition — engineered</span><span>Swatch — on
-                    request</span></div>
-                <button type="button" class="btn btn-red brief-cta off" id="briefSubmit">Let BIA engineer it <span
-                    class="arrow">→</span></button>
-              </div>
-              <div class="brief-sent" id="briefSent" hidden>
-                <span class="brief-tick">✓</span>
-                <p>Brief received by the BIA lab.<br />Our engineers take it from here.</p>
-                <span class="brief-note">Reference <b id="briefRef"></b> · Response within 2 working days.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Material Details Modal -->
-    <div class="mat-modal" id="matModal" aria-hidden="true" role="dialog">
-      <div class="mat-modal-backdrop" id="matModalBackdrop"></div>
-      <div class="mat-modal-card">
-        <button class="mat-modal-close" id="matModalClose" aria-label="Close modal">✕</button>
-        <div class="mat-modal-media">
-          <img id="matModalImg" src="" alt="Fabric swatch detail" />
-        </div>
-        <div class="mat-modal-info">
-          <span class="mat-modal-cat" id="matModalCat">Jersey / Running</span>
-          <h3 class="mat-modal-title" id="matModalTitle">Performance jersey</h3>
-          <div class="mat-modal-specs">
-            <div class="spec-item"><span class="spec-label">Composition</span><strong class="spec-val"
-                id="matModalComp">88% Polyester, 12% Spandex</strong></div>
-            <div class="spec-item"><span class="spec-label">Weight</span><strong class="spec-val" id="matModalGsm">180
-                GSM</strong></div>
-            <div class="spec-item"><span class="spec-label">Lead Time</span><strong class="spec-val">Engineered on
-                demand</strong></div>
-            <div class="spec-item"><span class="spec-label">Attributes</span><strong class="spec-val"
-                id="matModalTags">Wick · Cool</strong></div>
-          </div>
-          <div class="mat-modal-actions">
-            <button type="button" class="btn btn-red" id="matModalDevelopBtn">Develop this fabric <span
-                class="arrow">→</span></button>
-            <button type="button" class="btn btn-ghost-dark" id="matModalCloseBtn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= JOURNEY ================= -->
-    <section class="section dark journey" id="thread">
+    <!-- ================= JOURNEY (FOLLOW THE RED THREAD) ================= -->
+    <!-- <section class="section dark journey" id="thread">
       <div class="journey-head reveal">
         <p class="eyebrow">FOLLOW THE RED THREAD</p>
         <h2>FROM AN IDEA<br />TO A BRIGHTER<br />TOMORROW.</h2>
@@ -663,11 +275,11 @@
             </div>
           </div>
           <div class="step flip reveal">
-            <div class="step-media"><img src="{{ url_for('static', filename='assets/stage-yarn.png') }}" alt="Yarn"
+            <div class="step-media"><img src="{{ url_for('static', filename='assets/warp_knitting_hall_4k.jpg') }}" alt="Yarn & Warp Beaming"
                 loading="lazy" /></div>
             <div class="step-info"><span class="step-n">02</span>
-              <h3 class="step-name">YARN</h3>
-              <p class="step-copy">Selecting and engineering the foundation.</p>
+              <h3 class="step-name">YARN &amp; WARPING</h3>
+              <p class="step-copy">Selecting and precision-beaming the polymer foundation.</p>
             </div>
           </div>
           <div class="step reveal">
@@ -679,7 +291,7 @@
             </div>
           </div>
           <div class="step flip reveal">
-            <div class="step-media"><img src="{{ url_for('static', filename='assets/stage-fabric.png') }}" alt="Colour"
+            <div class="step-media"><img src="{{ url_for('static', filename='assets/dyeing_hall_hd.jpg') }}" alt="Automated Dyeing &amp; Colour Hall"
                 loading="lazy" /></div>
             <div class="step-info"><span class="step-n">04</span>
               <h3 class="step-name">COLOUR</h3>
@@ -697,7 +309,7 @@
           </div>
           <div class="step flip reveal">
             <div class="step-media">
-              <div class="step-type-card"><span>Proven,</span><span>not promised.</span></div>
+              <img src="{{ url_for('static', filename='assets/color_lab_testing_4k.jpg') }}" alt="Testing &amp; Automated Color Lab" loading="lazy" />
             </div>
             <div class="step-info"><span class="step-n">06</span>
               <h3 class="step-name">TEST</h3>
@@ -725,732 +337,333 @@
 
       <div class="journey-end reveal">
         <h3>ONE THREAD. ONE ECOSYSTEM.<br />ENDLESS POSSIBILITIES.</h3>
-      </div>
-    </section>
+        <div style="display:flex; justify-content:center; gap:16px; margin-top:32px; flex-wrap:wrap;">
+          <a href="/ecosystem" class="btn btn-red">Explore BIA × Classic <span class="arrow">→</span></a>
+          <a href="/fabrics" class="btn btn-ghost">Fabric &amp; Technologies <span class="arrow">→</span></a>
+        </div>
+      </div> -->
+    <!-- ================= PARTNERS & GLOBAL REACH ================= -->
+    <section class="section dark partners-section" id="partners">
+      <div class="container" style="max-width: 1400px; margin: 0 auto;">
 
-    <!-- ================= INSIDE BIA ================= -->
-    <section class="section light inside" id="inside">
-      <div class="inside-head reveal">
-        <p class="eyebrow">INSIDE BIA</p>
-        <h2>STEP INSIDE THE MILL.</h2>
-        <p class="inside-lede">A digital tour — seven stops from yarn to finished fabric.</p>
-      </div>
-      <div class="inside-rail reveal">
-        <div class="inside-stop"><span class="inside-n">STOP 01</span>
-          <h3>Yarn</h3>
-          <p>Where it all begins</p><span class="inside-stat">100+ tonnes daily</span>
-        </div>
-        <div class="inside-stop"><span class="inside-n">STOP 02</span>
-          <h3>Knitting</h3>
-          <p>Structure takes shape</p><span class="inside-stat">Precision gauge control</span>
-        </div>
-        <div class="inside-stop"><span class="inside-n">STOP 03</span>
-          <h3>Dyeing</h3>
-          <p>Identity in colour</p><span class="inside-stat">Low-liquor technology</span>
-        </div>
-        <div class="inside-stop"><span class="inside-n">STOP 04</span>
-          <h3>Finishing</h3>
-          <p>Character engineered</p><span class="inside-stat">Performance finishes</span>
-        </div>
-        <div class="inside-stop"><span class="inside-n">STOP 05</span>
-          <h3>Laboratory</h3>
-          <p>Every claim tested</p><span class="inside-stat">In-house accredited lab</span>
-        </div>
-        <div class="inside-stop"><span class="inside-n">STOP 06</span>
-          <h3>Quality</h3>
-          <p>Nothing passes unseen</p><span class="inside-stat">4-point inspection</span>
-        </div>
-        <div class="inside-stop"><span class="inside-n">STOP 07</span>
-          <h3>Finished Fabric</h3>
-          <p>Ready for apparel</p><span class="inside-stat">Rolls to garment floor</span>
-        </div>
-      </div>
-      <div class="inside-end reveal">
-        <h3>YOU'VE SEEN THE MILL.<br />NOW LET'S MAKE SOMETHING.</h3>
-        <div class="inside-ctas">
-          <a href="#contact" class="btn btn-red">Book a mill visit <span class="arrow">→</span></a>
-          <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker', true);}"
-            class="btn btn-ghost-dark">Start a development <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= ECOSYSTEM ================= -->
-    <section class="section dark ecosystem" id="ecosystem">
-      <div class="ecosystem-bg"></div>
-      <div class="ecosystem-inner">
-        <p class="eyebrow reveal">BIA × CLASSIC FASHION</p>
-        <h2 class="reveal">FROM FABRIC TO FASHION.<br />ONE INTEGRATED ECOSYSTEM.</h2>
-        <div class="eco-chain reveal">
-          <div class="eco-col"><span class="eco-tag">BIA</span>
-            <p>Yarn → Knitting → Dyeing → Finishing → Testing → Fabric</p>
-          </div>
-          <div class="eco-link"><span></span></div>
-          <div class="eco-col"><span class="eco-tag">CLASSIC FASHION</span>
-            <p>Design → Sampling → Manufacturing → Finishing → Quality → Delivery</p>
-          </div>
-        </div>
-        <div class="eco-benefits reveal">
-          <div class="eco-b"><strong>Speed</strong><span>Reduced handovers.</span></div>
-          <div class="eco-b"><strong>Control</strong><span>Visibility throughout development.</span></div>
-          <div class="eco-b"><strong>Quality</strong><span>Aligned standards, fabric to garment.</span></div>
-          <div class="eco-b"><strong>Agility</strong><span>Faster response to requirements.</span></div>
-          <div class="eco-b"><strong>Innovation</strong><span>Fabric and apparel develop together.</span></div>
-          <div class="eco-b"><strong>Scale</strong><span>Industrial capability, end to end.</span></div>
-        </div>
-        <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker', true);}"
-          class="btn btn-red reveal">Develop with BIA <span class="arrow">→</span></a>
-      </div>
-    </section>
-
-    <!-- ================= BIA NEXT / INNOVATION ================= -->
-    <section class="section light innovation-section" id="innovation">
-      <div class="innovation-inner">
-        <div class="innovation-head reveal">
-          <p class="eyebrow">BIA NEXT · TEXTILE R&amp;D PLATFORM</p>
-          <h2>WHAT WILL FABRIC DO NEXT?<br />ENGINEERING TOMORROW'S MATERIALS.</h2>
-          <p class="innovation-lede">
-            BIA Next is our proprietary material incubation hub. We combine polymer research, aerodynamic knit geometries, and clean performance chemistry to co-create next-generation textiles for world-leading sportswear and technical apparel brands.
+        <div class="reveal" style="max-width: 900px; margin-bottom: 50px;">
+          <p class="eyebrow">PARTNERS &amp; GLOBAL REACH</p>
+          <h2 style="font-size: clamp(32px, 3.8vw, 56px); margin-top: 14px; line-height: 1.15; color: #ffffff;">
+            MADE IN JORDAN.<br /><span style="color: var(--red);">BUILT FOR GLOBAL BRANDS.</span>
+          </h2>
+          <p style="font-size: 17.5px; color: var(--steel); margin-top: 16px; line-height: 1.65;">
+            From Amman to the world's most demanding athletic and lifestyle retail shelves. Our integrated supply chain
+            delivers speed, compliance, and duty-free access across 40+ international markets.
           </p>
         </div>
 
-        <!-- 4 Innovation Pillars Grid -->
-        <div class="innovation-grid reveal">
-          <div class="inno-card">
-            <span class="inno-num">01</span>
-            <h3>Dynamic Thermal Regulation</h3>
-            <p>Phase-change micro-encapsulated yarns that actively absorb and release body heat, maintaining optimal microclimates during intense athletic output.</p>
-            <span class="inno-badge">ACTIVE COOLING</span>
-          </div>
-
-          <div class="inno-card">
-            <span class="inno-num">02</span>
-            <h3>Mechanical Zero-Elastane Stretch</h3>
-            <p>100% circular monomaterial polyester engineered with helical high-twist geometry, delivering 4-way stretch without degrading elastane — designed for full recyclability.</p>
-            <span class="inno-badge">CIRCULAR KNIT</span>
-          </div>
-
-          <div class="inno-card">
-            <span class="inno-num">03</span>
-            <h3>Micro-Channel Moisture Transfer</h3>
-            <p>3D engineered capillary knitting patterns that pull perspiration from skin to outer evaporative surfaces 2.8× faster than conventional cross-sections.</p>
-            <span class="inno-badge">RAPID DRY TECH</span>
-          </div>
-
-          <div class="inno-card">
-            <span class="inno-num">04</span>
-            <h3>Bio-Polymer &amp; Ocean Fiber Blends</h3>
-            <p>Blending post-consumer ocean plastics, organic long-staple cotton, and wood-pulp Tencel™ with certified low-liquor dyeing technology.</p>
-            <span class="inno-badge">ECO MATERIALS</span>
-          </div>
-        </div>
-
-        <!-- "CHALLENGE US" Interactive Fabric Brief Box -->
-        <div class="challenge-box reveal" id="challenge">
-          <div class="challenge-header">
-            <span class="challenge-tag">CO-DEVELOPMENT INITIATIVE</span>
-            <h3>CHALLENGE US.</h3>
-            <p>Tell our textile engineers what performance parameters your next collection demands. We will formulate a tailored development brief within 48 hours.</p>
-          </div>
-          <div class="challenge-form-preview">
-            <div class="challenge-pills">
-              <span class="c-pill active">Running &amp; Training</span>
-              <span class="c-pill">High-Compression Fit</span>
-              <span class="c-pill">Sub-140 GSM Ultra-Light</span>
-              <span class="c-pill">Recycled Polyester</span>
+        <!-- Interactive Global Trade Map Card -->
+        <div class="global-map-card reveal">
+          <div class="map-controls-row">
+            <span class="map-hub-tag"><span class="hub-pulse"></span> HUB: AMMAN, JORDAN (BIA MILL COMPLEX)</span>
+            <div class="map-market-tabs" id="marketTabs">
+              <button type="button" class="map-market-btn active" data-market="usa">United States &amp; Canada</button>
+              <button type="button" class="map-market-btn" data-market="europe">United Kingdom &amp; Europe</button>
+              <button type="button" class="map-market-btn" data-market="middle-east">Middle East &amp; GCC</button>
+              <button type="button" class="map-market-btn" data-market="asia">Asia Global Pipeline</button>
             </div>
-            <a href="#contact" onclick="if(window.fillContactAndScroll){window.fillContactAndScroll('development', 'Custom Fabric Challenge Brief:\n• Target Application: Technical Sportswear\n• Required Performance: Dynamic Moisture Management + 4-Way Stretch\n• Composition: Recycled Polyester Blend\n• Desired GSM: ~140 GSM');}" class="btn btn-red challenge-btn">Submit A Fabric Challenge <span class="arrow">→</span></a>
+          </div>
+
+          <!-- SVG World Map with Glowing Trade Routes -->
+          <div class="map-svg-container">
+            <svg class="world-map-svg" viewBox="0 0 1000 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- World Continents Outline Background -->
+              <g class="world-continents" opacity="0.35" stroke="rgba(244, 241, 236, 0.25)" stroke-width="1.2"
+                fill="rgba(255, 255, 255, 0.03)">
+                <!-- North America -->
+                <path d="M120 100 L260 80 L310 140 L280 200 L220 220 L190 280 L160 270 L140 200 L100 160 Z" />
+                <!-- South America -->
+                <path d="M250 290 L320 310 L340 380 L290 450 L250 420 L230 340 Z" />
+                <!-- Europe -->
+                <path d="M460 100 L560 90 L590 140 L530 180 L470 170 L450 130 Z" />
+                <!-- Africa -->
+                <path d="M470 200 L580 200 L610 280 L560 390 L490 350 L460 260 Z" />
+                <!-- Middle East (Hub Base) -->
+                <path d="M570 180 L650 170 L670 230 L610 260 L570 220 Z" />
+                <!-- Asia -->
+                <path d="M620 90 L850 80 L890 180 L800 280 L680 240 L650 150 Z" />
+                <!-- Australia -->
+                <path d="M780 340 L880 330 L900 410 L810 430 L760 380 Z" />
+              </g>
+
+              <!-- Radiating Trade Routes from Jordan (X: 590, Y: 195) -->
+              <!-- Route 1: Jordan to USA East Coast (X: 250, Y: 150) -->
+              <path class="trade-route-path route-usa active" d="M590 195 C 440 120, 360 110, 250 150" stroke="#c8102e"
+                stroke-width="2.5" stroke-dasharray="6 4" />
+              <!-- Route 2: Jordan to Europe/UK (X: 490, Y: 130) -->
+              <path class="trade-route-path route-europe" d="M590 195 C 550 160, 520 140, 490 130" stroke="#c8102e"
+                stroke-width="2.5" stroke-dasharray="6 4" />
+              <!-- Route 3: Jordan to GCC/Middle East (X: 630, Y: 230) -->
+              <path class="trade-route-path route-middle-east" d="M590 195 C 605 210, 618 220, 630 230" stroke="#c8102e"
+                stroke-width="2.5" stroke-dasharray="6 4" />
+              <!-- Route 4: Jordan to Asia/Sourcing (X: 780, Y: 180) -->
+              <path class="trade-route-path route-asia" d="M590 195 C 680 160, 720 170, 780 180" stroke="#c8102e"
+                stroke-width="2.5" stroke-dasharray="6 4" />
+
+              <!-- Jordan Hub Epicenter Node -->
+              <g class="hub-node" transform="translate(590, 195)">
+                <circle r="16" fill="rgba(200, 16, 46, 0.25)" class="pulse-ring"></circle>
+                <circle r="8" fill="#c8102e"></circle>
+                <circle r="3" fill="#ffffff"></circle>
+                <text x="12" y="5" fill="#ffffff" font-family="Montserrat" font-size="11" font-weight="800"
+                  letter-spacing="1">JORDAN (BIA HUB)</text>
+              </g>
+
+              <!-- Market Destination Nodes -->
+              <!-- USA Node -->
+              <g class="market-node market-node-usa" transform="translate(250, 150)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
+                <text x="-15" y="-12" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">NORTH
+                  AMERICA</text>
+                <text x="-15" y="20" fill="#c8102e" font-family="Montserrat" font-size="9" font-weight="800">0% US-FTA
+                  TARIFF</text>
+              </g>
+
+              <!-- Europe Node -->
+              <g class="market-node market-node-europe" transform="translate(490, 130)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
+                <text x="-10" y="-12" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">EUROPE
+                  &amp; UK</text>
+                <text x="-10" y="20" fill="var(--steel)" font-family="Montserrat" font-size="9" font-weight="600">7–10
+                  DAYS TRANSIT</text>
+              </g>
+
+              <!-- GCC Node -->
+              <g class="market-node market-node-middle-east" transform="translate(630, 230)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
+                <text x="12" y="4" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">MIDDLE
+                  EAST</text>
+              </g>
+
+              <!-- Asia Node -->
+              <g class="market-node market-node-asia" transform="translate(780, 180)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
+                <text x="12" y="4" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">ASIA
+                  SOURCING</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Market Detail Live Info Bar -->
+          <div class="map-market-info-card" id="marketInfoCard">
+            <div class="m-info-header">
+              <span class="m-info-badge" id="mInfoBadge">PRIMARY EXPORT CORRIDOR</span>
+              <h4 id="mInfoTitle">North America &amp; United States Market</h4>
+            </div>
+            <div class="m-info-grid">
+              <div class="m-info-item">
+                <span class="m-lbl">Tariff Rate:</span>
+                <strong class="m-val highlight-red" id="mInfoTariff">0% Import Duty (US-Jordan FTA)</strong>
+              </div>
+              <div class="m-info-item">
+                <span class="m-lbl">Transit Lead Time:</span>
+                <strong class="m-val" id="mInfoTransit">14–16 Days Direct Sea to East Coast</strong>
+              </div>
+              <div class="m-info-item">
+                <span class="m-lbl">Daily Garment Output:</span>
+                <strong class="m-val" id="mInfoVolume">500,000+ Finished Pieces via Classic</strong>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ================= RESPONSIBILITY ================= -->
-    <section class="section dark responsibility-section" id="responsibility">
-      <div class="responsibility-inner">
-        <div class="responsibility-head reveal">
-          <p class="eyebrow">OUR COMMITMENT · PROVE. DON'T PROCLAIM.</p>
-          <h2>BRILLIANCE WITH RESPONSIBILITY.<br />SUSTAINABILITY IN ACTION.</h2>
-          <p class="responsibility-lede">
-            We reject vague promises. At BIA, environmental stewardship is measured through independently audited metrics, closed-loop water treatment, and zero-hazardous input chemistry in Sahab Industrial City.
+        <!-- ================= SUB-SECTION: GLOBAL EXPECTATIONS. ONE STANDARD. ================= -->
+        <div class="reveal"
+          style="margin-top: 90px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto;">
+          <p class="eyebrow" style="justify-content: center;">CREDIBILITY BEYOND LOGOS</p>
+          <h2 style="font-size: clamp(30px, 3.6vw, 48px); margin-top: 12px; line-height: 1.2; color: #ffffff;">
+            GLOBAL EXPECTATIONS.<br /><span style="color: var(--red);">ONE UNIFIED STANDARD.</span>
+          </h2>
+          <p style="font-size: 17px; color: var(--steel); margin-top: 16px; line-height: 1.65;">
+            Rather than relying on static client logos, we prove our technical capability through real-world
+            manufacturing case studies: from technical challenge to engineered fabric solution, volume production, and
+            verified commercial results.
           </p>
         </div>
 
-        <div class="metrics-grid reveal">
-          <div class="metric-card">
-            <span class="metric-val">85%</span>
-            <h4>Water Recycling Ratio</h4>
-            <p>Advanced multi-stage reverse osmosis and closed-loop effluent treatment recovering 85% of dyehouse water for re-use.</p>
-            <span class="metric-sub">LOW-LIQUOR RATIO DYEING</span>
+        <!-- 3 TECHNICAL CASE STUDIES GRID -->
+        <div class="case-studies-grid reveal" style="margin-top: 50px;">
+
+          <!-- Case Study 01 -->
+          <div class="case-study-card">
+            <div class="case-study-header">
+              <span class="case-tag">CASE STUDY 01 · RUNNING &amp; MARATHON</span>
+              <span class="case-code">CS-PERF-01</span>
+            </div>
+            <h3 class="case-title">Ultra-Lightweight Hydrophobic Marathon Jersey</h3>
+
+            <div class="case-step-block">
+              <div class="case-step">
+                <strong class="case-step-lbl challenge-lbl">CHALLENGE:</strong>
+                <p>Global athletic label required a sub-135 GSM running tee with under 1.2s sweat absorption, zero
+                  skin-cling under heavy perspiration, and 0% US tariff qualification.</p>
+              </div>
+              <div class="case-step">
+                <strong class="case-step-lbl solution-lbl">FABRIC SOLUTION:</strong>
+                <p>BIA engineered a 32-gauge multi-channel micro-filament polyester with jade-mineral cooling finish and
+                  mechanical spring stretch (zero elastane breakdown).</p>
+              </div>
+              <div class="case-step">
+                <strong class="case-step-lbl scale-lbl">PRODUCTION SCALE:</strong>
+                <p>45 metric tonnes milled and dyed in Amman with seamless cut-and-sew transition through Classic
+                  Fashion lines.</p>
+              </div>
+              <div class="case-step highlight-result">
+                <strong class="case-step-lbl result-lbl">RESULT:</strong>
+                <p><strong>28 days shaved off seasonal lead time</strong>, 100% first-pass AQL 1.5 audit pass rate, and
+                  full 0% duty-free US entry.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="metric-card">
-            <span class="metric-val">100%</span>
-            <h4>ZDHC Level 3 Input Chemistry</h4>
-            <p>Exclusively non-hazardous, Bluesign® and OEKO-TEX® Standard 100 certified auxiliaries and green dyestuffs across all production lines.</p>
-            <span class="metric-sub">ZERO HARMFUL CHEMICALS</span>
+          <!-- Case Study 02 -->
+          <div class="case-study-card">
+            <div class="case-study-header">
+              <span class="case-tag">CASE STUDY 02 · PREMIUM ATHLEISURE</span>
+              <span class="case-code">CS-YOGA-02</span>
+            </div>
+            <h3 class="case-title">Zero-Sheer 36G High-Density Compression Interlock</h3>
+
+            <div class="case-step-block">
+              <div class="case-step">
+                <strong class="case-step-lbl challenge-lbl">CHALLENGE:</strong>
+                <p>Eliminate elastane grinning and opacity breakdown under deep squat elongation in premium high-waisted
+                  activewear leggings.</p>
+              </div>
+              <div class="case-step">
+                <strong class="case-step-lbl solution-lbl">FABRIC SOLUTION:</strong>
+                <p>36-gauge European double interlock with micro-denier Nylon 6.6 and black-dope Lycra® elastane for
+                  360° squat-proof opacity.</p>
+              </div>
+              <div class="case-step">
+                <strong class="case-step-lbl scale-lbl">PRODUCTION SCALE:</strong>
+                <p>80 metric tonnes continuous monthly production with automated spectrophotometer recipe matching
+                  (Delta E &lt;0.5).</p>
+              </div>
+              <div class="case-step highlight-result">
+                <strong class="case-step-lbl result-lbl">RESULT:</strong>
+                <p><strong>Zero pilling after 50 wash cycles</strong>, buttery soft hand feel, and verified ZDHC Level 3
+                  MRSL compliance.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="metric-card">
-            <span class="metric-val">4.2 MW</span>
-            <h4>Clean Solar Power</h4>
-            <p>Rooftop solar photovoltaic installation generating clean renewable energy directly powering high-speed European circular knitting machinery.</p>
-            <span class="metric-sub">RENEWABLE INDUSTRIAL POWER</span>
+          <!-- Case Study 03 -->
+          <div class="case-study-card">
+            <div class="case-study-header">
+              <span class="case-tag">CASE STUDY 03 · OUTDOOR &amp; WORKWEAR</span>
+              <span class="case-code">CS-TACT-03</span>
+            </div>
+            <h3 class="case-title">High-Tenacity UPF 50+ DWR Bio-Proof Ottoman</h3>
+
+            <div class="case-step-block">
+              <div class="case-step">
+                <strong class="case-step-lbl challenge-lbl">CHALLENGE:</strong>
+                <p>Demanded heavy-duty abrasion resistance exceeding 60,000 Martindale cycles combined with
+                  non-fluorinated water repellency for technical outdoor outerwear.</p>
+              </div>
+              <div class="case-step">
+                <strong class="case-step-lbl solution-lbl">FABRIC SOLUTION:</strong>
+                <p>Structured Ottoman rib combining high-tenacity CORDURA® nylon filaments with PFC-free bio-based DWR
+                  finishing baths.</p>
+              </div>
+              <div class="case-step">
+                <strong class="case-step-lbl scale-lbl">PRODUCTION SCALE:</strong>
+                <p>60 metric tonnes deployed across multi-market international distribution hubs in North America and
+                  Western Europe.</p>
+              </div>
+              <div class="case-step highlight-result">
+                <strong class="case-step-lbl result-lbl">RESULT:</strong>
+                <p><strong>Exceeded ASTM burst strength specs by 35%</strong> with 100% closed-loop process water
+                  treatment compliance.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="metric-card">
-            <span class="metric-val">0%</span>
-            <h4>Fabric Waste to Landfill</h4>
-            <p>100% of mill cutting scraps, selvage edges, and yarn remnants are shredded, baled, and re-spun into secondary industrial fibers.</p>
-            <span class="metric-sub">CIRCULAR RECOVERY</span>
-          </div>
+        </div>
 
-          <div class="metric-card">
-            <span class="metric-val">60%+</span>
-            <h4>Recycled &amp; Eco Yarn Share</h4>
-            <p>Global Recycled Standard (GRS) certified portfolio offering post-consumer PET, bio-based modal, and traceable sustainable cotton.</p>
-            <span class="metric-sub">GRS CERTIFIED MATERIALS</span>
-          </div>
-
-          <div class="metric-card">
-            <span class="metric-val">100%</span>
-            <h4>Yarn-to-Garment Traceability</h4>
-            <p>Full digital batch traceability connecting raw spinning origin, knitting logs, dye batch recipe, and finished apparel production.</p>
-            <span class="metric-sub">TRANSPARENT VALUE CHAIN</span>
+        <!-- Call to Action -->
+        <div class="subpage-cta reveal" style="margin-top: 70px;">
+          <p class="eyebrow" style="color: var(--red); justify-content: center;">SOLVE YOUR NEXT MATERIAL CHALLENGE</p>
+          <h3>ENGINEER YOUR FABRICS WITH BIA.</h3>
+          <p>Submit your technical brief or brand challenge to our textile engineering team in Amman, Jordan.</p>
+          <div class="subpage-cta-actions">
+            <a href="/contact" class="btn btn-red">Initiate Development Brief <span class="arrow">→</span></a>
+            <a href="/fabrics" class="btn btn-ghost">Explore Material Library <span class="arrow">→</span></a>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- ================= PEOPLE & CULTURE ================= -->
-    <section class="section light people-section" id="people">
-      <div class="people-inner">
-        <div class="people-head reveal">
-          <p class="eyebrow">OUR CULTURE · THE HUMAN SIDE OF BRILLIANCE</p>
-          <h2>MACHINES CREATE PRECISION.<br />PEOPLE CREATE POSSIBILITY.</h2>
-          <p class="people-lede">
-            Behind every roll of high-performance fabric are 1,000+ dedicated engineers, scientists, and technicians whose craftsmanship and passion drive Jordan's manufacturing revolution.
-          </p>
-        </div>
-
-        <div class="makers-grid reveal">
-          <div class="maker-card">
-            <div class="maker-card-header">
-              <span class="maker-role-tag">LABORATORY SCIENCE</span>
-              <h4>Rania M.</h4>
-              <span class="maker-title">Lead Textile Chemist · In-House Accredited Lab</span>
-            </div>
-            <p class="maker-quote">“To me, quality is not a slogan. It is proving that every moisture-wicking and colourfastness claim withstands real-world athletic conditions.”</p>
-            <span class="maker-exp">8+ Years at BIA Hub</span>
-          </div>
-
-          <div class="maker-card">
-            <div class="maker-card-header">
-              <span class="maker-role-tag">KNITTING ENGINEERING</span>
-              <h4>Ahmed K.</h4>
-              <span class="maker-title">Circular Knitting Supervisor · Hall 01</span>
-            </div>
-            <p class="maker-quote">“Operating modern European machines requires feeling the yarn's tension. When needles knit at 35 RPM, micron-level precision is everything.”</p>
-            <span class="maker-exp">12+ Years Textile Mastery</span>
-          </div>
-
-          <div class="maker-card">
-            <div class="maker-card-header">
-              <span class="maker-role-tag">DYEHOUSE OPERATIONS</span>
-              <h4>Sahar A.</h4>
-              <span class="maker-title">Dyeing &amp; Color Match Specialist</span>
-            </div>
-            <p class="maker-quote">“Formulating low-liquor dye recipes with zero shade variation across 100 tonnes daily is where art meets chemical precision.”</p>
-            <span class="maker-exp">6+ Years Color Engineering</span>
-          </div>
-
-          <div class="maker-card">
-            <div class="maker-card-header">
-              <span class="maker-role-tag">QUALITY ASSURANCE</span>
-              <h4>Tariq H.</h4>
-              <span class="maker-title">Senior Quality Inspection Lead</span>
-            </div>
-            <p class="maker-quote">“Our 4-point inspection system ensures that only flawless fabric rolls move onto the Classic Fashion garment assembly floor.”</p>
-            <span class="maker-exp">10+ Years Quality Control</span>
-          </div>
-        </div>
-
-        <div class="people-values-strip reveal">
-          <div class="val-item"><strong>40%+</strong><span>Women in Technical Leadership</span></div>
-          <div class="val-item"><strong>1,000+</strong><span>Dedicated Textile Specialists</span></div>
-          <div class="val-item"><strong>100%</strong><span>Fair Wage &amp; Safe Workplace Certified</span></div>
-          <div class="val-item"><strong>Continuous</strong><span>Technical Training Academy</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= QUALITY & CERTIFICATIONS ================= -->
-    <section class="section dark quality-section" id="quality">
-      <div class="quality-inner">
-        <div class="quality-head reveal">
-          <p class="eyebrow">QUALITY YOU CAN MEASURE</p>
-          <h2>ACCREDITED STANDARDS.<br />BUILT FOR GLOBAL BRANDS.</h2>
-          <p class="quality-lede">
-            From raw yarn spectrometry to 4-point physical inspection, BIA maintains world-class compliance certifications guaranteeing performance, safety, and rapid duty-free export.
-          </p>
-        </div>
-
-        <div class="certs-grid reveal">
-          <div class="cert-card">
-            <span class="cert-tag">SAFETY &amp; ECOLOGY</span>
-            <h4>OEKO-TEX® Standard 100</h4>
-            <p>Class 1 certified free from harmful substances, safe for next-to-skin athletic and children's apparel.</p>
-          </div>
-
-          <div class="cert-card">
-            <span class="cert-tag">RECYCLED VERIFICATION</span>
-            <h4>Global Recycled Standard (GRS)</h4>
-            <p>Third-party verified recycled content across polyester and synthetic yarn inputs with full chain of custody.</p>
-          </div>
-
-          <div class="cert-card">
-            <span class="cert-tag">OPERATIONAL EXCELLENCE</span>
-            <h4>ISO 9001 &amp; ISO 14001</h4>
-            <p>Integrated quality management and environmental operational standards across all manufacturing divisions.</p>
-          </div>
-
-          <div class="cert-card">
-            <span class="cert-tag">CLEAN CHEMISTRY</span>
-            <h4>ZDHC Level 3 Input Compliance</h4>
-            <p>Zero Discharge of Hazardous Chemicals standard ensuring pure water effluent and safe input materials.</p>
-          </div>
-
-          <div class="cert-card">
-            <span class="cert-tag">GLOBAL FACILITY AUDIT</span>
-            <h4>HIGG Index (FEM &amp; FSLM)</h4>
-            <p>Verified sustainability and fair labor standards benchmarked against the world's leading apparel brands.</p>
-          </div>
-        </div>
-
-        <!-- Global Advantage Banner -->
-        <div class="global-banner reveal" id="global">
-          <div class="global-left">
-            <span class="global-tag">STRATEGIC LOCATION · AMMAN, JORDAN</span>
-            <h3>DUTY-FREE EXPORT ADVANTAGE.</h3>
-            <p>Benefiting from the Jordan–United States Free Trade Agreement (FTA) and preferential trade treaties with the EU and GCC, BIA delivers duty-free pricing and 14-day transatlantic shipping to US East Coast ports.</p>
-          </div>
-          <div class="global-stats">
-            <div class="g-stat"><strong>0%</strong><span>Import Duty to USA (FTA)</span></div>
-            <div class="g-stat"><strong>14 Days</strong><span>Sea Transit to US Coast</span></div>
-            <div class="g-stat"><strong>40+</strong><span>Global Export Markets</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= STORIES ================= -->
-    <section class="section light stories" id="insights">
-      <div class="stories-head reveal">
-        <p class="eyebrow">FABRIC STORIES</p>
-        <button type="button" class="stories-all" id="exploreAllStoriesBtn">Explore all stories →</button>
-      </div>
-      <div class="stories-grid">
-        <div class="story reveal story-card-btn" data-story-id="quick-dry" role="button" tabindex="0" aria-label="Read story: What actually makes a fabric quick-dry?">
-          <span class="story-tag">TECHNOLOGY</span>
-          <h3>What actually makes a fabric quick-dry?</h3>
-          <span class="story-arrow">→</span>
-        </div>
-        <div class="story reveal story-card-btn" data-story-id="colour-lab" role="button" tabindex="0" aria-label="Read story: Inside the BIA colour lab">
-          <span class="story-tag">INSIDE BIA</span>
-          <h3>Inside the BIA colour lab</h3>
-          <span class="story-arrow">→</span>
-        </div>
-        <div class="story reveal story-card-btn" data-story-id="gsm-story" role="button" tabindex="0" aria-label="Read story: Why GSM doesn't tell the whole fabric story">
-          <span class="story-tag">INNOVATION</span>
-          <h3>Why GSM doesn't tell the whole fabric story</h3>
-          <span class="story-arrow">→</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FOUNDER & LEADERSHIP ================= -->
-    <section class="section dark leadership" id="leadership">
-      <div class="leadership-inner">
-        <div class="leadership-head reveal">
-          <p class="eyebrow">FOUNDER &amp; LEADERSHIP</p>
-          <h2>ARCHITECTS OF INDUSTRIAL SCALE.<br />POWERED BY PURPOSE.</h2>
-          <p class="leadership-lede">
-            Meet the executive leadership shaping BIA's future — uniting over three decades of textile manufacturing mastery, cutting-edge industrial automation, and relentless global expansion.
-          </p>
-        </div>
-
-        <!-- 3 Executive Leadership Cards (Founder, Co-Founder, COO) -->
-        <div class="leaders-grid reveal">
-          <!-- Leader 1: Founder -->
-          <div class="leader-card">
-            <div class="leader-img-wrap">
-              <img src="{{ url_for('static', filename='assets/leader-founder.jpg') }}" alt="Sanath Kumar · Founder &amp; Chairman" class="leader-img" />
-              <div class="leader-role-badge">FOUNDER &amp; CHAIRMAN</div>
-            </div>
-            <div class="leader-body">
-              <h3 class="leader-name">Sanath Kumar</h3>
-              <span class="leader-designation">Managing Director &amp; Chairman · Classic Fashion &amp; BIA</span>
-              <p class="leader-story">
-                "We founded BIA to eliminate compromise in regional fabric manufacturing. By uniting world-class circular knitting, low-liquor dyeing, and deep vertical integration with Classic Fashion, we provide global apparel brands with unprecedented agility, precision, and reliable industrial scale."
-              </p>
-              <div class="leader-meta">
-                <span class="leader-pill">30+ Yrs Industry Leadership</span>
-                <span class="leader-pill">100+ TPD Vision</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Leader 2: Co-Founder -->
-          <div class="leader-card">
-            <div class="leader-img-wrap">
-              <img src="{{ url_for('static', filename='assets/leader-cofounder.jpg') }}" alt="Co-Founder &amp; Executive Director" class="leader-img" />
-              <div class="leader-role-badge">CO-FOUNDER &amp; EXECUTIVE DIRECTOR</div>
-            </div>
-            <div class="leader-body">
-              <h3 class="leader-name">V. Ramakrishnan</h3>
-              <span class="leader-designation">Executive Director · Global Strategy &amp; Growth</span>
-              <p class="leader-story">
-                "True supply chain resilience begins at the raw yarn level. Our strategic roadmap connects BIA’s advanced fabric lab directly with premier global athletic and lifestyle labels, building long-term collaborative engineering hubs across worldwide markets."
-              </p>
-              <div class="leader-meta">
-                <span class="leader-pill">Global Strategic Partnerships</span>
-                <span class="leader-pill">Worldwide Market Hub</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Leader 3: COO -->
-          <div class="leader-card">
-            <div class="leader-img-wrap">
-              <img src="{{ url_for('static', filename='assets/leader-coo.jpg') }}" alt="Chief Operating Officer" class="leader-img" />
-              <div class="leader-role-badge">CHIEF OPERATING OFFICER</div>
-            </div>
-            <div class="leader-body">
-              <h3 class="leader-name">Marcus Chen</h3>
-              <span class="leader-designation">Chief Operating Officer · Mill Operations &amp; Technology</span>
-              <p class="leader-story">
-                "From precision tension calibration on European circular knitters to zero-discharge low-liquor dyeing cycles, our daily focus is operational perfection. We run an intelligent, data-driven mill where every metre of fabric meets accredited international lab standards."
-              </p>
-              <div class="leader-meta">
-                <span class="leader-pill">Automated Mill Operations</span>
-                <span class="leader-pill">Accredited 4-Point Lab</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CONTACT ================= -->
-    <section class="section light contact-section" id="contact">
-      <div class="contact-header-grid reveal">
-        <div class="contact-header-left">
-          <p class="eyebrow">GET IN TOUCH</p>
-          <h2 class="contact-title">CONNECT WITH BIA.</h2>
-        </div>
-        <div class="contact-header-right">
-          <p class="contact-lede">
-            From technical fabric development to facility visits in Amman, Jordan — our engineering team is ready.
-          </p>
-        </div>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Left Column: Mill & Corporate Contacts -->
-        <div class="contact-info-col reveal">
-          <div class="contact-cards">
-
-            <div class="c-card">
-              <div class="c-card-icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                  <circle cx="12" cy="9" r="2.5" />
-                </svg>
-              </div>
-              <div class="c-card-content">
-                <span class="c-tag">GLOBAL HEADQUARTERS &amp; MILL</span>
-                <h4>Amman, Hashemite Kingdom of Jordan</h4>
-                <p>Al-Tajamouat Industrial City, Sahab<br />P.O. Box 123, Amman 11512</p>
-                <div class="c-badge">Middle East's Largest Integrated Textile Hub</div>
-              </div>
-            </div>
-
-            <div class="c-card-row">
-              <div class="c-card compact">
-                <div class="c-card-icon">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                </div>
-                <div class="c-card-content">
-                  <span class="c-tag">FABRIC DEVELOPMENT &amp; SALES</span>
-                  <a href="mailto:develop@bia.jo" class="c-link">develop@bia.jo</a>
-                  <a href="mailto:sales@bia.jo" class="c-sublink">sales@bia.jo</a>
-                </div>
-              </div>
-
-              <div class="c-card compact">
-                <div class="c-card-icon">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                    <path
-                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                </div>
-                <div class="c-card-content">
-                  <span class="c-tag">DIRECT MILL LINE</span>
-                  <a href="tel:+96264020000" class="c-link">+962 6 402 0000</a>
-                  <span class="c-subtext">Sun – Thu: 8:00 AM – 6:00 PM (GMT+3)</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="c-guarantee-card">
-              <div class="c-guarantee-dot"></div>
-              <div class="c-guarantee-text">
-                <strong>Rapid Engineering Response Guarantee</strong>
-                <p>All technical briefs, swatch requests, and mill tour inquiries receive initial response from a
-                  dedicated textile engineer within 24–48 hours.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Right Column: Interactive Enquiry Form -->
-        <div class="contact-form-col reveal">
-          <div class="contact-form-wrapper">
-            <div class="form-header">
-              <span class="form-tag">SEND AN ENQUIRY</span>
-              <h3>Start a Conversation with Our Team</h3>
-            </div>
-
-            <form id="contactForm" class="contact-form" novalidate>
-              <!-- Topic Selector -->
-              <div class="form-group">
-                <label class="form-label">SELECT ENQUIRY TYPE</label>
-                <div class="topic-chips" id="topicChips">
-                  <button type="button" class="topic-chip on" data-topic="fabric">Fabric Development</button>
-                  <button type="button" class="topic-chip" data-topic="development">Swatch Request</button>
-                  <button type="button" class="topic-chip" data-topic="mill_visit">Mill Visit / Tour</button>
-                  <button type="button" class="topic-chip" data-topic="capacity">Production Capacity</button>
-                  <button type="button" class="topic-chip" data-topic="supplier">Partnership</button>
-                  <button type="button" class="topic-chip" data-topic="general">General Inquiry</button>
-                </div>
-                <input type="hidden" id="enquiryTopic" name="topic" value="fabric" />
-              </div>
-
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label for="contactName" class="form-label">FULL NAME <span class="req">*</span></label>
-                  <input type="text" id="contactName" name="name" class="form-input" placeholder="e.g. Sarah Jenkins"
-                    required />
-                </div>
-                <div class="form-group">
-                  <label for="contactEmail" class="form-label">WORK EMAIL <span class="req">*</span></label>
-                  <input type="email" id="contactEmail" name="email" class="form-input"
-                    placeholder="e.g. s.jenkins@brand.com" required />
-                </div>
-              </div>
-
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label for="contactCompany" class="form-label">COMPANY / BRAND</label>
-                  <input type="text" id="contactCompany" name="company" class="form-input"
-                    placeholder="e.g. Athletic Apparel Co." />
-                </div>
-                <div class="form-group">
-                  <label for="contactPhone" class="form-label">PHONE / WHATSAPP</label>
-                  <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="+1 (555) 000-0000" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="contactMessage" class="form-label">MESSAGE / FABRIC REQUIREMENTS</label>
-                <textarea id="contactMessage" name="message" class="form-textarea" rows="4"
-                  placeholder="Tell us about your target fabric, volume, composition, or requirements..."></textarea>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="btn btn-red form-submit" id="contactSubmitBtn">
-                  <span>Send Enquiry</span>
-                  <span class="arrow">→</span>
-                </button>
-                <span class="form-privacy-note">Your data is treated with strict corporate confidentiality.</span>
-              </div>
-            </form>
-
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
-
-  <!-- ================= ENQUIRY SUCCESS POPUP MODAL ================= -->
-  <div class="enquiry-modal" id="enquirySuccessModal" aria-hidden="true" role="dialog">
-    <div class="enquiry-modal-backdrop" id="enquiryModalBackdrop"></div>
-    <div class="enquiry-modal-card">
-      <button class="enquiry-modal-close" id="enquiryModalClose" aria-label="Close dialog">✕</button>
-
-      <div class="enquiry-modal-icon-wrap">
-        <div class="enquiry-modal-icon">
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="3"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </div>
-      </div>
-
-      <h3 class="enquiry-modal-title">Enquiry Received</h3>
-      <p class="enquiry-modal-desc">
-        Thank you for reaching out. Your request has been assigned to our fabric engineering division.
-      </p>
-
-      <div class="enquiry-modal-ref-card">
-        <span class="enquiry-modal-ref-label">REFERENCE NUMBER</span>
-        <strong class="enquiry-modal-ref-code" id="enquiryModalRef">ENQ-XXXXXX</strong>
-      </div>
-
-      <p class="enquiry-modal-note">
-        A member of our engineering or sales team will review your specifications and contact you shortly. A
-        confirmation has also been dispatched to your email.
-      </p>
-
-      <div class="enquiry-modal-actions">
-        <button type="button" class="btn btn-ghost-dark enquiry-modal-btn" id="enquiryModalDoneBtn">SEND ANOTHER
-          ENQUIRY</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= OUR STORY POPUP MODAL ================= -->
-  <div class="story-modal" id="storyModal" aria-hidden="true" role="dialog" aria-labelledby="storyModalTitle">
-    <div class="story-modal-backdrop" id="storyModalBackdrop"></div>
-    <div class="story-modal-card">
-      <button class="story-modal-close" id="storyModalClose" aria-label="Close story modal">✕</button>
-      
-      <div class="story-modal-hero">
-        <img src="{{ url_for('static', filename='assets/ecosystem-wall-01-knitting-hall.jpg') }}" alt="BIA World-Class Mill Facility" />
-        <div class="story-modal-hero-overlay">
-          <span class="story-modal-eyebrow">OUR STORY · BRILLIANCE IN APPAREL</span>
-          <h3 class="story-modal-title" id="storyModalTitle">ENGINEERED FROM THE THREAD UP</h3>
-        </div>
-      </div>
-
-      <div class="story-modal-body">
-        <p class="story-lead-text">
-          BIA was founded to redefine the speed, precision, and sustainability of global textile manufacturing — transforming possibilities into high-performance material realities from Jordan to the world.
-        </p>
-
-        <p>
-          Positioned as an advanced vertical fabric powerhouse, BIA combines high-speed European circular knitting, low-liquor dyeing technology, automated finishing, and an in-house accredited testing laboratory. We bridge the critical gap between visionary apparel design and high-volume industrial execution.
-        </p>
-
-        <div class="story-pillars-grid">
-          <div class="story-pillar-item">
-            <h4>Precision Engineering</h4>
-            <p>State-of-the-art circular knitters, precision tension management, and real-time electronic fault detection across 100+ tonnes daily.</p>
-          </div>
-          <div class="story-pillar-item">
-            <h4>Eco-Efficiency</h4>
-            <p>Ultra-low liquor ratio dyeing systems, closed-loop water treatment, and non-hazardous certified green chemistry.</p>
-          </div>
-          <div class="story-pillar-item">
-            <h4>Vertical Synergy</h4>
-            <p>Direct alignment with Classic Fashion — seamlessly connecting yarn spinning, fabric development, and ready-to-wear apparel manufacturing.</p>
-          </div>
-          <div class="story-pillar-item">
-            <h4>Lab-Verified Quality</h4>
-            <p>Rigorous 4-point visual inspection and continuous accredited testing for dimensional stability, colour fastness, and moisture management.</p>
-          </div>
-        </div>
-
-        <div class="story-stats-strip">
-          <div class="story-stat-box">
-            <span class="s-num">100+</span>
-            <span class="s-lbl">Tonnes Daily</span>
-          </div>
-          <div class="story-stat-box">
-            <span class="s-num">40+</span>
-            <span class="s-lbl">Global Markets</span>
-          </div>
-          <div class="story-stat-box">
-            <span class="s-num">1,000+</span>
-            <span class="s-lbl">Specialists</span>
-          </div>
-          <div class="story-stat-box">
-            <span class="s-num">100%</span>
-            <span class="s-lbl">Traceability</span>
-          </div>
-        </div>
-
-        <p>
-          Whether collaborating with global sportswear pioneers or premium fashion labels, BIA provides rapid prototyping, dependable consistency, and certified performance at industrial scale.
-        </p>
-
-        <div class="story-modal-actions">
-          <button type="button" class="btn btn-ghost-dark" id="storyModalCloseBtn">Close</button>
-          <a href="#contact" class="btn btn-red" id="storyModalVisitBtn">Book a Mill Visit <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= FABRIC STORY ARTICLE READER MODAL ================= -->
-  <div class="article-modal" id="storyArticleModal" aria-hidden="true" role="dialog" aria-labelledby="articleModalTitle">
-    <div class="article-modal-backdrop" id="articleModalBackdrop"></div>
-    <div class="article-modal-card">
-      <button class="article-modal-close" id="articleModalClose" aria-label="Close article modal">✕</button>
-      
-      <div class="article-modal-hero">
-        <img id="articleModalImg" src="{{ url_for('static', filename='assets/stage-knit.png') }}" alt="Fabric Story Banner" />
-        <div class="article-modal-hero-overlay">
-          <div class="article-modal-meta">
-            <span class="article-modal-tag" id="articleModalTag">TECHNOLOGY · PERFORMANCE APPAREL</span>
-            <span class="article-modal-readtime" id="articleModalReadTime">4 MIN READ</span>
-          </div>
-          <h3 class="article-modal-title" id="articleModalTitle">What actually makes a fabric quick-dry?</h3>
-        </div>
-      </div>
-
-      <div class="article-modal-body" id="articleModalBody">
-        <!-- Dynamic Content injected via JS -->
-      </div>
-
-      <div class="article-modal-actions">
-        <button type="button" class="btn btn-ghost-dark" id="articleModalCloseBtn">Close Article</button>
-        <a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker', true);if(window.closeArticleModal){window.closeArticleModal();}}" class="btn btn-red" id="articleModalDevelopBtn">Develop with BIA <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </div>
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" aria-label="BIA home">
+        <a href="/" aria-label="BIA home">
           <img src="{{ url_for('static', filename='assets/bia_logo_dark.png') }}" alt="BIA Textiles"
             class="footer-logo-img" />
         </a>
         <p>BRILLIANCE, WOVEN IN.</p>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><span>DISCOVER</span><a href="#story" class="open-story-trigger">Our Story</a><a href="#ecosystem">BIA × Classic</a><a href="#inside">Inside BIA</a><a href="#leadership">Leadership</a></div>
-        <div class="footer-col"><span>CREATE</span><a href="#fabrics">Fabric Lab</a><a href="#innovation">BIA Next</a><a href="#thread">The Red Thread</a><a href="#fabrics" onclick="if(window.switchMatTab){window.switchMatTab('maker', true);}">Request Swatch</a></div>
-        <div class="footer-col"><span>IMPACT</span><a href="#responsibility">Responsibility</a><a href="#people">People &amp; Culture</a><a href="#quality">Quality &amp; Lab</a><a href="#quality">Certifications</a></div>
-        <div class="footer-col"><span>CONNECT</span><a href="#contact">Contact</a><a href="#contact">Book Mill Visit</a><a href="#contact">Careers</a><a href="mailto:develop@bia.jo">develop@bia.jo</a></div>
+        <div class="footer-col">
+          <span>DISCOVER</span>
+          <a href="/story">Our Story</a>
+          <a href="/ecosystem">BIA × Classic</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/story#leadership">Leadership</a>
+        </div>
+        <div class="footer-col">
+          <span>CREATE</span>
+          <a href="/fabrics">Fabric Lab</a>
+          <a href="/fabrics#technologies">Technologies</a>
+          <a href="/innovation">BIA Next</a>
+          <a href="/contact?pathway=fabric">Request Swatch</a>
+        </div>
+        <div class="footer-col">
+          <span>IMPACT</span>
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/inside#quality">Quality</a>
+          <a href="/inside#certifications">Certifications</a>
+        </div>
+        <div class="footer-col">
+          <span>CONNECT</span>
+          <a href="/contact">Contact</a>
+          <a href="/contact?pathway=careers">Careers</a>
+          <a href="https://www.linkedin.com/company/bia-textiles/home/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://youtu.be/yFXW2AU-KOw?si=wiaUkH6z6B8GM7qV" target="_blank"
+            rel="noopener noreferrer">YouTube</a>
+        </div>
       </div>
     </div>
     <div class="footer-mid">
-      <span>Amman, Jordan</span>
-      <span>+962 0 000 0000</span>
+      <span>Amman, Jordan · Al-Tajamouat Industrial City, Sahab</span>
+      <span>+962 6 402 0000</span>
       <span>develop@bia.jo</span>
-      <span class="footer-legal">Privacy&nbsp;&nbsp;·&nbsp;&nbsp;Cookies&nbsp;&nbsp;·&nbsp;&nbsp;Terms</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <span class="sep">·</span>
+        <a href="#">Cookies</a>
+        <span class="sep">·</span>
+        <a href="#">Terms</a>
+      </div>
     </div>
-    <div class="footer-line"><span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span></div>
+    <div class="footer-line">
+      <span>FROM JORDAN. ENGINEERING FABRIC FOR THE WORLD.</span>
+    </div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261007_02"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261008_03"></script>
 </body>
 
 </html>
