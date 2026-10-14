@@ -20,8 +20,8 @@ SMTP_PORT      = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USER      = os.getenv("SMTP_USER", "")
 SMTP_PASSWORD  = os.getenv("SMTP_PASSWORD", "")
 SMTP_USE_TLS   = os.getenv("SMTP_USE_TLS", "true").lower() in ("true", "1")
-BIA_FROM_EMAIL = os.getenv("BIA_FROM_EMAIL", "develop@bia.jo")
-BIA_ADMIN_EMAIL = os.getenv("BIA_ADMIN_EMAIL", "develop@bia.jo")
+BIA_FROM_EMAIL = os.getenv("BIA_FROM_EMAIL", "develop@biatextiles.com")
+BIA_ADMIN_EMAIL = os.getenv("BIA_ADMIN_EMAIL", "develop@biatextiles.com")
 
 TOPIC_LABELS = {
     "fabric": "Custom Fabric Development",
@@ -117,14 +117,14 @@ Details:
 {message or 'None provided'}
 
 Next Steps:
-A dedicated fabric engineer or sales representative from our Amman facility has been assigned to your request and will review your specifications within 24–48 hours.
+A dedicated fabric engineer or sales representative from our Jordan facility has been assigned to your request and will review your specifications within 24–48 hours.
 
 If you have urgent requirements, you can also reach our direct mill line at +962 6 402 0000.
 
 Sincerely,
 The BIA Engineering & Client Team
-Al-Tajamouat Industrial City, Sahab, Amman, Jordan
-https://bia.jo
+Land No. 405, Plot 8 Zubaidi, King Hussein Bin Talal Development Area, Al Mafraq, Jordan
+https://www.biatextiles.com
 """
 
     html_content = f"""<!DOCTYPE html>
@@ -173,8 +173,8 @@ https://bia.jo
 
     <div class="footer">
       <strong>BIA — Brilliance in Apparel</strong><br />
-      Al-Tajamouat Industrial City, Sahab · Amman, Jordan<br />
-      Direct Mill Line: +962 6 402 0000 · <a href="mailto:develop@bia.jo" style="color: #c8102e; text-decoration: none;">develop@bia.jo</a>
+      Land No. 405, Plot 8 Zubaidi, King Hussein Bin Talal Development Area · Al Mafraq, Jordan<br />
+      Direct Mill Line: +962 6 402 0000 · <a href="mailto:develop@biatextiles.com" style="color: #c8102e; text-decoration: none;">develop@biatextiles.com</a> · <a href="https://www.biatextiles.com" style="color: #c8102e; text-decoration: none;">www.biatextiles.com</a>
     </div>
   </div>
 </body>

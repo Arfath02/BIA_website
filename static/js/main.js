@@ -637,7 +637,7 @@
       "<tr><th>Audited Certifications</th><td>OEKO-TEX Standard 100 Class 1, GRS 4.0, ZDHC Level 3</td></tr>" +
       "<tr><th>Duty Tariff Advantage</th><td>0% US Import Tariff under Jordan-US Free Trade Agreement</td></tr>" +
       "</table>" +
-      "<div class='footer'>BIA Fabric Engineering Division · Al-Tajamouat Industrial City, Amman, Jordan · develop@bia.jo</div>" +
+      "<div class='footer'>BIA Fabric Engineering Division · Land No. 405, Plot 8 Zubaidi, King Hussein Bin Talal Development Area, Al Mafraq, Jordan · develop@biatextiles.com · www.biatextiles.com</div>" +
       "<script>window.print();<\/script></body></html>";
 
     var printWindow = window.open('', '_blank');
@@ -1520,7 +1520,7 @@
     var dept = card.getAttribute('data-maker-dept') || '';
     var q = card.getAttribute('data-maker-q') || '';
     var a = card.getAttribute('data-maker-a') || '';
-    var loc = card.getAttribute('data-maker-loc') || 'Sahab QA Laboratory';
+    var loc = card.getAttribute('data-maker-loc') || 'BIA QA Laboratory, Al Mafraq';
 
     if (modalDept) modalDept.textContent = dept.toUpperCase();
     if (modalName) modalName.textContent = name;
@@ -1682,8 +1682,8 @@
           "Status: " + (modalCertValidity ? modalCertValidity.textContent : "Active") + "\n\n" +
           "COVERAGE SUMMARY:\n" +
           (modalCertCovers ? modalCertCovers.textContent : "All circular knit fabrics manufactured in Amman, Jordan.") + "\n\n" +
-          "For technical verification inquiries: develop@bia.jo / compliance@bia.jo\n" +
-          "BIA Textiles Complex, Sahab Industrial City, Amman, Jordan."
+          "For technical verification inquiries: develop@biatextiles.com / compliance@biatextiles.com\n" +
+          "BIA Textiles Complex, Land No. 405, Plot 8 Zubaidi, King Hussein Bin Talal Development Area, Al Mafraq, Jordan · www.biatextiles.com"
         ], { type: 'text/plain;charset=utf-8' });
 
         var link = document.createElement('a');
