@@ -709,8 +709,8 @@
       refPrefix: 'BIA-CAP'
     },
     mill_visit: {
-      tag: 'PATHWAY 04 · AMMAN MILL DELEGATION TOUR',
-      title: 'Schedule a Guided Factory Tour in Amman',
+      tag: 'PATHWAY 04 · AL MAFRAQ MILL DELEGATION TOUR',
+      title: 'Schedule a Guided Factory Tour in Al Mafraq',
       name: 'I want to visit BIA',
       btn: 'Book Mill Tour Delegation',
       refPrefix: 'BIA-VIS'
@@ -799,7 +799,7 @@
     var conf = pathwayConfig[pathway] || pathwayConfig.fabric;
     if (enquiryModalRef) enquiryModalRef.textContent = ref;
     if (enquirySuccessTitle) enquirySuccessTitle.textContent = conf.name + ' — Transmitted';
-    if (enquirySuccessDesc) enquirySuccessDesc.textContent = 'Thank you for reaching out. Your ' + conf.name.toLowerCase() + ' submission has been logged and assigned to our textile specialists in Amman, Jordan.';
+    if (enquirySuccessDesc) enquirySuccessDesc.textContent = 'Thank you for reaching out. Your ' + conf.name.toLowerCase() + ' submission has been logged and assigned to our textile specialists in Al Mafraq, Jordan.';
 
     enquiryModal.classList.add('is-open');
     enquiryModal.setAttribute('aria-hidden', 'false');
@@ -1094,7 +1094,7 @@
       title: 'From Yarn to Performance: The Unbroken Journey',
       readTime: '6 MIN READ',
       img: '/static/assets/hero-sample-yarn-warping.jpg',
-      body: '<p class="article-lead">High-performance athletic apparel is forged through a synchronized series of micro-decisions across spinning, warping, knitting, low-liquor dyeing, and finishing. At BIA, this entire value chain is integrated under one roof in Amman, Jordan.</p>' +
+      body: '<p class="article-lead">High-performance athletic apparel is forged through a synchronized series of micro-decisions across spinning, warping, knitting, low-liquor dyeing, and finishing. At BIA, this entire value chain is integrated under one roof in Al Mafraq, Jordan.</p>' +
             '<h4>1. Precision Warping & Positive Yarn Feeding</h4>' +
             '<p>The journey begins with electronic creeling, where yarn cones are fed under active tension sensors calibrated to ±0.5 cN. Constant yarn delivery ensures that loop length remains identical across all 120+ knitting feeds, eliminating fabric spirality.</p>' +
             '<h4>2. 35 RPM Circular Knitting with Laser Inspection</h4>' +
@@ -1113,7 +1113,7 @@
             '<p>Modern solid-state polymerization (SSP) processes purify post-consumer PET bottles down to intrinsic viscosity levels identical to virgin polymer chips. Our GRS-certified recycled polyester achieves tensile tenacity of 4.8 cN/dtex—matching virgin athletic benchmarks.</p>' +
             '<div class="article-quote">“Sustainability without performance is a compromise brands cannot afford. Our recycled fabrics pass the exact same Olympic-grade bursting and abrasion tests as virgin lines.”</div>' +
             '<h4>2. 85% Closed-Loop Water Recycling in Jordan</h4>' +
-            '<p>Operating in Amman, Jordan—one of the world\'s most water-conscious nations—our facility recycles 85% of industrial wastewater through advanced membrane bioreactors (MBR) and industrial reverse osmosis (RO), returning demineralized water directly back to dye jet vessels.</p>' +
+            '<p>Operating in Al Mafraq, Jordan—one of the world\'s most water-conscious nations—our facility recycles 85% of industrial wastewater through advanced membrane bioreactors (MBR) and industrial reverse osmosis (RO), returning demineralized water directly back to dye jet vessels.</p>' +
             '<h4>3. Verified HIGG FEM 4.0 Benchmarking</h4>' +
             '<p>Our environmental and carbon reductions are third-party audited annually via the HIGG Facility Environmental Module (FEM), providing global brands with verified ESG disclosures for their sustainability reports.</p>'
     },
@@ -1122,7 +1122,7 @@
       title: 'Meet the Engineer Behind the Fabric: Tariq on Precision at 35 RPM',
       readTime: '4 MIN READ',
       img: '/static/assets/hero-sample-roller-precision.jpg',
-      body: '<p class="article-lead">Machines provide speed, but human craftsmanship provides possibility. Meet Tariq, Production &amp; Automation Engineer at BIA, whose daily mission is synchronizing European circular knitting frames to zero-defect tolerances in Amman, Jordan.</p>' +
+      body: '<p class="article-lead">Machines provide speed, but human craftsmanship provides possibility. Meet Tariq, Production &amp; Automation Engineer at BIA, whose daily mission is synchronizing European circular knitting frames to zero-defect tolerances in Al Mafraq, Jordan.</p>' +
             '<h4>1. The Feel of Micron-Level Tension</h4>' +
             '<p>“When you walk into Hall 01 with 120 circular knitters running, you don’t just watch the dials—you listen to the hum of the machines,” says Tariq. “A slight change in plant ambient humidity alters yarn friction. Our electronic positive feeders make continuous micro-adjustments, but an engineer’s eye is what guarantees perfection.”</p>' +
             '<div class="article-quote">“People think textile manufacturing is just pushing a start button. In reality, it is mechatronics, material physics, and daily problem-solving.”</div>' +
@@ -1703,7 +1703,7 @@
           "License / Certificate #: " + (modalCertNumber ? modalCertNumber.textContent : "VERIFIED") + "\n" +
           "Status: " + (modalCertValidity ? modalCertValidity.textContent : "Active") + "\n\n" +
           "COVERAGE SUMMARY:\n" +
-          (modalCertCovers ? modalCertCovers.textContent : "All circular knit fabrics manufactured in Amman, Jordan.") + "\n\n" +
+          (modalCertCovers ? modalCertCovers.textContent : "All circular knit fabrics manufactured in Al Mafraq, Jordan.") + "\n\n" +
           "For technical verification inquiries: develop@biatextiles.com / compliance@biatextiles.com\n" +
           "BIA Textiles Complex, Land No. 405, Plot 8 Zubaidi, King Hussein Bin Talal Development Area, Al Mafraq, Jordan · www.biatextiles.com"
         ], { type: 'text/plain;charset=utf-8' });

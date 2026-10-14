@@ -3494,11 +3494,11 @@ a { color: inherit; }
 }
 
 .article-modal-body {
-  padding: 28px 36px 32px;
+  padding: 32px 40px;
   overflow-y: auto;
-  color: var(--paper);
-  font-size: 15px;
-  line-height: 1.7;
+  color: #2b2523;
+  font-size: 15.5px;
+  line-height: 1.75;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -3507,7 +3507,7 @@ a { color: inherit; }
   width: 6px;
 }
 .article-modal-body::-webkit-scrollbar-track {
-  background: rgba(244, 241, 236, 0.05);
+  background: rgba(19, 16, 20, 0.05);
 }
 .article-modal-body::-webkit-scrollbar-thumb {
   background: rgba(200, 16, 46, 0.4);
@@ -3517,39 +3517,41 @@ a { color: inherit; }
   background: var(--red);
 }
 
-.article-lead {
-  font-size: 16.5px;
-  font-weight: 500;
-  color: #ffffff;
-  line-height: 1.6;
+.article-lead,
+.article-modal-body .article-lead {
+  font-size: 17px;
+  font-weight: 600;
+  color: #141014 !important;
+  line-height: 1.7;
   border-left: 3px solid var(--red);
-  padding-left: 16px;
+  padding-left: 18px;
   margin: 0;
 }
 .article-modal-body h4 {
   font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #ffffff;
-  margin: 10px 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #141014;
+  margin: 14px 0 4px;
 }
 .article-modal-body p {
-  color: var(--steel);
+  color: #2b2523 !important;
   margin: 0;
-  font-size: 14.5px;
-  line-height: 1.65;
+  font-size: 15.5px;
+  line-height: 1.75;
 }
-.article-quote {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(200, 16, 46, 0.3);
+.article-quote,
+.article-modal-body .article-quote {
+  background: rgba(200, 16, 46, 0.05);
+  border: 1px solid rgba(200, 16, 46, 0.2);
   border-left: 4px solid var(--red);
-  border-radius: 12px;
+  border-radius: 0 12px 12px 0;
   padding: 18px 22px;
   font-style: italic;
-  color: #ffffff;
-  font-size: 14.5px;
-  line-height: 1.55;
+  color: #141014 !important;
+  font-size: 15.5px;
+  line-height: 1.65;
 }
 
 .article-modal-actions {
@@ -7372,36 +7374,43 @@ a { color: inherit; }
 .article-modal-body {
   padding: 36px 40px;
   font-size: 15.5px;
-  line-height: 1.7;
-  color: #4a433e;
+  line-height: 1.75;
+  color: #2b2523;
 }
 .article-modal-body h4 {
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 800;
-  color: var(--ink);
+  color: #141014;
   margin: 28px 0 10px;
 }
 .article-modal-body p {
+  color: #2b2523 !important;
   margin-bottom: 16px;
+  font-size: 15.5px;
+  line-height: 1.75;
 }
+.article-modal-body .article-lead,
 .article-lead {
   font-size: 17px;
-  font-weight: 500;
-  line-height: 1.65;
-  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.7;
+  color: #141014 !important;
   border-left: 3px solid var(--red);
   padding-left: 18px;
   margin-bottom: 24px;
 }
+.article-modal-body .article-quote,
 .article-quote {
-  background: rgba(200, 16, 46, 0.06);
-  border-left: 3px solid var(--red);
+  background: rgba(200, 16, 46, 0.05);
+  border: 1px solid rgba(200, 16, 46, 0.2);
+  border-left: 4px solid var(--red);
   padding: 16px 20px;
   border-radius: 0 8px 8px 0;
   font-style: italic;
   font-size: 15.5px;
-  color: var(--ink);
+  line-height: 1.65;
+  color: #141014 !important;
   margin: 22px 0;
 }
 .article-modal-actions {
