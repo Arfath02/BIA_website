@@ -585,11 +585,11 @@
         
         <div class="maker-grid reveal">
           <div class="maker-interactive">
-            <p class="eyebrow">CUSTOM FABRIC FORMULATOR</p>
-            <h2 style="font-size: clamp(28px, 3.4vw, 46px); margin-top: 10px; line-height: 1.15; color: #ffffff;">
+            <p class="eyebrow" style="color: var(--red);">CUSTOM FABRIC FORMULATOR</p>
+            <h2 style="font-size: clamp(30px, 3.8vw, 48px); font-weight: 900; margin-top: 10px; line-height: 1.1; color: #ffffff; letter-spacing: -0.01em;">
               MAKE YOUR FABRIC.
             </h2>
-            <p style="font-size: 16px; color: var(--steel); margin-top: 14px; margin-bottom: 30px;">
+            <p style="font-size: 16px; color: var(--steel); margin-top: 14px; margin-bottom: 28px; line-height: 1.6; max-width: 620px;">
               Select your required hand-feel, core performance engineering, and end application. Our textile lab will formulate a custom prototype spec sheet.
             </p>
 
@@ -598,7 +598,7 @@
               <div class="maker-step">
                 <span class="maker-step-tag">01 · HAND-FEEL &amp; WEIGHT</span>
                 <div class="maker-options" id="optFeel">
-                  <button type="button" class="maker-btn" data-val="Soft">Soft &amp; Buttery</button>
+                  <button type="button" class="maker-btn active" data-val="Soft">Soft &amp; Buttery</button>
                   <button type="button" class="maker-btn" data-val="Structured">Structured &amp; Compressive</button>
                   <button type="button" class="maker-btn" data-val="Lightweight">Featherweight &amp; Crisp</button>
                 </div>
@@ -608,7 +608,7 @@
               <div class="maker-step">
                 <span class="maker-step-tag">02 · CORE PERFORMANCE REQUIREMENT</span>
                 <div class="maker-options" id="optDoes">
-                  <button type="button" class="maker-btn" data-val="Cool">Cooling (Qmax &gt;0.2)</button>
+                  <button type="button" class="maker-btn active" data-val="Cool">Cooling (Qmax &gt;0.2)</button>
                   <button type="button" class="maker-btn" data-val="Wick">Moisture Wicking (&lt;1.5s)</button>
                   <button type="button" class="maker-btn" data-val="Stretch">4-Way Power Stretch</button>
                   <button type="button" class="maker-btn" data-val="Protect">UV Shield (UPF 50+)</button>
@@ -620,7 +620,7 @@
               <div class="maker-step">
                 <span class="maker-step-tag">03 · TARGET APPLICATION</span>
                 <div class="maker-options" id="optUse">
-                  <button type="button" class="maker-btn" data-val="Running">Running &amp; Track</button>
+                  <button type="button" class="maker-btn active" data-val="Running">Running &amp; Track</button>
                   <button type="button" class="maker-btn" data-val="Training">Gym &amp; Cross-Training</button>
                   <button type="button" class="maker-btn" data-val="Athleisure">Athleisure &amp; Yoga</button>
                   <button type="button" class="maker-btn" data-val="Outdoor">Outdoor &amp; Layering</button>
@@ -637,7 +637,7 @@
               <h3>Generated Specification</h3>
               
               <div class="brief-sentence">
-                "We need a fabric that feels <strong id="briefFeel">——</strong>, <strong id="briefDoes">——</strong> during activity, and is purpose-built for <strong id="briefUse">——</strong>."
+                "We need a fabric that feels <strong id="briefFeel">soft</strong>, <strong id="briefDoes">cools</strong> during activity, and is purpose-built for <strong id="briefUse">running</strong>."
               </div>
 
               <div class="brief-spec-preview">
@@ -647,7 +647,7 @@
                 <div class="b-spec-row"><span>Origin:</span> <strong>Jordan (0% US FTA Duty)</strong></div>
               </div>
 
-              <button type="button" class="btn btn-red btn-block off" id="briefSubmit" style="width: 100%; margin-top: 24px;">
+              <button type="button" class="btn btn-red btn-block" id="briefSubmit" style="width: 100%; margin-top: 24px;">
                 Submit Development Brief &amp; Swatch <span class="arrow">→</span>
               </button>
             </div>

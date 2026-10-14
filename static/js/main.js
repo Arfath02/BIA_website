@@ -64,7 +64,7 @@
 
   /* ---------------- 3. MAKE YOUR FABRIC ---------------- */
   var PHRASE = { Cool: 'cools', Wick: 'wicks', Stretch: 'stretches', Protect: 'protects', Insulate: 'insulates' };
-  var pick = { feel: null, does: null, use: null };
+  var pick = { feel: 'Soft', does: 'Cool', use: 'Running' };
   var briefFeel = document.getElementById('briefFeel');
   var briefDoes = document.getElementById('briefDoes');
   var briefUse = document.getElementById('briefUse');
@@ -75,9 +75,9 @@
 
   function refreshBrief() {
     if (!briefSubmit) return;
-    briefFeel.textContent = pick.feel ? pick.feel.toLowerCase() : '——';
-    briefDoes.textContent = pick.does ? PHRASE[pick.does] : '——';
-    briefUse.textContent = pick.use ? pick.use.toLowerCase() : '——';
+    if (briefFeel) briefFeel.textContent = pick.feel ? pick.feel.toLowerCase() : '——';
+    if (briefDoes) briefDoes.textContent = pick.does ? PHRASE[pick.does] || pick.does.toLowerCase() : '——';
+    if (briefUse) briefUse.textContent = pick.use ? pick.use.toLowerCase() : '——';
     var ready = pick.feel && pick.does && pick.use;
     briefSubmit.classList.toggle('off', !ready);
   }
@@ -150,18 +150,37 @@
     });
   }
 
+  // Handle .maker-btn inside .maker-options
+  document.querySelectorAll('.maker-options').forEach(function (optWrap) {
+    var key = optWrap.id === 'optFeel' ? 'feel' : optWrap.id === 'optDoes' ? 'does' : 'use';
+    optWrap.querySelectorAll('.maker-btn').forEach(function (btn) {
+      if (btn.classList.contains('active')) {
+        pick[key] = btn.getAttribute('data-val') || btn.getAttribute('data-value');
+      }
+      btn.addEventListener('click', function () {
+        optWrap.querySelectorAll('.maker-btn').forEach(function (b) { b.classList.remove('active', 'on'); });
+        btn.classList.add('active', 'on');
+        pick[key] = btn.getAttribute('data-val') || btn.getAttribute('data-value');
+        refreshBrief();
+      });
+    });
+  });
+
+  // Legacy .chip support
   document.querySelectorAll('.maker-group').forEach(function (group) {
     var key = group.getAttribute('data-group');
     group.querySelectorAll('.chip').forEach(function (chip) {
       chip.addEventListener('click', function () {
-        group.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
-        chip.classList.add('on');
-        pick[key] = chip.getAttribute('data-value');
+        group.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on', 'active'); });
+        chip.classList.add('on', 'active');
+        pick[key] = chip.getAttribute('data-value') || chip.getAttribute('data-val');
         if (briefSent) { briefSent.hidden = true; briefDraft.hidden = false; }
         refreshBrief();
       });
     });
   });
+
+  refreshBrief();
 
   if (briefSubmit) {
     briefSubmit.addEventListener('click', function () {
@@ -176,8 +195,11 @@
         "A " + pick.feel.toLowerCase() + " fabric that " + doesPhrase + ", engineered for " + pick.use.toLowerCase() + ".\n" +
         "Specs: GSM to spec · Composition engineered · Swatch on request.";
 
-      // Smoothly redirect / scroll to contact form with all data auto-filled
-      fillContactAndScroll('fabric', briefText);
+      if (document.getElementById('contact')) {
+        fillContactAndScroll('fabric', briefText);
+      } else {
+        window.location.href = '/contact?pathway=fabric';
+      }
     });
   }
 
