@@ -1,0 +1,27 @@
+services:
+  web:
+    image: ${DOCKER_IMAGE:-arfath02/bia-website:latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bia-website
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - FLASK_ENV=production
+      - SECRET_KEY=${SECRET_KEY:-bia_production_key_change_in_env}
+      - SMTP_SERVER=${SMTP_SERVER:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - SMTP_USE_TLS=${SMTP_USE_TLS:-true}
+      - BIA_FROM_EMAIL=${BIA_FROM_EMAIL:-develop@biatextiles.com}
+      - BIA_ADMIN_EMAIL=${BIA_ADMIN_EMAIL:-develop@biatextiles.com}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

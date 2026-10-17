@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Python virtual environment and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv
+venv/
+ENV/
+env/
+
+# Environment files and credentials
+.env
+.env.*
+*.log
+
+# Antigravity & IDE files
+.gemini/
+.idea/
+.vscode/
+
+# Testing & Artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+mock.html
