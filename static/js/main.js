@@ -1832,6 +1832,59 @@
     });
   }
 
+  // --- MOBILE NAVIGATION DRAWER TOGGLE ---
+  var navToggle = document.getElementById('navToggle');
+  var navLinksMenu = document.querySelector('.nav-links');
+  var mainNav = document.getElementById('mainNav');
+
+  if (navToggle && navLinksMenu) {
+    navToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = navLinksMenu.classList.toggle('nav-mobile-open');
+      navToggle.classList.toggle('is-active', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (mainNav) {
+        mainNav.classList.toggle('nav-expanded', isOpen);
+      }
+      document.body.classList.toggle('nav-drawer-open', isOpen);
+    });
+
+    // Close when clicking any nav link
+    navLinksMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinksMenu.classList.remove('nav-mobile-open');
+        navToggle.classList.remove('is-active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (mainNav) mainNav.classList.remove('nav-expanded');
+        document.body.classList.remove('nav-drawer-open');
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!navLinksMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        if (navLinksMenu.classList.contains('nav-mobile-open')) {
+          navLinksMenu.classList.remove('nav-mobile-open');
+          navToggle.classList.remove('is-active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          if (mainNav) mainNav.classList.remove('nav-expanded');
+          document.body.classList.remove('nav-drawer-open');
+        }
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navLinksMenu.classList.contains('nav-mobile-open')) {
+        navLinksMenu.classList.remove('nav-mobile-open');
+        navToggle.classList.remove('is-active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (mainNav) mainNav.classList.remove('nav-expanded');
+        document.body.classList.remove('nav-drawer-open');
+      }
+    });
+  }
+
 })();
 
 
