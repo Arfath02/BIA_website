@@ -7,6 +7,7 @@ import logging
 import os
 import smtplib
 import threading
+from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -41,7 +42,14 @@ def _clean_header(val: str) -> str:
     return str(val).replace("\r", " ").replace("\n", " ").strip()
 
 
-def send_email_async(to_email: str, subject: str, body_text: str, body_html: str = ""):
+def send_email_async(
+    to_email: str,
+    subject: str,
+    body_text: str,
+    body_html: str = "",
+    attachment_filename: str = None,
+    attachment_bytes: bytes = None,
+):
     """Send an email asynchronously in a background thread to prevent latency on requests."""
     clean_to = _clean_header(to_email)
     clean_subject = _clean_header(subject)
@@ -49,23 +57,35 @@ def send_email_async(to_email: str, subject: str, body_text: str, body_html: str
     def _worker():
         if not SMTP_SERVER:
             logger.info(
-                "[EMAIL LOG (DEV/OFFLINE)] To: %s | Subject: %s\n%s",
+                "[EMAIL LOG (DEV/OFFLINE)] To: %s | Subject: %s | Attachment: %s\n%s",
                 clean_to,
                 clean_subject,
+                attachment_filename or "None",
                 body_text,
             )
             return
         try:
-            msg = MIMEMultipart("alternative")
+            if attachment_bytes and attachment_filename:
+                msg = MIMEMultipart("mixed")
+                alt = MIMEMultipart("alternative")
+                alt.attach(MIMEText(body_text, "plain", "utf-8"))
+                if body_html:
+                    alt.attach(MIMEText(body_html, "html", "utf-8"))
+                msg.attach(alt)
+                pdf_part = MIMEApplication(attachment_bytes, _subtype="pdf")
+                pdf_part.add_header("Content-Disposition", "attachment", filename=_clean_header(attachment_filename))
+                msg.attach(pdf_part)
+            else:
+                msg = MIMEMultipart("alternative")
+                part1 = MIMEText(body_text, "plain", "utf-8")
+                msg.attach(part1)
+                if body_html:
+                    part2 = MIMEText(body_html, "html", "utf-8")
+                    msg.attach(part2)
+
             msg["Subject"] = clean_subject
             msg["From"] = _clean_header(BIA_FROM_EMAIL)
             msg["To"] = clean_to
-
-            part1 = MIMEText(body_text, "plain", "utf-8")
-            msg.attach(part1)
-            if body_html:
-                part2 = MIMEText(body_html, "html", "utf-8")
-                msg.attach(part2)
 
             with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=10) as server:
                 if SMTP_USE_TLS:
@@ -80,7 +100,16 @@ def send_email_async(to_email: str, subject: str, body_text: str, body_html: str
     threading.Thread(target=_worker, daemon=True).start()
 
 
-def send_enquiry_confirmation(ref: str, topic: str, name: str, email: str, company: str = None, message: str = None):
+def send_enquiry_confirmation(
+    ref: str,
+    topic: str,
+    name: str,
+    email: str,
+    company: str = None,
+    message: str = None,
+    attachment_filename: str = None,
+    attachment_bytes: bytes = None,
+):
     """
     Formats and dispatches confirmation email for enquiries & custom fabric development.
     Dispatches to both the client and the internal BIA engineering inbox.
@@ -184,8 +213,15 @@ https://www.biatextiles.com
     # Dispatch to customer
     send_email_async(email, subject, text_content, html_content)
 
-    # Dispatch copy to internal team
+    # Dispatch copy to internal team (include uploaded PDF attachment if provided)
     if BIA_ADMIN_EMAIL and BIA_ADMIN_EMAIL != email:
         admin_subject = f"[NEW INQUIRY] {topic_title} from {clean_name} ({clean_company or 'No Company'}) [{clean_ref}]"
-        send_email_async(BIA_ADMIN_EMAIL, admin_subject, text_content, html_content)
+        send_email_async(
+            BIA_ADMIN_EMAIL,
+            admin_subject,
+            text_content,
+            html_content,
+            attachment_filename=attachment_filename,
+            attachment_bytes=attachment_bytes,
+        )
 

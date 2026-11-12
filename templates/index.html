@@ -24,8 +24,9 @@
 
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261031_navy" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261112_world_map_v2" />
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown_nav.css') }}?v=20261112_world_map_v2" />
 </head>
 
 <body>
@@ -41,28 +42,35 @@
     </a>
 
     <div class="nav-links">
-
       <a href="/story">Our Story</a>
 
-      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <div class="nav-item">
+        <span class="nav-parent">
+          Mill &amp; Product <span class="nav-arrow">&#9662;</span>
+        </span>
+        <div class="nav-dropdown">
+          <a href="/fabrics">Fabric &amp; Technologies</a>
+          <a href="/innovation">Innovation</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/ecosystem">BIA &times; Classic</a>
+        </div>
+      </div>
 
-      <a href="/innovation">Innovation</a>
-
-      <a href="/inside">Inside BIA</a>
-
-      <a href="/ecosystem">BIA × Classic</a>
-
-      <a href="/responsibility">Responsibility</a>
-
-      <a href="/people">People</a>
-
-      <a href="/stories">Insights</a>
+      <div class="nav-item">
+        <span class="nav-parent">
+          People &amp; Culture <span class="nav-arrow">&#9662;</span>
+        </span>
+        <div class="nav-dropdown">
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/stories">Insights</a>
+        </div>
+      </div>
 
       <a href="/contact">Contact</a>
-
     </div>
 
-    <a href="/fabrics" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">→</span></a>
+    <a href="/contact" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">&rarr;</span></a>
 
   
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -487,142 +495,63 @@
 
           <div class="map-svg-container">
 
-            <svg class="world-map-svg" viewBox="0 0 1000 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <img src="{{ url_for('static', filename='assets/world-map-luxury-hd.jpg') }}" alt="BIA Global Logistics &amp; Trade Map" class="world-map-bg-img" />
 
-              <!-- World Continents Outline Background -->
+            <svg class="world-map-svg" viewBox="0 0 1000 562" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-              <g class="world-continents" opacity="0.35" stroke="rgba(244, 241, 236, 0.25)" stroke-width="1.2"
+              <!-- Radiating Trade Routes from Al Mafraq, Jordan (X: 573, Y: 228) -->
 
-                fill="rgba(255, 255, 255, 0.03)">
-
-                <!-- North America -->
-
-                <path d="M120 100 L260 80 L310 140 L280 200 L220 220 L190 280 L160 270 L140 200 L100 160 Z" />
-
-                <!-- South America -->
-
-                <path d="M250 290 L320 310 L340 380 L290 450 L250 420 L230 340 Z" />
-
-                <!-- Europe -->
-
-                <path d="M460 100 L560 90 L590 140 L530 180 L470 170 L450 130 Z" />
-
-                <!-- Africa -->
-
-                <path d="M470 200 L580 200 L610 280 L560 390 L490 350 L460 260 Z" />
-
-                <!-- Middle East (Hub Base) -->
-
-                <path d="M570 180 L650 170 L670 230 L610 260 L570 220 Z" />
-
-                <!-- Asia -->
-
-                <path d="M620 90 L850 80 L890 180 L800 280 L680 240 L650 150 Z" />
-
-                <!-- Australia -->
-
-                <path d="M780 340 L880 330 L900 410 L810 430 L760 380 Z" />
-
-              </g>
-
-              <!-- Radiating Trade Routes from Jordan (X: 590, Y: 195) -->
-
-              <!-- Route 1: Jordan to USA East Coast (X: 250, Y: 150) -->
-
-              <path class="trade-route-path route-usa active" d="M590 195 C 440 120, 360 110, 250 150" stroke="#c8102e"
-
+              <!-- Route 1: Jordan to USA East Coast (X: 245, Y: 205) -->
+              <path class="trade-route-path route-usa active" d="M573 228 C 435 125, 345 135, 245 205" stroke="#c8102e"
                 stroke-width="2.5" stroke-dasharray="6 4" />
 
-              <!-- Route 2: Jordan to Europe/UK (X: 490, Y: 130) -->
-
-              <path class="trade-route-path route-europe" d="M590 195 C 550 160, 520 140, 490 130" stroke="#c8102e"
-
+              <!-- Route 2: Jordan to Europe/UK (X: 482, Y: 143) -->
+              <path class="trade-route-path route-europe" d="M573 228 C 540 185, 512 160, 482 143" stroke="#c8102e"
                 stroke-width="2.5" stroke-dasharray="6 4" />
 
-              <!-- Route 3: Jordan to GCC/Middle East (X: 630, Y: 230) -->
-
-              <path class="trade-route-path route-middle-east" d="M590 195 C 605 210, 618 220, 630 230" stroke="#c8102e"
-
+              <!-- Route 3: Jordan to GCC/Middle East (X: 605, Y: 250) -->
+              <path class="trade-route-path route-middle-east" d="M573 228 C 588 236, 598 244, 605 250" stroke="#c8102e"
                 stroke-width="2.5" stroke-dasharray="6 4" />
 
-              <!-- Route 4: Jordan to Asia/Sourcing (X: 780, Y: 180) -->
-
-              <path class="trade-route-path route-asia" d="M590 195 C 680 160, 720 170, 780 180" stroke="#c8102e"
-
+              <!-- Route 4: Jordan to Asia Sourcing (X: 785, Y: 214) -->
+              <path class="trade-route-path route-asia" d="M573 228 C 665 170, 728 178, 785 214" stroke="#c8102e"
                 stroke-width="2.5" stroke-dasharray="6 4" />
 
               <!-- Jordan Hub Epicenter Node -->
-
-              <g class="hub-node" transform="translate(590, 195)">
-
-                <circle r="16" fill="rgba(200, 16, 46, 0.25)" class="pulse-ring"></circle>
-
+              <g class="hub-node" transform="translate(573, 228)">
+                <circle r="16" fill="rgba(200, 16, 46, 0.28)" class="pulse-ring"></circle>
                 <circle r="8" fill="#c8102e"></circle>
-
                 <circle r="3" fill="#ffffff"></circle>
-
-                <text x="12" y="5" fill="#ffffff" font-family="Montserrat" font-size="11" font-weight="800"
-
+                <text class="map-label-halo" x="14" y="4" fill="#ffffff" font-family="Montserrat, sans-serif" font-size="11" font-weight="800"
                   letter-spacing="1">JORDAN (BIA HUB)</text>
-
               </g>
 
               <!-- Market Destination Nodes -->
 
               <!-- USA Node -->
-
-              <g class="market-node market-node-usa" transform="translate(250, 150)">
-
-                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
-
-                <text x="-15" y="-12" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">NORTH
-
-                  AMERICA</text>
-
-                <text x="-15" y="20" fill="#c8102e" font-family="Montserrat" font-size="9" font-weight="800">0% US-FTA
-
-                  TARIFF</text>
-
+              <g class="market-node market-node-usa" transform="translate(245, 205)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2.5"></circle>
+                <text class="map-label-halo" x="-15" y="-14" fill="#ffffff" font-family="Montserrat, sans-serif" font-size="10.5" font-weight="700">NORTH AMERICA</text>
+                <text class="map-label-halo" x="-15" y="20" fill="#ff4d6d" font-family="Montserrat, sans-serif" font-size="9.5" font-weight="800">0% US-FTA TARIFF</text>
               </g>
 
               <!-- Europe Node -->
-
-              <g class="market-node market-node-europe" transform="translate(490, 130)">
-
-                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
-
-                <text x="-10" y="-12" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">EUROPE
-
-                  &amp; UK</text>
-
-                <text x="-10" y="20" fill="var(--steel)" font-family="Montserrat" font-size="9" font-weight="600">7–10
-
-                  DAYS TRANSIT</text>
-
+              <g class="market-node market-node-europe" transform="translate(482, 143)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2.5"></circle>
+                <text class="map-label-halo" x="-12" y="-14" fill="#ffffff" font-family="Montserrat, sans-serif" font-size="10.5" font-weight="700">EUROPE &amp; UK</text>
+                <text class="map-label-halo" x="-12" y="20" fill="#cbd5e1" font-family="Montserrat, sans-serif" font-size="9.5" font-weight="600">7–10 DAYS TRANSIT</text>
               </g>
 
               <!-- GCC Node -->
-
-              <g class="market-node market-node-middle-east" transform="translate(630, 230)">
-
-                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
-
-                <text x="12" y="4" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">MIDDLE
-
-                  EAST</text>
-
+              <g class="market-node market-node-middle-east" transform="translate(605, 250)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2.5"></circle>
+                <text class="map-label-halo" x="13" y="4" fill="#ffffff" font-family="Montserrat, sans-serif" font-size="10.5" font-weight="700">MIDDLE EAST</text>
               </g>
 
               <!-- Asia Node -->
-
-              <g class="market-node market-node-asia" transform="translate(780, 180)">
-
-                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2"></circle>
-
-                <text x="12" y="4" fill="#ffffff" font-family="Montserrat" font-size="10" font-weight="700">ASIA
-
-                  SOURCING</text>
-
+              <g class="market-node market-node-asia" transform="translate(785, 214)">
+                <circle r="6" fill="#ffffff" stroke="#c8102e" stroke-width="2.5"></circle>
+                <text class="map-label-halo" x="13" y="4" fill="#ffffff" font-family="Montserrat, sans-serif" font-size="10.5" font-weight="700">ASIA SOURCING</text>
               </g>
 
             </svg>
@@ -857,7 +786,7 @@
 
         <!-- Call to Action -->
 
-        <div class="subpage-cta reveal" style="margin-top: 70px;">
+        <div class="subpage-cta reveal" style="margin-top: 70px; background: linear-gradient(135deg, rgba(12, 12, 14, 0.70) 0%, rgba(16, 14, 16, 0.78) 100%), url('{{ url_for('static', filename='assets/bottom-banner-clean-hd.jpg') }}?v=20261112_world_map_v2">
 
           <p class="eyebrow" style="color: var(--red); justify-content: center;">DEVELOPMENT &amp; SAMPLING</p>
 
@@ -1001,7 +930,7 @@
 
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261031_navy"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261112_world_map_v2"></script>
 
 </body>
 

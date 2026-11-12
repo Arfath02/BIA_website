@@ -24,8 +24,9 @@
 
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261031_navy" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20261112_eco_align_v4" />
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown_nav.css') }}?v=20261112_eco_align_v4" />
 </head>
 
 <body>
@@ -41,28 +42,35 @@
     </a>
 
     <div class="nav-links">
-
       <a href="/story">Our Story</a>
 
-      <a href="/fabrics">Fabric &amp; Technologies</a>
+      <div class="nav-item">
+        <span class="nav-parent active">
+          Mill &amp; Product <span class="nav-arrow">&#9662;</span>
+        </span>
+        <div class="nav-dropdown">
+          <a href="/fabrics">Fabric &amp; Technologies</a>
+          <a href="/innovation">Innovation</a>
+          <a href="/inside">Inside BIA</a>
+          <a href="/ecosystem" class="active">BIA &times; Classic</a>
+        </div>
+      </div>
 
-      <a href="/innovation">Innovation</a>
-
-      <a href="/inside">Inside BIA</a>
-
-      <a href="/ecosystem" class="active">BIA × Classic</a>
-
-      <a href="/responsibility">Responsibility</a>
-
-      <a href="/people">People</a>
-
-      <a href="/stories">Insights</a>
+      <div class="nav-item">
+        <span class="nav-parent">
+          People &amp; Culture <span class="nav-arrow">&#9662;</span>
+        </span>
+        <div class="nav-dropdown">
+          <a href="/responsibility">Responsibility</a>
+          <a href="/people">People</a>
+          <a href="/stories">Insights</a>
+        </div>
+      </div>
 
       <a href="/contact">Contact</a>
-
     </div>
 
-    <a href="/contact" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">→</span></a>
+    <a href="/contact" class="btn btn-red nav-cta">DEVELOP WITH BIA <span class="arrow">&rarr;</span></a>
 
   
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -74,9 +82,9 @@
 
   <!-- ================= SUBPAGE HERO ================= -->
 
-  <header class="subpage-hero">
+  <header class="subpage-hero ecosystem-hero">
 
-    <div class="subpage-hero-bg" style="background-image: url('{{ url_for('static', filename='assets/ecosystem-hd.jpg') }}');"></div>
+    <div class="subpage-hero-bg" style="background-image: url('{{ url_for('static', filename='assets/hero-ecosystem-women-hd.jpg') }}?v=20261112_eco_align_v4"></div>
 
     <div class="subpage-hero-veil"></div>
 
@@ -900,7 +908,7 @@
 
         <!-- Subpage Call to Action Banner -->
 
-        <div class="subpage-cta reveal" style="margin-top: 80px;">
+        <div class="subpage-cta reveal" style="margin-top: 70px; background: linear-gradient(135deg, rgba(12, 12, 14, 0.70) 0%, rgba(16, 14, 16, 0.78) 100%), url('{{ url_for('static', filename='assets/bottom-banner-clean-hd.jpg') }}?v=20261112_eco_align_v4">
 
           <p class="eyebrow" style="color: var(--red); justify-content: center;">ONE PARTNER. ENDLESS POSSIBILITIES.</p>
 
@@ -1038,7 +1046,7 @@
 
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261031_navy"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261112_eco_align_v4"></script>
 
 </body>
 

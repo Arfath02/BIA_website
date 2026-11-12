@@ -35,6 +35,7 @@ except ImportError:
     PYODBC_AVAILABLE = False
 
 from flask import Flask, jsonify, render_template, request
+from werkzeug.utils import secure_filename
 
 try:
     from email_service import send_enquiry_confirmation
@@ -43,8 +44,17 @@ except ImportError:
         pass
 
 app = Flask(__name__)
-# 2MB max payload to mitigate memory exhaustion DoS
-app.config["MAX_CONTENT_LENGTH"] = 2 * 1024 * 1024
+MAX_PDF_BYTES = 3 * 1024 * 1024  # 3 MB max per uploaded PDF
+UPLOAD_DIR = os.path.join(BASE_DIR, "uploads", "resumes")
+# 4MB max request payload to allow a 3MB PDF + multipart form fields
+app.config["MAX_CONTENT_LENGTH"] = 4 * 1024 * 1024
+
+
+@app.errorhandler(413)
+def request_entity_too_large(_err):
+    return jsonify({"error": "Uploaded PDF exceeds the 3 MB maximum size limit."}), 413
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.jinja_env.auto_reload = True
 
 # ---------------------------------------------------------------------------
 # In-Memory Rate Limiter (Thread-safe sliding window)
@@ -300,7 +310,11 @@ def enquiry():
     if is_rate_limited(ip, limit=10, window_seconds=60):
         return jsonify({"error": "Too many requests. Please wait a moment."}), 429
 
-    data = request.get_json(silent=True) or {}
+    if request.content_type and request.content_type.startswith("multipart/form-data"):
+        data = request.form
+    else:
+        data = request.get_json(silent=True) or {}
+
     topic   = str(data.get("topic") or "general").strip()
     name    = str(data.get("name") or "").strip()[:120]
     email   = str(data.get("email") or "").strip()[:200]
@@ -314,7 +328,35 @@ def enquiry():
     if not EMAIL_RE.match(email):
         return jsonify({"error": "A valid email is required."}), 400
 
+    pdf_file = request.files.get("resume_pdf") if request.files else None
+    attachment_filename = None
+    attachment_bytes = None
+    if pdf_file and pdf_file.filename:
+        safe_orig = secure_filename(pdf_file.filename)
+        if not safe_orig.lower().endswith(".pdf"):
+            return jsonify({"error": "Only PDF files (.pdf) are allowed."}), 400
+        raw_bytes = pdf_file.read(MAX_PDF_BYTES + 1)
+        if len(raw_bytes) == 0:
+            return jsonify({"error": "Uploaded PDF file is empty."}), 400
+        if len(raw_bytes) > MAX_PDF_BYTES:
+            return jsonify({"error": "PDF file exceeds the 3 MB maximum size limit."}), 400
+        if not raw_bytes.startswith(b"%PDF-"):
+            return jsonify({"error": "Invalid PDF file. Please upload a valid PDF document."}), 400
+        attachment_filename = safe_orig
+        attachment_bytes = raw_bytes
+
     ref = new_reference("ENQ")
+    if attachment_bytes and attachment_filename:
+        try:
+            os.makedirs(UPLOAD_DIR, exist_ok=True)
+            stored_name = f"{ref}_{attachment_filename}"
+            with open(os.path.join(UPLOAD_DIR, stored_name), "wb") as fp:
+                fp.write(attachment_bytes)
+            if message and "Attached CV / Resume" not in message:
+                message = f"{message}\n• Attached CV / Resume: {attachment_filename} ({len(attachment_bytes) / (1024 * 1024):.2f} MB)"
+        except Exception as exc:  # noqa: BLE001
+            app.logger.warning("Failed to save uploaded PDF: %s", exc)
+
     try:
         with get_conn() as conn:
             conn.execute(
@@ -333,9 +375,16 @@ def enquiry():
         email=email,
         company=company,
         message=message,
+        attachment_filename=attachment_filename,
+        attachment_bytes=attachment_bytes,
     )
 
-    return jsonify({"reference": ref, "status": "success", "email_dispatched": True}), 201
+    return jsonify({
+        "reference": ref,
+        "status": "success",
+        "email_dispatched": True,
+        "attachment": attachment_filename,
+    }), 201
 
 
 @app.post("/api/fabric-challenge")

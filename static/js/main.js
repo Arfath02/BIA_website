@@ -823,6 +823,123 @@
     }
   });
 
+  // Careers PDF Upload Validation & State (Max 3 MB)
+  var MAX_PDF_BYTES = 3 * 1024 * 1024;
+  var carPdfDropzone = document.getElementById('carPdfDropzone');
+  var carPdfInput = document.getElementById('carResumePdf');
+  var carPdfPrompt = document.getElementById('carPdfPrompt');
+  var carPdfSelected = document.getElementById('carPdfSelected');
+  var carPdfFileName = document.getElementById('carPdfFileName');
+  var carPdfFileSize = document.getElementById('carPdfFileSize');
+  var carPdfRemove = document.getElementById('carPdfRemove');
+  var carPdfError = document.getElementById('carPdfError');
+  var selectedCareerPdf = null;
+
+  function clearCareerPdf(keepError) {
+    selectedCareerPdf = null;
+    if (carPdfInput) carPdfInput.value = '';
+    if (carPdfDropzone) {
+      carPdfDropzone.classList.remove('has-file');
+      if (!keepError) carPdfDropzone.classList.remove('has-error');
+    }
+    if (carPdfPrompt) carPdfPrompt.hidden = false;
+    if (carPdfSelected) carPdfSelected.hidden = true;
+    if (!keepError && carPdfError) {
+      carPdfError.textContent = '';
+      carPdfError.hidden = true;
+    }
+  }
+
+  function showCareerPdfError(msg) {
+    clearCareerPdf(true);
+    if (carPdfDropzone) carPdfDropzone.classList.add('has-error');
+    if (carPdfError) {
+      carPdfError.textContent = msg;
+      carPdfError.hidden = false;
+    }
+  }
+
+  function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+  }
+
+  function handleCareerPdfFile(file) {
+    if (!file) {
+      clearCareerPdf(false);
+      return;
+    }
+    var lowerName = (file.name || '').toLowerCase();
+    var isPdf = file.type === 'application/pdf' || lowerName.endsWith('.pdf');
+    if (!isPdf) {
+      showCareerPdfError('Only PDF files (.pdf) are allowed. Please select a valid PDF document.');
+      return;
+    }
+    if (file.size <= 0) {
+      showCareerPdfError('The selected PDF file appears to be empty.');
+      return;
+    }
+    if (file.size > MAX_PDF_BYTES) {
+      showCareerPdfError('File size (' + formatFileSize(file.size) + ') exceeds the 3 MB maximum limit.');
+      return;
+    }
+
+    selectedCareerPdf = file;
+    if (carPdfDropzone) {
+      carPdfDropzone.classList.remove('has-error');
+      carPdfDropzone.classList.add('has-file');
+    }
+    if (carPdfError) {
+      carPdfError.textContent = '';
+      carPdfError.hidden = true;
+    }
+    if (carPdfFileName) carPdfFileName.textContent = file.name;
+    if (carPdfFileSize) carPdfFileSize.textContent = formatFileSize(file.size) + ' · Ready to attach';
+    if (carPdfPrompt) carPdfPrompt.hidden = true;
+    if (carPdfSelected) carPdfSelected.hidden = false;
+  }
+
+  if (carPdfInput && carPdfDropzone) {
+    carPdfInput.addEventListener('change', function () {
+      var file = carPdfInput.files && carPdfInput.files[0];
+      handleCareerPdfFile(file);
+    });
+
+    carPdfDropzone.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && !selectedCareerPdf) {
+        e.preventDefault();
+        carPdfInput.click();
+      }
+    });
+
+    carPdfDropzone.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      carPdfDropzone.classList.add('is-dragover');
+    });
+
+    carPdfDropzone.addEventListener('dragleave', function () {
+      carPdfDropzone.classList.remove('is-dragover');
+    });
+
+    carPdfDropzone.addEventListener('drop', function (e) {
+      e.preventDefault();
+      carPdfDropzone.classList.remove('is-dragover');
+      var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if (file) {
+        handleCareerPdfFile(file);
+      }
+    });
+  }
+
+  if (carPdfRemove) {
+    carPdfRemove.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      clearCareerPdf(false);
+    });
+  }
+
   // Handle Form Submission
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
@@ -850,6 +967,11 @@
       if (!email || email.indexOf('@') === -1) {
         if (emailInput) emailInput.focus();
         alert('Please provide a valid work email.');
+        return;
+      }
+
+      if (activePathway === 'careers' && selectedCareerPdf && selectedCareerPdf.size > MAX_PDF_BYTES) {
+        showCareerPdfError('File size (' + formatFileSize(selectedCareerPdf.size) + ') exceeds the 3 MB maximum limit.');
         return;
       }
 
@@ -926,6 +1048,7 @@
         if (cLink) lines.push('• LinkedIn/Portfolio: ' + cLink);
         if (cReloc) lines.push('• Relocation: ' + cReloc);
         if (cSumm) lines.push('• Summary:\n  ' + cSumm);
+        if (selectedCareerPdf) lines.push('• Attached CV / Resume: ' + selectedCareerPdf.name + ' (' + formatFileSize(selectedCareerPdf.size) + ')');
       }
 
       if (phone) lines.push('• Phone/WhatsApp: ' + phone);
@@ -940,31 +1063,62 @@
 
       var generatedRef = (conf.refPrefix || 'BIA-REQ') + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
 
-      fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          topic: activePathway,
-          name: name,
-          email: email,
-          company: company || null,
-          message: fullMessage
-        })
-      })
+      var fetchPromise;
+      if (activePathway === 'careers' && selectedCareerPdf) {
+        var formData = new FormData();
+        formData.append('topic', activePathway);
+        formData.append('name', name);
+        formData.append('email', email);
+        if (company) formData.append('company', company);
+        formData.append('message', fullMessage);
+        formData.append('resume_pdf', selectedCareerPdf, selectedCareerPdf.name);
+
+        fetchPromise = fetch('/api/enquiry', {
+          method: 'POST',
+          body: formData
+        });
+      } else {
+        fetchPromise = fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            topic: activePathway,
+            name: name,
+            email: email,
+            company: company || null,
+            message: fullMessage
+          })
+        });
+      }
+
+      fetchPromise
       .then(function (r) {
         return r.json().then(function (data) {
-          return { ok: r.ok, body: data };
+          return { ok: r.ok, status: r.status, body: data };
+        }).catch(function () {
+          return { ok: r.ok, status: r.status, body: {} };
         });
       })
       .then(function (res) {
-        var ref = (res.ok && res.body.reference) ? res.body.reference : generatedRef;
+        if (!res.ok) {
+          var errMsg = (res.body && res.body.error) ? res.body.error : 'Unable to submit your request. Please check your details and try again.';
+          if (activePathway === 'careers' && (res.status === 400 || res.status === 413) && errMsg.toLowerCase().indexOf('pdf') !== -1) {
+            showCareerPdfError(errMsg);
+          } else {
+            alert(errMsg);
+          }
+          return;
+        }
+        var ref = (res.body && res.body.reference) ? res.body.reference : generatedRef;
         openEnquiryModal(ref, activePathway);
         contactForm.reset();
+        clearCareerPdf(false);
         selectPathway(activePathway, false);
       })
       .catch(function () {
         openEnquiryModal(generatedRef, activePathway);
         contactForm.reset();
+        clearCareerPdf(false);
         selectPathway(activePathway, false);
       })
       .finally(function () {
@@ -1239,7 +1393,21 @@
     });
   }
   /* ---------------- 10. NAVBAR CATEGORY DROPDOWNS ---------------- */
-  var navItems = document.querySelectorAll('.nav-item.has-dropdown');
+  // Support both .nav-parent triggers and legacy .nav-item.has-dropdown
+  document.querySelectorAll('.nav-parent').forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var parentItem = trigger.closest('.nav-item');
+      if (!parentItem) return;
+      var wasOpen = parentItem.classList.contains('is-open');
+      document.querySelectorAll('.nav-item').forEach(function (i) { i.classList.remove('is-open'); });
+      if (!wasOpen) {
+        parentItem.classList.add('is-open');
+      }
+    });
+  });
+
+  var navItems = document.querySelectorAll('.nav-item');
 
   navItems.forEach(function (item) {
     var btn = item.querySelector('.nav-link-btn');
@@ -1832,31 +2000,62 @@
     });
   }
 
-  // --- MOBILE NAVIGATION DRAWER TOGGLE ---
+  // --- MOBILE NAVIGATION DRAWER & ACCORDION SYSTEM ---
   var navToggle = document.getElementById('navToggle');
   var navLinksMenu = document.querySelector('.nav-links');
   var mainNav = document.getElementById('mainNav');
 
   if (navToggle && navLinksMenu) {
+    // 1. Remove any legacy backdrop elements from DOM
+    var oldBackdrops = document.querySelectorAll('.nav-mobile-backdrop');
+    oldBackdrops.forEach(function (el) { el.remove(); });
+
+    // 2. Inject Luxury Mobile Footer (CTA + Mill info) into drawer if missing
+    if (!navLinksMenu.querySelector('.mobile-nav-footer')) {
+      var mobileFooter = document.createElement('div');
+      mobileFooter.className = 'mobile-nav-footer';
+      mobileFooter.innerHTML = '<a href="/contact" class="mobile-drawer-cta">DEVELOP WITH BIA &rarr;</a>' +
+        '<div class="mobile-drawer-info"><strong>AL MAFRAQ, JORDAN</strong><span>High-Speed Circular Knits & Dyeing</span></div>';
+      navLinksMenu.appendChild(mobileFooter);
+    }
+
+    function closeMobileDrawer() {
+      navLinksMenu.classList.remove('nav-mobile-open');
+      navToggle.classList.remove('is-active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      if (mainNav) mainNav.classList.remove('nav-expanded');
+      document.body.classList.remove('nav-drawer-open');
+    }
+
+    function openMobileDrawer() {
+      navLinksMenu.classList.add('nav-mobile-open');
+      navToggle.classList.add('is-active');
+      navToggle.setAttribute('aria-expanded', 'true');
+      if (mainNav) mainNav.classList.add('nav-expanded');
+      document.body.classList.add('nav-drawer-open');
+
+      // Auto-expand accordion if child page is active
+      navLinksMenu.querySelectorAll('.nav-item').forEach(function (item) {
+        if (item.querySelector('.nav-dropdown a.active')) {
+          item.classList.add('is-open');
+        }
+      });
+    }
+
     navToggle.addEventListener('click', function (e) {
       e.stopPropagation();
-      var isOpen = navLinksMenu.classList.toggle('nav-mobile-open');
-      navToggle.classList.toggle('is-active', isOpen);
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      if (mainNav) {
-        mainNav.classList.toggle('nav-expanded', isOpen);
+      var isOpen = navLinksMenu.classList.contains('nav-mobile-open');
+      if (isOpen) {
+        closeMobileDrawer();
+      } else {
+        openMobileDrawer();
       }
-      document.body.classList.toggle('nav-drawer-open', isOpen);
     });
 
     // Close when clicking any nav link
     navLinksMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        navLinksMenu.classList.remove('nav-mobile-open');
-        navToggle.classList.remove('is-active');
-        navToggle.setAttribute('aria-expanded', 'false');
-        if (mainNav) mainNav.classList.remove('nav-expanded');
-        document.body.classList.remove('nav-drawer-open');
+        closeMobileDrawer();
       });
     });
 
@@ -1864,11 +2063,7 @@
     document.addEventListener('click', function (e) {
       if (!navLinksMenu.contains(e.target) && !navToggle.contains(e.target)) {
         if (navLinksMenu.classList.contains('nav-mobile-open')) {
-          navLinksMenu.classList.remove('nav-mobile-open');
-          navToggle.classList.remove('is-active');
-          navToggle.setAttribute('aria-expanded', 'false');
-          if (mainNav) mainNav.classList.remove('nav-expanded');
-          document.body.classList.remove('nav-drawer-open');
+          closeMobileDrawer();
         }
       }
     });
@@ -1876,11 +2071,7 @@
     // Close on Escape key
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && navLinksMenu.classList.contains('nav-mobile-open')) {
-        navLinksMenu.classList.remove('nav-mobile-open');
-        navToggle.classList.remove('is-active');
-        navToggle.setAttribute('aria-expanded', 'false');
-        if (mainNav) mainNav.classList.remove('nav-expanded');
-        document.body.classList.remove('nav-drawer-open');
+        closeMobileDrawer();
       }
     });
   }
